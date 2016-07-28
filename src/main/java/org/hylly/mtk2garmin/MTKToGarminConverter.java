@@ -405,7 +405,9 @@ public class MTKToGarminConverter {
 			igeom = geom.GetGeometryRef(i);
 
 			ighr = this.handleSingleGeom(igeom);
-
+			if (ighr.ways.size() == 0) {
+				return new GeomHandlerResult(); 
+			}
 			ighr.ways.get(0).setRole((i == 0 ? "outer" : "inner"));
 
 			ghr.nodes.addAll(ighr.nodes);
@@ -467,6 +469,10 @@ public class MTKToGarminConverter {
 			fields.put(MTKToGarminConverter.getStringId(f.getFieldName()), feat.GetFieldAsString(f.getFieldIndex()).intern());
 		}
 		geom = feat.GetGeometryRef();
+		if (!geom.IsValid()) {
+			System.out.println("Invalid geometry!");
+			return true;
+		}
 		geom = geom.SimplifyPreserveTopology(0.5);
 
 		if (srctowgs == null) {
