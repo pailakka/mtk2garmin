@@ -21,6 +21,7 @@ import crosby.binary.Osmformat;
 import it.unimi.dsi.fastutil.ints.Int2IntMap.Entry;
 import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 
 public class OSMPBF {
 	private String writingprogram = "mtk2garmin";
@@ -74,7 +75,6 @@ public class OSMPBF {
 
 	private String ofn;
 	private BufferedOutputStream of;
-
 	private DataOutputStream od;
 
 	private class PBFBlob {
@@ -158,12 +158,13 @@ public class OSMPBF {
 	}
 
 	private Osmformat.StringTable buildStringTable() {
-		Osmformat.StringTable.Builder stbuilder = Osmformat.StringTable
-				.newBuilder();
+		Osmformat.StringTable.Builder stbuilder = Osmformat.StringTable.newBuilder();
 		for (int i = 0; i < MTKToGarminConverter.stringTable.size(); i++) {
 			stbuilder.addS(ByteString.copyFromUtf8(MTKToGarminConverter.stringTable.get(i)));
 		}
-
+		System.out.println(stbuilder.getSCount() + " strings in OSMPBF stringtable from MTK2Garmin stringtable " + MTKToGarminConverter.stringTable.size());
+		System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTable.toArray()));
+		System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTableTranslate.entrySet().toArray()));
 		return stbuilder.build();
 	}
 
@@ -176,7 +177,7 @@ public class OSMPBF {
 		pbbuilder.setLatOffset(this.lat_offset);
 		pbbuilder.setLonOffset(this.lon_offset);
 		pbbuilder.setDateGranularity(this.date_granularity);
-
+		
 		Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(nodes, ways,
 				relations);
 		pbbuilder.addPrimitivegroup(pg);
@@ -246,6 +247,10 @@ public class OSMPBF {
 			Int2IntRBTreeMap ntags = n.getTags();
 			if (ntags != null) {
 				for (Entry t : ntags.int2IntEntrySet()) {
+					if (t.getIntKey() > MTKToGarminConverter.stringTable.size() || t.getIntValue() > MTKToGarminConverter.stringTable.size()) {
+					
+						System.out.println("Node key error! " + t.getIntKey() + " or " + t.getIntValue() + " too large");
+					}
 					dsb.addKeysVals(t.getIntKey());
 					dsb.addKeysVals(t.getIntValue());
 				}
@@ -254,7 +259,8 @@ public class OSMPBF {
 			dsb.addKeysVals(0);
 
 		}
-
+		
+		System.out.println("Node ids: " + Arrays.toString(dsb.getKeysValsList().toArray()));
 		dsb.setDenseinfo(dib);
 
 		return dsb.build();

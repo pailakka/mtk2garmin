@@ -1,0 +1,1 @@
+java -jar mkgmap-r3683\mkgmap.jar -c test.args suomi\L434.osm.pbf

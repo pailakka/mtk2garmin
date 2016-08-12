@@ -21,10 +21,12 @@ public class ShapeSyvyysTagHandler implements TagHandlerI {
 			
 			if (MTKToGarminConverter.getStringById(key).equals("DEPTH")) {
 				val = String.format("%.1f", Float.parseFloat(val));
+				
 			}
+
 			tags.put(
 					key,
-					MTKToGarminConverter.getStringId(k.getValue())
+					MTKToGarminConverter.getStringId(val)
 					);
 		}
 	}
