@@ -1,0 +1,13 @@
+verbose
+remove-short-arcs
+style-file: mtk2garmin_style
+check-styles
+country-name=Finland
+max-jobs=6
+keep-going
+drive-on=right
+tdbfile
+show-profiles=1
+draw-priority=25
+net
+route
