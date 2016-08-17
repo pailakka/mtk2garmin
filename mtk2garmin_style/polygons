@@ -1,0 +1,72 @@
+# -------------------------------------------------------------------
+# This is the default mkgmap style file for converting closed OSM ways
+# into Garmin polygons.
+# Any line prefaced with # is a comment and will not be applied.
+# Each line is a rule, of the generalised format:
+#  OSM_tag(s)_to_match  {add area=yes} [Garmin_type_code resolution]
+# See http://wiki.openstreetmap.org/wiki/Mkgmap/help/style_rules
+# and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
+# for more information.
+
+
+kohdeluokka=36211 {add area=yes} [0x32] #Merivesi
+kohdeluokka=36200 {add area=yes} [0x3c] #Jarvivesi
+kohdeluokka=36313 {add area=yes} [0x46] #Virtavesialue
+
+kohdeluokka=32612 {add area=yes} [0x4e]    #Puutarha
+kohdeluokka=32413 {add area=yes} [0x1090e] #Muu lentokenttaalue
+kohdeluokka=39120 {add area=yes} [0x10111] #Varvikko
+kohdeluokka=42262 {add area=yes} [0x10901] #Muu rakennus, 3-n krs
+kohdeluokka=42252 {add area=yes} [0x10902] #Kirkollinen rakennus, 3-n krs
+kohdeluokka=44300 {add area=yes} [0x3c]    #Allas - alue
+kohdeluokka=32500 {add area=yes} [0x10400] #Louhos
+kohdeluokka=35411 {add area=yes} [0x10101] #Suo, helppokulkuinen puuton
+kohdeluokka=32412 {add area=yes} [0x1090b] #Lentokentan kiitotie, paallystamaton
+kohdeluokka=34100 {add area=yes} [0x10105] #Kallio - alue
+kohdeluokka=32418 {add area=yes} [0x10910] #Muu lentoliikennealue, paallystamaton
+kohdeluokka=35412 {add area=yes} [0x10102] #Suo, helppokulkuinen metsaa kasvava
+kohdeluokka=32900 {add area=yes} [0x10106] #Puisto
+kohdeluokka=42211 {add area=yes} [0x10900] #Asuinrakennus, 1-2 krs
+kohdeluokka=32415 {add area=yes} [0x1090e] #Muu lentokenttaalue, paallystetty
+kohdeluokka=33100 {add area=yes} [0x19]    #Urheilu- ja virkistysalue
+kohdeluokka=42231 {add area=yes} [0x10904] #Lomarakennus, 1-2 krs
+kohdeluokka=32800 {add area=yes} [0x4f]    #Niitty
+kohdeluokka=42232 {add area=yes} [0x10904] #Lomarakennus, 3-n krs
+kohdeluokka=42221 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, 1-2 krs
+kohdeluokka=38400 {add area=yes} [0x10108] #Tulva-alue
+kohdeluokka=35300 {add area=yes} [0x10100] #Soistuma
+kohdeluokka=42210 {add area=yes} [0x10900] #Asuinrakennus, ? krs
+kohdeluokka=32200 {add area=yes} [0x1a]    #Hautausmaa
+kohdeluokka=32414 {add area=yes} [0x10910] #Muu lentoliikennealue
+kohdeluokka=39130 {add area=yes} [0x10107] #Avoin vesijatto
+kohdeluokka=42230 {add area=yes} [0x10904] #Lomarakennus, ? krs
+kohdeluokka=42241 {add area=yes} [0xc] #Teollinen rakennus, 1-2 krs
+kohdeluokka=34300 {add area=yes} [0x53]    #Hietikko
+kohdeluokka=42220 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, ? krs
+kohdeluokka=39110 {add area=yes} [0x10600] #Avoin metsamaa
+kohdeluokka=42261 {add area=yes} [0x10901] #Muu rakennus, 1-2 krs
+kohdeluokka=42251 {add area=yes} [0x10902] #Kirkollinen rakennus, 1-2 krs
+kohdeluokka=38300 {add area=yes} [0x10109] #Maatuva vesialue
+kohdeluokka=35421 {add area=yes} [0x10103] #Suo, vaikeakulkuinen puuton
+kohdeluokka=42240 {add area=yes} [0xc] #Teollinen rakennus, ? krs
+kohdeluokka=33000 {add area=yes} [0x1b]    #Taytemaa
+kohdeluokka=42260 {add area=yes} [0x10901] #Muu rakennus, ? krs
+kohdeluokka=42250 {add area=yes} [0x10902] #Kirkollinen rakennus, ? krs
+kohdeluokka=42212 {add area=yes} [0x10900] #Asuinrakennus, 3-n krs
+kohdeluokka=32417 {add area=yes} [0x10910] #Muu lentoliikennealue, paallystetty
+kohdeluokka=34700 {add area=yes} [0x10700] #Kivikko
+kohdeluokka=35422 {add area=yes} [0x10104] #Suo, vaikeakulkuinen metsaa kasvava
+kohdeluokka=32111 {add area=yes} [0x10200] #Maa-aineksenottoalue, karkea kivennaisaines
+kohdeluokka=32113 {add area=yes} [0xd] #Maa-aineksenottoalue, eloperainen aines
+kohdeluokka=42270 {add area=yes} [0x10902] #Kirkko
+kohdeluokka=42222 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, 3-n krs
+kohdeluokka=32611 {add area=yes} [0x20]    #Pelto
+kohdeluokka=36313 {add area=yes} [0x46]    #Virtavesialue
+kohdeluokka=32416 {add area=yes} [0x1090e] #Muu lentokenttaalue, paallystamaton
+kohdeluokka=32421 {add area=yes} [0x5] #Autoliikennealue
+kohdeluokka=38900 {add area=yes} [0x10500] #Varastoalue
+kohdeluokka=32411 {add area=yes} [0x1090a] #Lentokentan kiitotie, paallystetty
+kohdeluokka=38600 {add area=yes} [0x10700] #Vesikivikko
+kohdeluokka=32112 {add area=yes} [0x10300] #Maa-aineksenottoalue, hieno kivennaisaines
+kohdeluokka=42242 {add area=yes} [0xc] #Teollinen rakennus, 3-n krs
+kohdeluokka=32300 {add area=yes} [0x1c]    #Kaatopaikka

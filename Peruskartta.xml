@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Elevate theme family 2.6.6
+**************************
+including Elevate, Elegant, Elevelo & Elements
+
+Mapsforge map style for Openandromaps
+by Tobias Kuehn
+Contact: http://www.eartrumpet.net/contact/
+
+License:
+********
+
+This map style is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License: http://creativecommons.org/licenses/by-nc-sa/3.0/
+Please have a look at read_me_elevate.txt for reuse and licenses of resources used in this theme.
+
+-->
+<rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme.xsd" version="1" map-background="#FFFFFF">
+
+<rule e="way" k="tyyppi" v="jarvi|meri|virtavesialue">
+    <area fill="#80ffff" stroke="#80ffff" stroke-width="0.0" />
+</rule>
+
+
+<rule e="way" k="tyyppi" v="hautausmaa">
+    <area fill="#80ff80" stroke="#000000" stroke-width="0.5" />
+</rule>
+
+<rule e="way" k="tyyppi" v="puisto">
+    <area fill="#b3ff66" stroke="#000000" stroke-width="0.5" />
+</rule>
+
+
+<rule e="way" k="kohdeluokka" v="32611">
+    <area fill="#ffd980" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="32612">
+    <area fill="#ffd980" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="urheilujavirkistysalue">
+    <area fill="#e6ff80" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="kallioalue">
+    <area fill="#D1C7D1" stroke="#D1C7D1" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="niitty">
+    <area fill="#fff266" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<rule e="way" k="kohdeluokka" v="32111">
+    <area fill="#ffffd9" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="32112">
+    <area fill="#e6cc80" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="32113">
+    <area fill="#cfb873" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<rule e="way" k="tyyppi" v="kaatopaikka">
+    <area fill="#ffffd9" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="louhos">
+    <area fill="#ffffd9" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="hietikko">
+    <area fill="#ffff66" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<rule e="way" k="tyyppi" v="varastoalue">
+    <area fill="#f3f3e6" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<rule e="way" k="tyyppi" v="soistuma">
+    <area fill="#e6f5f5" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!--  35411 suo helppokulkuinen puuton eli avoin -->
+<rule e="way" k="kohdeluokka" v="35411">
+    <area fill="#d1cc40" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 35412 suo helppokulkuinen metsaa kasvaa -->
+<rule e="way" k="kohdeluokka" v="35412">
+    <area fill="#c7ebeb" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!--  35421 suo vaikeakulkuinen, puuton eli avoin -->
+
+<rule e="way" k="kohdeluokka" v="35421">
+    <area fill="#d1cc40" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
+<rule e="way" k="kohdeluokka" v="35422">
+    <area fill="#C7EBEB" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!--  35421 suo vaikeakulkuinen, puuton eli avoin -->
+<rule e="way" k="kohdeluokka" v="35421">
+    <area fill="#d1cc40" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
+<rule e="way" k="kohdeluokka" v="35422">
+    <area fill="#C7EBEB" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<rule e="way" k="tyyppi" v="allas">
+    <area fill="#80ffff" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 39130 Avoin vesijatto -->
+<rule e="way" k="kohdeluokka" v="39130">
+    <area fill="#ffff40" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 38400 Avoin vesijatto -->
+<rule e="way" k="kohdeluokka" v="38400">
+    <area fill="#b3ffff" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 38300 Maatuva vesialue -->
+<rule e="way" k="kohdeluokka" v="38300">
+    <area fill="#b3ffff" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 32421 Autoliikennealue -->
+autoliikennealue
+<rule e="way" k="tyyppi" v="autoliikennealue">
+    <area fill="#ffb280" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32411 lentokentan kiitotie paallystetty -->
+<rule e="way" k="kohdeluokka" v="32411">
+    <area fill="#f26161" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32412 lentokentan kiitotie paallystamaton -->
+<rule e="way" k="kohdeluokka" v="32412">
+    <area fill="#ff7f66" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32413 muu lentokenttaalue (nurmikot ym. alueet) -->
+<rule e="way" k="kohdeluokka" v="32413">
+    <area fill="#ffff8c" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+
+<!-- 32415 muu lentokenttaalue paallystetty -->
+<rule e="way" k="kohdeluokka" v="32415">
+    <area fill="#ffff8c" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32416 muu lentokenttaalue paallystamaton -->
+<rule e="way" k="kohdeluokka" v="32416">
+    <area fill="#ffff8c" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32414 muu lentoliikennealue -->
+<rule e="way" k="kohdeluokka" v="32414">
+    <area fill="#ffe680" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!-- 32417 muu lentoliikennealue paallystetty -->
+<rule e="way" k="kohdeluokka" v="32417">
+    <area fill="#ffe680" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+
+<!-- 32418 muu lentoliikennealue paallystamaton -->
+<rule e="way" k="kohdeluokka" v="32418">
+    <area fill="#ffe680" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+
+
+<rule e="way" k="tyyppi" v="korkeuskayra">
+    <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square" />
+</rule>
+
+<rule e="way" k="tyyppi" v="taytemaa">
+    <line stroke="#ffffd9" stroke-width="0.2" stroke-linecap="square" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="12111">
+    <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+    <line stroke="#cc1400" stroke-width="1.5" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12112">
+    <line stroke="#000000" stroke-width="2" stroke-linecap="butt" />
+    <line stroke="#cc1400" stroke-width="1" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12121">
+    <line stroke="#000000" stroke-width="2" stroke-linecap="butt" />
+    <line stroke="#cc1400" stroke-width="1" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12122">
+    <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
+    <line stroke="#cc1400" stroke-width="0.5" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12131">
+    <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
+    <line stroke="#cc0000" stroke-width="0.5" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12132">
+    <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
+    <line stroke="#cc0000" stroke-width="0.5" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12141">
+    <line stroke="#000000" stroke-width="0.3" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12152">
+    <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12200">
+    <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12312">
+    <line stroke="#000000" stroke-width="0.1" stroke-dasharray="32,8" stroke-dashoffset="20" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="12313">
+    <line stroke="#000000" stroke-width="0.2" stroke-dasharray="22,8" stroke-dashoffset="30" stroke-linecap="butt" />
+</rule>
+<rule e="way" k="kohdeluokka" v="12314">
+    <line stroke="#000000" stroke-width="0.3" stroke-dasharray="42,8" stroke-dashoffset="20" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="12316">
+    <line stroke="#000000" stroke-width="0.3" stroke-dasharray="28,10" stroke-dashoffset="17" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="12151">
+    <line stroke="#cc4d00" stroke-width="0.3" stroke-dasharray="35,30" stroke-dashoffset="10" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="12152">
+    <line stroke="#cc4d00" stroke-width="0.3" stroke-dasharray="35,30" stroke-dashoffset="10" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="16511">
+    <line stroke="#000000" stroke-width="0.8"/>
+</rule>
+
+<rule e="way" k="kohdeluokka" v="16512">
+    <line stroke="#000000" stroke-width="0.8" stroke-dasharray="20,40" stroke-dashoffset="10" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="16521">
+    <line stroke="#000000" stroke-width="0.2" stroke-dasharray="40,20" stroke-dashoffset="10" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="16522">
+    <line stroke="#000000" stroke-width="0.2" stroke-dasharray="4,30" stroke-dashoffset="0" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="45111 ">
+    <line stroke="#000000" stroke-width="2"/>
+</rule>
+
+<rule e="way" k="kohdeluokka" v="45112 ">
+    <line stroke="#000000" stroke-width="3"/>
+</rule>
+
+<rule e="way" k="tyyppi" v="tieviiva">
+    <pathText k="name" font-style="bold" font-size="10" fill="#000000" stroke="#FFFFFF" stroke-width="4" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="36311">
+    <line stroke="#118AED" stroke-width="0.3" stroke-linecap="square" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="84113|84112|84115|84114">
+    <line stroke="#4d00ff" stroke-width="1" stroke-dasharray="40,15,5,15" stroke-dashoffset="10" stroke-linecap="round" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="36312">
+    <line stroke="#118AED" stroke-width="0.4" stroke-linecap="square" />
+</rule>
+
+<!--  42210 42211 42212 asuinrakennus alue -->
+<rule e="way" k="kohdeluokka" v="42210|42211|42212">
+    <area fill="#333333" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!--  42220 42221 42222 liike tai julkinen rakennus alue -->
+<rule e="way" k="kohdeluokka" v="42220|42221|42222">
+    <area fill="#ff33ff" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 42230 42231 42232 lomarakennus alue -->
+<rule e="way" k="kohdeluokka" v="42230|42231|42232">
+    <area fill="#00ff80" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 422340 42241 42242 teollinen rakennus alue -->
+<rule e="way" k="kohdeluokka" v="422340|42241|42242">
+    <area fill="#997399" stroke="#000000" stroke-width="0.2" />
+</rule>
+<!-- 42270 42250 42251 42252 kirkollinen rakennus alue -->
+<rule e="way" k="kohdeluokka" v="42270|42250|42251|42252">
+    <area fill="#997399" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+<!-- 42260 42261 42262 muu rakennus alue -->
+<rule e="way" k="kohdeluokka" v="42260|42261|42262">
+    <area fill="#cccccc" stroke="#000000" stroke-width="0.2" />
+</rule>
+
+
+<!--  38200 Koski -->
+<rule e="way" k="tyyppi" v="koski">
+    <line stroke="#f2ffff" stroke-width="3" stroke-dasharray="1,20" stroke-linecap="round" />
+</rule>
+
+
+<!--  22311 sahkolinja, suurjannite  -->
+<rule e="way" k="kohdeluokka" v="22311|26112|26113|26114|26115|26116|26117|22312">
+    <line stroke="#000000" stroke-width="0.7" stroke-linecap="round" />
+</rule>
+
+<!-- 22392 Suurjännitelinjan pylväs -->
+<rule e="any" k="kohdeluokka" v="22392">
+    <circle r="5" scale-radius="false" fill="#000000" />
+</rule>
+
+
+<!--  26111 kasujohto, pinnan alla -->
+<rule e="way" k="kohdeluokka" v="26111">
+    <line stroke="#000000" stroke-width="0.5" stroke-dasharray="50,25" stroke-dashoffset="10" stroke-linecap="round" />
+</rule>
+
+
+
+<!-- 2231 sahkolinja, jakelujannite -->
+<rule e="way" k="kohdeluokka" v="22311">
+    <line stroke="#000000" stroke-width="0.4" stroke-linecap="round" />
+</rule>
+
+
+
+<!-- 44800 masto -->
+<rule e="any" k="kohdeluokka" v="44800">
+    <symbol src="file:/mml/Smasto.png"/>
+</rule>
+
+
+<!-- 45200 Portti -->
+<rule e="any" k="kohdeluokka" v="45200">
+    <symbol src="file:/mml/Sportti.png"/>
+</rule>
+
+<!-- 45710 Tulentekopaikka -->
+
+<rule e="any" k="kohdeluokka" v="45710">
+    <symbol src="file:/mml/Stuli.png"/>
+</rule>
+
+<!-- 12200 Esterakennelma -->
+<rule e="any" k="kohdeluokka" v="12200">
+    <symbol src="file:/mml/Sesterak.png"/>
+</rule>
+
+
+<!--  22100 Muuntaja -->
+<rule e="any" k="kohdeluokka" v="22100">
+    <symbol src="file:/mml/Smu.png"/>
+</rule>
+
+
+<rule e="way" k="tyyppi" v="rautatie">
+    <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="14111">
+    <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="kohdeluokka" v="14112|14131|14121">
+    <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+</rule>
+
+<rule e="way" k="tyyppi" v="aita">
+    <line stroke="#000000" stroke-width="0.5" stroke-linecap="round" />
+    <line stroke="#000000" stroke-width="1.5" stroke-dasharray="1,25" stroke-linecap="round" />
+</rule>
+
+
+
+<rule e="any" k="kohdeluokka" v="32101">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="32201">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="32301">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="32401">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="32501">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="32901">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="33001">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="33101">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="34601">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="34901">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35010">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35020">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35030">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35040">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35050">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35060">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35070">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35080">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35090">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="35101">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36101">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36201">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36301">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36410">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36420">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="36490">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="38201">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="38501">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="38901">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="44901">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="48111">
+    <caption k="name" font-style="bold" font-size="13" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="48112">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="48120">
+    <caption k="name" font-style="bold" font-size="10" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="48130">
+    <caption k="name" font-style="bold" font-size="9" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="48190">
+    <caption k="name" font-style="bold" font-size="8" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="72303">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+<rule e="any" k="kohdeluokka" v="72403">
+    <caption k="name" font-style="bold" font-size="11" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
+</rule>
+
+
+</rendertheme>
