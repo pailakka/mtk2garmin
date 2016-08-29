@@ -380,14 +380,28 @@ public class MTKToGarminConverter {
     }
 
     private GeomHandlerResult handleMultiGeom(Geometry geom) {
+
+        GeomHandlerResult ighr;
+        Geometry igeom;
         GeomHandlerResult ghr = new GeomHandlerResult();
+        
+    	if (geom.GetGeometryName() != "POLYGON") {
+            for (int i = 0; i < geom.GetGeometryCount(); i++) {
+                igeom = geom.GetGeometryRef(i);
+                ighr = this.handleSingleGeom(igeom);
+                ghr.nodes.addAll(ighr.nodes);
+                ghr.ways.addAll(ighr.ways);
+            }
+            return ghr;
+    	}	
+    	
+
         long rid = relationidcounter;
         relationidcounter++;
         Relation r = new Relation();
         r.setId(rid);
         r.tags.put(MTKToGarminConverter.getStringId("type"), MTKToGarminConverter.getStringId("multipolygon"));
-        GeomHandlerResult ighr;
-        Geometry igeom;
+
         for (int i = 0; i < geom.GetGeometryCount(); i++) {
             igeom = geom.GetGeometryRef(i);
 

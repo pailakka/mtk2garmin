@@ -9,7 +9,7 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
 public class ShapeRetkeilyTagHandler implements TagHandlerI {
 	public final ObjectOpenHashSet<String> wantedFields = new ObjectOpenHashSet<String>(
-			Arrays.asList("name_fi", "category_i"));
+			Arrays.asList("name_fi", "category_i","cat_id"));
 
 	@Override
 	public ObjectOpenHashSet<String> getWantedFields() {
