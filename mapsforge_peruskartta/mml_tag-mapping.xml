@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tag-mapping xmlns="http://mapsforge.org/tag-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://mapsforge.org/tag-mapping https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/tag-mapping.xsd"
+	default-zoom-appear="16" profile-name="default-profile">
+
+    <pois>
+<osm-tag key="kohdeluokka" value="12200" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16120" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16121" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16122" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16124" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16125" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16126" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16127" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16128" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16141" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16142" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16143" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16144" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16145" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16146" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16147" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16148" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16149" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16151" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16152" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16153" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16154" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16155" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16156" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16157" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16158" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16159" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16161" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16162" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16163" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16164" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16165" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16166" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16167" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16168" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16169" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16171" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16172" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16173" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16174" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16175" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16176" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16177" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16178" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16179" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16181" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16182" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16183" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16184" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16185" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16186" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16187" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16188" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16189" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16191" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16192" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16193" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16194" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16195" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16196" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16197" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16198" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16199" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16201" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16202" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16203" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16204" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16205" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16206" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16211" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16212" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16213" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16214" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16215" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16216" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16600" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16712" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16721" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16722" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="22100" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="22392" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26191" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26200" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32191" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32192" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32201" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32291" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32301" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32401" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32501" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32710" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32713" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32714" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32715" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32719" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32891" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32901" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="33001" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="33101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34200" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34600" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34601" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34900" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34901" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35010" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35020" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35030" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35040" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35050" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35060" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35070" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35080" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35090" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35100" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36100" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36201" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36301" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36400" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36410" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36420" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36490" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38100" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38201" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38501" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38511" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38512" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38513" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38901" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38991" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44591" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44600" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44700" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44900" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44901" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45000" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45200" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45300" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45400" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45500" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45710" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48112" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48120" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48130" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48190" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72303" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72310" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72320" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72330" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72340" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72403" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="82500" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="95300" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34100" zoom-appear="10" /> <!-- kallio -->
+<osm-tag key="tyyppi" value="syvyyspiste" zoom-appear="10" />
+<osm-tag key="amenity" value="shelter" zoom-appear="12" />
+<osm-tag key="amenity" value="toilets" zoom-appear="12" />
+<osm-tag key="tourism" value="fireplace" zoom-appear="12" />
+<osm-tag key="tourism" value="lean_to" zoom-appear="12" />
+<osm-tag key="tourism" value="wilderness" zoom-appear="12" />
+<osm-tag key="man_made" value="tower" zoom-appear="12" />
+<osm-tag key="cat_id" value="2229" zoom-appear="12" />
+<osm-tag key="cat_id" value="2226" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2225" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2211" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2214" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2217" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2212" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2210" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1311" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1217" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2238" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1614" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2223" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1214" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2413" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2221" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2244" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1213" zoom-appear="12"/>
+<osm-tag key="cat_id" value="2224" zoom-appear="12"/>
+<osm-tag key="cat_id" value="1212" zoom-appear="12"/>
+</pois>
+<ways>
+<osm-tag key="tyyppi" value="aita" zoom-appear="12" />
+<osm-tag key="tyyppi" value="allas" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="82100" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="82300" zoom-appear="10" />
+<osm-tag key="tyyppi" value="autoliikennealue" zoom-appear="10" />
+<osm-tag key="tyyppi" value="hautausmaa" zoom-appear="10" />
+<osm-tag key="tyyppi" value="hietikko" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="44500" zoom-appear="10" />
+<osm-tag key="tyyppi" value="jarvi" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34400" zoom-appear="10" />
+<osm-tag key="tyyppi" value="kaatopaikka" zoom-appear="10" />
+<osm-tag key="tyyppi" value="kallioalue" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34500" zoom-appear="10" />
+<osm-tag key="tyyppi" value="kivikko" zoom-appear="10" />
+<osm-tag key="tyyppi" value="korkeuskayra" zoom-appear="14" />
+<osm-tag key="tyyppi" value="koski" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84112" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84113" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84114" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84115" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32411" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32412" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32413" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32414" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32415" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32416" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32417" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32418" zoom-appear="10" />
+<osm-tag key="tyyppi" value="louhos" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="34800" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32112" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32113" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32611" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="32612" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="38300" zoom-appear="10" />
+<osm-tag key="tyyppi" value="meri" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="39110" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="39120" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="39130" zoom-appear="10" />
+<osm-tag key="tyyppi" value="niitty" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="30300" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45112" zoom-appear="10" />
+<osm-tag key="tyyppi" value="puisto" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26112" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26113" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26114" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26115" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26116" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="26117" zoom-appear="10" />
+<osm-tag key="tyyppi" value="rajavyohykkeentakaraja" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="45700" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="42210" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42211" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42212" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42220" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42221" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42222" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42230" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42231" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42232" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42240" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42241" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42242" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42250" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42251" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42252" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42260" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42261" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42262" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="42270" zoom-appear="14" />
+<osm-tag key="tyyppi" value="rautatie" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="14111" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="14112" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="14121" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="14131" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="22311" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="22312" zoom-appear="10" />
+<osm-tag key="tyyppi" value="soistuma" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="35411" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35412" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35421" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="35422" zoom-appear="10" />
+
+<osm-tag key="tyyppi" value="syvyyskayra" zoom-appear="14" />
+<osm-tag key="tyyppi" value="syvyyskayrat" zoom-appear="14" />
+<osm-tag key="tyyppi" value="taytemaa" zoom-appear="10" />
+<osm-tag key="tyyppi" value="tieviiva" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12111" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12112" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12121" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12122" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12131" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12132" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="12141" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="12152" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="12312" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="12313" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="12314" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="12316" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="16521" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="16522" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="12151" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="38400" zoom-appear="10" />
+<osm-tag key="tyyppi" value="urheilujavirkistysalue" zoom-appear="10" />
+<osm-tag key="tyyppi" value="varastoalue" zoom-appear="10" />
+<osm-tag key="tyyppi" value="vesikivikko" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16511" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16512" zoom-appear="10" />
+<osm-tag key="tyyppi" value="virtavesialue" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="36311" zoom-appear="14" />
+<osm-tag key="kohdeluokka" value="36312" zoom-appear="12" />
+<osm-tag key="kohdeluokka" value="30400" zoom-appear="10"/>
+<osm-tag key="highway" value="path" zoom-appear="10" />
+<osm-tag key="highway" value="track" zoom-appear="10" />
+<osm-tag key="highway" value="footway" zoom-appear="10" />
+<osm-tag key="tyyppi" value="luontopolut" zoom-appear="10" />
+<osm-tag key="tyyppi" value="ulkoilureititline" zoom-appear="10" />
+<osm-tag key="tyyppi" value="kesaretkeilyreititline" zoom-appear="10" />
+
+<osm-tag key="kohdeluokka" value="72000" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="72200" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72201" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72202" zoom-appear="12"/>
+
+<osm-tag key="kohdeluokka" value="72800" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72700" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72500" zoom-appear="12"/>
+
+<osm-tag key="kohdeluokka" value="74330" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72440" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72420" zoom-appear="12"/>
+<osm-tag key="kohdeluokka" value="72410" zoom-appear="12"/>
+    </ways>
+</tag-mapping>
