@@ -5,10 +5,10 @@ import org.gdal.ogr.Geometry;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
-public interface FeaturePreprocessI {
-	public int preprocessFeature(Feature feat,Geometry geom, Int2ObjectOpenHashMap<String> fields);
+interface FeaturePreprocessI {
+	int preprocessFeature(Feature feat,Geometry geom, Int2ObjectOpenHashMap<String> fields);
 
-	public boolean isWantedLayer(String lowerCase);
+	boolean isWantedLayer(String lowerCase);
 
-	public String getAttributeFilterString();
+	String getAttributeFilterString();
 }

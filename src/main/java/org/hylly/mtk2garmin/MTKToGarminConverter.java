@@ -1,42 +1,32 @@
 package org.hylly.mtk2garmin;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Locale;
-import java.util.Vector;
-import java.util.zip.GZIPOutputStream;
-
-import org.gdal.ogr.*;
-import org.gdal.osr.*;
-
 import it.unimi.dsi.fastutil.ints.Int2IntMap.Entry;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.longs.LongArrayList;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
+import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap;
 import it.unimi.dsi.fastutil.objects.Object2ObjectRBTreeMap;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import org.gdal.ogr.*;
+import org.gdal.osr.CoordinateTransformation;
+import org.gdal.osr.SpatialReference;
+import org.gdal.osr.osr;
 
-public class MTKToGarminConverter {
-    private static SpatialReference wgs84ref = new SpatialReference();
-    private static Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<String, double[]>();
+import java.io.*;
+import java.util.*;
+import java.util.zip.GZIPOutputStream;
+
+class MTKToGarminConverter {
+    private static final SpatialReference wgs84ref = new SpatialReference();
+    private static final Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<String, double[]>();
     private CoordinateTransformation srctowgs;
-    static Object2IntOpenHashMap<String> stringTableTranslate = new Object2IntOpenHashMap<String>();
-    static ObjectArrayList<String> stringTable = new ObjectArrayList<String>();
+    private static final Object2IntOpenHashMap<String> stringTableTranslate = new Object2IntOpenHashMap<String>();
+    static final ObjectArrayList<String> stringTable = new ObjectArrayList<String>();
 
     public class Node {
         final long id;
@@ -66,7 +56,7 @@ public class MTKToGarminConverter {
             this.nodeTags = tags;
         }
 
-        public void addTag(int key, int value) {
+        void addTag(int key, int value) {
             if (nodeTags == null) {
                 nodeTags = new Int2IntRBTreeMap();
             }
@@ -74,94 +64,68 @@ public class MTKToGarminConverter {
             nodeTags.put(key, value);
         }
 
-        public long getId() {
+        long getId() {
             return id;
         }
 
-        public double getLon() {
+        double getLon() {
             return lon;
         }
 
-        public double getLat() {
+        double getLat() {
             return lat;
         }
 
-        public boolean isWaypart() {
+        boolean isWaypart() {
             return waypart;
         }
 
-        public long getHash() {
+        long getHash() {
             return hash;
         }
 
-        public Int2IntRBTreeMap getTags() {
+        Int2IntRBTreeMap getTags() {
             return nodeTags;
         }
 
     }
 
-    public class Way {
+    class Way {
         long id;
 
-        public long getId() {
+        String getRole() {
+            return role;
+        }
+
+        void setRole(String role) {
+            this.role = role;
+        }
+
+        String role = "all";
+        LongArrayList refs = new LongArrayList();
+        final Int2IntRBTreeMap tags = new Int2IntRBTreeMap();
+
+        Way() {
+
+        }
+
+        long getId() {
             return id;
-        }
-
-        public void setId(long id) {
-            this.id = id;
-        }
-
-        public boolean isVisible() {
-            return visible;
-        }
-
-        public void setVisible(boolean visible) {
-            this.visible = visible;
         }
 
         public Int2IntRBTreeMap getTags() {
             return tags;
         }
-
-        public void setTags(Int2IntRBTreeMap tags) {
-            this.tags = tags;
-        }
-
-        public String getRole() {
-            return role;
-        }
-
-        public void setRole(String role) {
-            this.role = role;
-        }
-
-        public LongArrayList getRefs() {
-            return refs;
-        }
-
-        public void setRefs(LongArrayList refs) {
-            this.refs = refs;
-        }
-
-        boolean visible = true;
-
-        String role = "all";
-        LongArrayList refs = new LongArrayList();
-        Int2IntRBTreeMap tags = new Int2IntRBTreeMap();
-
-        public Way() {
-
-        }
     }
 
-    public class RelationMember {
+    class RelationMember {
         long id;
 
-        public long getId() {
+        long getId() {
             return id;
         }
 
-        public void setId(long id) {
+        void setId(long id) {
             this.id = id;
         }
 
@@ -169,15 +133,15 @@ public class MTKToGarminConverter {
             return type;
         }
 
-        public void setType(String type) {
-            this.type = type;
+        public void setType() {
+            this.type = "way";
         }
 
-        public String getRole() {
+        String getRole() {
             return role;
         }
 
-        public void setRole(String role) {
+        void setRole(String role) {
             this.role = role;
         }
 
@@ -185,53 +149,45 @@ public class MTKToGarminConverter {
         String role;
     }
 
-    public class Relation {
-        public long getId() {
+    class Relation {
+        long getId() {
             return id;
         }
 
-        public void setId(long id) {
+        void setId(long id) {
             this.id = id;
         }
 
-        public Int2IntRBTreeMap getTags() {
+        Int2IntRBTreeMap getTags() {
             return tags;
         }
 
-        public void setTags(Int2IntRBTreeMap tags) {
-            this.tags = tags;
-        }
-
-        public ArrayList<RelationMember> getMembers() {
+        ArrayList<RelationMember> getMembers() {
             return members;
         }
 
-        public void setMembers(ArrayList<RelationMember> members) {
-            this.members = members;
-        }
-
         long id;
-        Int2IntRBTreeMap tags = new Int2IntRBTreeMap();
-        ArrayList<RelationMember> members = new ArrayList<RelationMember>();
+        final Int2IntRBTreeMap tags = new Int2IntRBTreeMap();
+        final ArrayList<RelationMember> members = new ArrayList<RelationMember>();
     }
 
     private class InitializedDatasource {
         DataSource ds;
         double[] extent;
-        public int cell;
+        int cell;
     }
 
-    public class GeomHandlerResult {
-        ArrayList<Node> nodes = new ArrayList<Node>();
-        ArrayList<Way> ways = new ArrayList<Way>();
-        ArrayList<Relation> relations = new ArrayList<Relation>();
+    private class GeomHandlerResult {
+        final ArrayList<Node> nodes = new ArrayList<Node>();
+        final ArrayList<Way> ways = new ArrayList<Way>();
+        final ArrayList<Relation> relations = new ArrayList<Relation>();
     }
 
 
-    private Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<Node>(50000);
-    private Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>>();
-    private Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<Way>(5000);
-    private Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<Relation>(500);
+    private final Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<Node>(50000);
+    private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>>();
+    private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<Way>(5000);
+    private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<Relation>(500);
 
     private static final double COORD_DELTA_X = 62000.0 - 6e3;
     private static final double COORD_DELTA_Y = 6594000.0;
@@ -265,7 +221,7 @@ public class MTKToGarminConverter {
     }
 
     private double[] grid2xy(int grid) {
-        return new double[] { (grid >> 16) * 12e3 + COORD_DELTA_X, (grid & 0xFFFF) * 12e3 + COORD_DELTA_Y };
+        return new double[]{(grid >> 16) * 12e3 + COORD_DELTA_X, (grid & 0xFFFF) * 12e3 + COORD_DELTA_Y};
     }
 
     private GeomHandlerResult handleSingleGeom(Geometry geom) {
@@ -384,8 +340,8 @@ public class MTKToGarminConverter {
         GeomHandlerResult ighr;
         Geometry igeom;
         GeomHandlerResult ghr = new GeomHandlerResult();
-        
-    	if (geom.GetGeometryName() != "POLYGON") {
+
+        if (!geom.GetGeometryName().equals("POLYGON")) {
             for (int i = 0; i < geom.GetGeometryCount(); i++) {
                 igeom = geom.GetGeometryRef(i);
                 ighr = this.handleSingleGeom(igeom);
@@ -393,8 +349,7 @@ public class MTKToGarminConverter {
                 ghr.ways.addAll(ighr.ways);
             }
             return ghr;
-    	}	
-    	
+        }
 
         long rid = relationidcounter;
         relationidcounter++;
@@ -417,7 +372,7 @@ public class MTKToGarminConverter {
             RelationMember rm = new RelationMember();
 
             rm.setId(ighr.ways.get(0).getId());
-            rm.setType("way");
+            rm.setType();
             rm.setRole((i == 0 ? "outer" : "inner"));
             r.members.add(rm);
         }
@@ -443,7 +398,7 @@ public class MTKToGarminConverter {
     }
 
     private boolean handleFeature(String lyrname, ArrayList<Field> fieldMapping, Feature feat,
-            FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler) {
+                                  FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler) {
         Int2ObjectOpenHashMap<String> fields = new Int2ObjectOpenHashMap<String>();
         Geometry geom;
         for (Field f : fieldMapping) {
@@ -502,14 +457,14 @@ public class MTKToGarminConverter {
         feat.delete();
 
         for (Node n : ghr.nodes) {
+
             if (!n.isWaypart()) {
                 n.addTag(MTKToGarminConverter.getStringId("tyyppi"),
                         MTKToGarminConverter.getStringId(lyrname.toLowerCase()));
-                if (n.nodeTags !=null) {
-                	n.nodeTags.clear();
-                }
+
                 tagHandler.addElementTags(n.nodeTags, fields);
             }
+
             if (!nodes.containsKey(n.getHash())) {
                 nodes.put(n.getHash(), n);
             }
@@ -528,19 +483,25 @@ public class MTKToGarminConverter {
 
         for (Relation r : ghr.relations) {
 
-            r.tags.put(MTKToGarminConverter.getStringId("tyyppi"),
-                    MTKToGarminConverter.getStringId(lyrname.toLowerCase()));
+            r.tags.put(
+                    MTKToGarminConverter.getStringId("tyyppi"),
+                    MTKToGarminConverter.getStringId(lyrname.toLowerCase())
+            );
             tagHandler.addElementTags(r.tags, fields);
-            if (!relations.containsKey(r.getId())) {
-                relations.put(r.getId(), r);
-            }
+            if (!relations.containsKey(r.getId())) relations.put(r.getId(), r);
         }
 
         return true;
 
     }
 
-    public static int getStringId(String stringKey) {
+    static void printTags(Int2IntRBTreeMap tags) {
+        for (Entry t : tags.int2IntEntrySet()) {
+            System.out.println(getStringById(t.getIntKey()) + " => " + getStringById(t.getIntValue()));
+        }
+    }
+
+    static int getStringId(String stringKey) {
         if (!MTKToGarminConverter.stringTableTranslate.containsKey(stringKey)) {
             int newIndex = MTKToGarminConverter.stringTable.size();
             MTKToGarminConverter.stringTableTranslate.put(stringKey, newIndex);
@@ -552,7 +513,7 @@ public class MTKToGarminConverter {
 
     }
 
-    public static String getStringById(int id) {
+    static String getStringById(int id) {
         return MTKToGarminConverter.stringTable.get(id);
     }
 
@@ -594,6 +555,7 @@ public class MTKToGarminConverter {
         for (Long2ObjectMap.Entry<Node> nk : nodes.long2ObjectEntrySet()) {
             node_keys_sorted.add(nk);
         }
+
         Collections.sort(node_keys_sorted, new Comparator<Long2ObjectMap.Entry<Node>>() {
             public int compare(Long2ObjectMap.Entry<Node> k1, Long2ObjectMap.Entry<Node> k2) {
                 return (int) (k1.getValue().getId() - k2.getValue().getId());
@@ -646,12 +608,12 @@ public class MTKToGarminConverter {
         fos.close();
     }
 
-    public void startWritingOSMPBF(String ofn) throws IOException {
+    private void startWritingOSMPBF(String ofn) throws IOException {
         op = new OSMPBF();
         op.writePBFHeaders(ofn);
     }
 
-    public void writeOSMPBFElements() throws IOException {
+    private void writeOSMPBFElements() throws IOException {
 
         op.writePBFElements(false, nodes, null, null);
         op.writePBFElements(false, null, ways, null);
@@ -660,10 +622,11 @@ public class MTKToGarminConverter {
         // this.initElements();
     }
 
-    public void closeOSMPBFFile() throws IOException {
+    private void closeOSMPBFFile() throws IOException {
         op.closePBF();
     }
 
+    @SuppressWarnings("unused")
     public void writeOSMPBF(String ofn) throws IOException {
         op = new OSMPBF();
         op.writePBFHeaders(ofn, minx, miny, maxx, maxy);
@@ -674,8 +637,8 @@ public class MTKToGarminConverter {
 
     private double[] extendExtent(double[] ext1, double[] ext2) {
 
-        return new double[] { (ext1[0] < ext2[0] ? ext1[0] : ext2[0]), (ext1[1] > ext2[1] ? ext1[1] : ext2[1]),
-                (ext1[2] < ext2[2] ? ext1[2] : ext2[2]), (ext1[3] > ext2[3] ? ext1[3] : ext2[3]), };
+        return new double[]{(ext1[0] < ext2[0] ? ext1[0] : ext2[0]), (ext1[1] > ext2[1] ? ext1[1] : ext2[1]),
+                (ext1[2] < ext2[2] ? ext1[2] : ext2[2]), (ext1[3] > ext2[3] ? ext1[3] : ext2[3]),};
     }
 
     private void clearNodeCache(int cell) {
@@ -709,8 +672,8 @@ public class MTKToGarminConverter {
         }
 
         Layer lyr;
-        double[] extent = new double[] { Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY,
-                Double.NEGATIVE_INFINITY };
+        double[] extent = new double[]{Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY,
+                Double.NEGATIVE_INFINITY};
 
         for (int i = 0; i < ds.GetLayerCount(); i++) {
             lyr = ds.GetLayer(i);
@@ -724,7 +687,7 @@ public class MTKToGarminConverter {
 
         double[] ll = this.grid2xy(cell);
 
-        double[] ur = new double[] { ll[0] + 12e3, ll[1] + 12e3 };
+        double[] ur = new double[]{ll[0] + 12e3, ll[1] + 12e3};
 
         this.setCellBBOX(ll, ur);
 
@@ -735,8 +698,8 @@ public class MTKToGarminConverter {
         return is;
     }
 
-    private double[] readOGRsource(String fn, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
-            boolean doClearNodeCache, double[] filterExtent) {
+    private void readOGRsource(String fn, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
+                               boolean doClearNodeCache, double[] filterExtent) {
         InitializedDatasource is = startReadingOGRFile(fn);
         DataSource ds = is.ds;
 
@@ -745,7 +708,7 @@ public class MTKToGarminConverter {
         }
 
         if (ds == null) {
-            return null;
+            return;
         }
         Layer lyr;
         String fname;
@@ -754,7 +717,8 @@ public class MTKToGarminConverter {
 
         HashSet<String> ignored_fields = new HashSet<String>();
         FieldDefn fdefn;
-        layerloop: for (int i = 0; i < ds.GetLayerCount(); i++) {
+        layerloop:
+        for (int i = 0; i < ds.GetLayerCount(); i++) {
             lyr = ds.GetLayer(i);
             Vector<String> ignoredFields = new Vector<String>();
 
@@ -806,7 +770,7 @@ public class MTKToGarminConverter {
 
         ds.delete();
         System.out.println("Ignored fields: " + Arrays.toString(ignored_fields.toArray()));
-        return is.extent;
+        //return is.extent;
 
     }
 
@@ -814,8 +778,7 @@ public class MTKToGarminConverter {
         int gx = (int) Math.floor((x - COORD_DELTA_X) / 12e3);
         int gy = (int) Math.floor((y - COORD_DELTA_Y) / 12e3);
 
-        int g = gx << 16 | gy;
-        return g;
+        return gx << 16 | gy;
 
     }
 
@@ -831,7 +794,7 @@ public class MTKToGarminConverter {
 
     }
 
-    public void printCounts() {
+    private void printCounts() {
         System.out.println(nodes.size() + " nodes " + ways.size() + " ways " + relations.size() + " relations");
     }
 
@@ -868,9 +831,13 @@ public class MTKToGarminConverter {
                     if (!g3.getName().endsWith(".zip")) {
                         continue;
                     }
-                    
-                    String area = g3.getName().substring(0, 4);
 
+                    String area = g3.getName().substring(0, 4);
+/*
+                    if (!area.equals("U423") && !area.equals("L444") && !area.equals("L434") && !area.equals("L314")) {
+                        continue;
+                    }
+*/
                     if (!areas.containsKey(area)) {
                         areas.put(area, new ArrayList<File>());
                     }
@@ -924,7 +891,6 @@ public class MTKToGarminConverter {
                 System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
                 mtk2g.printCounts();
                 System.out.println(Arrays.toString(mml_extent));
-
 
                 st = System.nanoTime();
                 mtk2g.readOGRsource("/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
@@ -982,8 +948,8 @@ public class MTKToGarminConverter {
                 mtk2g.closeOSMPBFFile();
                 System.out.println("Stringtable: " + MTKToGarminConverter.stringTable.size() + " / "
                         + MTKToGarminConverter.stringTableTranslate.size());
-
             }
+
 
             if (mtk2g.nodepos.size() > 0) {
                 System.out.println(area + " done!");

@@ -1,14 +1,19 @@
 package org.hylly.mtk2garmin;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
-public class ShapeSyvyysTagHandler implements TagHandlerI {
-	public final ObjectOpenHashSet<String> wantedFields = new ObjectOpenHashSet<String>(Arrays.asList("DEPTH"));
+class ShapeSyvyysTagHandler implements TagHandlerI {
+	private final ObjectOpenHashSet<String> wantedFields;
+
+	ShapeSyvyysTagHandler() {
+		wantedFields = new ObjectOpenHashSet<String>(Collections.singletonList("DEPTH"));
+	}
+
 	@Override
 	public ObjectOpenHashSet<String> getWantedFields() {
 		return this.wantedFields;

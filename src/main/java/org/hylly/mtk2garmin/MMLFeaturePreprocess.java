@@ -5,15 +5,16 @@ import org.gdal.ogr.Geometry;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
-public class MMLFeaturePreprocess implements FeaturePreprocessI{
-    public MMLFeaturePreprocess() {
+
+class MMLFeaturePreprocess implements FeaturePreprocessI{
+    MMLFeaturePreprocess() {
 		System.out.println("MMLFeaturePreprocess init");
 	}
 	
 	public String getAttributeFilterString() {
 		return null;
 	}
-	public boolean hasWantedClass(int wclass) {
+	boolean hasWantedClass(int wclass) {
 		return true;
 	}
 	
