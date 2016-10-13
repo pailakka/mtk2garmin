@@ -72,10 +72,10 @@ kohdeluokka=14121 [0x19 level 3]    #Kapearaiteinen rautatie
 kohdeluokka=36312 [0x1f level 1]    #Virtavesi, 2-5m
 
 
-#tyyppi=syvyyskayrat & DEPTH ~ '\d*[24680]0\.0' {name ${DEPTH|height:"m=>ft"}';addlabel '${DEPTH}'} [0x25]
-tyyppi=syvyyskayrat & DEPTH ~ '\d*[24680]0\.0' {name '${DEPTH|height:"m=>ft"}'} [0x25]
-tyyppi=syvyyskayrat & DEPTH ~ '\d*[24680]0000' {name '${DEPTH|height:"m=>ft"}'} [0x25]
-tyyppi=syvyyskayrat {name '${DEPTH|height:"m=>ft"}'} [0x24]
+#tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name ${ele|height:"m=>ft"}';addlabel '${DEPTH}'} [0x25]
+tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name '${ele|height:"m=>ft"}'} [0x25]
+tyyppi=syvyyskayrat & ele ~ '\d*[24680]0000' {name '${ele|height:"m=>ft"}'} [0x25]
+tyyppi=syvyyskayrat {name '${ele|height:"m=>ft"}'} [0x24]
 
 kohdeluokka=54100 {name '${ele|height:"m=>ft"}'} [0x24]
 
