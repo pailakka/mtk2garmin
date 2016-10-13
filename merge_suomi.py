@@ -35,12 +35,12 @@ def createCommandList(filelist,k):
     cmd = []
     for i,fn in enumerate(filelist):
         if i == 0:
-            ocmd = '..\osmconvert64 %s' % fn
+            ocmd = 'osmconvert64 suomi/%s' % fn
         else:
-            ocmd = '..\osmconvert64 - %s'% fn
+            ocmd = 'osmconvert64 - suomi/%s'% fn
 
         if i == len(filelist)-1:
-            ocmd += ' -o=%s.osm.pbf' % k
+            ocmd += ' -o=suomi/%s.osm.pbf' % k
         else:
             ocmd += ' --out-o5m'
 
@@ -52,9 +52,10 @@ g2 = getGroups(g1.keys(),3)
 #pprint.pprint(g2)
 g3 = getGroups(g2.keys(),2)
 #pprint.pprint(g3)
+open('merge_all.bat','w+').close()
 for k3 in g3:
     #f = open('suomi/merge_%s.bat' % k3[:1],'a+')
-    f = open('suomi/merge_all1.bat','a+')
+    f = open('merge_all.bat','a+')
     print '###'
     for k2 in (k for k in g2 if k.startswith(k3)):
         for k1 in (k for k in g1 if k.startswith(k2)):
@@ -72,7 +73,7 @@ for k3 in g3:
     f.write('|'.join(cmd3))
     f.write('\n')
 
-f = open('suomi/merge_all.bat','w+')
+f = open('merge_all.bat','a+')
 g4 = getGroups(g3.keys(),0)
 f.write('|'.join(createCommandList(['%s.osm.pbf' % fn for fn in g4['']],'all')))
 f.close()

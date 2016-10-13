@@ -1,13 +1,25 @@
 verbose
+latin1
 remove-short-arcs
-style-file: mtk2garmin_style
+style-file=mtk2garmin_style
+description=MTK Suomi - Koko maa
 check-styles
 country-name=Finland
+country-abbr=FI
 max-jobs=6
 keep-going
 drive-on=right
-tdbfile
 show-profiles=1
 draw-priority=25
-net
-route
+output-dir=mtkgarmin
+family-id=801
+family-name=MTK Suomi
+series-name=MTK Suomi
+copyright-message=NLS 2016, Finnish Transport Agency 2016, OpenStreetMap Contributors, Metsähallitus
+merge-lines
+remove-ovm-work-files=true
+polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
+levels=0:24, 1:22, 2:21, 3:19, 4:17
+tdbfile
+nsis
+gmapsupp
