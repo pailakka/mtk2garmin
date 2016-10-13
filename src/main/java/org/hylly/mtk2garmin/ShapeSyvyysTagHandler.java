@@ -25,6 +25,7 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
 			int key = k.getIntKey();
 			
 			if (MTKToGarminConverter.getStringById(key).equals("DEPTH")) {
+                key = MTKToGarminConverter.getStringId("ele");
 				val = String.format("%.1f", Float.parseFloat(val));
 				
 			}
