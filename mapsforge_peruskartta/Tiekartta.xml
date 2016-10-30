@@ -293,154 +293,111 @@
 
 <!-- 44800 masto -->
 <rule e="any" k="kohdeluokka" v="44800" zoom-min="10">
-    <symbol src="file:/mml/Smasto.svg"  symbol-scaling="size" symbol-width="10" symbol-height="17"/>
+    <symbol src="file:/mml_symbols/Smasto.svg"  symbol-scaling="size" symbol-width="10" symbol-height="17"/>
 </rule>
 
 
 <!-- 45200 Portti -->
 <rule e="any" k="kohdeluokka" v="45200" zoom-min="14">
-    <symbol src="file:/mml/Sportti.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+    <symbol src="file:/mml_symbols/Sportti.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
 </rule>
 
 <!-- 12200 Esterakennelma -->
 <rule e="any" k="kohdeluokka" v="12200" zoom-min="12">
-    <symbol src="file:/mml/Sesterak.svg"  symbol-scaling="size" symbol-width="15" symbol-height="8"/>
+    <symbol src="file:/mml_symbols/Sesterak.svg"  symbol-scaling="size" symbol-width="15" symbol-height="8"/>
 </rule>
 
 
 <!--  45300 Savupiippu -->
 <rule e="any" k="kohdeluokka" v="45300" zoom-min="12">
     <circle radius="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
-    <!--<symbol src="file:/mml/Ssp.svg" symbol-scaling="size" symbol-width="8" symbol-height="8"/>-->
+    <!--<symbol src="file:/mml_symbols/Ssp.svg" symbol-scaling="size" symbol-width="8" symbol-height="8"/>-->
 </rule>
 
 <!--  45500 Tuulivoimala -->
 <rule e="any" k="kohdeluokka" v="45500" zoom-min="12">
-    <symbol src="file:/mml/Stvoimala.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+    <symbol src="file:/mml_symbols/Stvoimala.svg" symbol-scaling="size" symbol-width="10" symbol-height="15"/>
 </rule>
 
 <!--  44700 lahestymisvalo -->
 <rule e="any" k="kohdeluokka" v="44700" zoom-min="12">
-    <symbol src="file:/mml/Seste.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+    <symbol src="file:/mml_symbols/Seste.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
 </rule>
 
     <!-- 16800 Tunnelin aukko -->
     <rule e="any" k="kohdeluokka" v="16800" zoom-min="14">
-        <symbol src="file:/mml/STs.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/STs.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 44600 Kellotapuli -->
     <rule e="any" k="kohdeluokka" v="44600" zoom-min="14">
-        <symbol src="file:/mml/Sktli.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/Sktli.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 44900 Muistomerkki -->
     <rule e="any" k="kohdeluokka" v="44900" zoom-min="14">
-        <symbol src="file:/mml/SRmm.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/SRmm.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 45000 Näkötorni -->
     <rule e="any" k="kohdeluokka" v="45000" zoom-min="14">
-        <symbol src="file:/mml/Snt.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/Snt.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 45400 Tervahauta -->
     <rule e="any" k="kohdeluokka" v="45400" zoom-min="14">
-        <symbol src="file:/mml/Stervahauta.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/Stervahauta.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 45800 Vesitorni -->
     <rule e="any" k="kohdeluokka" v="45800" zoom-min="14">
-        <symbol src="file:/mml/Svesitorni.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/Svesitorni.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
     <!-- 32291 Hautausmaan symboli -->
     <rule e="any" k="kohdeluokka" v="32291" zoom-min="15">
-        <symbol src="file:/mml/Shmr.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+        <symbol src="file:/mml_symbols/Shmr.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 
     <!-- 72310 Rauhoitettu kivi -->
     <rule e="any" k="kohdeluokka" v="72310" zoom-min="14">
-        <symbol src="file:/mml/Skivi.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml_symbols/Skivi.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
     </rule>
 
 
     <!-- 72320 Rauhoitettu puu -->
     <rule e="any" k="kohdeluokka" v="72320" zoom-min="14">
-        <symbol src="file:/mml/Spuu.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml_symbols/Spuu.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
     </rule>
 
 
     <!-- 72330 Muinaisjäännös -->
     <rule e="any" k="kohdeluokka" v="72330" zoom-min="14">
-        <symbol src="file:/mml/SMjs.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml_symbols/SMjs.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
     </rule>
 
 
     <!-- 72340 Muu rauhoitettu kohde -->
     <rule e="any" k="kohdeluokka" v="72340" zoom-min="14">
-        <symbol src="file:/mml/SRmuu.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml_symbols/SRmuu.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
     </rule>
 
 
     <!-- 34900 Merkittävä luontokohde -->
     <rule e="any" k="kohdeluokka" v="34900" zoom-min="14">
-        <symbol src="file:/mml/Smluontokohde.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml_symbols/Smluontokohde.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
     </rule>
 
 
     <!-- 35100 Puu -->
     <rule e="any" k="kohdeluokka" v="35100" zoom-min="14">
-        <symbol src="file:/mml/Spuu.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
-    </rule>
-
-    <rule e="any" k="amenity" v="shelter" zoom-min="12">
-        <symbol src="file:/mml/shelter.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-    <rule e="any" k="tourism" v="lean_to|wilderness" zoom-min="12">
-        <symbol src="file:/mml/shelter.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-
-    <rule e="any" k="cat_id" v="2212|1212|1213|1214|1217|1311|2210|2211" zoom-min="12">
-        <symbol src="file:/mml/shelter.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-    <rule e="any" k="amenity" v="toilets" zoom-min="12">
-        <symbol src="file:/mml/toilets.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-
-    <rule e="any" k="cat_id" v="2217|2221|2223|2224" zoom-min="12">
-        <symbol src="file:/mml/toilets.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-    <rule e="any" k="tourism" v="fireplace" zoom-min="12">
-        <symbol src="file:/mml/campfire-99058.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-    <rule e="any" k="cat_id" v="2225|2214|2244" zoom-min="12">
-        <symbol src="file:/mml/campfire-99058.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-
-    <rule e="any" k="man_made" v="tower" zoom-min="12">
-        <symbol src="file:/mml/tower_lookout.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-    <rule e="any" k="cat_id" v="2226|1614" zoom-min="12">
-        <symbol src="file:/mml/tower_lookout.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
-    </rule>
-
-
-    <rule e="any" k="cat_id" v="2238" zoom-min="12">
-        <symbol src="file:/mml/parking.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
+        <symbol src="file:/mml_symbols/Spuu.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
     </rule>
 
 <!-- suojelualueet (luonnonsuojelualue, kansallispuisto, luonnonpuisto) -->

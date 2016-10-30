@@ -124,12 +124,12 @@
 
 <!--  39110 Avoin metsamaa -->
 <rule e="any" k="kohdeluokka" v="39110" zoom-min="12">
-    <area src="file:/mml/avometsa2.svg" symbol-scaling="size" symbol-width="5" symbol-height="5"/>
+    <area src="file:/mml/avometsa2.png" symbol-scaling="size" symbol-width="5" symbol-height="5"/>
 </rule>
 
 <!--  39120 Varvikko -->
 <rule e="any" k="kohdeluokka" v="39120" zoom-min="12">
-    <area src="file:/mml/varvikko.svg" symbol-scaling="size" symbol-width="5" symbol-height="5"/>
+    <area src="file:/mml/varvikko.png" symbol-scaling="size" symbol-width="5" symbol-height="5"/>
 </rule>
 
 
@@ -578,7 +578,7 @@
 
 <!--  45500 Tuulivoimala -->
 <rule e="any" k="kohdeluokka" v="45500" zoom-min="12">
-    <symbol src="file:/mml/Stvoimala.svg" symbol-scaling="size" symbol-width="10" symbol-height="10"/>
+    <symbol src="file:/mml/Stvoimala.svg" symbol-scaling="size" symbol-width="10" symbol-height="15"/>
 </rule>
 
 <!--  44700 lahestymisvalo -->
