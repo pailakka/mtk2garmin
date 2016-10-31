@@ -27,7 +27,7 @@
       * point_dumpPoint
       * hirvialueet (not included in styles / tag mapping)
       * pienriista (not included in styles / tag mapping)
-  * National/official huntin areas are not included in the maps because valid concerns about data validity and timeliness.
+  * National/official hunting areas are not included in the maps because valid concerns about data validity and timeliness.
 
 ## MTKtoGarminConverter
 This is the actual process doing the conversion from national topographic database GML-files to OSM PBF format and
