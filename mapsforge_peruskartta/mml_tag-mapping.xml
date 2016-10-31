@@ -289,6 +289,10 @@
 <osm-tag key="paallyste" value="0" zoom-appear="10" />
 <osm-tag key="paallyste" value="1" zoom-appear="10" />
 <osm-tag key="paallyste" value="2" zoom-appear="10" />
+<osm-tag key="valmiusaste" value="0" zoom-appear="10" />
+<osm-tag key="valmiusaste" value="1" zoom-appear="10" />
+<osm-tag key="valmiusaste" value="2" zoom-appear="10" />
+<osm-tag key="valmiusaste" value="3" zoom-appear="10" />
 <osm-tag key="tyyppi" value="tieviiva" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="12111" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="12112" zoom-appear="5" />
