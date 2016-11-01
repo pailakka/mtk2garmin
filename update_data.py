@@ -20,9 +20,14 @@ class MMLGrid(handler.ContentHandler):
         self.files = []
 
         self.nfiles = 8
-
+        BATCH_FILE_DIR = 'update_bats'
+        try:
+            os.makedirs(BATCH_FILE_DIR)
+        except OSError:
+            if not os.path.isdir(BATCH_FILE_DIR):
+                raise
         for i in xrange(self.nfiles):
-            self.files.append(open('update_bats/loaddata_%d.bat' % i,'wb'))
+            self.files.append(open(BATCH_FILE_DIR + '/loaddata_%d.bat' % i,'wb'))
 
         self.gridnum = 0
         self.next = None
