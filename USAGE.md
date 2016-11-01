@@ -21,7 +21,8 @@
 * OpenStreetMap
   * Only features with specific tags are used
   * Load Finland OSM PBF dump from http://download.geofabrik.de/europe/finland-latest.osm.pbf
-  * `join_osm_mtk.bat` creates new o5m file with desired filters applied, and actually merges filtered o5m file to output from the actual topographic database conversion process
+  * `join_osm_mtk.bat` creates new o5m file with desired filters applied, and actually merges filtered o5m file to the output from the actual topographic database conversion process.
+
 * Finnish Transport Agency (Nautical chart data & depth data)
   * Depth data from https://extranet.liikennevirasto.fi/inspirepalvelu/rajoitettu/wfs
     * Whole dataset can be loaded from wfs and is used by the process as a zipped shape
