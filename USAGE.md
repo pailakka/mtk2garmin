@@ -11,7 +11,7 @@
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
 * National topographic database from NLS (about 9.5 GB)
-  * Loaded using helper script `update_data.py`. Simply running `python update_data.py <api_key>` creates necessary directory structure and creates 8 .bat files to load the whole (or just changed grid tiles) topographic database using wget (assumes wget can be found from PATH)
+  * Loaded using helper script `update_data.py`. Simply running `python update_data.py <api_key>` creates necessary directory structure and creates 8 .bat files to load the whole (or just changed grid tiles) topographic database using wget (assumes wget can be found from PATH).
   * Requires personal API-key to ATOM-feed (http://www.maanmittauslaitos.fi/aineistot-palvelut/latauspalvelut/avoimien-aineistojen-tiedostopalvelu/muutostietopalvelu)
   * Whole process is based on NLS specific GML format because it is the only format containing all of the data and attributes.
 * OpenStreetMap
