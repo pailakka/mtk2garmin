@@ -5,6 +5,9 @@ import requests
 import datetime
 import StringIO
 
+if len(sys.argv) < 2:
+    print "Usage: python update_data.py API_KEY"
+    sys.exit(1)
 api_key = sys.argv[1]
 
 class MMLGrid(handler.ContentHandler):
