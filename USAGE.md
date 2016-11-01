@@ -7,12 +7,13 @@
 * Python 2 (http://www.python.org)
   * requests (`pip install requests`)
   * urllib3 (`pip install urllib3`)
-* wfs client (?? qgis?)
 * java
   * maven
 * Finnish national grid dataset (only 12km x 12km grid needed)
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
+  (`wget --no-check-certificate -O grid.gml "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"`)
+
 * National topographic database from NLS (about 9.5 GB)
   * Loaded using helper script `update_data.py`. Simply running `python update_data.py <api_key>` creates necessary directory structure and creates 8 .bat files to load the whole (or just changed grid tiles) topographic database using wget (assumes wget can be found from PATH).
   * Requires personal API-key to ATOM-feed (http://www.maanmittauslaitos.fi/aineistot-palvelut/latauspalvelut/avoimien-aineistojen-tiedostopalvelu/muutostietopalvelu)
@@ -40,7 +41,7 @@
 (So far) The batch files can be run as is provided you mark them executable (e.g. `chmod u+x update_bats/loaddata_0.bat`)
 
 ## MTKtoGarminConverter
-`mvn package` to build
+`mvn package` to build ?
 
 This is the actual process doing the conversion from national topographic database GML-files to OSM PBF format and
 combining most of the former datasets with the topograhic data. It does some necessary data transformations and simplifications on the way (defined in `*TagHandler`classes).
