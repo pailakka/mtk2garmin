@@ -7,6 +7,9 @@
 * Python 2 (http://www.python.org)
   * requests (`pip install requests`)
   * urllib3 (`pip install urllib3`)
+* wfs client (?? qgis?)
+* java
+  * maven
 * Finnish national grid dataset (only 12km x 12km grid needed)
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
@@ -33,7 +36,12 @@
       * pienriista (not included in styles / tag mapping)
   * National/official hunting areas are not included in the maps because valid concerns about data validity and timeliness.
 
+### OSX / Linux notes
+(So far) The batch files can be run as is provided you mark them executable (e.g. `chmod u+x update_bats/loaddata_0.bat`)
+
 ## MTKtoGarminConverter
+`mvn package` to build
+
 This is the actual process doing the conversion from national topographic database GML-files to OSM PBF format and
 combining most of the former datasets with the topograhic data. It does some necessary data transformations and simplifications on the way (defined in `*TagHandler`classes).
 All of the work is done in ETRS-TM35FIN (3067) coordinate system and coordinates are transformed to WGS84 only for PBF output.
