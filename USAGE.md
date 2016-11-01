@@ -3,6 +3,10 @@
 * osmconvert64 (https://wiki.openstreetmap.org/wiki/Osmconvert) and osmfilter (http://wiki.openstreetmap.org/wiki/Osmfilter) needs to be found from PATH
 * mgkmap and splitter (http://www.mkgmap.org.uk/) needs to be found from PATH
 * Osmosis for Mapsforge conversion (https://wiki.openstreetmap.org/wiki/Osmosis)
+* wget
+* Python 2 (http://www.python.org)
+  * requests (`pip install requests`)
+  * urllib3 (`pip install urllib3`)
 * Finnish national grid dataset (only 12km x 12km grid needed)
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
