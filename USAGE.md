@@ -11,7 +11,7 @@
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
 * National topographic database from NLS (about 9.5 GB)
-  * Loaded using helper script `update_data.py`. Simply running `python update_data.py <api_key>` creates necessary directory structure and creates 8 .bat files to load the whole (or just changed grid tiles) topographic database using wget (assumes wget can be found from PATH) 
+  * Loaded using helper script `update_data.py`. Simply running `python update_data.py <api_key>` creates necessary directory structure and creates 8 .bat files to load the whole (or just changed grid tiles) topographic database using wget (assumes wget can be found from PATH)
   * Requires personal API-key to ATOM-feed (http://www.maanmittauslaitos.fi/aineistot-palvelut/latauspalvelut/avoimien-aineistojen-tiedostopalvelu/muutostietopalvelu)
   * Whole process is based on NLS specific GML format because it is the only format containing all of the data and attributes.
 * OpenStreetMap
@@ -42,7 +42,7 @@ Because of this combination/connection process, the whole conversion process mus
 Process is especially memory optimized and runs consistently well within 2 GB of memory, there is much room for more optimization and for example threaded processing is completely possible.
 
 Process assumes that all data is located in `c:\geodata`. The process works one grid cell at a time and loads auxillary data based on grid cell bounding box and removes unnecessary data from memory after processing. Technically every OGR compatible format should be good for the auxillary data.
-`C:\geodata\mtkgml\` directory is read using 2 level directory structure (`eg. C:\geodata\mtkgml\L4\L44\*.zip`). Processing of the whole topographic database is not necessary, if the directory structure matches. 
+`C:\geodata\mtkgml\` directory is read using 2 level directory structure (`eg. C:\geodata\mtkgml\L4\L44\*.zip`). Processing of the whole topographic database is not necessary, if the directory structure matches.
 
 This step takes about 8 hours with a (slow) SSD, Intel Core i7 920 and 12 GB RAM (and output to HD).
 
@@ -62,7 +62,7 @@ Resulting gmapsupp.img is good to be transferred to GPS or it can be splitted to
 ## Creating Mapsforge map in AWS EC2
 Consult also https://github.com/mapsforge/mapsforge/blob/master/docs/Getting-Started-Map-Writer.md
 
-This steps requires large amounts of memory so EC2 instance is used, r3.2xlarge seems to have enough memory. Tag mapping affects memory usage significantly. 
+This steps requires large amounts of memory so EC2 instance is used, r3.2xlarge seems to have enough memory. Tag mapping affects memory usage significantly.
 
 Styles should be defined at least on some level before the conversion proces because conversion includes only features defined in tag mapping.
 
@@ -77,4 +77,3 @@ The actual process is as follows:
 2. Run Osmosis with writer plugin and tag-mapping and copyright notices with `osmosis --rbf all_osm.osm.pbf --mapfile-writer file=all.map bbox=59.4507573,19.0714057,70.1120744,31.6133108 tag-conf-file=mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2016"`
 
 And out comes all.map containing all of the data in Mapsforge format
-
