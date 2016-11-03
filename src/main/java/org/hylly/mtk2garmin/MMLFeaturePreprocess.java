@@ -7,10 +7,6 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 
 class MMLFeaturePreprocess implements FeaturePreprocessI{
-    MMLFeaturePreprocess() {
-		System.out.println("MMLFeaturePreprocess init");
-	}
-	
 	public String getAttributeFilterString() {
 		return null;
 	}
