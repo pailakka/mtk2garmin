@@ -743,8 +743,7 @@ class MTKToGarminConverter {
                 }
             }
 
-            // System.out.println("Ignored fields: " +
-            // Arrays.deepToString(ignoredFields.toArray()));
+
             ignored_fields.addAll(ignoredFields);
             if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
                 lyr.SetIgnoredFields(ignoredFields);
