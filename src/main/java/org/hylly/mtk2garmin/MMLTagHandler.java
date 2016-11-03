@@ -30,7 +30,7 @@ class MMLTagHandler implements TagHandlerI {
 	
 
     MMLTagHandler() {
-        wantedFields = new ObjectOpenHashSet<String>(asList("nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
+        wantedFields = new ObjectOpenHashSet<String>(asList("nimi_ruotsi","nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
     }
 
     @Override
