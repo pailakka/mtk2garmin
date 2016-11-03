@@ -25,7 +25,9 @@ class MMLTagHandler implements TagHandlerI {
 	private int ele = MTKToGarminConverter.getStringId("ele");
 	private int name = MTKToGarminConverter.getStringId("name");
 	private int ref = MTKToGarminConverter.getStringId("ref");
+	private int fin = MTKToGarminConverter.getStringId("fin");
 	
+
     MMLTagHandler() {
         wantedFields = new ObjectOpenHashSet<String>(asList("nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
     }
@@ -36,14 +38,15 @@ class MMLTagHandler implements TagHandlerI {
     }
 
     @Override
-    public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields) {
-
+    public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields, String tyyppi) {
+    	if (tags.get(teksti_kieli) == fin && fields.get(teksti_kieli) != "fin") {
+    		return;
+    	}
     	
         for (Entry<String> k : fields.int2ObjectEntrySet()) {
             
         	int kk = k.getIntKey();
             String val = k.getValue();
-            System.out.println(MTKToGarminConverter.getStringById(kk) + " => " + val);
             if (kk == korarvo || kk == syvarvo) {
                 Double korarvo = (Integer.parseInt(val) / 1000.0);
                 kk = ele;
@@ -68,6 +71,10 @@ class MMLTagHandler implements TagHandlerI {
             }
 
             tags.put(kk, MTKToGarminConverter.getStringId(val));
+        }
+        
+        if (tyyppi.equals("sahkolinja")) {
+        	tags.remove(bridge);
         }
 
     }
