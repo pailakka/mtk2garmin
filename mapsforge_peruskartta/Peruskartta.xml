@@ -206,39 +206,31 @@
 </rule>
 
 <rule e="way" k="tyyppi" v="soistuma" zoom-min="12">
-    <area fill="#e6f5f5" stroke="#e6f5f5" stroke-width="0.2" />
+    <area fill="#e6f5f5" stroke="#e6f5f5" stroke-width="0.5" />
 </rule>
 
 <!--  35411 suo helppokulkuinen puuton eli avoin -->
 <rule e="way" k="kohdeluokka" v="35411" zoom-min="12">
-    <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.2" />
+    <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.5"/>
 </rule>
+
 
 <!-- 35412 suo helppokulkuinen metsaa kasvaa -->
 <rule e="way" k="kohdeluokka" v="35412" zoom-min="12">
-    <area fill="#c7ebeb" stroke="#c7ebeb" stroke-width="0.2" />
+    <area fill="#c7ebeb" stroke="#c7ebeb" stroke-width="0.5"/>
 </rule>
 
 <!--  35421 suo vaikeakulkuinen, puuton eli avoin -->
-
 <rule e="way" k="kohdeluokka" v="35421" zoom-min="12">
-    <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.2" />
+    <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.5"/>
+    <area src="file:/mml/suo_vaikea.svg" symbol-scaling="size" symbol-width="20" symbol-height="6"/>
 </rule>
 
 
 <!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
 <rule e="way" k="kohdeluokka" v="35422" zoom-min="12">
-    <area fill="#C7EBEB" stroke="#C7EBEB" stroke-width="0.2" />
-</rule>
-
-<!--  35421 suo vaikeakulkuinen, puuton eli avoin -->
-<rule e="way" k="kohdeluokka" v="35421" zoom-min="12">
-    <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.2" />
-</rule>
-
-<!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
-<rule e="way" k="kohdeluokka" v="35422" zoom-min="12">
-    <area fill="#C7EBEB" stroke="#C7EBEB" stroke-width="0.2" />
+    <area fill="#C7EBEB" stroke="#C7EBEB" stroke-width="0.5" />
+    <area src="file:/mml/suo_vaikea.svg" symbol-scaling="size" symbol-width="20" symbol-height="6"/>    
 </rule>
 
 
@@ -669,7 +661,7 @@
 
     <!-- 32191 Eloperäinen ainessymboli -->
     <rule e="any" k="kohdeluokka" v="32191" zoom-min="14">
-        <symbol src="file:/mml/Selop.svg" symbol-scaling="size" symbol-width="15" symbol-height="15"/>
+        <symbol src="file:/mml/Selop.svg" symbol-scaling="size" symbol-width="15" symbol-height="5"/>
     </rule>
 
 
@@ -711,7 +703,7 @@
 
     <!-- 72330 Muinaisjäännös -->
     <rule e="any" k="kohdeluokka" v="72330" zoom-min="14">
-        <symbol src="file:/mml/SMjs.svg" symbol-scaling="size" symbol-width="13" symbol-height="13"/>
+        <symbol src="file:/mml/SMjs.svg" symbol-scaling="size" symbol-width="12" symbol-height="16"/>
     </rule>
 
 
