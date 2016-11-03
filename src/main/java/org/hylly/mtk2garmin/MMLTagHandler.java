@@ -14,6 +14,7 @@ class MMLTagHandler implements TagHandlerI {
     private int korarvo = MTKToGarminConverter.getStringId("korkeusarvo");
     private int syvarvo = MTKToGarminConverter.getStringId("syvyysarvo");
     private int nimisuomi = MTKToGarminConverter.getStringId("nimi_suomi");
+    private int nimiruotsi = MTKToGarminConverter.getStringId("nimi_ruotsi");
     private int teksti = MTKToGarminConverter.getStringId("teksti");
     private int teksti_kieli = MTKToGarminConverter.getStringId("teksti_kieli");    
     private int tienro = MTKToGarminConverter.getStringId("tienumero");
@@ -55,6 +56,14 @@ class MMLTagHandler implements TagHandlerI {
 
             if (kk == nimisuomi || kk == teksti) {
                 kk = name;
+            }
+            
+            if (kk == nimiruotsi) {
+                if (!tags.containsKey(name)) {
+                    kk = name;
+                } else {
+                    continue;
+                }
             }
 
             if (kk == tienro) {
