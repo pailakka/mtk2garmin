@@ -10,9 +10,24 @@ import static java.util.Arrays.asList;
 
 class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
-
+    
+    private int korarvo = MTKToGarminConverter.getStringId("korkeusarvo");
+    private int syvarvo = MTKToGarminConverter.getStringId("syvyysarvo");
+    private int nimisuomi = MTKToGarminConverter.getStringId("nimi_suomi");
+    private int teksti = MTKToGarminConverter.getStringId("teksti");
+    private int teksti_kieli = MTKToGarminConverter.getStringId("teksti_kieli");    
+    private int tienro = MTKToGarminConverter.getStringId("tienumero");
+    private int tasosij = MTKToGarminConverter.getStringId("tasosijainti");
+	private int bridge = MTKToGarminConverter.getStringId("bridge");
+	private int tunnel = MTKToGarminConverter.getStringId("tunnel");
+	private int yes = MTKToGarminConverter.getStringId("yes");
+	
+	private int ele = MTKToGarminConverter.getStringId("ele");
+	private int name = MTKToGarminConverter.getStringId("name");
+	private int ref = MTKToGarminConverter.getStringId("ref");
+	
     MMLTagHandler() {
-        wantedFields = new ObjectOpenHashSet<String>(asList("nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "kulkukelpoisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti"));
+        wantedFields = new ObjectOpenHashSet<String>(asList("nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
     }
 
     @Override
@@ -23,33 +38,36 @@ class MMLTagHandler implements TagHandlerI {
     @Override
     public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields) {
 
+    	
         for (Entry<String> k : fields.int2ObjectEntrySet()) {
-            String ks = MTKToGarminConverter.getStringById(k.getIntKey()).intern();
+            
+        	int kk = k.getIntKey();
             String val = k.getValue();
-
-            if (ks.equals("korkeusarvo") || ks.equals("syvyysarvo")) {
+            System.out.println(MTKToGarminConverter.getStringById(kk) + " => " + val);
+            if (kk == korarvo || kk == syvarvo) {
                 Double korarvo = (Integer.parseInt(val) / 1000.0);
-                ks = "ele";
+                kk = ele;
                 val = String.format("%.1f", korarvo);
             }
 
-            if (ks.equals("nimi_suomi") || ks.equals("teksti")) {
-                ks = "name";
+            if (kk == nimisuomi || kk == teksti) {
+                kk = name;
             }
 
-            if (ks.equals("tienumero")) {
-                ks = "ref";
+            if (kk == tienro) {
+                kk = ref;
             }
 
-            if ("tasosijainti".equals(ks) && Integer.parseInt(val) > 0) {
-                tags.put(MTKToGarminConverter.getStringId("bridge"), MTKToGarminConverter.getStringId("yes"));
+            if (kk == tasosij) {
+            	int sijval = Integer.parseInt(val);
+            	if (sijval > 0) {
+                  tags.put(bridge, yes);
+            	} else if (sijval < 0) {
+                tags.put(tunnel, yes);
+            	}
             }
 
-            if ("tasosijainti".equals(ks) && Integer.parseInt(val) < 0) {
-                tags.put(MTKToGarminConverter.getStringId("tunnel"), MTKToGarminConverter.getStringId("yes"));
-            }
-
-            tags.put(MTKToGarminConverter.getStringId(ks), MTKToGarminConverter.getStringId(val));
+            tags.put(kk, MTKToGarminConverter.getStringId(val));
         }
 
     }
