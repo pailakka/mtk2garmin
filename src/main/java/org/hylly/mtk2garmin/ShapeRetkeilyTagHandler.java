@@ -21,7 +21,7 @@ class ShapeRetkeilyTagHandler implements TagHandlerI {
     }
 
     @Override
-    public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields) {
+    public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields, String tyyppi) {
         for (Entry<String> k : fields.int2ObjectEntrySet()) {
             String ks = MTKToGarminConverter.getStringById(k.getIntKey()).intern();
             String val = k.getValue();

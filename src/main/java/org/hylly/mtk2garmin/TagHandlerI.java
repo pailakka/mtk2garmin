@@ -8,5 +8,5 @@ import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 interface TagHandlerI {
 
 	ObjectOpenHashSet<String> getWantedFields();
-	void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields);
+	void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields, String tyyppi);
 }

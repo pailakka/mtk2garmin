@@ -19,7 +19,7 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
 		return this.wantedFields;
 	}
 	@Override
-	public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields) {
+	public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields, String tyyppi) {
 		for (Entry<String> k : fields.int2ObjectEntrySet()) {
 			String val = k.getValue();
 			int key = k.getIntKey();
