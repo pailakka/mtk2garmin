@@ -3,9 +3,11 @@ package org.hylly.mtk2garmin;
 import com.google.protobuf.ByteString;
 import crosby.binary.Fileformat;
 import crosby.binary.Osmformat;
-import it.unimi.dsi.fastutil.ints.Int2IntMap.Entry;
+import it.unimi.dsi.fastutil.shorts.Short2ShortMap.Entry;
 import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
+
 import org.hylly.mtk2garmin.MTKToGarminConverter.Node;
 import org.hylly.mtk2garmin.MTKToGarminConverter.Relation;
 import org.hylly.mtk2garmin.MTKToGarminConverter.RelationMember;
@@ -202,15 +204,15 @@ class OSMPBF {
             llat = pbflat;
             llon = pbflon;
 
-            Int2IntRBTreeMap ntags = n.getTags();
+            Short2ShortRBTreeMap ntags = n.getTags();
             if (ntags != null) {
-                for (Entry t : ntags.int2IntEntrySet()) {
-                    if (t.getIntKey() > MTKToGarminConverter.stringTable.size() || t.getIntValue() > MTKToGarminConverter.stringTable.size()) {
+                for (Entry t : ntags.short2ShortEntrySet()) {
+                    if (t.getShortKey() > MTKToGarminConverter.stringTable.size() || t.getShortValue() > MTKToGarminConverter.stringTable.size()) {
 
-                        System.out.println("Node key error! " + t.getIntKey() + " or " + t.getIntValue() + " too large");
+                        System.out.println("Node key error! " + t.getShortKey() + " or " + t.getShortValue() + " too large");
                     }
-                    dsb.addKeysVals(t.getIntKey());
-                    dsb.addKeysVals(t.getIntValue());
+                    dsb.addKeysVals(t.getShortKey());
+                    dsb.addKeysVals(t.getShortValue());
                 }
             }
 
@@ -239,10 +241,10 @@ class OSMPBF {
             wb.setId(w.getId());
             wb.setInfo(wib);
 
-            Int2IntRBTreeMap wtags = w.getTags();
-            for (Entry t : wtags.int2IntEntrySet()) {
-                wb.addKeys(t.getIntKey());
-                wb.addVals(t.getIntValue());
+            Short2ShortRBTreeMap wtags = w.getTags();
+            for (Entry t : wtags.short2ShortEntrySet()) {
+                wb.addKeys(t.getShortKey());
+                wb.addVals(t.getShortValue());
             }
 
             long lref = 0;
@@ -274,10 +276,10 @@ class OSMPBF {
             rb.setId(r.getId());
             rb.setInfo(rib);
 
-            Int2IntRBTreeMap rtags = r.getTags();
-            for (Entry t : rtags.int2IntEntrySet()) {
-                rb.addKeys(t.getIntKey());
-                rb.addVals(t.getIntValue());
+            Short2ShortRBTreeMap rtags = r.getTags();
+            for (Entry t : rtags.short2ShortEntrySet()) {
+                rb.addKeys(t.getShortKey());
+                rb.addVals(t.getShortValue());
             }
 
             long lmid = 0;
