@@ -2,10 +2,10 @@ package org.hylly.mtk2garmin;
 
 import java.util.Collections;
 
-import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 
 class ShapeSyvyysTagHandler implements TagHandlerI {
 	private final ObjectOpenHashSet<String> wantedFields;
@@ -19,10 +19,10 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
 		return this.wantedFields;
 	}
 	@Override
-	public void addElementTags(Int2IntRBTreeMap tags, Int2ObjectOpenHashMap<String> fields) {
-		for (Entry<String> k : fields.int2ObjectEntrySet()) {
+	public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
+		for (Entry<String> k : fields.short2ObjectEntrySet()) {
 			String val = k.getValue();
-			int key = k.getIntKey();
+			short key = k.getShortKey();
 			
 			if (MTKToGarminConverter.getStringById(key).equals("DEPTH")) {
                 key = MTKToGarminConverter.getStringId("ele");
