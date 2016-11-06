@@ -7,8 +7,9 @@
 * Python 2 (http://www.python.org)
   * requests (`pip install requests`)
   * urllib3 (`pip install urllib3`)
-* java
-  * maven
+* IntelliJ (CE works fine) - this is the easiest way, but you can probably use maven from command line.
+* Not necessary, but can be helpful:
+  * WFS client, e.g. QGIS
 * Finnish national grid dataset (only 12km x 12km grid needed)
   * Can be obtained from https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs (License unknown, assumed CC 4.0 like other NLS data)
   * Layer "Grid"
