@@ -74,9 +74,19 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
+Type=0x07
+;GRMN_TYPE: Large Manmade Areas/AIRPORT/Airport area/Non NT
+String1=0x00,Lentokenttäalue
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #FFFF8C"
+[end]
+
+
+[_polygon]
 Type=0x0c
 ;GRMN_TYPE: Large Manmade Areas/INDUSTRIAL_COMPLEX/Industrial complex area/Non NT
-String1=0x00,Teollsuu
+String1=0x00,Teollisuus
 ExtendedLabels=N
 Xpm="0 0 1 0"
 "1 c #997399"
@@ -84,12 +94,12 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x0d
-;GRMN_TYPE: Large Manmade Areas/RESERVATION/Reservation/Non NT
-String1=0x00,Turvtuotantoalue
+Type=0x0e
+;GRMN_TYPE: Large Manmade Areas/AIRPORT_RUNWAYS/Airport runway area/Non NT
+String1=0x00,Kiitorata
 ExtendedLabels=N
 Xpm="0 0 1 0"
-"1 c #CDB366"
+"1 c #FF7F66"
 [end]
 
 
@@ -106,8 +116,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x1a
 ;GRMN_TYPE: Large Manmade Areas/CEMETARY/Cemetary/Non NT
-String1=0x06,Hautausmaa
-String2=0x00,Hautausmaa
+String1=0x00,Hautausmaa
 ExtendedLabels=N
 Xpm="32 32 2 1"
 "! c #000000"
@@ -149,104 +158,6 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x1b
-;GRMN_TYPE: //
-String1=0x00,Täytemaa
-ExtendedLabels=N
-Xpm="32 32 2 1"
-"! c #000000"
-"# c #FEFFD8"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-;12345678901234567890123456789012
-[end]
-
-
-[_polygon]
-Type=0x1c
-;GRMN_TYPE: //
-String1=0x00,Kaatopaikka
-ExtendedLabels=N
-Xpm="32 32 2 1"
-"! c #955114"
-"# c #FEFFD8"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-"################################"
-"################################"
-"################################"
-"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
-"################################"
-"################################"
-"################################"
-"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
-"################################"
-;12345678901234567890123456789012
-[end]
-
-
-[_polygon]
-Type=0x20
-;GRMN_TYPE: Park Areas/STATE_PARK_OTHER/Small or misc sized state park/Non NT
-String1=0x00,Pelto
-ExtendedLabels=N
-Xpm="0 0 1 0"
-"1 c #FFD778"
-[end]
-
-
-[_polygon]
 Type=0x32
 ;GRMN_TYPE: Water Areas/SEA/Sea/Non NT
 ExtendedLabels=N
@@ -258,6 +169,16 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x3c
 ;GRMN_TYPE: Water Areas/LAKE_100MI/Lake less than 250 sq mi but greater or equal to 100 sq mi in area/Non NT
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #4080FF"
+[end]
+
+
+[_polygon]
+Type=0x3f
+;GRMN_TYPE: Water Areas/LAKE, LAKE_5MI/Medium sized lake, typically between 5 and 30 sq mi in area/Non NT
+String1=0x00,Allas
 ExtendedLabels=N
 Xpm="0 0 1 0"
 "1 c #4080FF"
@@ -337,6 +258,50 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
+Type=0x51
+;GRMN_TYPE: Surface Cover Areas/WETLAND/Wetland or swamp area/Non NT
+String1=0x00,Vaikeak. puuton
+ExtendedLabels=N
+Xpm="32 32 2 1"
+"! c #D1CC3F"
+"# c #4CE6E6"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"################################"
+"################################"
+;12345678901234567890123456789012
+[end]
+
+
+[_polygon]
 Type=0x53
 ;GRMN_TYPE: Surface Cover Areas/FLAT/Sand, tidal, mud, etc. flat area/Non NT
 String1=0x00,Hietikko
@@ -381,8 +346,136 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10100
-;GRMN_TYPE: //
+Type=0x54
+;GRMN_TYPE: Surface Cover Areas/LAND/Land area/Non NT
+String1=0x00,Pelto
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #FFD778"
+[end]
+
+
+[_polygon]
+Type=0x10904
+;GRMN_TYPE: Large Manmade Areas/AIRPORT(NT)/Airport area/NT
+String1=0x00,Lentoliikennealue
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #FFE67F"
+[end]
+
+
+[_polygon]
+Type=0x1090b
+;GRMN_TYPE: Large Manmade Areas/AIRPORT_RUNWAYS(NT)/Airport runway area/NT
+String1=0x00,Kiitorata
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #F35959"
+[end]
+
+
+[_polygon]
+Type=0x10f00
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_1/Customizable area/Non NT, NT
+String1=0x00,Turvetuotantoalue
+ExtendedLabels=N
+Xpm="0 0 1 0"
+"1 c #CDB366"
+[end]
+
+
+[_polygon]
+Type=0x10f01
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_2/Customizable area/Non NT, NT
+String1=0x00,Täytemaa
+ExtendedLabels=N
+Xpm="32 32 2 1"
+"! c #000000"
+"# c #FEFFD8"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+;12345678901234567890123456789012
+[end]
+
+
+[_polygon]
+Type=0x10f02
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_3/Customizable area/Non NT, NT
+String1=0x00,Kaatopaikka
+ExtendedLabels=N
+Xpm="32 32 2 1"
+"! c #955114"
+"# c #FEFFD8"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+"################################"
+"################################"
+"################################"
+"!!!!##!!!!!!!!!##!!!!!!!!!!!##!!"
+"################################"
+"################################"
+"################################"
+"!!!!!!!!##!!!!!!!!!!!##!!!!!!!##"
+"################################"
+;12345678901234567890123456789012
+[end]
+
+
+[_polygon]
+Type=0x10f03
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_4/Customizable area/Non NT, NT
 String1=0x00,Soistuma
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -391,8 +484,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10101
-;GRMN_TYPE: Surface Cover Areas/LAND_NON_URBAN/Non-urban land area/Non NT, NT
+Type=0x10f04
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_5/Customizable area/Non NT, NT
 String1=0x00,Helppokulkuinen puuton
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -401,8 +494,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10102
-;GRMN_TYPE: Surface Cover Areas/LAND_URBAN/Urban land area/Non NT, NT
+Type=0x10f05
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_6/Customizable area/Non NT, NT
 String1=0x00,Metsit. suo (helppo)
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -411,52 +504,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10103
-;GRMN_TYPE: //
-String1=0x00,Vaikeak. puuton
-ExtendedLabels=N
-Xpm="32 32 2 1"
-"! c #D1CC3F"
-"# c #4CE6E6"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-"################################"
-"################################"
-;12345678901234567890123456789012
-[end]
-
-
-[_polygon]
-Type=0x10104
-;GRMN_TYPE: //
+Type=0x10f06
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_7/Customizable area/Non NT, NT
 String1=0x00,Vaikeak. mets.
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -499,8 +548,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10105
-;GRMN_TYPE: Surface Cover Areas/BRIDGE/Bridge/Non NT, NT
+Type=0x10f07
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_8/Customizable area/Non NT, NT
 String1=0x00,Kallio
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -509,8 +558,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10106
-;GRMN_TYPE: //
+Type=0x10f08
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_9/Customizable area/Non NT, NT
 String1=0x00,Puisto
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -519,8 +568,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10107
-;GRMN_TYPE: //
+Type=0x10f09
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_10/Customizable area/Non NT, NT
 String1=0x00,Vesijättö
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -529,8 +578,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10108
-;GRMN_TYPE: //
+Type=0x10f0a
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_11/Customizable area/Non NT, NT
 String1=0x00,Tulva-alue
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -573,8 +622,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10109
-;GRMN_TYPE: //
+Type=0x10f0b
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_12/Customizable area/Non NT, NT
 String1=0x00,Maatuva vesialue
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -583,8 +632,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10111
-;GRMN_TYPE: //
+Type=0x10f0c
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_13/Customizable area/Non NT, NT
 String1=0x00,Varvikko
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -627,8 +676,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10200
-;GRMN_TYPE: //
+Type=0x10f0d
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_14/Customizable area/Non NT, NT
 String1=0x00,Hiekkakuoppa
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -671,8 +720,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10400
-;GRMN_TYPE: //
+Type=0x10f0e
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_15/Customizable area/Non NT, NT
 String1=0x00,Louhos
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -715,8 +764,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10500
-;GRMN_TYPE: //
+Type=0x10f0f
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_16/Customizable area/Non NT, NT
 String1=0x00,Varastoalue
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -725,8 +774,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10600
-;GRMN_TYPE: //
+Type=0x10f10
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_17/Customizable area/Non NT, NT
 String1=0x00,Hakkuuaukea
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -769,8 +818,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10700
-;GRMN_TYPE: //
+Type=0x10f11
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_18/Customizable area/Non NT, NT
 String1=0x00,Harva louhikko
 ExtendedLabels=N
 Xpm="32 32 2 1"
@@ -813,8 +862,8 @@ Xpm="32 32 2 1"
 
 
 [_polygon]
-Type=0x10900
-;GRMN_TYPE: Large Manmade Areas/GENERIC_MANMADE(NT)/Other or generic manmade area, such as a building/NT
+Type=0x10f12
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_19/Customizable area/Non NT, NT
 String1=0x00,Asuttu
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -823,8 +872,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10901
-;GRMN_TYPE: Large Manmade Areas/MILITARY_BASE(NT)/Military base area/NT
+Type=0x10f13
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_20/Customizable area/Non NT, NT
 String1=0x00,Muu
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -833,8 +882,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10902
-;GRMN_TYPE: Large Manmade Areas/PARKING_LOT(NT)/Parking lot area/NT
+Type=0x10f14
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_21/Customizable area/Non NT, NT
 String1=0x00,Kirkollinen
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -843,8 +892,8 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10903
-;GRMN_TYPE: Large Manmade Areas/PARKING_GARAGE(NT)/Parking garage area/NT
+Type=0x10f15
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_22/Customizable area/Non NT, NT
 String1=0x00,Julkinen
 ExtendedLabels=N
 Xpm="0 0 1 0"
@@ -853,52 +902,12 @@ Xpm="0 0 1 0"
 
 
 [_polygon]
-Type=0x10904
-;GRMN_TYPE: Large Manmade Areas/AIRPORT(NT)/Airport area/NT
+Type=0x10f16
+;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_23/Customizable area/Non NT, NT
 String1=0x00,Loma
 ExtendedLabels=N
 Xpm="0 0 1 0"
 "1 c #40C040"
-[end]
-
-
-[_polygon]
-Type=0x1090a
-;GRMN_TYPE: Large Manmade Areas/RESERVATION(NT)/Reservation/NT
-String1=0x00,Kiitorata
-ExtendedLabels=N
-Xpm="0 0 1 0"
-"1 c #F35959"
-[end]
-
-
-[_polygon]
-Type=0x1090b
-;GRMN_TYPE: Large Manmade Areas/AIRPORT_RUNWAYS(NT)/Airport runway area/NT
-String1=0x00,Kiitorata
-ExtendedLabels=N
-Xpm="0 0 1 0"
-"1 c #FF7F66"
-[end]
-
-
-[_polygon]
-Type=0x1090e
-;GRMN_TYPE: Large Manmade Areas/CEMETARY(NT)/Cemetary/NT
-String1=0x00,Lentokenttäalue
-ExtendedLabels=N
-Xpm="0 0 1 0"
-"1 c #FFFF8C"
-[end]
-
-
-[_polygon]
-Type=0x10910
-;GRMN_TYPE: //
-String1=0x00,Lentoliikennealue
-ExtendedLabels=N
-Xpm="0 0 1 0"
-"1 c #FFE67F"
 [end]
 
 
@@ -1503,139 +1512,71 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x010
-SubType=0x00
-;GRMN_TYPE: //
+Type=0x02c
+SubType=0x02
+;GRMN_TYPE: Business - Attractions/MUSEUM/Museum or historical society/Non NT
 String1=0x00,Muinaisjäännös
 ExtendedLabels=N
-DayXpm="4 4 2 1"   Colormode=16
-"!	c #303030"
+DayXpm="14 12 18 2"   Colormode=16
+"!!	c #F8E068"
+"!#	c #F8FCF8"
+"!%	c #000000"
+"!?	c #D80000"
+"!$	c #C00000"
+"!*	c #F80000"
+"!=	c #A80000"
+"!1	c #900000"
+"!2	c #D00000"
+"!3	c #C80000"
+"!4	c #B80000"
+"!5	c #780000"
+"!6	c #F8DC60"
+"!7	c #F8E898"
+"!8	c #F8ECA8"
+"!9	c #F8DC50"
+"#!	c #F8C800"
 "  	c none"
-" !! "
-"!!!!"
-"!!!!"
-" !! "
-;1234
+"            !#!#            "
+"        !#!#!%!%!#!#        "
+"      !#!%!%!?!$!%!%!#      "
+"    !#!%!*!*!?!$!=!1!%!#    "
+"  !#!%!$!2!?!3!4!=!5!5!%!#  "
+"!#!%!%!%!%!%!%!%!%!%!%!%!%!#"
+"  !#!%!#!%!#!%!%!6!%!#!%!#  "
+"  !#!%!7!%!8!%!%!9!%!7!%!#  "
+"  !#!%#!!%!!!%!%#!!%#!!%!#  "
+"  !#!%#!!%#!!%!%#!!%#!!%!#  "
+"  !#!%!%!%!%!%!%!%!%!%!%!#  "
+"  !#!#!#!#!#!#!#!#!#!#!#!#  "
+;12345678901234
 [end]
 
 
 [_point]
-Type=0x011
-SubType=0x01
-;GRMN_TYPE: //
-String1=0x00,Vedenalainen kivi
+Type=0x02c
+SubType=0x04
+;GRMN_TYPE: Business - Attractions/LANDMARK/Landmark/Non NT
+String1=0x00,Muistomerkki
 ExtendedLabels=N
-DayXpm="7 7 2 1"   Colormode=16
-"!	c #000000"
+DayXpm="7 6 3 1"   Colormode=16
+"!	c #898989"
+"#	c #000000"
 "  	c none"
-"!!!!!!!"
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
+"  ###  "
+" #!!!# "
+"#!!!!!#"
+"#!!!!!#"
+"#!!!!!#"
+"#!!!!!#"
 ;1234567
 [end]
 
 
 [_point]
-Type=0x011
-SubType=0x02
-;GRMN_TYPE: //
-String1=0x00,Pinnassa kivi
-ExtendedLabels=N
-DayXpm="7 7 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-"   !   "
-"   !   "
-"   !   "
-;1234567
-[end]
-
-
-[_point]
-Type=0x011
-SubType=0x03
-;GRMN_TYPE: //
-String1=0x00,Vedenpäällinen kivi
-ExtendedLabels=N
-DayXpm="7 7 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x012
-SubType=0x00
-;GRMN_TYPE: //
-String1=0x00,Vedenottamo
-ExtendedLabels=N
-DayXpm="4 4 2 1"   Colormode=16
-"!	c #303030"
-"  	c none"
-" !! "
-"!!!!"
-"!!!!"
-" !! "
-;1234
-[end]
-
-
-[_point]
-Type=0x012
-SubType=0x01
-;GRMN_TYPE: //
-String1=0x00,Vesitorni
-ExtendedLabels=N
-DayXpm="4 4 2 1"   Colormode=16
-"!	c #303030"
-"  	c none"
-" !! "
-"!!!!"
-"!!!!"
-" !! "
-;1234
-[end]
-
-
-[_point]
-Type=0x012
-SubType=0x02
-;GRMN_TYPE: //
-String1=0x00,Pylväs
-ExtendedLabels=N
-DayXpm="4 4 2 1"   Colormode=16
-"!	c #303030"
-"  	c none"
-" !! "
-"!!!!"
-"!!!!"
-" !! "
-;1234
-[end]
-
-
-[_point]
-Type=0x012
-SubType=0x03
-;GRMN_TYPE: //
+Type=0x02f
+SubType=0x15
+;GRMN_TYPE: Business - Services/UTILITY/Utility (gas, electric, water) services/Non NT
 String1=0x00,Muuntaja
-String2=0x06,Muuntaja
 ExtendedLabels=N
 DayXpm="8 8 3 1"   Colormode=16
 "!	c #000000"
@@ -1654,49 +1595,28 @@ DayXpm="8 8 3 1"   Colormode=16
 
 
 [_point]
-Type=0x012
-SubType=0x08
-;GRMN_TYPE: //
-String1=0x00,Kaislikko
-ExtendedLabels=N
-DayXpm="9 6 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"  !   !  "
-"  !   !  "
-"  !! !!  "
-"!  ! !  !"
-"!! ! ! !!"
-" ! ! ! ! "
-;123456789
-[end]
-
-
-[_point]
-Type=0x013
-SubType=0x01
-;GRMN_TYPE: //
-String1=0x00,Puomi
-ExtendedLabels=N
-DayXpm="8 8 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"!!    !!"
-"!!!  !!!"
-" !!!!!! "
-"  !!!!  "
-"  !!!!  "
-" !!!!!! "
-"!!!  !!!"
-"!!    !!"
-;12345678
-[end]
-
-
-[_point]
-Type=0x014
+Type=0x031
 SubType=0x00
-;GRMN_TYPE: Political Entities/MAJOR_COUNTRY/Major country center/Non NT, NT
+;GRMN_TYPE: //
+String1=0x00,Syvyyspiste
+ExtendedLabels=Y
+FontStyle=NormalFont
+CustomColor=No
+DayXpm="4 4 2 1"   Colormode=16
+"!	c #303030"
+"  	c none"
+" !! "
+"!!!!"
+"!!!!"
+" !! "
+;1234
+[end]
+
+
+[_point]
+Type=0x064
+SubType=0x11
+;GRMN_TYPE: Geographical Named Points of Interest/TOWER/Tower/Non NT, NT
 String1=0x00,Masto
 ExtendedLabels=N
 DayXpm="7 12 2 1"   Colormode=16
@@ -1719,30 +1639,10 @@ DayXpm="7 12 2 1"   Colormode=16
 
 
 [_point]
-Type=0x014
-SubType=0x01
-;GRMN_TYPE: //
-String1=0x00,Muistomerkki
-ExtendedLabels=N
-DayXpm="7 6 3 1"   Colormode=16
-"!	c #898989"
-"#	c #000000"
-"  	c none"
-"  ###  "
-" #!!!# "
-"#!!!!!#"
-"#!!!!!#"
-"#!!!!!#"
-"#!!!!!#"
-;1234567
-[end]
-
-
-[_point]
-Type=0x014
-SubType=0x02
-;GRMN_TYPE: //
-String1=0x00,Pylväs
+Type=0x064
+SubType=0x14
+;GRMN_TYPE: Geographical Named Points of Interest/WELL/Well/Non NT, NT
+String1=0x00,Vedenottamo
 ExtendedLabels=N
 DayXpm="4 4 2 1"   Colormode=16
 "!	c #303030"
@@ -1756,9 +1656,192 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x014
+Type=0x065
+SubType=0x11
+;GRMN_TYPE: Geographical Named Points of Interest - Water Related/SPRING/Spring/Non NT, NT
+String1=0x00,Lähde
+ExtendedLabels=N
+DayXpm="6 7 4 1"   Colormode=16
+"!	c #10223D"
+"#	c #000000"
+"%	c #3A74CC"
+"  	c none"
+" #### "
+"##%%##"
+"#%%%%#"
+"#!!!!#"
+"#%%%%#"
+"##%%##"
+" #### "
+;123456
+[end]
+
+
+[_point]
+Type=0x066
+SubType=0x0f
+;GRMN_TYPE: Geographical Named Points of Interest - Land Related/PILLAR/Pillar/Non NT, NT
+String1=0x00,Puomi
+ExtendedLabels=N
+DayXpm="12 12 2 1"   Colormode=16
+"!	c #FF0000"
+"  	c none"
+"!!        !!"
+"!!!      !!!"
+" !!!    !!! "
+"  !!!  !!!  "
+"   !!!!!!   "
+"    !!!!    "
+"    !!!!    "
+"   !!!!!!   "
+"  !!!  !!!  "
+" !!!    !!! "
+"!!!      !!!"
+"!!        !!"
+;123456789012
+[end]
+
+
+[_point]
+Type=0x066
+SubType=0x14
+;GRMN_TYPE: Geographical Named Points of Interest - Land Related/ROCK/Rock/Non NT, NT
+String1=0x00,Kivi
+ExtendedLabels=N
+DayXpm="5 6 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"  !  "
+"  !  "
+"  !  "
+"  !  "
+"  !  "
+"!!!!!"
+;12345
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x00
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_1/User customizable point type/Non NT, NT
+String1=0x00,Vedenalainen kivi
+ExtendedLabels=N
+DayXpm="7 7 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"!!!!!!!"
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+;1234567
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x01
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_2/User customizable point type/Non NT, NT
+String1=0x00,Pinnassa kivi
+ExtendedLabels=N
+DayXpm="7 7 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"   !   "
+"   !   "
+"   !   "
+"!!!!!!!"
+"   !   "
+"   !   "
+"   !   "
+;1234567
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x02
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_3/User customizable point type/Non NT, NT
+String1=0x00,Vedenpäällinen kivi
+ExtendedLabels=N
+DayXpm="7 7 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+"   !   "
+"!!!!!!!"
+;1234567
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x04
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_5/User customizable point type/Non NT, NT
+String1=0x00,Vesitorni
+ExtendedLabels=N
+DayXpm="4 4 2 1"   Colormode=16
+"!	c #303030"
+"  	c none"
+" !! "
+"!!!!"
+"!!!!"
+" !! "
+;1234
+[end]
+
+
+[_point]
+Type=0x115
 SubType=0x05
-;GRMN_TYPE: //
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_6/User customizable point type/Non NT, NT
+String1=0x00,Kaislikko
+ExtendedLabels=N
+DayXpm="9 6 2 1"   Colormode=16
+"!	c #000000"
+"  	c none"
+"  !   !  "
+"  !   !  "
+"  !! !!  "
+"!  ! !  !"
+"!! ! ! !!"
+" ! ! ! ! "
+;123456789
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x06
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_7/User customizable point type/Non NT, NT
+String1=0x00,Pylväs
+ExtendedLabels=N
+DayXpm="7 7 3 1"   Colormode=16
+"!	c #000000"
+"#	c #FFFFFF"
+"  	c none"
+"       "
+"   #   "
+"  #!#  "
+" #!!!# "
+"  #!#  "
+"   #   "
+"       "
+;1234567
+[end]
+
+
+[_point]
+Type=0x115
+SubType=0x07
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_8/User customizable point type/Non NT, NT
 String1=0x00,Näkötorni
 ExtendedLabels=N
 DayXpm="8 12 3 1"   Colormode=16
@@ -1782,30 +1865,9 @@ DayXpm="8 12 3 1"   Colormode=16
 
 
 [_point]
-Type=0x014
-SubType=0x06
-;GRMN_TYPE: //
-String1=0x00,Portti
-ExtendedLabels=N
-DayXpm="8 8 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"!!    !!"
-"!!!  !!!"
-" !!!!!! "
-"  !!!!  "
-"  !!!!  "
-" !!!!!! "
-"!!!  !!!"
-"!!    !!"
-;12345678
-[end]
-
-
-[_point]
-Type=0x014
-SubType=0x07
-;GRMN_TYPE: //
+Type=0x115
+SubType=0x08
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_9/User customizable point type/Non NT, NT
 String1=0x00,Savupiippu
 ExtendedLabels=N
 DayXpm="8 8 3 1"   Colormode=16
@@ -1825,9 +1887,9 @@ DayXpm="8 8 3 1"   Colormode=16
 
 
 [_point]
-Type=0x014
+Type=0x115
 SubType=0x09
-;GRMN_TYPE: //
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_10/User customizable point type/Non NT, NT
 String1=0x00,Tulentekopaikka
 ExtendedLabels=N
 DayXpm="10 14 82 2"   Colormode=16
@@ -1932,51 +1994,9 @@ DayXpm="10 14 82 2"   Colormode=16
 
 
 [_point]
-Type=0x015
-SubType=0x05
-;GRMN_TYPE: //
-String1=0x00,Kivi
-String2=0x06,Kivi
-ExtendedLabels=N
-DayXpm="5 6 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"  !  "
-"  !  "
-"  !  "
-"  !  "
-"  !  "
-"!!!!!"
-;12345
-[end]
-
-
-[_point]
-Type=0x015
-SubType=0x07
-;GRMN_TYPE: //
-String1=0x00,Lähde
-ExtendedLabels=N
-DayXpm="6 7 4 1"   Colormode=16
-"!	c #10223D"
-"#	c #000000"
-"%	c #3A74CC"
-"  	c none"
-" #### "
-"##%%##"
-"#%%%%#"
-"#!!!!#"
-"#%%%%#"
-"##%%##"
-" #### "
-;123456
-[end]
-
-
-[_point]
-Type=0x015
-SubType=0x08
-;GRMN_TYPE: //
+Type=0x115
+SubType=0x0a
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_11/User customizable point type/Non NT, NT
 String1=0x00,Merkittävä luonnokohde
 ExtendedLabels=N
 DayXpm="4 4 2 1"   Colormode=16
@@ -1991,10 +2011,10 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x016
-SubType=0x00
-;GRMN_TYPE: //
-String1=0x00,Kivi
+Type=0x115
+SubType=0x0b
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_12/User customizable point type/Non NT, NT
+String1=0x00,Harva louhikko
 ExtendedLabels=N
 DayXpm="3 5 2 1"   Colormode=16
 "!	c #000000"
@@ -2009,191 +2029,9 @@ DayXpm="3 5 2 1"   Colormode=16
 
 
 [_point]
-Type=0x017
-SubType=0x00
-;GRMN_TYPE: //
-String1=0x00,Vasen
-ExtendedLabels=N
-DayXpm="7 17 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-" !!!!! "
-" !   ! "
-" !   ! "
-" !   ! "
-" !   ! "
-" !!!!! "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x017
-SubType=0x01
-;GRMN_TYPE: //
-String1=0x00,Oikea
-ExtendedLabels=N
-DayXpm="7 18 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"       "
-"       "
-"   !   "
-"  !!!  "
-" !!!!! "
-"!!!!!!!"
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x017
-SubType=0x02
-;GRMN_TYPE: //
-String1=0x00,Pohjois
-ExtendedLabels=N
-DayXpm="7 17 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"       "
-"   !   "
-"  !!!  "
-" !!!!! "
-"!!!!!!!"
-"   !   "
-"  !!!  "
-" !!!!! "
-"!!!!!!!"
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x017
-SubType=0x03
-;GRMN_TYPE: //
-String1=0x00,Etelä
-ExtendedLabels=N
-DayXpm="7 17 3 1"   Colormode=16
-"!	c #000000"
-"#	c #000000"
-"  	c none"
-"!!!!!!!"
-" !!!!! "
-"  !!!  "
-"   !   "
-"!!!!!!!"
-" !!!!! "
-"  !!!  "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x017
-SubType=0x04
-;GRMN_TYPE: //
-String1=0x00,Itä
-ExtendedLabels=N
-DayXpm="7 17 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"   !   "
-"  !!!  "
-" !!!!! "
-"!!!!!!!"
-"   !   "
-"!!!!!!!"
-" !!!!! "
-"  !!!  "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x017
-SubType=0x05
-;GRMN_TYPE: //
-String1=0x00,Länsi
-ExtendedLabels=N
-DayXpm="7 17 2 1"   Colormode=16
-"!	c #000000"
-"  	c none"
-"!!!!!!!"
-" !!!!! "
-"  !!!  "
-"   !   "
-"   !   "
-"  !!!  "
-" !!!!! "
-"!!!!!!!"
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"   !   "
-"!!!!!!!"
-;1234567
-[end]
-
-
-[_point]
-Type=0x02a
-SubType=0x00
-;GRMN_TYPE: Business - Food and Drink/RESTAURANT/General restaurant of unknown genre/Non NT
+Type=0x115
+SubType=0x0c
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_13/User customizable point type/Non NT, NT
 String1=0x00,Havumetsä
 String2=0x06,Havumetsä
 ExtendedLabels=N
@@ -2213,9 +2051,9 @@ DayXpm="7 8 2 1"   Colormode=16
 
 
 [_point]
-Type=0x02a
-SubType=0x01
-;GRMN_TYPE: Business - Food and Drink/RESTAURANT_AMERICAN/American cuisine/Non NT
+Type=0x115
+SubType=0x0d
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_14/User customizable point type/Non NT, NT
 String1=0x00,Lehtimetsä
 String2=0x06,Lehtimetsä
 ExtendedLabels=N
@@ -2234,9 +2072,9 @@ DayXpm="7 7 2 1"   Colormode=16
 
 
 [_point]
-Type=0x02a
-SubType=0x02
-;GRMN_TYPE: Business - Food and Drink/RESTAURANT_ASIAN/Asian cuisine/Non NT
+Type=0x115
+SubType=0x0e
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_15/User customizable point type/Non NT, NT
 String1=0x00,Sekametsä
 String2=0x06,Sekametsä
 ExtendedLabels=N
@@ -2256,19 +2094,19 @@ DayXpm="7 8 2 1"   Colormode=16
 
 
 [_point]
-Type=0x031
-SubType=0x00
-;GRMN_TYPE: //
-String1=0x00,Syvyyspiste
-ExtendedLabels=Y
-FontStyle=NormalFont
-CustomColor=No
-DayXpm="4 4 2 1"   Colormode=16
-"!	c #303030"
+Type=0x115
+SubType=0x0f
+;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_16/User customizable point type/Non NT, NT
+String1=0x01,
+ExtendedLabels=N
+DayXpm="5 5 3 1"   Colormode=16
+"!	c #000000"
+"#	c #FFFFFF"
 "  	c none"
-" !! "
-"!!!!"
-"!!!!"
-" !! "
-;1234
+"  #  "
+" #!# "
+"#!!!#"
+" #!# "
+"  #  "
+;12345
 [end]
