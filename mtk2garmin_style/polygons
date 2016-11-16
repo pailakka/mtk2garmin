@@ -14,61 +14,61 @@ kohdeluokka=36200 {add area=yes} [0x3c level 4] #Jarvivesi
 kohdeluokka=36313 {add area=yes} [0x46 level 4] #Virtavesialue
 
 kohdeluokka=32111 {add area=yes} [0x10200 level 1] #Maa-aineksenottoalue, karkea kivennaisaines
-kohdeluokka=32112 {add area=yes} [0x10300 level 1] #Maa-aineksenottoalue, hieno kivennaisaines
-kohdeluokka=32113 {add area=yes} [0xd level 1] #Maa-aineksenottoalue, eloperainen aines
+kohdeluokka=32112 {add area=yes} [0x10f0d level 1] #Maa-aineksenottoalue, hieno kivennaisaines
+kohdeluokka=32113 {add area=yes} [0x10f00 level 1] #Maa-aineksenottoalue, eloperainen aines
 kohdeluokka=32200 {add area=yes} [0x1a level 2]    #Hautausmaa
-kohdeluokka=32300 {add area=yes} [0x1c level 1]    #Kaatopaikka
-kohdeluokka=32411 {add area=yes} [0x1090a level 2] #Lentokentan kiitotie, paallystetty
-kohdeluokka=32412 {add area=yes} [0x1090b level 2] #Lentokentan kiitotie, paallystamaton
-kohdeluokka=32413 {add area=yes} [0x1090e level 2] #Muu lentokenttaalue
-kohdeluokka=32414 {add area=yes} [0x10910 level 2] #Muu lentoliikennealue
-kohdeluokka=32415 {add area=yes} [0x1090e level 2] #Muu lentokenttaalue, paallystetty
-kohdeluokka=32416 {add area=yes} [0x1090e level 2] #Muu lentokenttaalue, paallystamaton
+kohdeluokka=32300 {add area=yes} [0x10f02 level 1]    #Kaatopaikka
+kohdeluokka=32411 {add area=yes} [0x1090b level 2] #Lentokentan kiitotie, paallystetty
+kohdeluokka=32412 {add area=yes} [0x00e00 level 2] #Lentokentan kiitotie, paallystamaton
+kohdeluokka=32413 {add area=yes} [0x00700 level 2] #Muu lentokenttaalue
+kohdeluokka=32414 {add area=yes} [0x10904 level 2] #Muu lentoliikennealue
+kohdeluokka=32415 {add area=yes} [0x00700 level 2] #Muu lentokenttaalue, paallystetty
+kohdeluokka=32416 {add area=yes} [0x00700 level 2] #Muu lentokenttaalue, paallystamaton
 kohdeluokka=32417 {add area=yes} [0x10910] #Muu lentoliikennealue, paallystetty
 kohdeluokka=32418 {add area=yes} [0x10910 level 2] #Muu lentoliikennealue, paallystamaton
 kohdeluokka=32421 {add area=yes} [0x5 level 2] #Autoliikennealue
-kohdeluokka=32500 {add area=yes} [0x10400 level 1] #Louhos
-kohdeluokka=32611 {add area=yes} [0x20 level 2]    #Pelto
+kohdeluokka=32500 {add area=yes} [0x10f0e level 1] #Louhos
+kohdeluokka=32611 {add area=yes} [0x54 level 2]    #Pelto
 kohdeluokka=32612 {add area=yes} [0x4e level 1]    #Puutarha
 kohdeluokka=32800 {add area=yes} [0x4f level 1]    #Niitty
-kohdeluokka=32900 {add area=yes} [0x10106 level 1] #Puisto
-kohdeluokka=33000 {add area=yes} [0x1b level 1]    #Taytemaa
+kohdeluokka=32900 {add area=yes} [0x10f08 level 1] #Puisto
+kohdeluokka=33000 {add area=yes} [0x10f01 level 1]    #Taytemaa
 kohdeluokka=33100 {add area=yes} [0x19 level 1]    #Urheilu- ja virkistysalue
-kohdeluokka=34100 {add area=yes} [0x10105 level 1] #Kallio - alue
+kohdeluokka=34100 {add area=yes} [0x10f07 level 1] #Kallio - alue
 kohdeluokka=34300 {add area=yes} [0x53 level 1]    #Hietikko
-kohdeluokka=34700 {add area=yes} [0x10700 level 1] #Kivikko
-kohdeluokka=35300 {add area=yes} [0x10100 level 1] #Soistuma
-kohdeluokka=35411 {add area=yes} [0x10101 level 2] #Suo, helppokulkuinen puuton
-kohdeluokka=35412 {add area=yes} [0x10102 level 2] #Suo, helppokulkuinen metsaa kasvava
-kohdeluokka=35421 {add area=yes} [0x10103 level 2] #Suo, vaikeakulkuinen puuton
-kohdeluokka=35422 {add area=yes} [0x10104 level 2] #Suo, vaikeakulkuinen metsaa kasvava
-kohdeluokka=38300 {add area=yes} [0x10109 level 1] #Maatuva vesialue
-kohdeluokka=38400 {add area=yes} [0x10108 level 1] #Tulva-alue
+kohdeluokka=34700 {add area=yes} [0x10f11 level 1] #Kivikko
+kohdeluokka=35300 {add area=yes} [0x10f03 level 1] #Soistuma
+kohdeluokka=35411 {add area=yes} [0x10f04 level 2] #Suo, helppokulkuinen puuton
+kohdeluokka=35412 {add area=yes} [0x10f05 level 2] #Suo, helppokulkuinen metsaa kasvava
+kohdeluokka=35421 {add area=yes} [0x51 level 2] #Suo, vaikeakulkuinen puuton
+kohdeluokka=35422 {add area=yes} [0x10f06 level 2] #Suo, vaikeakulkuinen metsaa kasvava
+kohdeluokka=38300 {add area=yes} [0x10f0b level 1] #Maatuva vesialue
+kohdeluokka=38400 {add area=yes} [0x10f0a level 1] #Tulva-alue
 kohdeluokka=38600 {add area=yes} [0x10700 level 1] #Vesikivikko
-kohdeluokka=38900 {add area=yes} [0x10500 level 1] #Varastoalue
-kohdeluokka=39110 {add area=yes} [0x10600 level 1] #Avoin metsamaa
-kohdeluokka=39120 {add area=yes} [0x10111] #Varvikko
-kohdeluokka=39130 {add area=yes} [0x10107 level 1] #Avoin vesijatto
-kohdeluokka=42210 {add area=yes} [0x10900] #Asuinrakennus, ? krs
-kohdeluokka=42211 {add area=yes} [0x10900] #Asuinrakennus, 1-2 krs
-kohdeluokka=42212 {add area=yes} [0x10900] #Asuinrakennus, 3-n krs
-kohdeluokka=42220 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, ? krs
-kohdeluokka=42221 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, 1-2 krs
-kohdeluokka=42222 {add area=yes} [0x10903] #Liike- tai julkinen rakennus, 3-n krs
-kohdeluokka=42230 {add area=yes} [0x10904] #Lomarakennus, ? krs
-kohdeluokka=42231 {add area=yes} [0x10904] #Lomarakennus, 1-2 krs
-kohdeluokka=42232 {add area=yes} [0x10904] #Lomarakennus, 3-n krs
+kohdeluokka=38900 {add area=yes} [0x10f0f level 1] #Varastoalue
+kohdeluokka=39110 {add area=yes} [0x10f10 level 1] #Avoin metsamaa
+kohdeluokka=39120 {add area=yes} [0x10f0c] #Varvikko
+kohdeluokka=39130 {add area=yes} [0x10f09 level 1] #Avoin vesijatto
+kohdeluokka=42210 {add area=yes} [0x10f12] #Asuinrakennus, ? krs
+kohdeluokka=42211 {add area=yes} [0x10f12] #Asuinrakennus, 1-2 krs
+kohdeluokka=42212 {add area=yes} [0x10f12] #Asuinrakennus, 3-n krs
+kohdeluokka=42220 {add area=yes} [0x10f15] #Liike- tai julkinen rakennus, ? krs
+kohdeluokka=42221 {add area=yes} [0x10f15] #Liike- tai julkinen rakennus, 1-2 krs
+kohdeluokka=42222 {add area=yes} [0x10f15] #Liike- tai julkinen rakennus, 3-n krs
+kohdeluokka=42230 {add area=yes} [0x10f16] #Lomarakennus, ? krs
+kohdeluokka=42231 {add area=yes} [0x10f16] #Lomarakennus, 1-2 krs
+kohdeluokka=42232 {add area=yes} [0x10f16] #Lomarakennus, 3-n krs
 kohdeluokka=42240 {add area=yes} [0xc] #Teollinen rakennus, ? krs
 kohdeluokka=42241 {add area=yes} [0xc] #Teollinen rakennus, 1-2 krs
 kohdeluokka=42242 {add area=yes} [0xc] #Teollinen rakennus, 3-n krs
-kohdeluokka=42250 {add area=yes} [0x10902] #Kirkollinen rakennus, ? krs
-kohdeluokka=42251 {add area=yes} [0x10902] #Kirkollinen rakennus, 1-2 krs
-kohdeluokka=42252 {add area=yes} [0x10902] #Kirkollinen rakennus, 3-n krs
-kohdeluokka=42260 {add area=yes} [0x10901] #Muu rakennus, ? krs
-kohdeluokka=42261 {add area=yes} [0x10901] #Muu rakennus, 1-2 krs
-kohdeluokka=42262 {add area=yes} [0x10901] #Muu rakennus, 3-n krs
-kohdeluokka=42270 {add area=yes} [0x10902] #Kirkko
-kohdeluokka=44300 {add area=yes} [0x3c]    #Allas - alue
+kohdeluokka=42250 {add area=yes} [0x10f14] #Kirkollinen rakennus, ? krs
+kohdeluokka=42251 {add area=yes} [0x10f14] #Kirkollinen rakennus, 1-2 krs
+kohdeluokka=42252 {add area=yes} [0x10f14] #Kirkollinen rakennus, 3-n krs
+kohdeluokka=42260 {add area=yes} [0x10f13] #Muu rakennus, ? krs
+kohdeluokka=42261 {add area=yes} [0x10f13] #Muu rakennus, 1-2 krs
+kohdeluokka=42262 {add area=yes} [0x10f13] #Muu rakennus, 3-n krs
+kohdeluokka=42270 {add area=yes} [0x10f14] #Kirkko
+kohdeluokka=44300 {add area=yes} [0x3f]    #Allas - alue
 
 
 <finalize>
