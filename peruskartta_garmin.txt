@@ -1,4 +1,7 @@
-
+; peruskartta.typ
+; Longueur: 5288 octets
+; Fichier TYP compilé     20.11.2016     13:16:33
+; Décompilé le 20.11.2016 à 13:16:35
 
 [_id]
 ProductCode=1
@@ -15,45 +18,49 @@ CodePage=1252
 
 ;=========== POLYGONES : PRIORITE DANS L'AFFICHAGE ======
 [_drawOrder]
-Type=0x10100,1
-Type=0x10101,1
-Type=0x10102,1
-Type=0x10105,1
-Type=0x10106,1
-Type=0x10107,1
-Type=0x10111,1
-Type=0x10500,1
-Type=0x1090a,1
-Type=0x1090b,1
+Type=0x10200,1
+Type=0x005,1
+Type=0x007,1
+Type=0x10904,1
 Type=0x10910,1
+Type=0x10f00,1
+Type=0x10f01,1
+Type=0x10f02,1
+Type=0x10f03,1
+Type=0x10f04,1
+Type=0x10f05,1
+Type=0x10f06,1
+Type=0x10f07,1
+Type=0x10f08,1
+Type=0x10f0a,1
+Type=0x10f0b,1
+Type=0x10f0d,1
+Type=0x10f0e,1
+Type=0x10f0f,1
+Type=0x019,1
 Type=0x01a,1
 Type=0x032,1
 Type=0x03c,1
 Type=0x046,1
 Type=0x04e,1
 Type=0x04f,1
+Type=0x051,1
 Type=0x053,1
-Type=0x10103,2
-Type=0x10104,2
-Type=0x10200,2
-Type=0x005,2
-Type=0x10400,2
-Type=0x10600,2
+Type=0x054,1
 Type=0x10700,2
-Type=0x1090e,2
+Type=0x1090b,2
 Type=0x00c,2
-Type=0x00d,2
-Type=0x01b,2
-Type=0x01c,2
-Type=0x020,2
-Type=0x10108,3
-Type=0x10109,3
-Type=0x019,3
-Type=0x10900,4
-Type=0x10901,4
-Type=0x10902,4
-Type=0x10903,4
-Type=0x10904,4
+Type=0x00e,2
+Type=0x10f11,2
+Type=0x10f12,2
+Type=0x10f13,2
+Type=0x10f14,2
+Type=0x10f15,2
+Type=0x10f16,2
+Type=0x03f,2
+Type=0x10f09,3
+Type=0x10f0c,3
+Type=0x10f10,3
 [End]
 
 
@@ -1248,9 +1255,8 @@ Type=0x21
 ;GRMN_TYPE: Contour Lines/INT_CONTOUR/Intermediate contour (should be used for about every 5th contour line)/Non NT
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 2 0"
+Xpm="0 0 1 0"
 "1 c #C08040"
-"2 c #FFFFFF"
 ExtendedLabels=Y
 FontStyle=NoLabel (invisible)
 CustomColor=No
@@ -1262,12 +1268,12 @@ Type=0x22
 ;GRMN_TYPE: Contour Lines/MAJOR_CONTOUR/Major contour (should be used for about every 10th contour line)/Non NT
 UseOrientation=Y
 LineWidth=2
-Xpm="0 0 2 0"
+Xpm="0 0 1 0"
 "1 c #C08040"
-"2 c #FFFFFF"
 ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
-CustomColor=No
+FontStyle=SmallFont
+CustomColor=Day
+DaycustomColor:#C08040
 [end]
 
 
@@ -1386,9 +1392,8 @@ Type=0x10f01
 ;GRMN_TYPE: Customizable Line Types/CUSTOMIZABLE_LINE_34/Non-routable customizable line/Non NT, NT
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 2 0"
+Xpm="0 0 1 0"
 "1 c #000000"
-"2 c #FFFFFF"
 String1=0x00,Rakennelma
 ExtendedLabels=N
 [end]
@@ -1399,9 +1404,8 @@ Type=0x10f02
 ;GRMN_TYPE: Customizable Line Types/CUSTOMIZABLE_LINE_35/Non-routable customizable line/Non NT, NT
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 2 0"
+Xpm="0 0 1 0"
 "1 c #000000"
-"2 c #FFFFFF"
 String1=0x00,Laituri
 ExtendedLabels=N
 [end]
@@ -1412,9 +1416,8 @@ Type=0x10f03
 ;GRMN_TYPE: Customizable Line Types/CUSTOMIZABLE_LINE_36/Non-routable customizable line/Non NT, NT
 UseOrientation=Y
 LineWidth=1
-Xpm="0 0 2 0"
+Xpm="0 0 1 0"
 "1 c #000000"
-"2 c #FFFFFF"
 String1=0x00,Ilmarata
 ExtendedLabels=N
 [end]
@@ -1722,6 +1725,28 @@ DayXpm="5 6 2 1"   Colormode=16
 
 
 [_point]
+Type=0x066
+SubType=0x16
+;GRMN_TYPE: Geographical Named Points of Interest - Land Related/SUMMIT/Summit, top of a hill or mountain/Non NT, NT
+String1=0x01,
+ExtendedLabels=N
+DayXpm="8 8 3 1"   Colormode=16
+"!	c #006500"
+"#	c #FFFFFF"
+"  	c none"
+"        "
+"        "
+"  ####  "
+"  #!!#  "
+"  #!!#  "
+"  ####  "
+"        "
+"        "
+;12345678
+[end]
+
+
+[_point]
 Type=0x115
 SubType=0x00
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_1/User customizable point type/Non NT, NT
@@ -1823,18 +1848,20 @@ SubType=0x06
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_7/User customizable point type/Non NT, NT
 String1=0x00,Pylväs
 ExtendedLabels=N
-DayXpm="7 7 3 1"   Colormode=16
+DayXpm="9 9 3 1"   Colormode=16
 "!	c #000000"
 "#	c #FFFFFF"
 "  	c none"
-"       "
-"   #   "
-"  #!#  "
-" #!!!# "
-"  #!#  "
-"   #   "
-"       "
-;1234567
+"         "
+"    #    "
+"   #!#   "
+"  #!!!#  "
+" #!!!!!# "
+"  #!!!#  "
+"   #!#   "
+"    #    "
+"         "
+;123456789
 [end]
 
 
@@ -2033,7 +2060,6 @@ Type=0x115
 SubType=0x0c
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_13/User customizable point type/Non NT, NT
 String1=0x00,Havumetsä
-String2=0x06,Havumetsä
 ExtendedLabels=N
 DayXpm="7 8 2 1"   Colormode=16
 "!	c #000000"
