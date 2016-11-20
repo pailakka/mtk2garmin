@@ -28,9 +28,9 @@ kohdeluokka=12313 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x16 road_class 
 kohdeluokka=12314 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x0e road_class 0 road_speed 0 level 1]  #Kavely- ja pyoratie
 kohdeluokka=12316 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x0a road_class 0 road_speed 0 level 1]  #Ajopolku
 
-kohdeluokka=52100 & ele ~ '\d*[24680]0\.0' {name '${ele|height:"m=>ft"}'} [0x22]    #Korkeuskayra
-kohdeluokka=52100 & ele ~ '\d*[24680]0000' {name '${ele|height:"m=>ft"}'} [0x22]    #Korkeuskayra
-kohdeluokka=52100 {name '${ele|height:"m=>ft"}'} [0x20] #Korkeuskayra
+kohdeluokka=52100 & ele ~ '\d*[24680]0\.0' {name '${ele|conv:"m=>ft"}'} [0x22]    #Korkeuskayra
+kohdeluokka=52100 & ele ~ '\d*[24680]0000' {name '${ele|conv:"m=>ft"}'} [0x22]    #Korkeuskayra
+kohdeluokka=52100 {name '${ele|conv:"m=>ft"}'} [0x20] #Korkeuskayra
 
 kohdeluokka=30300 [0x10f01 level 1] #Pato
 kohdeluokka=22312 [0x29 level 1]    #Sahkolinja, jakelujannite
@@ -72,9 +72,9 @@ kohdeluokka=14121 [0x19 level 3]    #Kapearaiteinen rautatie
 kohdeluokka=36312 [0x1f level 1]    #Virtavesi, 2-5m
 
 
-#tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name ${ele|height:"m=>ft"}';addlabel '${DEPTH}'} [0x25]
-tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name '${ele|height:"m=>ft"}'} [0x25]
-tyyppi=syvyyskayrat & ele ~ '\d*[24680]0000' {name '${ele|height:"m=>ft"}'} [0x25]
+#tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name ${ele|conv:"m=>ft"}';addlabel '${DEPTH}'} [0x25]
+tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name '${ele|conv:"m=>ft"}'} [0x25]
+tyyppi=syvyyskayrat & ele ~ '\d*[24680]0000' {name '${ele|conv:"m=>ft"}'} [0x25]
 tyyppi=syvyyskayrat {name '${ele|height:"m=>ft"}'} [0x24]
 
 kohdeluokka=54100 {name '${ele|height:"m=>ft"}'} [0x24]

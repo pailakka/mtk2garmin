@@ -13,7 +13,7 @@ kohdeluokka=36211 {add area=yes} [0x32 level 4] #Merivesi
 kohdeluokka=36200 {add area=yes} [0x3c level 4] #Jarvivesi
 kohdeluokka=36313 {add area=yes} [0x46 level 4] #Virtavesialue
 
-kohdeluokka=32111 {add area=yes} [0x10200 level 1] #Maa-aineksenottoalue, karkea kivennaisaines
+kohdeluokka=32111 {add area=yes} [0x10f0d level 1] #Maa-aineksenottoalue, karkea kivennaisaines
 kohdeluokka=32112 {add area=yes} [0x10f0d level 1] #Maa-aineksenottoalue, hieno kivennaisaines
 kohdeluokka=32113 {add area=yes} [0x10f00 level 1] #Maa-aineksenottoalue, eloperainen aines
 kohdeluokka=32200 {add area=yes} [0x1a level 2]    #Hautausmaa
@@ -26,7 +26,7 @@ kohdeluokka=32415 {add area=yes} [0x00700 level 2] #Muu lentokenttaalue, paallys
 kohdeluokka=32416 {add area=yes} [0x00700 level 2] #Muu lentokenttaalue, paallystamaton
 kohdeluokka=32417 {add area=yes} [0x10910] #Muu lentoliikennealue, paallystetty
 kohdeluokka=32418 {add area=yes} [0x10910 level 2] #Muu lentoliikennealue, paallystamaton
-kohdeluokka=32421 {add area=yes} [0x5 level 2] #Autoliikennealue
+kohdeluokka=32421 {add area=yes} [0x005 level 2] #Autoliikennealue
 kohdeluokka=32500 {add area=yes} [0x10f0e level 1] #Louhos
 kohdeluokka=32611 {add area=yes} [0x54 level 2]    #Pelto
 kohdeluokka=32612 {add area=yes} [0x4e level 1]    #Puutarha
