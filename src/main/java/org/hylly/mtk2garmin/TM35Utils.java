@@ -1,9 +1,6 @@
-package org.hylly.mtk2garmin;
+package me.jsimomaa.osmosis.utils;
 
-import fi.mml.portti.service.search.ChannelSearchResult;
-import fi.mml.portti.service.search.IllegalSearchCriteriaException;
-import fi.mml.portti.service.search.SearchCriteria;
-import fi.nls.oskari.search.channel.TM35LehtijakoSearchChannel;
+import fi.nls.aluejako.karttalehtijako.utm_karttalehti;
 
 /**
  * Utility class for TM35 coordinates
@@ -33,24 +30,28 @@ public class TM35Utils {
     }
 
     /**
-     * Method for reverse geocoding coordinates into TM35 map sheets. Example usage:
-     * <br><br>
+     * Method for reverse geocoding coordinates into TM35 map sheets. Example
+     * usage: <br>
+     * <br>
      * <code>TM35Utils.reverseGeocode(6678000, 368000, TM35Scale.SCALE_5000);</code>
-     * <br><br>
+     * <br>
+     * <br>
      * Should return <code>L4132E1</code>
      * 
-     * @param lat coordinate
-     * @param lon coordinate
-     * @param scale of the sheet
+     * @param lat
+     *            coordinate
+     * @param lon
+     *            coordinate
+     * @param scale
+     *            of the sheet
      * @return String identifying the map sheet (e.g. L4132E1)
      * @throws IllegalSearchCriteriaException
      */
-    public static String reverseGeocode(double lat, double lon, TM35Scale scale) throws IllegalSearchCriteriaException {
-        SearchCriteria criteria = new SearchCriteria();
-        criteria.setSRS("EPSG:3067");
-        criteria.setReverseGeocode(lat, lon);
-        criteria.addParam("scale", Integer.toString(scale.getIntVal()));
+    public static String reverseGeocode(double lat, double lon, TM35Scale scale) {
+        double[] pt = new double[] { lat, lon }; // E, N (EPSG:3067)
 
-        return new TM35LehtijakoSearchChannel().reverseGeocode(criteria).getSearchResultItems().get(0).getTitle();
+        utm_karttalehti lehti = new utm_karttalehti();
+        lehti = lehti.pisteessa(pt, scale.getIntVal());
+        return lehti.lehtinumero();
     }
 }

@@ -46,10 +46,10 @@
     	<artifactId>fastutil</artifactId>
     	<version>7.0.12</version>
     </dependency>
-    <dependency>
-        <groupId>fi.nls.oskari.service</groupId>
-        <artifactId>oskari-search-nls</artifactId>
-        <version>1.40.0</version>
-    </dependency>
+        <dependency>
+            <groupId>fi.nls.karttalehtijako</groupId>
+            <artifactId>java-karttalehdet</artifactId>
+            <version>1.0.0</version>
+        </dependency>
   </dependencies>
 </project>
