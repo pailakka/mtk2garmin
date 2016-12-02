@@ -9,8 +9,16 @@ import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 
 class ShapeRetkeilyTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
-
-    ShapeRetkeilyTagHandler() {
+    private StringTable stringtable;
+    
+    private short namefi,name;
+    
+    ShapeRetkeilyTagHandler(StringTable stringtable) {
+        this.stringtable = stringtable;
+        
+        namefi = this.stringtable.getStringId("name_fi");
+        name = this.stringtable.getStringId("name");
+        
         wantedFields = new ObjectOpenHashSet<String>(
                 Arrays.asList("name_fi", "category_i", "cat_id"));
     }
@@ -23,14 +31,15 @@ class ShapeRetkeilyTagHandler implements TagHandlerI {
     @Override
     public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
         for (Entry<String> k : fields.short2ObjectEntrySet()) {
-            String ks = MTKToGarminConverter.getStringById(k.getShortKey()).intern();
             String val = k.getValue();
-
-            if (ks.equals("name_fi")) {
-                ks = "name";
+            
+            short ok = k.getShortKey();
+            
+            if (ok == namefi) {
+                ok = name;
             }
 
-            tags.put(MTKToGarminConverter.getStringId(ks), MTKToGarminConverter.getStringId(val));
+            tags.put(ok, this.stringtable.getStringId(val));
         }
 
     }

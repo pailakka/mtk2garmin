@@ -78,10 +78,6 @@ class OSMPBF {
         }
     }
 
-    private int getString(String ostr) {
-        return MTKToGarminConverter.getStringId(ostr);
-    }
-
     private PBFBlob createBlob(String blobtype, byte[] data) {
         return new PBFBlob(blobtype, data);
     }
@@ -117,18 +113,19 @@ class OSMPBF {
         return nano * (this.granularity * (double) coord);
     }
 
-    private Osmformat.StringTable buildStringTable() {
+    private Osmformat.StringTable buildStringTable(StringTable stringtable) {
         Osmformat.StringTable.Builder stbuilder = Osmformat.StringTable.newBuilder();
-        for (int i = 0; i < MTKToGarminConverter.stringTable.size(); i++) {
-            stbuilder.addS(ByteString.copyFromUtf8(MTKToGarminConverter.stringTable.get(i)));
+        for (int i = 0; i < stringtable.getStringtableSize(); i++) {
+            stbuilder.addS(ByteString.copyFromUtf8(stringtable.getStringById(i)));
         }
-        System.out.println(stbuilder.getSCount() + " strings in OSMPBF stringtable from MTK2Garmin stringtable " + MTKToGarminConverter.stringTable.size());
+        System.out.println(stbuilder.getSCount() + " strings in OSMPBF stringtable from MTK2Garmin stringtable " + stringtable.getStringtableSize());
         //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTable.toArray()));
         //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTableTranslate.entrySet().toArray()));
         return stbuilder.build();
     }
 
     private Osmformat.PrimitiveBlock createOSMDataBlock(
+            StringTable stringtable,
             Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
             Long2ObjectOpenHashMap<Relation> relations) {
         Osmformat.PrimitiveBlock.Builder pbbuilder = Osmformat.PrimitiveBlock
@@ -138,16 +135,17 @@ class OSMPBF {
         pbbuilder.setLonOffset(this.lon_offset);
         pbbuilder.setDateGranularity(this.date_granularity);
 
-        Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(nodes, ways,
+        Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable,nodes, ways,
                 relations);
         pbbuilder.addPrimitivegroup(pg);
 
-        pbbuilder.setStringtable(this.buildStringTable());
+        pbbuilder.setStringtable(this.buildStringTable(stringtable));
         return pbbuilder.build();
 
     }
 
     private Osmformat.PrimitiveGroup createOSMPrimitiveGroup(
+            StringTable stringtable,
             Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
             Long2ObjectOpenHashMap<Relation> relations) {
         Osmformat.PrimitiveGroup.Builder pgbuilder = Osmformat.PrimitiveGroup
@@ -155,14 +153,15 @@ class OSMPBF {
         if (ways != null)
             pgbuilder.addAllWays(this.buildOSMWays(ways));
         if (relations != null)
-            pgbuilder.addAllRelations(this.buildOSMRelations(relations));
+            pgbuilder.addAllRelations(this.buildOSMRelations(stringtable,relations));
         if (nodes != null)
-            pgbuilder.setDense(this.buildOSMDenseNodes(nodes));
+            pgbuilder.setDense(this.buildOSMDenseNodes(stringtable,nodes));
 
         return pgbuilder.build();
     }
 
     private Osmformat.DenseNodes buildOSMDenseNodes(
+            StringTable stringtable,
             final Long2ObjectOpenHashMap<Node> nodes) {
 
         Osmformat.DenseNodes.Builder dsb = Osmformat.DenseNodes.newBuilder();
@@ -207,7 +206,7 @@ class OSMPBF {
             Short2ShortRBTreeMap ntags = n.getTags();
             if (ntags != null) {
                 for (Entry t : ntags.short2ShortEntrySet()) {
-                    if (t.getShortKey() > MTKToGarminConverter.stringTable.size() || t.getShortValue() > MTKToGarminConverter.stringTable.size()) {
+                    if (t.getShortKey() > stringtable.getStringtableSize() || t.getShortValue() > stringtable.getStringtableSize()) {
 
                         System.out.println("Node key error! " + t.getShortKey() + " or " + t.getShortValue() + " too large");
                     }
@@ -262,6 +261,7 @@ class OSMPBF {
     }
 
     private ArrayList<Osmformat.Relation> buildOSMRelations(
+            StringTable stringtable,
             Long2ObjectOpenHashMap<Relation> relations) {
         ArrayList<Osmformat.Relation> pbfrels = new ArrayList<Osmformat.Relation>();
 
@@ -284,7 +284,7 @@ class OSMPBF {
 
             long lmid = 0;
             for (RelationMember m : r.getMembers()) {
-                rb.addRolesSid(this.getString(m.getRole()));
+                rb.addRolesSid(stringtable.getStringId(m.getRole()));
                 rb.addMemids(m.getId() - lmid);
                 lmid = m.getId();
                 if (m.getType().equals("node")) rb.addTypes(Osmformat.Relation.MemberType.NODE);
@@ -298,11 +298,11 @@ class OSMPBF {
         return pbfrels;
     }
 
-    void writePBFElements(Boolean close_file,
+    void writePBFElements(StringTable stringtable,Boolean close_file,
                           Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
                           Long2ObjectOpenHashMap<Relation> relations) throws IOException {
         Osmformat.PrimitiveBlock pb = this
-                .createOSMDataBlock(nodes, ways, relations);
+                .createOSMDataBlock(stringtable,nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());
         Integer header_sersize = data.header.getSerializedSize();
         od.writeInt(header_sersize);

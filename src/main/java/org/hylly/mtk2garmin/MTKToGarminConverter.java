@@ -43,8 +43,6 @@ class MTKToGarminConverter {
     private static final SpatialReference wgs84ref = new SpatialReference();
     private static final Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<String, double[]>();
     private CoordinateTransformation srctowgs;
-    private static final Object2ShortOpenHashMap<String> stringTableTranslate = new Object2ShortOpenHashMap<String>();
-    static final ObjectArrayList<String> stringTable = new ObjectArrayList<String>();
 
     public class Node {
         final long id;
@@ -72,6 +70,12 @@ class MTKToGarminConverter {
             this.cell = cell;
             this.waypart = waypart;
             this.nodeTags = tags;
+        }
+        
+        void clearTags() {
+            if (nodeTags != null) {
+                nodeTags.clear();
+            }
         }
 
         void addTag(short key, short value) {
@@ -200,10 +204,10 @@ class MTKToGarminConverter {
         final ArrayList<Relation> relations = new ArrayList<Relation>();
     }
 
-    private final Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<Node>(50000);
-    private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>>();
-    private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<Way>(5000);
-    private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<Relation>(500);
+    private final Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<>(50000);
+    private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<>();
+    private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
+    private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
 
     private static final double COORD_DELTA_X = 62000.0 - 6e3;
     private static final double COORD_DELTA_Y = 6594000.0;
@@ -300,6 +304,7 @@ class MTKToGarminConverter {
 
                 if (nodepos.get(pcell).containsKey(phash)) {
                     n = nodepos.get(pcell).get(phash);
+                    n.clearTags();
                 } else {
                     nid = nodeidcounter;
                     nodeidcounter++;
@@ -322,6 +327,7 @@ class MTKToGarminConverter {
                     nodepos.get(pcell).put(phash, n);
                 } else {
                     n = nodepos.get(pcell).get(phash);
+                    n.clearTags();
                     nodes.put(phash, n);
                 }
                 n.waypart = !ispoint;
@@ -354,7 +360,7 @@ class MTKToGarminConverter {
                 Math.min(Math.abs(this.lly - y), Math.min(Math.abs(this.urx - x), Math.abs(this.ury - y))));
     }
 
-    private GeomHandlerResult handleMultiGeom(Geometry geom) {
+    private GeomHandlerResult handleMultiGeom(short type,short multipolygon,Geometry geom) {
 
         GeomHandlerResult ighr;
         Geometry igeom;
@@ -374,7 +380,7 @@ class MTKToGarminConverter {
         relationidcounter++;
         Relation r = new Relation();
         r.setId(rid);
-        r.tags.put(MTKToGarminConverter.getStringId("type"), MTKToGarminConverter.getStringId("multipolygon"));
+        r.tags.put(type, multipolygon);
 
         for (int i = 0; i < geom.GetGeometryCount(); i++) {
             igeom = geom.GetGeometryRef(i);
@@ -416,12 +422,12 @@ class MTKToGarminConverter {
 
     }
 
-    private boolean handleFeature(String lyrname, ArrayList<Field> fieldMapping, Feature feat,
+    private boolean handleFeature(StringTable stringtable,String lyrname, ArrayList<Field> fieldMapping, Feature feat,
             FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler) {
         Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<String>();
         Geometry geom;
         for (Field f : fieldMapping) {
-            fields.put(MTKToGarminConverter.getStringId(f.getFieldName()),
+            fields.put(stringtable.getStringId(f.getFieldName()),
                     feat.GetFieldAsString(f.getFieldIndex()).intern());
         }
 
@@ -450,13 +456,13 @@ class MTKToGarminConverter {
             }
             ghr = this.handleSingleGeom(geom);
         } else {
-            ghr = this.handleMultiGeom(geom);
+            ghr = this.handleMultiGeom(stringtable.getStringId("type"),stringtable.getStringId("multipolygon"),geom);
         }
         geom.delete();
         feat.delete();
         String tyyppi = lyrname.toLowerCase();
 
-        short tyyppi_value_id = MTKToGarminConverter.getStringId(tyyppi);
+        short tyyppi_value_id = stringtable.getStringId(tyyppi);
 
         for (Node n : ghr.nodes) {
 
@@ -492,53 +498,38 @@ class MTKToGarminConverter {
 
     }
 
-    static void printTags(Short2ShortRBTreeMap tags) {
+    static void printTags(StringTable stringtable,Short2ShortRBTreeMap tags) {
         for (Entry t : tags.short2ShortEntrySet()) {
-            System.out.println(getStringById(t.getShortKey()) + " => " + getStringById(t.getShortValue()));
+            System.out.println(stringtable.getStringById(t.getShortKey()) + " => " + stringtable.getStringById(t.getShortValue()));
         }
     }
 
-    static short getStringId(String stringKey) {
-        if (!MTKToGarminConverter.stringTableTranslate.containsKey(stringKey)) {
-            short newIndex = (short)MTKToGarminConverter.stringTable.size();
-            MTKToGarminConverter.stringTableTranslate.put(stringKey, newIndex);
-            MTKToGarminConverter.stringTable.add(newIndex, stringKey);
-            return newIndex;
-        } else {
-            return MTKToGarminConverter.stringTableTranslate.getShort(stringKey);
-        }
 
-    }
-
-    static String getStringById(int id) {
-        return MTKToGarminConverter.stringTable.get(id);
-    }
-
-    private void writeOSMXMLTags(OutputStream fos, Short2ShortRBTreeMap nodeTags) throws IOException {
+    private void writeOSMXMLTags(StringTable stringtable,OutputStream fos, Short2ShortRBTreeMap nodeTags) throws IOException {
         if (nodeTags.size() == 0)
             return;
 
         for (Entry k : nodeTags.short2ShortEntrySet()) {
             fos.write(
-                    String.format("\t\t<tag k=\"%s\" v=\"%s\" />\n", MTKToGarminConverter.getStringById(k.getShortKey()),
-                            MTKToGarminConverter.getStringById(k.getShortValue())).getBytes());
+                    String.format("\t\t<tag k=\"%s\" v=\"%s\" />\n", stringtable.getStringById(k.getShortKey()),
+                            stringtable.getStringById(k.getShortValue())).getBytes());
         }
     }
 
     @SuppressWarnings("unused")
-    private void writePlainOSMXML(String ofn) throws IOException {
+    private void writePlainOSMXML(StringTable stringtable,String ofn) throws IOException {
         BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(ofn));
 
-        this.writeOSMXML(fos);
+        this.writeOSMXML(stringtable,fos);
     }
 
     @SuppressWarnings("unused")
-    private void writeGzOSMXML(String ofn) throws IOException {
+    private void writeGzOSMXML(StringTable stringtable,String ofn) throws IOException {
         GZIPOutputStream fos = new GZIPOutputStream(new FileOutputStream(ofn));
-        this.writeOSMXML(fos);
+        this.writeOSMXML(stringtable,fos);
     }
 
-    private void writeOSMXML(OutputStream fos) throws IOException {
+    private void writeOSMXML(StringTable stringtable,OutputStream fos) throws IOException {
 
         fos.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n".getBytes());
         fos.write("<osm version=\"0.6\" generator=\"mtk2garmin 0.0.1\">\n".getBytes());
@@ -567,7 +558,7 @@ class MTKToGarminConverter {
             if (n.nodeTags.size() > 0) {
 
                 fos.write(">\n".getBytes());
-                this.writeOSMXMLTags(fos, n.nodeTags);
+                this.writeOSMXMLTags(stringtable,fos, n.nodeTags);
                 fos.write("\t</node>\n".getBytes());
 
             } else {
@@ -584,7 +575,7 @@ class MTKToGarminConverter {
             for (int i = 0; i < w.refs.size(); i++) {
                 fos.write(String.format("\t\t<nd ref=\"%d\" />\n", w.refs.getLong(i)).getBytes());
             }
-            this.writeOSMXMLTags(fos, w.tags);
+            this.writeOSMXMLTags(stringtable,fos, w.tags);
             fos.write("\t</way>\n".getBytes());
         }
         long[] relkeys = relations.keySet().toLongArray();
@@ -597,7 +588,7 @@ class MTKToGarminConverter {
                 fos.write(String.format("\t\t<member type=\"%s\" ref=\"%d\" role=\"%s\"/>\n", m.getType(), m.getId(),
                         m.getRole()).getBytes());
             }
-            this.writeOSMXMLTags(fos, r.tags);
+            this.writeOSMXMLTags(stringtable,fos, r.tags);
             fos.write("\t</relation>\n".getBytes());
         }
         fos.write("</osm>".getBytes());
@@ -610,11 +601,11 @@ class MTKToGarminConverter {
         op.writePBFHeaders(ofn);
     }
 
-    private void writeOSMPBFElements() throws IOException {
+    private void writeOSMPBFElements(StringTable stringtable) throws IOException {
 
-        op.writePBFElements(false, nodes, null, null);
-        op.writePBFElements(false, null, ways, null);
-        op.writePBFElements(false, null, null, relations);
+        op.writePBFElements(stringtable,false, nodes, null, null);
+        op.writePBFElements(stringtable,false, null, ways, null);
+        op.writePBFElements(stringtable,false, null, null, relations);
 
         // this.initElements();
     }
@@ -624,12 +615,12 @@ class MTKToGarminConverter {
     }
 
     @SuppressWarnings("unused")
-    public void writeOSMPBF(String ofn) throws IOException {
+    public void writeOSMPBF(StringTable stringtable,String ofn) throws IOException {
         op = new OSMPBF();
         op.writePBFHeaders(ofn, minx, miny, maxx, maxy);
-        op.writePBFElements(true, nodes, null, null);
-        op.writePBFElements(true, null, ways, null);
-        op.writePBFElements(true, null, null, relations);
+        op.writePBFElements(stringtable,true, nodes, null, null);
+        op.writePBFElements(stringtable,true, null, ways, null);
+        op.writePBFElements(stringtable,true, null, null, relations);
     }
 
     private double[] extendExtent(double[] ext1, double[] ext2) {
@@ -693,7 +684,7 @@ class MTKToGarminConverter {
         return is;
     }
 
-    private void readOGRsource(String fn, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
+    private void readOGRsource(StringTable stringtable,String fn, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
             boolean doClearNodeCache, double[] filterExtent) {
         InitializedDatasource is = startReadingOGRFile(fn);
         DataSource ds = is.ds;
@@ -751,7 +742,7 @@ class MTKToGarminConverter {
 
             for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
 
-                if (!this.handleFeature(lyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
+                if (!this.handleFeature(stringtable,lyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
                     System.out.println("BREAK");
                     break layerloop;
                 }
@@ -836,7 +827,7 @@ class MTKToGarminConverter {
                     }
 
                     String area = g3.getName().substring(0, 4);
-
+                    
                     if (!areas.containsKey(area)) {
                         areas.put(area, new ArrayList<File>());
                     }
@@ -849,14 +840,16 @@ class MTKToGarminConverter {
         Arrays.sort(areassorted);
         MTKToGarminConverter mtk2g = new MTKToGarminConverter();
 
-        ShapeRetkeilyTagHandler retkeilyTagHandler = new ShapeRetkeilyTagHandler();
-        ShapeSyvyysTagHandler syvyysTagHandler = new ShapeSyvyysTagHandler();
+        ShapeRetkeilyTagHandler retkeilyTagHandler;
+        ShapeSyvyysTagHandler syvyysTagHandler;
         MMLTagHandler tagHandlerMML;
-
+        StringTable stringtable;
+        
         MMLFeaturePreprocess featurePreprocessMML = new MMLFeaturePreprocess();
         ShapeFeaturePreprocess shapePreprocessor = new ShapeFeaturePreprocess();
         double[] mml_extent;
-
+        
+        
         for (Object area : areassorted) {
             ArrayList<File> files = areas.get(area);
             String[] filenames = new String[files.size()];
@@ -870,17 +863,13 @@ class MTKToGarminConverter {
             Arrays.sort(filenames);
 
             for (String fn : filenames) {
-
                 String cell = fn.substring(fn.lastIndexOf("\\") + 1, fn.lastIndexOf("\\") + 7);
-
-                MTKToGarminConverter.stringTable.clear();
-                stringTable.trim(1000);
-                MTKToGarminConverter.stringTableTranslate.clear();
-                stringTableTranslate.trim(1000);
-                stringTable.add("");
-
-                tyyppi_string_id = MTKToGarminConverter.getStringId("tyyppi");
-                tagHandlerMML = new MMLTagHandler();
+                
+                stringtable = new StringTable();
+                tyyppi_string_id = stringtable.getStringId("tyyppi");
+                tagHandlerMML = new MMLTagHandler(stringtable);
+                retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
+                syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
 
                 mtk2g.startWritingOSMPBF(
                         String.format("K:\\koodi\\mtk2garmin3\\mtk2garminjava\\suomi\\%s.osm.pbf", cell));
@@ -891,44 +880,44 @@ class MTKToGarminConverter {
                 long st;
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/" + fn, featurePreprocessMML, tagHandlerMML, true, null);
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + fn, featurePreprocessMML, tagHandlerMML, true, null);
                 System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
                 mtk2g.printCounts();
                 System.out.println(Arrays.toString(mml_extent));
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
+                mtk2g.readOGRsource(stringtable,"/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
+                mtk2g.readOGRsource(stringtable,"/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(
+                mtk2g.readOGRsource(stringtable,
                         "/vsizip/C:\\geodata\\retkikartta\\kesaretkeilyreitit.zip\\kesaretkeilyreititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource("/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
@@ -949,7 +938,7 @@ class MTKToGarminConverter {
                 
                 
                 st = System.nanoTime();
-                mtk2g.writeOSMPBFElements();
+                mtk2g.writeOSMPBFElements(stringtable);
                 mtk2g.closeOSMPBFFile();
                 mtk2g.trackCounts();
                 mtk2g.initElements();
