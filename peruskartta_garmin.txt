@@ -1,7 +1,7 @@
-; peruskartta.typ
+; PERUSKAR.TYP
 ; Longueur: 5288 octets
-; Fichier TYP compilé     20.11.2016     13:16:33
-; Décompilé le 20.11.2016 à 13:16:35
+; Fichier TYP compilé     20.11.2016     13:32:01
+; Décompilé le 20.11.2016 à 13:32:04
 
 [_id]
 ProductCode=1
@@ -1012,6 +1012,19 @@ ExtendedLabels=N
 
 
 [_line]
+Type=0x08
+;GRMN_TYPE: Roads/LOW_SPEED_RAMP/Highway ramp which is to be driven at low speeds/Non NT, NT
+UseOrientation=Y
+LineWidth=2
+BorderWidth=1
+Xpm="0 0 2 0"
+"1 c #7B6500"
+"2 c #000000"
+ExtendedLabels=N
+[end]
+
+
+[_line]
 Type=0x09
 ;GRMN_TYPE: Roads/HIGH_SPEED_RAMP, RAMP/Highway ramp which is to be driven at high speeds/Non NT, NT
 UseOrientation=Y
@@ -1251,8 +1264,8 @@ ExtendedLabels=N
 
 
 [_line]
-Type=0x21
-;GRMN_TYPE: Contour Lines/INT_CONTOUR/Intermediate contour (should be used for about every 5th contour line)/Non NT
+Type=0x20
+;GRMN_TYPE: Contour Lines/MINOR_CONTOUR/Minor land-based contour line/Non NT
 UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
