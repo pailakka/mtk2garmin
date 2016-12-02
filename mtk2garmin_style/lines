@@ -20,7 +20,7 @@ kohdeluokka=12122 [0x05 road_class 2 road_speed 3 level 4]  #Autotie IIb
 
 kohdeluokka=12131 [0x04 road_class 2 road_speed 3 level 3]  #Autotie IIIa
 kohdeluokka=12132 & paallyste=2 [0x06 road_class 2 road_speed 2 level 3]    #Autotie IIIb
-kohdeluokka=12132 & paallyste<2 [0x0a road_class 0 road_speed 1 level 3]    #Autotie IIIb
+kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3]    #Autotie IIIb
 
 kohdeluokka=12141 [0x07 road_class 0 road_speed 1 level 2]  #Ajotie
 
