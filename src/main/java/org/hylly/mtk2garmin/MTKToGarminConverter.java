@@ -946,8 +946,6 @@ class MTKToGarminConverter {
                 System.out.println("pbf " + (System.nanoTime() - st) / 1000000000.0);
                 
             }
-            
-            
 
             if (mtk2g.nodepos.size() > 0) {
                 System.out.println(area + " done!");
