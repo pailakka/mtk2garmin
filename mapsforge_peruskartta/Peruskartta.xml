@@ -230,7 +230,7 @@
 <!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
 <rule e="way" k="kohdeluokka" v="35422" zoom-min="12">
     <area fill="#C7EBEB" stroke="#C7EBEB" stroke-width="0.5" />
-    <area src="file:/mml/suo_vaikea.svg" symbol-scaling="size" symbol-width="20" symbol-height="6"/>    
+    <area src="file:/mml/suo_vaikea.svg" symbol-scaling="size" symbol-width="20" symbol-height="6"/>
 </rule>
 
 
@@ -372,31 +372,59 @@
 </rule>
 
 
-
 <rule e="way" k="kohdeluokka" v="12111">
     <line stroke="#000000" stroke-width="3" stroke-linecap="square" />
     <line stroke="#40C000" stroke-width="2.5" stroke-linecap="square" />
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12112">
     <line stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
     <line stroke="#FFCC00" stroke-width="2" stroke-linecap="square" />
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12121">
     <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
     <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12122">
     <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
     <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12131">
     <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
     <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12132">
     <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
-    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
+    <rule e="way" k="paallyste" v="2">
+        <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
+    </rule>
+    <rule e="way" k="paallyste" v="0|1">
+        <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt" />
+    </rule>
+    <rule e="way" k="valmiusaste" v="1|2|3">
+        <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="30,30" />
+    </rule>
 </rule>
+
 <rule e="way" k="kohdeluokka" v="12141" zoom-min="12">
     <line stroke="#000000" stroke-width="0.6" stroke-linecap="butt" />
 </rule>
@@ -523,7 +551,7 @@
 
 
 <!--  26111 kasujohto, pinnan alla -->
-<rule e="way" k="kohdeluokka" v="26111">
+<rule e="way" k="kohdeluokka" v="26111|26112|26113|26114|26115|26116|26117">
     <line stroke="#000000" stroke-width="0.5" stroke-dasharray="50,25" stroke-linecap="round" />
 </rule>
 
@@ -1284,7 +1312,7 @@
     <rule e="any" k="man_made" v="tower" zoom-min="12">
         <symbol src="file:/mml/tower_lookout.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
     </rule>
-    <rule e="any" k="cat_id" v="2226|1614" zoom-min="12">
+    <rule e="any" k="cat_id" v="2226|1614|2229" zoom-min="12">
         <symbol src="file:/mml/tower_lookout.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
     </rule>
 
@@ -1300,11 +1328,11 @@
 
 <!-- retkeilyalue -->
 <rule e="any" k="kohdeluokka" v="72800" zoom-min="12">
-    <area stroke="#00b300" stroke-width="0.7" />
+    <area stroke="#00b300" stroke-width="0.7" fill="#0d00b300" />
 </rule>
 <!-- eramaa-alue raja -->
 <rule e="any" k="kohdeluokka" v="72700" zoom-min="12">
-    <area stroke="#00b300" stroke-width="0.7"/>
+    <area stroke="#00b300" stroke-width="0.7" fill="#0d00b300" />
 </rule>
 
 
