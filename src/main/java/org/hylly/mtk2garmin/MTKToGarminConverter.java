@@ -864,7 +864,7 @@ class MTKToGarminConverter {
             Arrays.sort(filenames);
 
             for (String fn : filenames) {
-                String cell = fn.substring(fn.lastIndexOf("\\") + 1, fn.lastIndexOf("\\") + 7);
+                String cell = fn.substring(fn.lastIndexOf(File.separator) + 1, fn.lastIndexOf(File.separator) + 7);
                 
                 stringtable = new StringTable();
                 tyyppi_string_id = stringtable.getStringId("tyyppi");
