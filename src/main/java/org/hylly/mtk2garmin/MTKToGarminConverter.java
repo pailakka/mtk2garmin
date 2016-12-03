@@ -1,10 +1,9 @@
 package org.hylly.mtk2garmin;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -790,7 +789,26 @@ class MTKToGarminConverter {
         System.out.println("max_nodes " + max_nodes +  ", max_ways " + max_ways + ", max_relations " + max_relations);
         
     }
-    
+
+    // An attempt to get the absolute paths into one place ...
+    private static String getDataFile(String file) throws IOException {
+        String DATA_DIR = null;
+        if (Files.exists(Paths.get("C:\\geodata", file))) {
+            DATA_DIR = "C:\\geodata";
+        } else if (Files.exists(Paths.get("R:\\syvyys", file))) {
+            DATA_DIR = "R:\\syvyys";
+        } else if (Files.exists(Paths.get("C:\\geodata\\retkikartta", file))) {
+            DATA_DIR = "C:\\geodata\\retkikartta";
+        } else if (Files.exists(Paths.get("./geodata", file))) {
+            DATA_DIR = Paths.get("").resolve("geodata").toAbsolutePath().toString();
+        }
+
+        Path fullPath = Paths.get(DATA_DIR, file);
+        String path = fullPath.toString();
+        if (!Files.exists(fullPath)) { throw new FileNotFoundException("Data file '" + path + "' not found.");}
+        return path;
+    }
+
     public static void main(String[] args) throws IOException, InterruptedException {
         System.out.println("Starting conversion");
         ogr.UseExceptions();
@@ -818,7 +836,7 @@ class MTKToGarminConverter {
         gridds.delete();
 
         HashMap<String, ArrayList<File>> areas = new HashMap<String, ArrayList<File>>();
-        File srcdir = new File("C:\\geodata\\mtkgml");
+        File srcdir = new File(getDataFile("mtkgml"));
         for (File g1 : srcdir.listFiles()) {
             for (File g2 : g1.listFiles()) {
                 for (File g3 : g2.listFiles()) {
@@ -856,7 +874,6 @@ class MTKToGarminConverter {
             String[] filenames = new String[files.size()];
             int i = 0;
             for (File f : files) {
-
                 filenames[i] = f.getAbsolutePath();
                 i++;
             }
@@ -893,32 +910,32 @@ class MTKToGarminConverter {
                 System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("syvyyspiste_p.zip") + File.separator + "syvyyspiste_p.shp", shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
                 mtk2g.readOGRsource(stringtable,
-                        "/vsizip/C:\\geodata\\retkikartta\\kesaretkeilyreitit.zip\\kesaretkeilyreititLine.shp",
+                        "/vsizip/" + getDataFile("kesaretkeilyreitit.zip") + File.separator + "kesaretkeilyreititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("ulkoilureitit.zip") + File.separator + "ulkoilureititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("luontopolut.zip") + File.separator + "luontopolut.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("point_dump.zip") + File.separator + "point_dumpPoint.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
