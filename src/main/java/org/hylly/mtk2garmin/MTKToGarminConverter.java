@@ -849,8 +849,9 @@ class MTKToGarminConverter {
         ShapeFeaturePreprocess shapePreprocessor = new ShapeFeaturePreprocess();
         double[] mml_extent;
         
-        
+        int currentArea = 0;
         for (Object area : areassorted) {
+            System.out.printf("Processing area (%s) %d/%d%n", area, ++currentArea, areassorted.length);
             ArrayList<File> files = areas.get(area);
             String[] filenames = new String[files.size()];
             int i = 0;
