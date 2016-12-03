@@ -931,7 +931,7 @@ class MTKToGarminConverter {
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("luontopolut.zip") + File.separator + "luontopolut.shp",
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("luontopolut.zip") + File.separator + "luontopolutLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
