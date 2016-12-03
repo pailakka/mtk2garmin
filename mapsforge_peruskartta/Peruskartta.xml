@@ -414,7 +414,7 @@
 
 <rule e="way" k="kohdeluokka" v="12132">
     <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
-    <rule e="way" k="paallyste" v="2">
+    <rule e="way" k="paallyste" v="~">
         <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
     </rule>
     <rule e="way" k="paallyste" v="0|1">
