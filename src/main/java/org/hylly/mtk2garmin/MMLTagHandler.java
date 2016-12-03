@@ -1,8 +1,6 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
@@ -13,26 +11,36 @@ import static java.util.Arrays.asList;
 class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
     
-    private short korarvo = MTKToGarminConverter.getStringId("korkeusarvo");
-    private short syvarvo = MTKToGarminConverter.getStringId("syvyysarvo");
-    private short nimisuomi = MTKToGarminConverter.getStringId("nimi_suomi");
-    private short nimiruotsi = MTKToGarminConverter.getStringId("nimi_ruotsi");
-    private short teksti = MTKToGarminConverter.getStringId("teksti");
-    private short teksti_kieli = MTKToGarminConverter.getStringId("teksti_kieli");    
-    private short tienro = MTKToGarminConverter.getStringId("tienumero");
-    private short tasosij = MTKToGarminConverter.getStringId("tasosijainti");
-	private short bridge = MTKToGarminConverter.getStringId("bridge");
-	private short tunnel = MTKToGarminConverter.getStringId("tunnel");
-	private short yes = MTKToGarminConverter.getStringId("yes");
+    private short korarvo,syvarvo,nimisuomi,nimiruotsi,teksti,teksti_kieli;    
+    private short tienro,tasosij,bridge,tunnel,yes;
 	
-	private short ele = MTKToGarminConverter.getStringId("ele");
-	private short name = MTKToGarminConverter.getStringId("name");
-	private short ref = MTKToGarminConverter.getStringId("ref");
-	private short fin = MTKToGarminConverter.getStringId("fin");
+	private short ele,name,ref,fin;
+	
+	private StringTable stringtable;
 	
 
-    MMLTagHandler() {
+    MMLTagHandler(StringTable stringtable) {
         wantedFields = new ObjectOpenHashSet<String>(asList("nimi_ruotsi","nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
+
+        korarvo = stringtable.getStringId("korkeusarvo");
+        syvarvo = stringtable.getStringId("syvyysarvo");
+        nimisuomi = stringtable.getStringId("nimi_suomi");
+        nimiruotsi = stringtable.getStringId("nimi_ruotsi");
+        teksti = stringtable.getStringId("teksti");
+        teksti_kieli = stringtable.getStringId("teksti_kieli");    
+        tienro = stringtable.getStringId("tienumero");
+        tasosij = stringtable.getStringId("tasosijainti");
+        bridge = stringtable.getStringId("bridge");
+        tunnel = stringtable.getStringId("tunnel");
+        yes = stringtable.getStringId("yes");
+        
+        ele = stringtable.getStringId("ele");
+        name = stringtable.getStringId("name");
+        ref = stringtable.getStringId("ref");
+        fin = stringtable.getStringId("fin");
+        
+        this.stringtable = stringtable;
+        
     }
 
     @Override
@@ -85,7 +93,7 @@ class MMLTagHandler implements TagHandlerI {
             	}
             }
 
-            tags.put(kk, MTKToGarminConverter.getStringId(val));
+            tags.put(kk, this.stringtable.getStringId(val));
         }
         
         if (tyyppi.equals("sahkolinja")) {

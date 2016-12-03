@@ -8,83 +8,83 @@
 # and http://wiki.openstreetmap.org/wiki/Mkgmap/help/Custom_styles
 # for more information.
 
-kohdeluokka=12200 [0x1301 level 2]  #Esterakennelma
-kohdeluokka=22100 [0x1203]  #Muuntaja
-kohdeluokka=22392 [0x1202]  #Suurjannitelinjan pylvas
-kohdeluokka=26200 [0x1200 level 1]  #Vedenottamo
-kohdeluokka=32101 [0x1000 level 1]  #Maa-aineksenottoalueen nimi
-kohdeluokka=32201 [0x1000 level 1]  #Hautausmaan nimi
-kohdeluokka=32301 [0x1000 level 1]  #Kaatopaikan nimi
-kohdeluokka=32401 [0x1000 level 1]  #Liikennealueen nimi
-kohdeluokka=32501 [0x1000 level 1]  #Louhoksen nimi
-kohdeluokka=32710 [0x2a00]  #Havumetsa
-kohdeluokka=32713 [0x2a01]  #Lehtimetsa
-kohdeluokka=32714 [0x2a02]  #Sekametsa
-kohdeluokka=32901 [0x1000 level 1]  #Puiston nimi
-kohdeluokka=33001 [0x1000 level 1]  #Taytemaan nimi
-kohdeluokka=33101 [0x1000 level 1]  #Urheilu- ja virkistysalueen nimi
-kohdeluokka=34200 [0x1600]  #Harva louhikko
-kohdeluokka=34600 [0x1505]  #Kivi
-kohdeluokka=34601 [0x1000 level 1]  #Kiven nimi
-kohdeluokka=34900 [0x1508 level 1]  #Merkittava luontokohde
-kohdeluokka=34901 [0x1000 level 1]  #Merkittavan luontokohteen nimi
-kohdeluokka=35010 [0x1000 level 1]  #Pellon tai niityn nimi
-kohdeluokka=35020 [0x1000 level 1]  #Metsaalueen nimi
-kohdeluokka=35030 [0x1000 level 1]  #Suon nimi
-kohdeluokka=35040 [0x1000 level 1]  #Kohouman nimi
-kohdeluokka=35050 [0x1000 level 1]  #Painanteen nimi
-kohdeluokka=35060 [0x1000 level 1]  #Niemen nimi
-kohdeluokka=35070 [0x1000 level 1]  #Saaren nimi
-kohdeluokka=35080 [0x1000 level 1]  #Matalikon nimi
-kohdeluokka=35090 [0x1000 level 1]  #Muu maastonimi
-kohdeluokka=35100 [0x1001]  #Puu
-kohdeluokka=35101 [0x1000 level 1]  #Puun nimi
-kohdeluokka=36100 [0x1507]  #Lahde
-kohdeluokka=36101 [0x1000 level 1]  #Lahteen nimi
-kohdeluokka=36201 [0x1000 level 2]  #Vakaveden nimi
-kohdeluokka=36301 [0x1000 level 2]  #Virtaveden nimi
-kohdeluokka=36410 [0x1000 level 1]  #Vakaveden osan nimi
-kohdeluokka=36420 [0x1000 level 1]  #Virtaveden osan nimi
-kohdeluokka=36490 [0x1000 level 1]  #Muu vesistokohteen nimi
-kohdeluokka=38100 [0x1208 level 1]  #Kaislikko
-kohdeluokka=38201 [0x1000 level 1]  #Kosken nimi
-kohdeluokka=38501 [0x1000 level 1]  #Vesikiven nimi
-kohdeluokka=38511 [0x1101 level 1]  #Vesikivi, vedenalainen
-kohdeluokka=38512 [0x1102 level 1]  #Vesikivi, pinnassa
-kohdeluokka=38513 [0x1103 level 1]  #Vesikivi, vedenpaallinen
-kohdeluokka=38901 [0x1000 level 1]  #Varastoalueen nimi
-kohdeluokka=44591 [0x1402]  #Ilmaradan kannatinpylvas
-kohdeluokka=44800 [0x1400 level 2]  #Masto
-kohdeluokka=44900 [0x1401]  #Muistomerkki
-kohdeluokka=44901 [0x1001 level 1]  #Muistomerkin nimi
-kohdeluokka=44902 [0x1001 level 1]  #Muistomerkin selite
-kohdeluokka=45000 [0x1405 level 1]  #Nakotorni
-kohdeluokka=45200 [0x1406 level 1]  #Portti
-kohdeluokka=45300 [0x1407 level 1]  #Savupiippu
-kohdeluokka=45710 [0x1409 level 1]  #Tulentekopaikka
-kohdeluokka=45800 [0x1201 level 1]  #Vesitorni
+kohdeluokka=12200 [0x660f level 2]  #Esterakennelma
+kohdeluokka=22100 [0x2f15]  #Muuntaja
+kohdeluokka=22392 [0x11506]  #Suurjannitelinjan pylvas
+kohdeluokka=26200 [0x6414 level 1]  #Vedenottamo
+kohdeluokka=32101 [0x1150f level 1]  #Maa-aineksenottoalueen nimi
+kohdeluokka=32201 [0x1150f level 1]  #Hautausmaan nimi
+kohdeluokka=32301 [0x1150f level 1]  #Kaatopaikan nimi
+kohdeluokka=32401 [0x1150f level 1]  #Liikennealueen nimi
+kohdeluokka=32501 [0x1150f level 1]  #Louhoksen nimi
+kohdeluokka=32710 [0x1150c]  #Havumetsa
+kohdeluokka=32713 [0x1150d]  #Lehtimetsa
+kohdeluokka=32714 [0x1150e]  #Sekametsa
+kohdeluokka=32901 [0x1150f level 1]  #Puiston nimi
+kohdeluokka=33001 [0x1150f level 1]  #Taytemaan nimi
+kohdeluokka=33101 [0x1150f level 1]  #Urheilu- ja virkistysalueen nimi
+kohdeluokka=34200 [0x1150b]  #Harva louhikko
+kohdeluokka=34600 [0x6614]  #Kivi
+kohdeluokka=34601 [0x6614 level 1]  #Kiven nimi
+kohdeluokka=34900 [0x1150a level 1]  #Merkittava luontokohde
+kohdeluokka=34901 [0x1150a level 1]  #Merkittavan luontokohteen nimi
+kohdeluokka=35010 [0x1150f level 1]  #Pellon tai niityn nimi
+kohdeluokka=35020 [0x1150f level 1]  #Metsaalueen nimi
+kohdeluokka=35030 [0x6513 level 1]  #Suon nimi
+kohdeluokka=35040 [0x6616 level 1]  #Kohouman nimi
+kohdeluokka=35050 [0x6617 level 1]  #Painanteen nimi
+kohdeluokka=35060 [0x6606 level 1]  #Niemen nimi
+kohdeluokka=35070 [0x2800 level 1]  #Saaren nimi
+kohdeluokka=35080 [0x1150f level 1]  #Matalikon nimi
+kohdeluokka=35090 [0x1150f level 1]  #Muu maastonimi
+kohdeluokka=35100 [0x1150a]  #Puu
+kohdeluokka=35101 [0x1150f level 1]  #Puun nimi
+kohdeluokka=36100 [0x6511]  #Lahde
+kohdeluokka=36101 [0x6511 level 1]  #Lahteen nimi
+kohdeluokka=36201 [0x650d level 2]  #Vakaveden nimi
+kohdeluokka=36301 [0x6603 level 2]  #Virtaveden nimi
+kohdeluokka=36410 [0x6603 level 1]  #Vakaveden osan nimi
+kohdeluokka=36420 [0x6603 level 1]  #Virtaveden osan nimi
+kohdeluokka=36490 [0x6603 level 1]  #Muu vesistokohteen nimi
+kohdeluokka=38100 [0x11505 level 1]  #Kaislikko
+kohdeluokka=38201 [0x1150f level 1]  #Kosken nimi
+kohdeluokka=38501 [0x1150f level 1]  #Vesikiven nimi
+kohdeluokka=38511 [0x11500 level 1]  #Vesikivi, vedenalainen
+kohdeluokka=38512 [0x11501 level 1]  #Vesikivi, pinnassa
+kohdeluokka=38513 [0x11502 level 1]  #Vesikivi, vedenpaallinen
+kohdeluokka=38901 [0x1150f level 1]  #Varastoalueen nimi
+kohdeluokka=44591 [0x11506]  #Ilmaradan kannatinpylvas
+kohdeluokka=44800 [0x6411 level 2]  #Masto
+kohdeluokka=44900 [0x2c04]  #Muistomerkki
+kohdeluokka=44901 [0x2c04 level 1]  #Muistomerkin nimi
+kohdeluokka=44902 [0x2c04 level 1]  #Muistomerkin selite
+kohdeluokka=45000 [0x11507 level 1]  #Nakotorni
+kohdeluokka=45200 [0x660f level 1]  #Portti
+kohdeluokka=45300 [0x11508 level 1]  #Savupiippu
+kohdeluokka=45710 [0x11509 level 1]  #Tulentekopaikka
+kohdeluokka=45800 [0x11504 level 1]  #Vesitorni
 kohdeluokka=48111 [0x0100 level 3]  #Kaupungin nimi
 kohdeluokka=48112 [0x0200 level 2]  #Muun kunnan nimi
 kohdeluokka=48120 [0x0300 level 2]  #Kylan, kaupunginosan tai kulmakunnan nimi
-kohdeluokka=48130 [0x0400 level 1]   #Talon nimi
-kohdeluokka=48190 [0x0500 level 1]  #Muu asutusnimi
+kohdeluokka=48130 [0x6100 level 1]   #Talon nimi
+kohdeluokka=48190 [0x00c00 level 1]  #Muu asutusnimi
 
-kohdeluokka=72303 [0x1001 level 1]  #Luonnonmuistomerkin nimi
-kohdeluokka=72304 [0x1001 level 1]  #Luonnonmuistomerkin selite
-kohdeluokka=72330 [0x1001 level 1]  #Muinaisjaannos
-kohdeluokka=72403 [0x1001 level 1]  #Muinaisjaannoksen nimi
-kohdeluokka=72404 [0x1001 level 1]  #Muinaisjaannoksen selite
-kohdeluokka=72410 [0x1001 level 1]  #Rauhoitettu kivi
-kohdeluokka=72420 [0x1001 level 1]  #Rauhoitettu puu
-kohdeluokka=72440 [0x1001 level 1]  #Muu rauhoitettu kohde
+kohdeluokka=72303 [0x1150a level 1]  #Luonnonmuistomerkin nimi
+kohdeluokka=72304 [0x1150a level 1]  #Luonnonmuistomerkin selite
+kohdeluokka=72330 [0x2c02 level 1]  #Muinaisjaannos
+kohdeluokka=72403 [0x2c02 level 1]  #Muinaisjaannoksen nimi
+kohdeluokka=72404 [0x2c02 level 1]  #Muinaisjaannoksen selite
+kohdeluokka=72410 [0x1150a level 1]  #Rauhoitettu kivi
+kohdeluokka=72420 [0x1150a level 1]  #Rauhoitettu puu
+kohdeluokka=72440 [0x1150a level 1]  #Muu rauhoitettu kohde
 
 
-tyyppi=syvyyspiste_p {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x0300]
-kohdeluokka=54210 {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x0300]  #Syvyyspiste
-tourism=wilderness_hut [0x2b00]
-tourism=wilderness_hut & fee=yes [0x2b00]
+tyyppi=syvyyspiste_p {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]
+kohdeluokka=54210 {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]  #Syvyyspiste
+tourism=wilderness_hut [0x2b01]
+tourism=wilderness_hut & fee=yes [0x2b01]
 
-amenity=shelter [0x4800 level 1]
+amenity=shelter [0x2b03 level 1]
 amenity=toilets [0x4e00 level 1]
 
 cat_id=2217 [0x4e00 level 1]
@@ -92,14 +92,15 @@ cat_id=2221 [0x4e00 level 1]
 cat_id=2223 [0x4e00 level 1]
 cat_id=2224 [0x4e00 level 1]
 
-tourism=lean_to [0x4800 level 1]
-tourism=camp_site [0x4800 level 1]
-tourism=picnic_site & fireplace=yes [0x1409 level 1]
-tourism=picnic_site & covered=yes [0x1409 level 1]
-tourism=fireplace [0x1409 level 1]
+tourism=lean_to [0x2b03 level 1]
+tourism=camp_site [0x2b03 level 1]
+tourism=picnic_site [0x4a00 level 1]
+tourism=picnic_site & fireplace=yes [0x11509 level 1]
+tourism=picnic_site & covered=yes [0x2b03 level 1]
+tourism=fireplace [0x11509 level 1]
 
-man_made=tower & tower:type=observation [0x1405 level 1]
-leisure=bird_hide [0x1405 level 1]
+man_made=tower & tower:type=observation [0x11507 level 1]
+leisure=bird_hide [0x11507 level 1]
 
 <finalize>
 name=* { name '${name}' }

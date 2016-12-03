@@ -703,7 +703,7 @@
 
     <!-- 72330 Muinaisjäännös -->
     <rule e="any" k="kohdeluokka" v="72330" zoom-min="14">
-        <symbol src="file:/mml/SMjs.svg" symbol-scaling="size" symbol-width="12" symbol-height="16"/>
+        <symbol src="file:/mml/SMjs.svg" symbol-scaling="size" symbol-width="10" symbol-height="14"/>
     </rule>
 
 
@@ -1288,9 +1288,8 @@
         <symbol src="file:/mml/tower_lookout.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
     </rule>
 
-
     <rule e="any" k="cat_id" v="2238" zoom-min="12">
-        <symbol src="file:/mml/parking.svg"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
+        <symbol src="file:/mml/parking.png"  symbol-scaling="size" symbol-width="15" symbol-height="15"/>
     </rule>
 
 <!-- suojelualueet (luonnonsuojelualue, kansallispuisto, luonnonpuisto) -->

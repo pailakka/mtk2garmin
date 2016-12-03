@@ -15,7 +15,7 @@ output-dir=mtkgarmin
 family-id=801
 family-name=MTK Suomi
 series-name=MTK Suomi
-copyright-message=NLS 2016, Finnish Transport Agency 2016, OpenStreetMap Contributors, Metsähallitus
+copyright-message=NLS 2016, Finnish Transport Agency 2016, OpenStreetMap Contributors, Metsahallitus
 merge-lines
 remove-ovm-work-files=true
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0

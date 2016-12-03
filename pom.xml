@@ -13,6 +13,14 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+  
+  <repositories>
+    <repository>
+        <id>oskari_org</id>
+        <name>Oskari.org release repository</name>
+        <url>http://oskari.org/nexus/content/repositories/releases/</url>
+    </repository>
+  </repositories>
 
   <dependencies>
     <dependency>
@@ -38,5 +46,10 @@
     	<artifactId>fastutil</artifactId>
     	<version>7.0.12</version>
     </dependency>
+        <dependency>
+            <groupId>fi.nls.karttalehtijako</groupId>
+            <artifactId>java-karttalehdet</artifactId>
+            <version>1.0.0</version>
+        </dependency>
   </dependencies>
 </project>
