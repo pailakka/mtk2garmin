@@ -819,7 +819,7 @@ class MTKToGarminConverter {
         // wget --no-check-certificate -O grid.gml
         // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
 
-        DataSource gridds = ogr.Open("C:\\geodata\\12x12grid.shp");
+        DataSource gridds = ogr.Open(getDataFile("grid.gml"));
         Layer lyr = gridds.GetLayer(0);
 
         lyr.SetAttributeFilter("gridSize = '12x12'");
@@ -890,7 +890,8 @@ class MTKToGarminConverter {
                 syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
 
                 mtk2g.startWritingOSMPBF(
-                        String.format("K:\\koodi\\mtk2garmin3\\mtk2garminjava\\suomi\\%s.osm.pbf", cell));
+                        // "K:\koodi\mtk2garmin3\mtk2garminjava\
+                        Paths.get("suomi", String.format("%s.osm.pbf", cell)).toString());
 
                 System.out.println(fn + " (" + cell + ")");
 
@@ -904,7 +905,8 @@ class MTKToGarminConverter {
                 System.out.println(Arrays.toString(mml_extent));
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,"/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
+                // WAS: syvyyskayrat.shp
+                mtk2g.readOGRsource(stringtable,"/vsizip/" + getDataFile("syvyyskayrat.zip") + File.separator +"syvyyskayra_v.shp", shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
