@@ -9,13 +9,12 @@ for r in rules:
     k = r.attributes['k'].value
     vs = r.attributes['v'].value.split('|')
 
-    z = '10'
+    z = None
     if 'zoom-min' in r.attributes.keys():
         z = r.attributes['zoom-min'].value
 
     for v in vs:
         rule_zooms[(k,v)] = z
-
 
 mapdom = xml.dom.minidom.parse('mml_tag-mapping.xml')
 
@@ -33,7 +32,10 @@ for tag in tags:
         parentNode.removeChild(tag)
         print 'missing style',(key,value)
         continue
-    tag.setAttribute("zoom-appear"  , rule_zooms[(key,value)])
+    if not rule_zooms[(key,value)]:
+        tag.setAttribute("zoom-appear"  , z)
+    else:
+        tag.setAttribute("zoom-appear"  , rule_zooms[(key,value)])
 
 f = open('mml_tag-mapping_tidy.xml', "w")
 f.write(mapdom.toxml())
