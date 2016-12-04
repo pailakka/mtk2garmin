@@ -371,60 +371,170 @@
     <line stroke="#000000" stroke-width="0.6" stroke-dasharray="14,5" stroke-linecap="butt" />
 </rule>
 
+<rule e="way" k="tunnel" v="~">
+    <rule e="way" k="bridge" v="~">
+        <rule e="way" k="kohdeluokka" v="12111">
+            <line stroke="#000000" stroke-width="3" stroke-linecap="butt" />
+            <line stroke="#40C000" stroke-width="2.5" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
 
-<rule e="way" k="kohdeluokka" v="12111">
-    <line stroke="#000000" stroke-width="3" stroke-linecap="square" />
-    <line stroke="#40C000" stroke-width="2.5" stroke-linecap="square" />
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="square" stroke-dasharray="30,30" />
+        <rule e="way" k="kohdeluokka" v="12112">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#FFCC00" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="butt" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12121">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="15,20" />
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12122">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12131">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
+            <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12132">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
+            <rule e="way" k="paallyste" v="~">
+                <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
+            </rule>
+            <rule e="way" k="paallyste" v="0|1">
+                <line stroke="#BF9D00" stroke-width="1.25" stroke-linecap="butt" />
+            </rule>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="butt" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
     </rule>
+    <rule e="way" k="tyyppi" v="rautatie">
+        <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="14111">
+        <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="14112|14131|14121">
+        <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+    </rule>
+    
+</rule>
+<rule e="way" k="tunnel" v="yes">
+
+    <rule e="way" k="kohdeluokka" v="12111">
+        <line stroke="#6c6c6c" stroke-width="3" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12112">
+        <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12121">
+        <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12122">
+        <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12131">
+        <line stroke="#6c6c6c" stroke-width="1.75" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12132">
+        <line stroke="#6c6c6c" stroke-width="1.75" stroke-linecap="butt"  stroke-dasharray="15,15"/>
+    </rule>
+    
+    <rule e="way" k="tyyppi" v="rautatie">
+        <line stroke="#6c6c6c" stroke-width="1" stroke-linecap="butt" stroke-dasharray="15,15"/>
+    </rule>
+<!--
+    <rule e="way" k="kohdeluokka" v="14111">
+        <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="14112|14131|14121">
+        <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+    </rule>
+-->
 </rule>
 
-<rule e="way" k="kohdeluokka" v="12112">
-    <line stroke="#000000" stroke-width="2.5" stroke-linecap="square" />
-    <line stroke="#FFCC00" stroke-width="2" stroke-linecap="square" />
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
-    </rule>
-</rule>
 
-<rule e="way" k="kohdeluokka" v="12121">
-    <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
-    <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
-    </rule>
-</rule>
+<rule e="way" k="bridge" v="yes">
+        <rule e="way" k="kohdeluokka" v="12111">
+            <line stroke="#000000" stroke-width="3" stroke-linecap="butt" />
+            <line stroke="#2D8700" stroke-width="2.5" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
 
-<rule e="way" k="kohdeluokka" v="12122">
-    <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
-    <line stroke="#C00000" stroke-width="2" stroke-linecap="butt" />
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="30,30" />
-    </rule>
-</rule>
+        <rule e="way" k="kohdeluokka" v="12112">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#C9A100" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
 
-<rule e="way" k="kohdeluokka" v="12131">
-    <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
-    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="30,30" />
-    </rule>
-</rule>
+        <rule e="way" k="kohdeluokka" v="12121">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
 
-<rule e="way" k="kohdeluokka" v="12132">
-    <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
-    <rule e="way" k="paallyste" v="~">
-        <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
-    </rule>
-    <rule e="way" k="paallyste" v="0|1">
-        <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt" />
-    </rule>
-    <rule e="way" k="valmiusaste" v="1|2|3">
-        <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="30,30" />
-    </rule>
-</rule>
+        <rule e="way" k="kohdeluokka" v="12122">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt" />
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
 
+        <rule e="way" k="kohdeluokka" v="12131">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
+            <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt" />
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12132">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
+            <rule e="way" k="paallyste" v="~">
+                <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt" />
+            </rule>
+            <rule e="way" k="paallyste" v="0|1">
+                <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt" />
+            </rule>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20" />
+            </rule>
+        </rule>
+    </rule>
+    
 <rule e="way" k="kohdeluokka" v="12141" zoom-min="12">
     <line stroke="#000000" stroke-width="0.6" stroke-linecap="butt" />
 </rule>
@@ -1386,17 +1496,7 @@
     <line stroke="#00b300" stroke-width="0.2" stroke-linecap="round" />
 </rule>
 
-<rule e="way" k="tyyppi" v="rautatie">
-    <line stroke="#000000" stroke-width="1" stroke-linecap="butt" />
-</rule>
 
-<rule e="way" k="kohdeluokka" v="14111">
-    <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
-</rule>
-
-<rule e="way" k="kohdeluokka" v="14112|14131|14121">
-    <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
-</rule>
 
 <rule e="way" k="tyyppi" v="aita">
     <line stroke="#000000" stroke-width="0.4" stroke-linecap="round" />
