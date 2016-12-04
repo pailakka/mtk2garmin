@@ -151,11 +151,11 @@
 <osm-tag key="kohdeluokka" value="45500" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="45710" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="45800" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="48111" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="48112" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="48120" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="48130" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="48190" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="48111" zoom-appear="5"/>
+<osm-tag key="kohdeluokka" value="48112" zoom-appear="5"/>
+<osm-tag key="kohdeluokka" value="48120" zoom-appear="10"/>
+<osm-tag key="kohdeluokka" value="48130" zoom-appear="11"/>
+<osm-tag key="kohdeluokka" value="48190" zoom-appear="12"/>
 <osm-tag key="kohdeluokka" value="72303" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="72310" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="72320" zoom-appear="10" />
