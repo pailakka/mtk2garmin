@@ -36,6 +36,9 @@ class MTKToGarminConverter {
     private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<>();
     private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
     private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
+
+    private final Driver memoryd = ogr.GetDriverByName("memory");
+
     private CoordinateTransformation srctowgs;
     private double minx = Double.POSITIVE_INFINITY, miny = Double.POSITIVE_INFINITY, maxx = Double.NEGATIVE_INFINITY,
             maxy = Double.NEGATIVE_INFINITY;
@@ -50,6 +53,7 @@ class MTKToGarminConverter {
     private int max_nodes = 0;
     private int max_ways = 0;
     private int max_relations = 0;
+
     private MTKToGarminConverter() {
         this.initElements();
         new ArrayList<File>();
@@ -133,6 +137,15 @@ class MTKToGarminConverter {
         }
 
 
+        InitializedDatasource syvyyskayrat = mtk2g.createMemoryCacheFromOGRFile(conf.getString("syvyyskayrat"));
+        InitializedDatasource syvyyspisteet = mtk2g.createMemoryCacheFromOGRFile(conf.getString("syvyyspisteet"));
+
+        InitializedDatasource kesaretkeily = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/kesaretkeilyreitit.zip/kesaretkeilyreititLine.shp");
+        InitializedDatasource ulkoilureitit = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/ulkoilureitit.zip/ulkoilureititLine.shp");
+        InitializedDatasource luontopolut = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolutLine.shp");
+        InitializedDatasource metsapoints = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp");
+
+
         for (Object area : areassorted) {
             ArrayList<File> files = areas.get(area);
             String[] filenames = new String[files.size()];
@@ -161,45 +174,39 @@ class MTKToGarminConverter {
                 long st;
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + fn, featurePreprocessMML, tagHandlerMML, true, null);
+                DataSource mtkds = mtk2g.readOGRsource(stringtable, mtk2g.startReadingOGRFile("/vsizip/" + fn), featurePreprocessMML, tagHandlerMML, true, null);
+                mtkds.delete();
                 System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
                 mtk2g.printCounts();
                 System.out.println(Arrays.toString(mml_extent));
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, conf.getString("syvyyskayrat"), shapePreprocessor,
-                        syvyysTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, syvyyskayrat, shapePreprocessor, syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, conf.getString("syvyyspisteet"), shapePreprocessor,
-                        syvyysTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, syvyyspisteet, shapePreprocessor, syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,
-                        "/vsizip/" + conf.getString("retkikartta") + "/kesaretkeilyreitit.zip/kesaretkeilyreititLine.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, kesaretkeily, shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/ulkoilureitit.zip/ulkoilureititLine.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, ulkoilureitit, shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolutLine.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, luontopolut, shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.readOGRsource(stringtable, metsapoints, shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
 
@@ -619,6 +626,30 @@ class MTKToGarminConverter {
 
     }
 
+
+    private InitializedDatasource createMemoryCacheFromOGRFile(String fn) {
+        System.out.println("Copying " + fn + " to in memory cache");
+
+        InitializedDatasource is = new InitializedDatasource();
+
+        DataSource ds = ogr.Open(fn, false);
+
+
+        if (ds == null) {
+            System.out.println("Reading file " + fn + " failed");
+            System.exit(1);
+        }
+
+        DataSource mds = memoryd.CopyDataSource(ds, "mem_" + fn);
+
+        ds.delete();
+        System.out.println(fn + " copied to cache. " + mds.GetLayerCount() + " layers");
+        is.ds = mds;
+
+        is.cell = calculateDatasourceCell(is.ds);
+        return is;
+    }
+
     private InitializedDatasource startReadingOGRFile(String fn) {
         System.out.println("Initializing file " + fn);
         InitializedDatasource is = new InitializedDatasource();
@@ -627,9 +658,15 @@ class MTKToGarminConverter {
         if (ds == null) {
             System.out.println("Reading file " + fn + " failed");
             System.exit(1);
-            return is;
+
         }
 
+
+        is.cell = calculateDatasourceCell(is.ds);
+        return is;
+    }
+
+    private int calculateDatasourceCell(DataSource ds) {
         Layer lyr;
         double[] extent = new double[]{Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY,
                 Double.NEGATIVE_INFINITY};
@@ -640,7 +677,6 @@ class MTKToGarminConverter {
         }
 
         int cell = this.extent2grid(extent);
-        is.cell = cell;
 
         double[] ll = this.grid2xy(cell);
 
@@ -652,12 +688,12 @@ class MTKToGarminConverter {
             nodepos.put(cell, new Long2ObjectAVLTreeMap<>());
         }
 
-        return is;
+        return cell;
     }
 
-    private void readOGRsource(StringTable stringtable, String fn, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
-                               boolean doClearNodeCache, double[] filterExtent) {
-        InitializedDatasource is = startReadingOGRFile(fn);
+    private DataSource readOGRsource(StringTable stringtable, InitializedDatasource is, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
+                                     boolean doClearNodeCache, double[] filterExtent) {
+
         DataSource ds = is.ds;
 
         if (doClearNodeCache) {
@@ -665,7 +701,7 @@ class MTKToGarminConverter {
         }
 
         if (ds == null) {
-            return;
+            return is.ds;
         }
         Layer lyr;
         String fname;
@@ -674,6 +710,7 @@ class MTKToGarminConverter {
 
         HashSet<String> ignored_fields = new HashSet<>();
         FieldDefn fdefn;
+
         layerloop:
         for (int i = 0; i < ds.GetLayerCount(); i++) {
             lyr = ds.GetLayer(i);
@@ -708,6 +745,8 @@ class MTKToGarminConverter {
                 lyr.SetIgnoredFields(ignoredFields);
             }
 
+            lyr.ResetReading();
+
             for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
 
                 if (!this.handleFeature(stringtable, lyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
@@ -716,13 +755,11 @@ class MTKToGarminConverter {
                 }
 
             }
-            lyr.delete();
-
         }
-
-        ds.delete();
         System.out.println("Ignored fields: " + Arrays.toString(ignored_fields.toArray()));
         // return is.extent;
+
+        return is.ds;
 
     }
 
