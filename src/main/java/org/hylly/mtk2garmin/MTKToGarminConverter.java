@@ -19,6 +19,9 @@ import org.gdal.osr.SpatialReference;
 import org.gdal.osr.osr;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.zip.GZIPOutputStream;
 
@@ -60,13 +63,14 @@ class MTKToGarminConverter {
 
     public static void main(String[] args) throws Exception {
 
-        Config conf = ConfigFactory.load();
+        Config conf = ConfigFactory.parseFile(new File(args[0]));
 
         System.out.println("Starting conversion");
         ogr.UseExceptions();
         Locale.setDefault(new Locale("en", "US"));
         wgs84ref.SetWellKnownGeogCS("WGS84");
 
+        System.out.println(conf.root().render());
         ogr.RegisterAll();
         // wget --no-check-certificate -O grid.gml
         // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
@@ -88,7 +92,7 @@ class MTKToGarminConverter {
         gridds.delete();
 
         HashMap<String, ArrayList<File>> areas = new HashMap<>();
-        File srcdir = new File("C:\\geodata\\mtkgml");
+        File srcdir = new File(conf.getString("maastotietokanta"));
         for (File g1 : srcdir.listFiles()) {
             for (File g2 : g1.listFiles()) {
                 for (File g3 : g2.listFiles()) {
@@ -117,7 +121,13 @@ class MTKToGarminConverter {
 
         MMLFeaturePreprocess featurePreprocessMML = new MMLFeaturePreprocess();
         ShapeFeaturePreprocess shapePreprocessor = new ShapeFeaturePreprocess();
-        double[] mml_extent;
+
+
+        Path outdir = Paths.get(conf.getString("output"));
+
+        if (!Files.exists(outdir)) {
+            Files.createDirectories(outdir);
+        }
 
 
         for (Object area : areassorted) {
@@ -141,12 +151,11 @@ class MTKToGarminConverter {
                 retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
                 syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
 
-                mtk2g.startWritingOSMPBF(
-                        String.format("K:\\koodi\\mtk2garmin3\\mtk2garminjava\\suomi\\%s.osm.pbf", cell));
+                mtk2g.startWritingOSMPBF(Paths.get(outdir.toAbsolutePath().toString(), String.format("%s.osm.pbf", cell)).toAbsolutePath().toString());
 
                 System.out.println(fn + " (" + cell + ")");
 
-                mml_extent = gridExtents.get(cell);
+                double[] mml_extent = gridExtents.get(cell);
                 long st;
 
                 st = System.nanoTime();
@@ -156,56 +165,41 @@ class MTKToGarminConverter {
                 System.out.println(Arrays.toString(mml_extent));
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
+                mtk2g.readOGRsource(stringtable, conf.getString("syvyyskayrat"), shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
+                mtk2g.readOGRsource(stringtable, conf.getString("syvyyspisteet"), shapePreprocessor,
                         syvyysTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
                 mtk2g.readOGRsource(stringtable,
-                        "/vsizip/C:\\geodata\\retkikartta\\kesaretkeilyreitit.zip\\kesaretkeilyreititLine.shp",
+                        "/vsizip/" + conf.getString("retkikartta") + "/kesaretkeilyreitit.zip/kesaretkeilyreititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
+                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/ulkoilureitit.zip/ulkoilureititLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
+                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolut.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
+                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
-
-                /*
-                 * st = System.nanoTime(); mtk2g.readOGRsource(
-                 * "/vsizip/C:\\geodata\\retkikartta\\hirvialueet.zip\\hirvialueet.shp",
-                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                 * mtk2g.printCounts(); System.out.println("Hirvialueet read " +
-                 * (System.nanoTime() - st) / 1000000000.0);
-                 *
-                 * st = System.nanoTime(); mtk2g.readOGRsource(
-                 * "/vsizip/C:\\geodata\\retkikartta\\pienriista.zip\\pienriista.shp",
-                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                 * mtk2g.printCounts(); System.out.println("Pienriista read " +
-                 * (System.nanoTime() - st) / 1000000000.0);
-                 */
-
 
                 st = System.nanoTime();
                 mtk2g.writeOSMPBFElements(stringtable);
