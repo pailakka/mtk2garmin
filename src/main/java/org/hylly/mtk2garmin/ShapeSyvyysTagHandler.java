@@ -1,18 +1,18 @@
 package org.hylly.mtk2garmin;
 
-import java.util.Collections;
-
-import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
+
+import java.util.Collections;
 
 class ShapeSyvyysTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
 
-    private StringTable stringtable;
+    private final StringTable stringtable;
 
-    private short depth, ele;
+    private final short depth, ele;
 
     ShapeSyvyysTagHandler(StringTable stringtable) {
         this.stringtable = stringtable;
@@ -20,7 +20,7 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
         depth = stringtable.getStringId("DEPTH");
         ele = stringtable.getStringId("ele");
 
-        wantedFields = new ObjectOpenHashSet<String>(Collections.singletonList("DEPTH"));
+        wantedFields = new ObjectOpenHashSet<>(Collections.singletonList("DEPTH"));
     }
 
     @Override

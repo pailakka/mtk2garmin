@@ -1,9 +1,9 @@
 package org.hylly.mtk2garmin;
 
 class Field {
-	private String fname;
-	private int fieldType;
-	private int fieldIndex;
+	private final String fname;
+	private final int fieldType;
+	private final int fieldIndex;
 
 	Field(String fname, int fieldType, int fieldIndex) {
 		this.fname = fname;

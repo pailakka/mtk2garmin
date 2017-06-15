@@ -1,26 +1,28 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
+
+import java.util.Objects;
 
 import static java.util.Arrays.asList;
 
 
 class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
-    
-    private short korarvo,syvarvo,nimisuomi,nimiruotsi,teksti,teksti_kieli;    
-    private short tienro,tasosij,bridge,tunnel,yes;
-	
-	private short ele,name,ref,fin;
-	
-	private StringTable stringtable;
-	
+
+    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli;
+    private final short tienro, tasosij, bridge, tunnel, yes;
+
+    private final short ele, name, ref, fin;
+
+    private final StringTable stringtable;
+
 
     MMLTagHandler(StringTable stringtable) {
-        wantedFields = new ObjectOpenHashSet<String>(asList("nimi_ruotsi","nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti","teksti_kieli"));
+        wantedFields = new ObjectOpenHashSet<>(asList("nimi_ruotsi", "nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti", "teksti_kieli"));
 
         korarvo = stringtable.getStringId("korkeusarvo");
         syvarvo = stringtable.getStringId("syvyysarvo");
@@ -50,8 +52,8 @@ class MMLTagHandler implements TagHandlerI {
 
     @Override
     public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
-    	if (tags.get(teksti_kieli) == fin && fields.get(teksti_kieli) != "fin") {
-    		return;
+        if (tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
+            return;
     	}
     	
         for (Entry<String> k : fields.short2ObjectEntrySet()) {

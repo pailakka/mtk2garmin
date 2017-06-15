@@ -1,25 +1,25 @@
 package org.hylly.mtk2garmin;
 
-import java.util.Arrays;
-
-import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 
+import java.util.Arrays;
+
 class ShapeRetkeilyTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
-    private StringTable stringtable;
-    
-    private short namefi,name;
+    private final StringTable stringtable;
+
+    private final short namefi, name;
     
     ShapeRetkeilyTagHandler(StringTable stringtable) {
         this.stringtable = stringtable;
         
         namefi = this.stringtable.getStringId("name_fi");
         name = this.stringtable.getStringId("name");
-        
-        wantedFields = new ObjectOpenHashSet<String>(
+
+        wantedFields = new ObjectOpenHashSet<>(
                 Arrays.asList("name_fi", "category_i", "cat_id"));
     }
 

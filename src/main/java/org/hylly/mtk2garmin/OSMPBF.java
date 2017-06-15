@@ -3,11 +3,9 @@ package org.hylly.mtk2garmin;
 import com.google.protobuf.ByteString;
 import crosby.binary.Fileformat;
 import crosby.binary.Osmformat;
-import it.unimi.dsi.fastutil.shorts.Short2ShortMap.Entry;
-import it.unimi.dsi.fastutil.ints.Int2IntRBTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.shorts.Short2ShortMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
-
 import org.hylly.mtk2garmin.MTKToGarminConverter.Node;
 import org.hylly.mtk2garmin.MTKToGarminConverter.Relation;
 import org.hylly.mtk2garmin.MTKToGarminConverter.RelationMember;
@@ -19,64 +17,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.zip.Deflater;
 
 @SuppressWarnings("FieldCanBeLocal")
 class OSMPBF {
+    private static final Double nano = .000000001;
     private final String writingprogram = "mtk2garmin";
     private final Integer granularity = 100;
     private final Long lat_offset = 0L;
     private final Long lon_offset = 0L;
-
     private final Integer date_granularity = 1000;
-
-    private static final Double nano = .000000001;
-
     private String ofn;
     private BufferedOutputStream of;
     private DataOutputStream od;
-
-    private class PBFBlob {
-        private Fileformat.BlobHeader header;
-        private Fileformat.Blob body;
-
-        PBFBlob(String blobtype, byte[] payload) {
-            int size = payload.length;
-            Deflater deflater = new Deflater();
-            deflater.setInput(payload);
-            deflater.finish();
-            byte out[] = new byte[size];
-            deflater.deflate(out);
-
-            if (!deflater.finished()) {
-                out = Arrays.copyOf(out, size + size / 64 + 16);
-                deflater.deflate(out, deflater.getTotalOut(), out.length
-                        - deflater.getTotalOut());
-                if (!deflater.finished()) {
-                    throw new Error("Internal error in compressor");
-                }
-            }
-            ByteString compressed = ByteString.copyFrom(out, 0,
-                    deflater.getTotalOut());
-
-            Fileformat.Blob.Builder bodybuilder = Fileformat.Blob.newBuilder();
-            bodybuilder.setRawSize(size);
-            bodybuilder.setZlibData(compressed);
-            deflater.end();
-
-            this.body = bodybuilder.build();
-
-            Fileformat.BlobHeader.Builder headbuilder = Fileformat.BlobHeader
-                    .newBuilder();
-
-            headbuilder.setType(blobtype);
-            headbuilder.setDatasize(this.body.getSerializedSize());
-
-            this.header = headbuilder.build();
-
-        }
-    }
 
     private PBFBlob createBlob(String blobtype, byte[] data) {
         return new PBFBlob(blobtype, data);
@@ -135,7 +88,7 @@ class OSMPBF {
         pbbuilder.setLonOffset(this.lon_offset);
         pbbuilder.setDateGranularity(this.date_granularity);
 
-        Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable,nodes, ways,
+        Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable, nodes, ways,
                 relations);
         pbbuilder.addPrimitivegroup(pg);
 
@@ -153,9 +106,9 @@ class OSMPBF {
         if (ways != null)
             pgbuilder.addAllWays(this.buildOSMWays(ways));
         if (relations != null)
-            pgbuilder.addAllRelations(this.buildOSMRelations(stringtable,relations));
+            pgbuilder.addAllRelations(this.buildOSMRelations(stringtable, relations));
         if (nodes != null)
-            pgbuilder.setDense(this.buildOSMDenseNodes(stringtable,nodes));
+            pgbuilder.setDense(this.buildOSMDenseNodes(stringtable, nodes));
 
         return pgbuilder.build();
     }
@@ -175,12 +128,7 @@ class OSMPBF {
         Node[] nodes_sorted = new Node[nodes.size()];
         nodes.values().toArray(nodes_sorted);
 
-        Arrays.sort(nodes_sorted, new Comparator<Node>() {
-            @Override
-            public int compare(Node o1, Node o2) {
-                return (int) (o1.id - o2.id);
-            }
-        });
+        Arrays.sort(nodes_sorted, (o1, o2) -> (int) (o1.id - o2.id));
 
         for (Node n : nodes_sorted) {
             long id = n.getId();
@@ -227,7 +175,7 @@ class OSMPBF {
     }
 
     private ArrayList<Osmformat.Way> buildOSMWays(Long2ObjectOpenHashMap<Way> ways) {
-        ArrayList<Osmformat.Way> pbfways = new ArrayList<Osmformat.Way>();
+        ArrayList<Osmformat.Way> pbfways = new ArrayList<>();
         Osmformat.Info.Builder wib = Osmformat.Info.newBuilder();
         wib.setVersion(1);
         long[] waykeys = ways.keySet().toLongArray();
@@ -263,7 +211,7 @@ class OSMPBF {
     private ArrayList<Osmformat.Relation> buildOSMRelations(
             StringTable stringtable,
             Long2ObjectOpenHashMap<Relation> relations) {
-        ArrayList<Osmformat.Relation> pbfrels = new ArrayList<Osmformat.Relation>();
+        ArrayList<Osmformat.Relation> pbfrels = new ArrayList<>();
 
         Osmformat.Info.Builder rib = Osmformat.Info.newBuilder();
         rib.setVersion(1);
@@ -287,9 +235,17 @@ class OSMPBF {
                 rb.addRolesSid(stringtable.getStringId(m.getRole()));
                 rb.addMemids(m.getId() - lmid);
                 lmid = m.getId();
-                if (m.getType().equals("node")) rb.addTypes(Osmformat.Relation.MemberType.NODE);
-                else if (m.getType().equals("way")) rb.addTypes(Osmformat.Relation.MemberType.WAY);
-                else if (m.getType().equals("relation")) rb.addTypes(Osmformat.Relation.MemberType.RELATION);
+                switch (m.getType()) {
+                    case "node":
+                        rb.addTypes(Osmformat.Relation.MemberType.NODE);
+                        break;
+                    case "way":
+                        rb.addTypes(Osmformat.Relation.MemberType.WAY);
+                        break;
+                    case "relation":
+                        rb.addTypes(Osmformat.Relation.MemberType.RELATION);
+                        break;
+                }
             }
 
             pbfrels.add(rb.build());
@@ -298,11 +254,11 @@ class OSMPBF {
         return pbfrels;
     }
 
-    void writePBFElements(StringTable stringtable,Boolean close_file,
+    void writePBFElements(StringTable stringtable, Boolean close_file,
                           Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
                           Long2ObjectOpenHashMap<Relation> relations) throws IOException {
         Osmformat.PrimitiveBlock pb = this
-                .createOSMDataBlock(stringtable,nodes, ways, relations);
+                .createOSMDataBlock(stringtable, nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());
         Integer header_sersize = data.header.getSerializedSize();
         od.writeInt(header_sersize);
@@ -342,6 +298,47 @@ class OSMPBF {
 
     void closePBF() throws IOException {
         of.close();
+    }
+
+    private class PBFBlob {
+        private Fileformat.BlobHeader header;
+        private Fileformat.Blob body;
+
+        PBFBlob(String blobtype, byte[] payload) {
+            int size = payload.length;
+            Deflater deflater = new Deflater();
+            deflater.setInput(payload);
+            deflater.finish();
+            byte out[] = new byte[size];
+            deflater.deflate(out);
+
+            if (!deflater.finished()) {
+                out = Arrays.copyOf(out, size + size / 64 + 16);
+                deflater.deflate(out, deflater.getTotalOut(), out.length
+                        - deflater.getTotalOut());
+                if (!deflater.finished()) {
+                    throw new Error("Internal error in compressor");
+                }
+            }
+            ByteString compressed = ByteString.copyFrom(out, 0,
+                    deflater.getTotalOut());
+
+            Fileformat.Blob.Builder bodybuilder = Fileformat.Blob.newBuilder();
+            bodybuilder.setRawSize(size);
+            bodybuilder.setZlibData(compressed);
+            deflater.end();
+
+            this.body = bodybuilder.build();
+
+            Fileformat.BlobHeader.Builder headbuilder = Fileformat.BlobHeader
+                    .newBuilder();
+
+            headbuilder.setType(blobtype);
+            headbuilder.setDatasize(this.body.getSerializedSize());
+
+            this.header = headbuilder.build();
+
+        }
     }
 
 }

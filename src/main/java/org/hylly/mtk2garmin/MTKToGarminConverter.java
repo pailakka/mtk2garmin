@@ -22,185 +22,21 @@ import java.util.zip.GZIPOutputStream;
 
 class MTKToGarminConverter {
     private static final SpatialReference wgs84ref = new SpatialReference();
-    private static final Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<String, double[]>();
-    private CoordinateTransformation srctowgs;
-
-    public class Node {
-        final long id;
-        final double lon;
-        final double lat;
-        final int cell;
-        Short2ShortRBTreeMap nodeTags;
-        boolean waypart;
-        final long hash;
-
-        public Node(long id, long hash, int cell, double lon, double lat, boolean waypart) {
-            this.id = id;
-            this.hash = hash;
-            this.lon = lon;
-            this.lat = lat;
-            this.cell = cell;
-            this.waypart = waypart;
-        }
-
-        public Node(long id, long hash, int cell, double lon, double lat, boolean waypart, Short2ShortRBTreeMap tags) {
-            this.id = id;
-            this.hash = hash;
-            this.lon = lon;
-            this.lat = lat;
-            this.cell = cell;
-            this.waypart = waypart;
-            this.nodeTags = tags;
-        }
-
-        void clearTags() {
-            if (nodeTags != null) {
-                nodeTags.clear();
-            }
-        }
-
-        void addTag(short key, short value) {
-            if (nodeTags == null) {
-                nodeTags = new Short2ShortRBTreeMap();
-            }
-
-            nodeTags.put(key, value);
-        }
-
-        long getId() {
-            return id;
-        }
-
-        double getLon() {
-            return lon;
-        }
-
-        double getLat() {
-            return lat;
-        }
-
-        boolean isWaypart() {
-            return waypart;
-        }
-
-        long getHash() {
-            return hash;
-        }
-
-        Short2ShortRBTreeMap getTags() {
-            return nodeTags;
-        }
-
-    }
-
-    class Way {
-        long id;
-
-        String getRole() {
-            return role;
-        }
-
-        void setRole(String role) {
-            this.role = role;
-        }
-
-        String role = "all";
-        LongArrayList refs = new LongArrayList();
-        final Short2ShortRBTreeMap tags = new Short2ShortRBTreeMap();
-
-        Way() {
-
-        }
-
-        long getId() {
-            return id;
-        }
-
-        public Short2ShortRBTreeMap getTags() {
-            return tags;
-        }
-    }
-
-    class RelationMember {
-        long id;
-
-        long getId() {
-            return id;
-        }
-
-        void setId(long id) {
-            this.id = id;
-        }
-
-        public String getType() {
-            return type;
-        }
-
-        public void setType() {
-            this.type = "way";
-        }
-
-        String getRole() {
-            return role;
-        }
-
-        void setRole(String role) {
-            this.role = role;
-        }
-
-        String type;
-        String role;
-    }
-
-    class Relation {
-        long getId() {
-            return id;
-        }
-
-        void setId(long id) {
-            this.id = id;
-        }
-
-        Short2ShortRBTreeMap getTags() {
-            return tags;
-        }
-
-        ArrayList<RelationMember> getMembers() {
-            return members;
-        }
-
-        long id;
-        final Short2ShortRBTreeMap tags = new Short2ShortRBTreeMap();
-        final ArrayList<RelationMember> members = new ArrayList<RelationMember>();
-    }
-
-    private class InitializedDatasource {
-        DataSource ds;
-        int cell;
-    }
-
-    private class GeomHandlerResult {
-        final ArrayList<Node> nodes = new ArrayList<Node>();
-        final ArrayList<Way> ways = new ArrayList<Way>();
-        final ArrayList<Relation> relations = new ArrayList<Relation>();
-    }
-
+    private static final Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<>();
+    private static final double COORD_DELTA_X = 62000.0 - 6e3;
+    private static final double COORD_DELTA_Y = 6594000.0;
+    private static final double COORD_ACC = 2;
+    private static short tyyppi_string_id;
     private final Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<>(50000);
     private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<>();
     private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
     private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
-
-    private static final double COORD_DELTA_X = 62000.0 - 6e3;
-    private static final double COORD_DELTA_Y = 6594000.0;
-    private static final double COORD_ACC = 2;
-
+    private CoordinateTransformation srctowgs;
     private double minx = Double.POSITIVE_INFINITY, miny = Double.POSITIVE_INFINITY, maxx = Double.NEGATIVE_INFINITY,
             maxy = Double.NEGATIVE_INFINITY;
-
     private long nodeidcounter = 5000000000L;
     private long wayidcounter = 5000000000L;
     private long relationidcounter = 5000000000L;
-
     private OSMPBF op;
     private double llx;
     private double lly;
@@ -209,12 +45,185 @@ class MTKToGarminConverter {
     private int max_nodes = 0;
     private int max_ways = 0;
     private int max_relations = 0;
-
-    private static short tyyppi_string_id;
-
     private MTKToGarminConverter() {
         this.initElements();
         new ArrayList<File>();
+    }
+
+    static void printTags(StringTable stringtable, Short2ShortRBTreeMap tags) {
+        for (Entry t : tags.short2ShortEntrySet()) {
+            System.out.println(stringtable.getStringById(t.getShortKey()) + " => " + stringtable.getStringById(t.getShortValue()));
+        }
+    }
+
+    public static void main(String[] args) throws IOException, InterruptedException {
+        System.out.println("Starting conversion");
+        ogr.UseExceptions();
+        Locale.setDefault(new Locale("en", "US"));
+        wgs84ref.SetWellKnownGeogCS("WGS84");
+
+        ogr.RegisterAll();
+        // wget --no-check-certificate -O grid.gml
+        // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
+
+        DataSource gridds = ogr.Open("C:\\geodata\\12x12grid.shp");
+        Layer lyr = gridds.GetLayer(0);
+
+        lyr.SetAttributeFilter("gridSize = '12x12'");
+
+        double[] extent = new double[4];
+        for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
+            Geometry geom = feat.GetGeometryRef();
+
+            geom.GetEnvelope(extent);
+            gridExtents.put(feat.GetFieldAsString(1), extent.clone());
+            feat.delete();
+        }
+        lyr.delete();
+        gridds.delete();
+
+        HashMap<String, ArrayList<File>> areas = new HashMap<>();
+        File srcdir = new File("C:\\geodata\\mtkgml");
+        for (File g1 : srcdir.listFiles()) {
+            for (File g2 : g1.listFiles()) {
+                for (File g3 : g2.listFiles()) {
+                    if (!g3.getName().endsWith(".zip")) {
+                        continue;
+                    }
+
+                    String area = g3.getName().substring(0, 4);
+
+                    if (!areas.containsKey(area)) {
+                        areas.put(area, new ArrayList<>());
+                    }
+                    areas.get(area).add(g3);
+                }
+            }
+        }
+
+        Object[] areassorted = areas.keySet().toArray();
+        Arrays.sort(areassorted);
+        MTKToGarminConverter mtk2g = new MTKToGarminConverter();
+
+        ShapeRetkeilyTagHandler retkeilyTagHandler;
+        ShapeSyvyysTagHandler syvyysTagHandler;
+        MMLTagHandler tagHandlerMML;
+        StringTable stringtable;
+
+        MMLFeaturePreprocess featurePreprocessMML = new MMLFeaturePreprocess();
+        ShapeFeaturePreprocess shapePreprocessor = new ShapeFeaturePreprocess();
+        double[] mml_extent;
+
+
+        for (Object area : areassorted) {
+            ArrayList<File> files = areas.get(area);
+            String[] filenames = new String[files.size()];
+            int i = 0;
+            for (File f : files) {
+
+                filenames[i] = f.getAbsolutePath();
+                i++;
+            }
+
+            Arrays.sort(filenames);
+
+            for (String fn : filenames) {
+                String cell = fn.substring(fn.lastIndexOf("\\") + 1, fn.lastIndexOf("\\") + 7);
+
+                stringtable = new StringTable();
+                tyyppi_string_id = stringtable.getStringId("tyyppi");
+                tagHandlerMML = new MMLTagHandler(stringtable);
+                retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
+                syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
+
+                mtk2g.startWritingOSMPBF(
+                        String.format("K:\\koodi\\mtk2garmin3\\mtk2garminjava\\suomi\\%s.osm.pbf", cell));
+
+                System.out.println(fn + " (" + cell + ")");
+
+                mml_extent = gridExtents.get(cell);
+                long st;
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/" + fn, featurePreprocessMML, tagHandlerMML, true, null);
+                System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
+                mtk2g.printCounts();
+                System.out.println(Arrays.toString(mml_extent));
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
+                        syvyysTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
+                        syvyysTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable,
+                        "/vsizip/C:\\geodata\\retkikartta\\kesaretkeilyreitit.zip\\kesaretkeilyreititLine.shp",
+                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
+                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
+                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
+
+                st = System.nanoTime();
+                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
+                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                mtk2g.printCounts();
+                System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
+
+                /*
+                 * st = System.nanoTime(); mtk2g.readOGRsource(
+                 * "/vsizip/C:\\geodata\\retkikartta\\hirvialueet.zip\\hirvialueet.shp",
+                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                 * mtk2g.printCounts(); System.out.println("Hirvialueet read " +
+                 * (System.nanoTime() - st) / 1000000000.0);
+                 *
+                 * st = System.nanoTime(); mtk2g.readOGRsource(
+                 * "/vsizip/C:\\geodata\\retkikartta\\pienriista.zip\\pienriista.shp",
+                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
+                 * mtk2g.printCounts(); System.out.println("Pienriista read " +
+                 * (System.nanoTime() - st) / 1000000000.0);
+                 */
+
+
+                st = System.nanoTime();
+                mtk2g.writeOSMPBFElements(stringtable);
+                mtk2g.closeOSMPBFFile();
+                mtk2g.trackCounts();
+                mtk2g.initElements();
+                System.out.println("pbf " + (System.nanoTime() - st) / 1000000000.0);
+
+            }
+
+
+            if (mtk2g.nodepos.size() > 0) {
+                System.out.println(area + " done!");
+                System.out.println(mtk2g.nodepos.size() + " cells");
+                long numids = 0;
+                for (Int2ObjectMap.Entry<Long2ObjectAVLTreeMap<Node>> ntree : mtk2g.nodepos.int2ObjectEntrySet()) {
+                    numids += ntree.getValue().size();
+                }
+                System.out.println(numids + " ids in cache");
+            }
+        }
+        System.exit(1);
+
     }
 
     private void initElements() {
@@ -280,7 +289,7 @@ class MTKToGarminConverter {
 
                 if (!nodepos.containsKey(pcell)) {
                     System.out.println("Adding nodepos hashmap: " + pcell);
-                    nodepos.put(pcell, new Long2ObjectAVLTreeMap<Node>());
+                    nodepos.put(pcell, new Long2ObjectAVLTreeMap<>());
                 }
 
                 if (nodepos.get(pcell).containsKey(phash)) {
@@ -405,7 +414,7 @@ class MTKToGarminConverter {
 
     private boolean handleFeature(StringTable stringtable, String lyrname, ArrayList<Field> fieldMapping, Feature feat,
                                   FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler) {
-        Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<String>();
+        Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
         Geometry geom;
         for (Field f : fieldMapping) {
             fields.put(stringtable.getStringId(f.getFieldName()),
@@ -419,14 +428,6 @@ class MTKToGarminConverter {
         if (srctowgs == null) {
             SpatialReference sref = geom.GetSpatialReference();
             srctowgs = osr.CreateCoordinateTransformation(sref, wgs84ref);
-        }
-
-        int prepstatus = featurePreprocess.preprocessFeature(feat, geom, fields);
-
-        if (prepstatus == 1) {
-            return true;
-        } else if (prepstatus == 2) {
-            return false;
         }
 
         GeomHandlerResult ghr;
@@ -479,13 +480,6 @@ class MTKToGarminConverter {
 
     }
 
-    static void printTags(StringTable stringtable, Short2ShortRBTreeMap tags) {
-        for (Entry t : tags.short2ShortEntrySet()) {
-            System.out.println(stringtable.getStringById(t.getShortKey()) + " => " + stringtable.getStringById(t.getShortValue()));
-        }
-    }
-
-
     private void writeOSMXMLTags(StringTable stringtable, OutputStream fos, Short2ShortRBTreeMap nodeTags) throws IOException {
         if (nodeTags.size() == 0)
             return;
@@ -519,17 +513,11 @@ class MTKToGarminConverter {
                 .format("\t<bounds minlon=\"%f\" minlat=\"%f\" maxlon=\"%f\" maxlat=\"%f\"/>\n", minx, miny, maxx, maxy)
                 .getBytes());
 
-        ObjectArrayList<Long2ObjectMap.Entry<Node>> node_keys_sorted = new ObjectArrayList<Long2ObjectMap.Entry<Node>>();
+        ObjectArrayList<Long2ObjectMap.Entry<Node>> node_keys_sorted = new ObjectArrayList<>();
 
-        for (Long2ObjectMap.Entry<Node> nk : nodes.long2ObjectEntrySet()) {
-            node_keys_sorted.add(nk);
-        }
+        node_keys_sorted.addAll(nodes.long2ObjectEntrySet());
 
-        Collections.sort(node_keys_sorted, new Comparator<Long2ObjectMap.Entry<Node>>() {
-            public int compare(Long2ObjectMap.Entry<Node> k1, Long2ObjectMap.Entry<Node> k2) {
-                return (int) (k1.getValue().getId() - k2.getValue().getId());
-            }
-        });
+        node_keys_sorted.sort((k1, k2) -> (int) (k1.getValue().getId() - k2.getValue().getId()));
 
         for (Long2ObjectMap.Entry<Node> nk : node_keys_sorted) {
             Node n = nk.getValue();
@@ -659,7 +647,7 @@ class MTKToGarminConverter {
         this.setCellBBOX(ll, ur);
 
         if (!nodepos.containsKey(cell)) {
-            nodepos.put(cell, new Long2ObjectAVLTreeMap<Node>());
+            nodepos.put(cell, new Long2ObjectAVLTreeMap<>());
         }
 
         return is;
@@ -682,16 +670,12 @@ class MTKToGarminConverter {
 
         String attributefilter = featurePreprocess.getAttributeFilterString();
 
-        HashSet<String> ignored_fields = new HashSet<String>();
+        HashSet<String> ignored_fields = new HashSet<>();
         FieldDefn fdefn;
         layerloop:
         for (int i = 0; i < ds.GetLayerCount(); i++) {
             lyr = ds.GetLayer(i);
-            Vector<String> ignoredFields = new Vector<String>();
-
-            if (!featurePreprocess.isWantedLayer(lyr.GetName().toLowerCase())) {
-                continue;
-            }
+            Vector<String> ignoredFields = new Vector<>();
 
             if (filterExtent != null) {
                 System.out.println("Filter rect: " + Arrays.toString(filterExtent));
@@ -703,7 +687,7 @@ class MTKToGarminConverter {
             }
 
             FeatureDefn lyrdefn = lyr.GetLayerDefn();
-            ArrayList<Field> fieldMapping = new ArrayList<Field>();
+            ArrayList<Field> fieldMapping = new ArrayList<>();
             for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
                 fdefn = lyrdefn.GetFieldDefn(i1);
                 fname = fdefn.GetName();
@@ -773,174 +757,162 @@ class MTKToGarminConverter {
 
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("Starting conversion");
-        ogr.UseExceptions();
-        Locale.setDefault(new Locale("en", "US"));
-        wgs84ref.SetWellKnownGeogCS("WGS84");
+    public class Node {
+        final long id;
+        final double lon;
+        final double lat;
+        final int cell;
+        final long hash;
+        Short2ShortRBTreeMap nodeTags;
+        boolean waypart;
 
-        ogr.RegisterAll();
-        // wget --no-check-certificate -O grid.gml
-        // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
-
-        DataSource gridds = ogr.Open("C:\\geodata\\12x12grid.shp");
-        Layer lyr = gridds.GetLayer(0);
-
-        lyr.SetAttributeFilter("gridSize = '12x12'");
-
-        double[] extent = new double[4];
-        for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
-            Geometry geom = feat.GetGeometryRef();
-
-            geom.GetEnvelope(extent);
-            gridExtents.put(feat.GetFieldAsString(1), extent.clone());
-            feat.delete();
+        Node(long id, long hash, int cell, double lon, double lat, boolean waypart) {
+            this.id = id;
+            this.hash = hash;
+            this.lon = lon;
+            this.lat = lat;
+            this.cell = cell;
+            this.waypart = waypart;
         }
-        lyr.delete();
-        gridds.delete();
 
-        HashMap<String, ArrayList<File>> areas = new HashMap<String, ArrayList<File>>();
-        File srcdir = new File("C:\\geodata\\mtkgml");
-        for (File g1 : srcdir.listFiles()) {
-            for (File g2 : g1.listFiles()) {
-                for (File g3 : g2.listFiles()) {
-                    if (!g3.getName().endsWith(".zip")) {
-                        continue;
-                    }
+        public Node(long id, long hash, int cell, double lon, double lat, boolean waypart, Short2ShortRBTreeMap tags) {
+            this.id = id;
+            this.hash = hash;
+            this.lon = lon;
+            this.lat = lat;
+            this.cell = cell;
+            this.waypart = waypart;
+            this.nodeTags = tags;
+        }
 
-                    String area = g3.getName().substring(0, 4);
-
-                    if (!areas.containsKey(area)) {
-                        areas.put(area, new ArrayList<File>());
-                    }
-                    areas.get(area).add(g3);
-                }
+        void clearTags() {
+            if (nodeTags != null) {
+                nodeTags.clear();
             }
         }
 
-        Object[] areassorted = areas.keySet().toArray();
-        Arrays.sort(areassorted);
-        MTKToGarminConverter mtk2g = new MTKToGarminConverter();
-
-        ShapeRetkeilyTagHandler retkeilyTagHandler;
-        ShapeSyvyysTagHandler syvyysTagHandler;
-        MMLTagHandler tagHandlerMML;
-        StringTable stringtable;
-
-        MMLFeaturePreprocess featurePreprocessMML = new MMLFeaturePreprocess();
-        ShapeFeaturePreprocess shapePreprocessor = new ShapeFeaturePreprocess();
-        double[] mml_extent;
-
-
-        for (Object area : areassorted) {
-            ArrayList<File> files = areas.get(area);
-            String[] filenames = new String[files.size()];
-            int i = 0;
-            for (File f : files) {
-
-                filenames[i] = f.getAbsolutePath();
-                i++;
+        void addTag(short key, short value) {
+            if (nodeTags == null) {
+                nodeTags = new Short2ShortRBTreeMap();
             }
 
-            Arrays.sort(filenames);
-
-            for (String fn : filenames) {
-                String cell = fn.substring(fn.lastIndexOf("\\") + 1, fn.lastIndexOf("\\") + 7);
-
-                stringtable = new StringTable();
-                tyyppi_string_id = stringtable.getStringId("tyyppi");
-                tagHandlerMML = new MMLTagHandler(stringtable);
-                retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
-                syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
-
-                mtk2g.startWritingOSMPBF(
-                        String.format("K:\\koodi\\mtk2garmin3\\mtk2garminjava\\suomi\\%s.osm.pbf", cell));
-
-                System.out.println(fn + " (" + cell + ")");
-
-                mml_extent = gridExtents.get(cell);
-                long st;
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + fn, featurePreprocessMML, tagHandlerMML, true, null);
-                System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
-                mtk2g.printCounts();
-                System.out.println(Arrays.toString(mml_extent));
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyskayrat.zip\\syvyyskayrat.shp", shapePreprocessor,
-                        syvyysTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Syvyyskayrat read " + (System.nanoTime() - st) / 1000000000.0);
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/R:\\syvyys\\syvyyspiste_p.zip\\syvyyspiste_p.shp", shapePreprocessor,
-                        syvyysTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Syvyyspisteet read " + (System.nanoTime() - st) / 1000000000.0);
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable,
-                        "/vsizip/C:\\geodata\\retkikartta\\kesaretkeilyreitit.zip\\kesaretkeilyreititLine.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Kesaretkeilyreitit read " + (System.nanoTime() - st) / 1000000000.0);
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\ulkoilureitit.zip\\ulkoilureititLine.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\luontopolut.zip\\luontopolut.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
-
-                st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/C:\\geodata\\retkikartta\\point_dump.zip\\point_dumpPoint.shp",
-                        shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                mtk2g.printCounts();
-                System.out.println("Point_dump read " + (System.nanoTime() - st) / 1000000000.0);
-
-                /*
-                 * st = System.nanoTime(); mtk2g.readOGRsource(
-                 * "/vsizip/C:\\geodata\\retkikartta\\hirvialueet.zip\\hirvialueet.shp",
-                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                 * mtk2g.printCounts(); System.out.println("Hirvialueet read " +
-                 * (System.nanoTime() - st) / 1000000000.0);
-                 * 
-                 * st = System.nanoTime(); mtk2g.readOGRsource(
-                 * "/vsizip/C:\\geodata\\retkikartta\\pienriista.zip\\pienriista.shp",
-                 * shapePreprocessor, retkeilyTagHandler, false, mml_extent);
-                 * mtk2g.printCounts(); System.out.println("Pienriista read " +
-                 * (System.nanoTime() - st) / 1000000000.0);
-                 */
-
-
-                st = System.nanoTime();
-                mtk2g.writeOSMPBFElements(stringtable);
-                mtk2g.closeOSMPBFFile();
-                mtk2g.trackCounts();
-                mtk2g.initElements();
-                System.out.println("pbf " + (System.nanoTime() - st) / 1000000000.0);
-
-            }
-
-
-            if (mtk2g.nodepos.size() > 0) {
-                System.out.println(area + " done!");
-                System.out.println(mtk2g.nodepos.size() + " cells");
-                long numids = 0;
-                for (Int2ObjectMap.Entry<Long2ObjectAVLTreeMap<Node>> ntree : mtk2g.nodepos.int2ObjectEntrySet()) {
-                    numids += ntree.getValue().size();
-                }
-                System.out.println(numids + " ids in cache");
-            }
+            nodeTags.put(key, value);
         }
-        System.exit(1);
 
+        long getId() {
+            return id;
+        }
+
+        double getLon() {
+            return lon;
+        }
+
+        double getLat() {
+            return lat;
+        }
+
+        boolean isWaypart() {
+            return waypart;
+        }
+
+        long getHash() {
+            return hash;
+        }
+
+        Short2ShortRBTreeMap getTags() {
+            return nodeTags;
+        }
+
+    }
+
+    class Way {
+        final Short2ShortRBTreeMap tags = new Short2ShortRBTreeMap();
+        long id;
+        String role = "all";
+        LongArrayList refs = new LongArrayList();
+
+        Way() {
+
+        }
+
+        String getRole() {
+            return role;
+        }
+
+        void setRole(String role) {
+            this.role = role;
+        }
+
+        long getId() {
+            return id;
+        }
+
+        public Short2ShortRBTreeMap getTags() {
+            return tags;
+        }
+    }
+
+    class RelationMember {
+        long id;
+        String type;
+        String role;
+
+        long getId() {
+            return id;
+        }
+
+        void setId(long id) {
+            this.id = id;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType() {
+            this.type = "way";
+        }
+
+        String getRole() {
+            return role;
+        }
+
+        void setRole(String role) {
+            this.role = role;
+        }
+    }
+
+    class Relation {
+        final Short2ShortRBTreeMap tags = new Short2ShortRBTreeMap();
+        final ArrayList<RelationMember> members = new ArrayList<>();
+        long id;
+
+        long getId() {
+            return id;
+        }
+
+        void setId(long id) {
+            this.id = id;
+        }
+
+        Short2ShortRBTreeMap getTags() {
+            return tags;
+        }
+
+        ArrayList<RelationMember> getMembers() {
+            return members;
+        }
+    }
+
+    private class InitializedDatasource {
+        DataSource ds;
+        int cell;
+    }
+
+    private class GeomHandlerResult {
+        final ArrayList<Node> nodes = new ArrayList<>();
+        final ArrayList<Way> ways = new ArrayList<>();
+        final ArrayList<Relation> relations = new ArrayList<>();
     }
 
 
