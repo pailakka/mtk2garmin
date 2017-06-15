@@ -81,11 +81,14 @@ class MTKToGarminConverter {
         lyr.SetAttributeFilter("gridSize = '12x12'");
 
         double[] extent = new double[4];
+        FeatureDefn glyrdef = lyr.GetLayerDefn();
+        int gridcellIndex = glyrdef.GetFieldIndex("gridCell");
+
         for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
             Geometry geom = feat.GetGeometryRef();
 
             geom.GetEnvelope(extent);
-            gridExtents.put(feat.GetFieldAsString(1), extent.clone());
+            gridExtents.put(feat.GetFieldAsString(gridcellIndex), extent.clone());
             feat.delete();
         }
         lyr.delete();
@@ -143,15 +146,14 @@ class MTKToGarminConverter {
             Arrays.sort(filenames);
 
             for (String fn : filenames) {
-                String cell = fn.substring(fn.lastIndexOf("\\") + 1, fn.lastIndexOf("\\") + 7);
+                String cell = fn.substring(fn.lastIndexOf(File.separator) + 1, fn.lastIndexOf(File.separator) + 7);
 
                 stringtable = new StringTable();
                 tyyppi_string_id = stringtable.getStringId("tyyppi");
                 tagHandlerMML = new MMLTagHandler(stringtable);
                 retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
                 syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
-
-                mtk2g.startWritingOSMPBF(Paths.get(outdir.toAbsolutePath().toString(), String.format("%s.osm.pbf", cell)).toAbsolutePath().toString());
+                mtk2g.startWritingOSMPBF(Paths.get(outdir.toString(), String.format("%s.osm.pbf", cell)).toString());
 
                 System.out.println(fn + " (" + cell + ")");
 
@@ -190,7 +192,7 @@ class MTKToGarminConverter {
                 System.out.println("Ulkoilureitit read " + (System.nanoTime() - st) / 1000000000.0);
 
                 st = System.nanoTime();
-                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolut.shp",
+                mtk2g.readOGRsource(stringtable, "/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolutLine.shp",
                         shapePreprocessor, retkeilyTagHandler, false, mml_extent);
                 mtk2g.printCounts();
                 System.out.println("Luontopolut read " + (System.nanoTime() - st) / 1000000000.0);
@@ -623,7 +625,8 @@ class MTKToGarminConverter {
         DataSource ds = ogr.Open(fn, false);
         is.ds = ds;
         if (ds == null) {
-            System.out.println("Reading file failed");
+            System.out.println("Reading file " + fn + " failed");
+            System.exit(1);
             return is;
         }
 
