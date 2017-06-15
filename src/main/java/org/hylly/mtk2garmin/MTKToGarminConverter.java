@@ -1,5 +1,7 @@
 package org.hylly.mtk2garmin;
 
+import com.typesafe.config.Config;
+import com.typesafe.config.ConfigFactory;
 import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectAVLTreeMap;
@@ -56,7 +58,10 @@ class MTKToGarminConverter {
         }
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) throws Exception {
+
+        Config conf = ConfigFactory.load();
+
         System.out.println("Starting conversion");
         ogr.UseExceptions();
         Locale.setDefault(new Locale("en", "US"));
@@ -66,7 +71,7 @@ class MTKToGarminConverter {
         // wget --no-check-certificate -O grid.gml
         // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
 
-        DataSource gridds = ogr.Open("C:\\geodata\\12x12grid.shp");
+        DataSource gridds = ogr.Open(conf.getString("grid"));
         Layer lyr = gridds.GetLayer(0);
 
         lyr.SetAttributeFilter("gridSize = '12x12'");
