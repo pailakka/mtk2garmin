@@ -11,16 +11,15 @@
 yksisuuntaisuus=2 {add oneway=-1}
 yksisuuntaisuus=1 {add oneway=yes}
 
-kohdeluokka>=12111 & kohdeluokka<=12141 & ref* {name '${name} (${ref})'|'${name}'}
-kohdeluokka>=12111 & kohdeluokka<=12141 {name '${name}'}
+kohdeluokka>=12111 & kohdeluokka<=12141 {name '${name} (${ref})'|'${name}'|'${ref}'}
 kohdeluokka=12111  {add mkgmap:bicycle=no; add mkgmap:foot=no} [0x01 road_class 4 road_speed 6 level 3] #Autotie Ia
 kohdeluokka=12112 [0x02 road_class 3 road_speed 5 level 4]  #Autotie Ib
 kohdeluokka=12121 [0x03 road_class 2 road_speed 4 level 4]  #Autotie IIa
 kohdeluokka=12122 [0x05 road_class 2 road_speed 3 level 4]  #Autotie IIb
 
 kohdeluokka=12131 [0x04 road_class 2 road_speed 3 level 3]  #Autotie IIIa
-kohdeluokka=12132 & paallyste=2 [0x06 road_class 2 road_speed 2 level 3]    #Autotie IIIb
-kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3]    #Autotie IIIb
+kohdeluokka=12132 & paallyste=2 [0x06 road_class 2 road_speed 2 level 3 name '${name}|Päällystetty'} Autotie IIIb
+kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3 name '${name}|Päällöstämätön'}    #Autotie IIIb
 
 kohdeluokka=12141 [0x07 road_class 0 road_speed 1 level 2]  #Ajotie
 
@@ -78,6 +77,11 @@ tyyppi=syvyyskayrat & ele ~ '\d*[24680]0000' {name '${ele|conv:"m=>ft"}'} [0x25]
 tyyppi=syvyyskayrat {name '${ele|height:"m=>ft"}'} [0x24]
 
 kohdeluokka=54100 {name '${ele|height:"m=>ft"}'} [0x24]
+
+tyyppi=syvyyskayra_v & ele ~ '\d*[24680]0\.0' {name '${ele|conv:"m=>ft"}'} [0x25]
+tyyppi=syvyyskayra_v & ele ~ '\d*[24680]0000' {name '${ele|conv:"m=>ft"}'} [0x25]
+tyyppi=syvyyskayra_v {name '${ele|height:"m=>ft"}'} [0x24]
+
 
 highway=track [0x0c level 1]
 highway=path [0x0d level 1]
