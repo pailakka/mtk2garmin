@@ -5,6 +5,8 @@ apt-get update
 apt-get -y upgrade
 apt-get -y install awscli default-jre
 
+aws configure
+
 wget -Omkgmap.zip http://www.mkgmap.org.uk/download/mkgmap-r3972.zip
 wget -Osplitter.zip http://www.mkgmap.org.uk/download/splitter-r583.zip
 
