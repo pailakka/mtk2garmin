@@ -1,3 +1,3 @@
-osmconvert64 C:\geodata\finland-latest.osm.pbf -o=C:\geodata\finland-latest.o5m
-osmfilter C:\geodata\finland-latest.o5m --keep="highway=track =path =footway amenity=shelter =toilets tourism=fireplace =lean_to =wilderness man_made=tower and tower:type=observation" --drop-author --drop-version --verbose --out-o5m >C:\geodata\finland-filtered.o5m
-osmconvert64 C:\geodata\finland-filtered.o5m --out-o5m | osmconvert64 - suomi\all.osm.pbf -o=suomi\all_osm.osm.pbf
+osmconvert64 inputdata/finland-latest.osm.pbf -o=inputdata/finland-latest.o5m
+osmfilter inputdata/finland-latest.o5m --keep="highway=track =path =footway amenity=shelter =toilets tourism=fireplace =lean_to =wilderness man_made=tower and tower:type=observation" --drop-author --drop-version --verbose --out-o5m >inputdata/finland-filtered.o5m
+osmconvert64 inputdata/finland-filtered.o5m --out-o5m | osmconvert64 - suomi/all.osm.pbf -o=suomi/all_osm.osm.pbf
