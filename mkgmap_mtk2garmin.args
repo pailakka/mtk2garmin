@@ -20,6 +20,8 @@ merge-lines
 remove-ovm-work-files=true
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
 levels=0:24, 1:22, 2:21, 3:19, 4:17
+overview-levels=4:17,5:16,6:15,7:14,8:12 data.osm
+remove-ovm-work-files
 tdbfile
 nsis
 gmapsupp
