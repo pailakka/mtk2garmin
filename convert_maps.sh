@@ -25,9 +25,14 @@ aws s3 cp s3://kartat-build/all_osm.osm.pbf all_osm.osm.pbf
 
 mkdir splitted
 
-java -jar -Xmx1G splitter-r548/splitter.jar --output-dir=splitted all_osm.osm.pbf > splitter.log
+echo "Splitting file..."
+java -jar -Xmx5G splitter-r583/splitter.jar --output-dir=splitted all_osm.osm.pbf > splitter.log
+echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
+echo "Compiling typ"
 java -cp "mkgmap-r3972/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
+echo "Compiling typ done"
+echo "Compiling garmin img"
 java -jar -Xmx1G mkgmap-r3972/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
 
@@ -37,7 +42,7 @@ mkdir osmosis
 cd osmosis
 wget http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
 tar -xvzf osmosis-latest.tgz
-export JAVACMD_OPTIONS="-Xmx1G"
+export JAVACMD_OPTIONS="-Xmx60G"
 cd ../
 mkdir plugins
 cd plugins
