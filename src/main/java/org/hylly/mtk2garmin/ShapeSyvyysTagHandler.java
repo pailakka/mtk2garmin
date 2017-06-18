@@ -20,7 +20,7 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
         depth = stringtable.getStringId("VALDCO");
         ele = stringtable.getStringId("ele");
 
-        wantedFields = new ObjectOpenHashSet<>(Collections.singletonList("DEPTH"));
+        wantedFields = new ObjectOpenHashSet<>(Collections.singletonList("VALDCO"));
     }
 
     @Override
