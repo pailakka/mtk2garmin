@@ -44,7 +44,7 @@ kohdeluokka=35421 {add area=yes} [0x51 level 2] #Suo, vaikeakulkuinen puuton
 kohdeluokka=35422 {add area=yes} [0x10f06 level 2] #Suo, vaikeakulkuinen metsaa kasvava
 kohdeluokka=38300 {add area=yes} [0x10f0b level 1] #Maatuva vesialue
 kohdeluokka=38400 {add area=yes} [0x10f0a level 1] #Tulva-alue
-kohdeluokka=38600 {add area=yes} [0x10700 level 1] #Vesikivikko
+kohdeluokka=38600 {add area=yes} [0x10f11 level 1] #Vesikivikko
 kohdeluokka=38900 {add area=yes} [0x10f0f level 1] #Varastoalue
 kohdeluokka=39110 {add area=yes} [0x10f10 level 1] #Avoin metsamaa
 kohdeluokka=39120 {add area=yes} [0x10f0c] #Varvikko
