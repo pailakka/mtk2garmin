@@ -18,8 +18,8 @@ kohdeluokka=12121 [0x03 road_class 2 road_speed 4 level 4]  #Autotie IIa
 kohdeluokka=12122 [0x05 road_class 2 road_speed 3 level 4]  #Autotie IIb
 
 kohdeluokka=12131 [0x04 road_class 2 road_speed 3 level 3]  #Autotie IIIa
-kohdeluokka=12132 & paallyste=2 [0x06 road_class 2 road_speed 2 level 3] Autotie IIIb
-kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3]    #Autotie IIIb
+kohdeluokka=12132 & paallyste=2 [0x06 road_class 2 road_speed 2 level 3] #Autotie IIIb
+kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3] #Autotie IIIb
 
 kohdeluokka=12141 [0x07 road_class 0 road_speed 1 level 2]  #Ajotie
 
@@ -37,8 +37,8 @@ kohdeluokka=26111 [0x28 level 1]    #Putkijohto, kaasu
 kohdeluokka=84112 [0x1d level 4]    #Aluehallintoviraston toimialueen raja
 kohdeluokka=26113 [0x28 level 1]    #Putkijohto, lampo
 kohdeluokka=16511 [0x10f04 level 2] #Laivavayla
-kohdeluokka=45111 [0x10f01 level1] #Pistolaituri, alle 5 m
-kohdeluokka=84113 [0x1d level 4]  Kunnan raja
+kohdeluokka=45111 [0x10f01 level 1] #Pistolaituri, alle 5 m
+kohdeluokka=84113 [0x1d level 4]  #Kunnan raja
 kohdeluokka=44211 [0x10f00 level 2] #Aita,tekoaines
 kohdeluokka=72000 [0x12 level 1]    #Suojelualueen reunaviiva
 kohdeluokka=14131 [0x19 level 2]    #Metro
