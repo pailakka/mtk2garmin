@@ -3,7 +3,7 @@ set -e
 
 apt-get update
 apt-get -y upgrade
-apt-get -y install awscli default-jre git python
+apt-get -y install awscli default-jre git python unzip
 
 aws configure
 
@@ -15,7 +15,7 @@ cd mapsforge_peruskartta
 python tidy_tag_mapping.py
 cd ..
 
-wget -Omkgmap.zip http://www.mkgmap.org.uk/download/mkgmap-r3972.zip
+wget -Omkgmap.zip http://www.mkgmap.org.uk/download/mkgmap-r3973.zip
 wget -Osplitter.zip http://www.mkgmap.org.uk/download/splitter-r583.zip
 
 unzip -o mkgmap.zip
@@ -30,10 +30,10 @@ java -jar -Xmx5G splitter-r583/splitter.jar --output-dir=splitted all_osm.osm.pb
 echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
 echo "Compiling typ"
-java -cp "mkgmap-r3972/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
+java -cp "mkgmap-r3973/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
 echo "Compiling typ done"
 echo "Compiling garmin img"
-java -jar -Xmx1G mkgmap-r3972/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
+java -jar -Xmx1G mkgmap-r3973/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
 
 aws s3 cp mtkgarmin/gmapsupp.img  s3://kartat-build/gmapsupp.img
