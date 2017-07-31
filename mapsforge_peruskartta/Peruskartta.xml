@@ -3,10 +3,10 @@
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme.xsd" version="1" map-background="#FFFFFF">
 
 
-<rule e="any" k="kohdeluokka" v="32101" zoom-min="14">
+<rule e="any" k="kohdeluokka" v="32101" zoom-min="14"> <!--Maa-aineksenottoalueen nimi -->
     <caption k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
 </rule>
-<rule e="any" k="kohdeluokka" v="32201" zoom-min="14">
+<rule e="any" k="kohdeluokka" v="32201" zoom-min="14"> <!-- Hautausmaan nimi -->
     <caption k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
 </rule>
 <rule e="any" k="kohdeluokka" v="32301" zoom-min="14">
@@ -66,10 +66,10 @@
 <rule e="any" k="kohdeluokka" v="36101" zoom-min="14">
     <caption k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2" />
 </rule>
-<rule e="any" k="kohdeluokka" v="36201" zoom-min="14">
+<rule e="any" k="kohdeluokka" v="36201" zoom-min="12"> <!-- Vakaveden nimi -->
     <caption k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF" stroke-width="2" />
 </rule>
-<rule e="any" k="kohdeluokka" v="36301" zoom-min="14">
+<rule e="any" k="kohdeluokka" v="36301" zoom-min="12"> <!-- Virtaveden nimi -->
     <caption k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF" stroke-width="2" />
 </rule>
 <rule e="any" k="kohdeluokka" v="36410" zoom-min="14">
@@ -123,7 +123,7 @@
 </rule>
 
 <!--  39110 Avoin metsamaa -->
-<rule e="any" k="kohdeluokka" v="39110" zoom-min="12">
+<rule e="any" k="kohdeluokka" v="39110" zoom-min="14">
     <area src="file:/mml/avometsa2.png" symbol-scaling="size" symbol-width="5" symbol-height="5"/>
 </rule>
 
@@ -143,7 +143,7 @@
     <area fill="#80ff80" stroke="#000000" stroke-width="0.2" />
 </rule>
 
-<rule e="way" k="tyyppi" v="puisto">
+<rule e="way" k="tyyppi" v="puisto" zoom-min="12">
     <area fill="#b3ff66" stroke="#b3ff66" stroke-width="0.1" />
 </rule>
 
@@ -311,22 +311,22 @@
 
 
 
-<rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="14">
+<rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="15">
     <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square"/>
-    <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
+     <pathText k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4" display="always"/>
 </rule>
 
-<rule e="way" k="tyyppi" v="syvyyskayrat" zoom-min="14">
+<rule e="way" k="tyyppi" v="syvyyskayrat" zoom-min="15">
     <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
     <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
 </rule>
 
-<rule e="way" k="tyyppi" v="syvyyskayra" zoom-min="14">
+<rule e="way" k="tyyppi" v="syvyyskayra" zoom-min="15">
     <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
     <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
 </rule>
 
-<rule e="any" k="tyyppi" v="syvyyspiste" zoom-min="14">
+<rule e="any" k="tyyppi" v="syvyyspiste" zoom-min="15">
     <caption k="name" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF" stroke-width="1"/>
 </rule>
 
@@ -337,37 +337,37 @@
 
 
 <!-- polku -->
-<rule e="way" k="highway" v="path|footway" zoom-min="12">
+<rule e="way" k="highway" v="path|footway" zoom-min="14">
     <line stroke="#0000ff" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
-<rule e="way" k="kohdeluokka" v="12313" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="12313" zoom-min="14">
     <line stroke="#000000" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
 
 
 
-<rule e="way" k="tyyppi" v="luontopolut" zoom-min="12">
+<rule e="way" k="tyyppi" v="luontopolut" zoom-min="14">
     <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
 
-<rule e="way" k="tyyppi" v="ulkoilureititline" zoom-min="12">
+<rule e="way" k="tyyppi" v="ulkoilureititline" zoom-min="14">
     <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
 
-<rule e="way" k="tyyppi" v="kesaretkeilyreititline" zoom-min="12">
+<rule e="way" k="tyyppi" v="kesaretkeilyreititline" zoom-min="14">
     <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
 
 
-<rule e="way" k="kohdeluokka" v="12314" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="12314" zoom-min="14">
     <line stroke="#000000" stroke-width="0.4" stroke-dasharray="24,4" stroke-linecap="butt" />
 </rule>
 
 <!-- ajopolku -->
-<rule e="way" k="highway" v="track" zoom-min="12">
+<rule e="way" k="highway" v="track" zoom-min="14">
     <line stroke="#0000ff" stroke-width="0.6" stroke-dasharray="14,5" stroke-linecap="butt" />
 </rule>
-<rule e="way" k="kohdeluokka" v="12316" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="12316" zoom-min="13">
     <line stroke="#000000" stroke-width="0.6" stroke-dasharray="14,5" stroke-linecap="butt" />
 </rule>
 
@@ -405,7 +405,7 @@
             </rule>
         </rule>
 
-        <rule e="way" k="kohdeluokka" v="12131">
+        <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
             <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
             <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
             <rule e="way" k="valmiusaste" v="1|2|3">
@@ -413,7 +413,7 @@
             </rule>
         </rule>
 
-        <rule e="way" k="kohdeluokka" v="12132">
+        <rule e="way" k="kohdeluokka" v="12132" zoom-min="12">
             <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
             <rule e="way" k="paallyste" v="~">
                 <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt" />
@@ -513,7 +513,7 @@
             </rule>
         </rule>
 
-        <rule e="way" k="kohdeluokka" v="12131">
+        <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
             <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
             <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt" />
             <rule e="way" k="valmiusaste" v="1|2|3">
@@ -521,7 +521,7 @@
             </rule>
         </rule>
 
-        <rule e="way" k="kohdeluokka" v="12132">
+        <rule e="way" k="kohdeluokka" v="12132" zoom-min="12">
             <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt" />
             <rule e="way" k="paallyste" v="~">
                 <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt" />
@@ -583,7 +583,7 @@
     <pathText k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4" display="always"/>
 </rule>
 
-<rule e="way" k="kohdeluokka" v="36311"  zoom-min="14">
+<rule e="way" k="kohdeluokka" v="36311"  zoom-min="15">
     <line stroke="#118AED" stroke-width="0.3" stroke-linecap="square" />
 </rule>
 
@@ -601,7 +601,7 @@
 
 
 
-<rule e="way" k="kohdeluokka" v="36312"  zoom-min="12">
+<rule e="way" k="kohdeluokka" v="36312"  zoom-min="14">
     <line stroke="#118AED" stroke-width="0.4" stroke-linecap="butt"/>
 </rule>
 
@@ -1505,7 +1505,7 @@
 
 
 <!--  22311 sahkolinja, jakelujannita  -->
-<rule e="way" k="kohdeluokka" v="22312">
+<rule e="way" k="kohdeluokka" v="22312" zoom-min="12">
     <line stroke="#000000" stroke-width="0.3" stroke-linecap="round" />
 </rule>
 
