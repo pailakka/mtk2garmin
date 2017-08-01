@@ -30,7 +30,7 @@ for tag in tags:
         parentNode = tag.parentNode
         parentNode.insertBefore(mapdom.createComment(tag.toxml()), tag)
         parentNode.removeChild(tag)
-        print 'missing style',(key,value)
+        print('missing style',(key,value))
         continue
     if not rule_zooms[(key,value)]:
         tag.setAttribute("zoom-appear"  , z)
@@ -42,4 +42,4 @@ f.write(mapdom.toxml())
 f.close()
 
 for missing in set(rule_zooms.keys()) - mapped_kvs:
-    print 'missing mapping',missing
+    print('missing mapping',missing)
