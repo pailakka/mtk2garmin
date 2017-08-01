@@ -196,14 +196,13 @@
 <ways>
 <osm-tag key="tyyppi" value="aita" zoom-appear="12" />
 <osm-tag key="tyyppi" value="allas" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="82100" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84111" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="82300" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="82100" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="82300" zoom-appear="5" />
 <osm-tag key="tyyppi" value="autoliikennealue" zoom-appear="10" />
 <osm-tag key="tyyppi" value="hautausmaa" zoom-appear="10" />
 <osm-tag key="tyyppi" value="hietikko" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="44500" zoom-appear="10" />
-<osm-tag key="tyyppi" value="jarvi" zoom-appear="10" />
+<osm-tag key="tyyppi" value="jarvi" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="34800" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="34400" zoom-appear="10" />
 <osm-tag key="tyyppi" value="kaatopaikka" zoom-appear="10" />
@@ -212,11 +211,11 @@
 <osm-tag key="tyyppi" value="kivikko" zoom-appear="10" />
 <osm-tag key="tyyppi" value="korkeuskayra" zoom-appear="14" />
 <osm-tag key="tyyppi" value="koski" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84111" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84112" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84113" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84114" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="84115" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="84111" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="84112" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="84113" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="84114" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="84115" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="32411" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="32412" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="32413" zoom-appear="10" />
@@ -233,7 +232,7 @@
 <osm-tag key="kohdeluokka" value="32611" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="32612" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="38300" zoom-appear="10" />
-<osm-tag key="tyyppi" value="meri" zoom-appear="10" />
+<osm-tag key="tyyppi" value="meri" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="39110" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="39120" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="39130" zoom-appear="10" />
@@ -317,16 +316,16 @@
 <osm-tag key="tyyppi" value="vesikivikko" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="16511" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="16512" zoom-appear="10" />
-<osm-tag key="tyyppi" value="virtavesialue" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="36311" zoom-appear="14" />
-<osm-tag key="kohdeluokka" value="36312" zoom-appear="12" />
+<osm-tag key="tyyppi" value="virtavesialue" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="36311" zoom-appear="15" />
+<osm-tag key="kohdeluokka" value="36312" zoom-appear="14" />
 <osm-tag key="kohdeluokka" value="30400" zoom-appear="10"/>
-<osm-tag key="highway" value="path" zoom-appear="10" />
-<osm-tag key="highway" value="track" zoom-appear="10" />
-<osm-tag key="highway" value="footway" zoom-appear="10" />
-<osm-tag key="tyyppi" value="luontopolut" zoom-appear="10" />
-<osm-tag key="tyyppi" value="ulkoilureititline" zoom-appear="10" />
-<osm-tag key="tyyppi" value="kesaretkeilyreititline" zoom-appear="10" />
+<osm-tag key="highway" value="path" zoom-appear="13" />
+<osm-tag key="highway" value="track" zoom-appear="13" />
+<osm-tag key="highway" value="footway" zoom-appear="13" />
+<osm-tag key="tyyppi" value="luontopolut" zoom-appear="13" />
+<osm-tag key="tyyppi" value="ulkoilureititline" zoom-appear="13" />
+<osm-tag key="tyyppi" value="kesaretkeilyreititline" zoom-appear="13" />
 
 <osm-tag key="kohdeluokka" value="72000" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="72200" zoom-appear="12"/>

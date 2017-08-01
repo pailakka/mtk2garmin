@@ -143,7 +143,7 @@
     <area fill="#80ff80" stroke="#000000" stroke-width="0.2" />
 </rule>
 
-<rule e="way" k="tyyppi" v="puisto" zoom-min="12">
+<rule e="way" k="tyyppi" v="puisto" zoom-min="13">
     <area fill="#b3ff66" stroke="#b3ff66" stroke-width="0.1" />
 </rule>
 
@@ -152,7 +152,7 @@
     <area fill="#ffd980" stroke="#000000" stroke-width="0.2" />
 </rule>
 
-<rule e="way" k="kohdeluokka" v="32612" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="32612" zoom-min="13">
     <area fill="#ffd980" stroke="#000000" stroke-width="0.2" />
 </rule>
 
@@ -611,7 +611,7 @@
 </rule>
 
 <!--  42220 42221 42222 liike tai julkinen rakennus alue -->
-<rule e="way" k="kohdeluokka" v="42220|42221|42222" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="42220|42221|42222" zoom-min="13">
     <area fill="#ff33ff" stroke="#000000" stroke-width="0.2" />
 </rule>
 
@@ -621,11 +621,11 @@
 </rule>
 
 <!-- 422340 42241 42242 teollinen rakennus alue -->
-<rule e="way" k="kohdeluokka" v="42240|42241|42242" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="42240|42241|42242" zoom-min="13">
     <area fill="#997399" stroke="#000000" stroke-width="0.2" />
 </rule>
 <!-- 42270 42250 42251 42252 kirkollinen rakennus alue -->
-<rule e="way" k="kohdeluokka" v="42270|42250|42251|42252" zoom-min="12">
+<rule e="way" k="kohdeluokka" v="42270|42250|42251|42252" zoom-min="13">
     <area fill="#997399" stroke="#000000" stroke-width="0.2" />
 </rule>
 
@@ -667,7 +667,7 @@
 
 
 <!-- 44800 masto -->
-<rule e="any" k="kohdeluokka" v="44800" zoom-min="10">
+<rule e="any" k="kohdeluokka" v="44800" zoom-min="11">
     <symbol src="file:/mml/Smasto.svg"  symbol-scaling="size" symbol-width="10" symbol-height="17"/>
 </rule>
 
@@ -1498,7 +1498,7 @@
 
 
 
-<rule e="way" k="tyyppi" v="aita">
+<rule e="way" k="tyyppi" v="aita" zoom-min="12">
     <line stroke="#000000" stroke-width="0.4" stroke-linecap="round" />
     <line stroke="#000000" stroke-width="1.0" stroke-dasharray="1,17" stroke-linecap="round" />
 </rule>
