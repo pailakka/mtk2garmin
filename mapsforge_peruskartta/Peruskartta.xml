@@ -331,7 +331,7 @@
 </rule>
 
 
-<rule e="way" k="tyyppi" v="taytemaa">
+<rule e="way" k="tyyppi" v="taytemaa" zoom-min="12">
     <line stroke="#ffffd9" stroke-width="0.2" stroke-linecap="square" />
 </rule>
 
