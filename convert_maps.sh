@@ -52,8 +52,7 @@ cd ../
 
 
 echo "Running osmosis writer!"
-echo $JAVACMD_OPTIONS
-osmosis/bin/osmosis --rbf all_osm.osm.pbf --mapfile-writer file=all.map bbox=59.4507573,19.0714057,70.1120744,31.6133108 tag-conf-file=mapsforge_peruskartta/mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2017"
+./mapsforge_convert.sh
 aws s3 cp all.map s3://kartat-build/all.map
 echo "Done!"
 shutdown -h now
