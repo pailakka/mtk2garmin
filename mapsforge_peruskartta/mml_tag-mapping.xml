@@ -269,11 +269,11 @@
 <osm-tag key="kohdeluokka" value="42261" zoom-appear="14" />
 <osm-tag key="kohdeluokka" value="42262" zoom-appear="14" />
 <osm-tag key="kohdeluokka" value="42270" zoom-appear="14" />
-<osm-tag key="tyyppi" value="rautatie" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="14111" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="14112" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="14121" zoom-appear="10" />
-<osm-tag key="kohdeluokka" value="14131" zoom-appear="10" />
+<osm-tag key="tyyppi" value="rautatie" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="14111" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="14112" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="14121" zoom-appear="5" />
+<osm-tag key="kohdeluokka" value="14131" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="22311" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="22312" zoom-appear="10" />
 <osm-tag key="tyyppi" value="soistuma" zoom-appear="12" />
