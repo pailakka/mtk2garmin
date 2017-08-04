@@ -209,7 +209,7 @@
 <osm-tag key="tyyppi" value="kallioalue" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="34500" zoom-appear="10" />
 <osm-tag key="tyyppi" value="kivikko" zoom-appear="10" />
-<osm-tag key="tyyppi" value="korkeuskayra" zoom-appear="14" />
+<osm-tag key="tyyppi" value="korkeuskayra" zoom-appear="15" />
 <osm-tag key="tyyppi" value="koski" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="84111" zoom-appear="5" />
 <osm-tag key="kohdeluokka" value="84112" zoom-appear="5" />
@@ -282,7 +282,7 @@
 <osm-tag key="kohdeluokka" value="35421" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="35422" zoom-appear="10" />
 
-<osm-tag key="tyyppi" value="syvyyskayra" zoom-appear="14" />
+<osm-tag key="tyyppi" value="syvyyskayra_v" zoom-appear="14" />
 <osm-tag key="tyyppi" value="syvyyskayrat" zoom-appear="14" />
 <osm-tag key="tyyppi" value="taytemaa" zoom-appear="10" />
 <osm-tag key="paallyste" value="0" zoom-appear="10" renderable="false"/>

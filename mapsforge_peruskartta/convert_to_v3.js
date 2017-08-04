@@ -78,14 +78,11 @@ var handleRuleTag = function(r) {
 
 
             this.npath = npath;
-            sharp(src.substr(6))
-                .resize(
-                    c.getAttribute('symbol-width') ? parseInt(c.getAttribute('symbol-width')) : 1,
-                    c.getAttribute('symbol-height') ? parseInt(c.getAttribute('symbol-height')) : 1
-                )
-                .toFile(npath.substr(6), function(err) {
-                    console.log(this.npath, 'converted');
-                }.apply(this));
+			const img = sharp(src.substr(6));
+            img.metadata()
+				.then(function (metadata) {
+					console.log(metadata);
+				})
 
 
             c.setAttribute('src', npath);
