@@ -230,7 +230,7 @@ class MTKToGarminConverter {
                 System.out.println(numids + " ids in cache");
             }
         }
-        System.exit(1);
+        System.exit(0);
 
     }
 
