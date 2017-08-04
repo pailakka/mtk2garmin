@@ -10,7 +10,7 @@ echo "Make /opt/mtk2garmin_build"
 mkdir -p /opt/mtk2garmin_build
 cd /opt/mtk2garmin_build
 
-rm -rf mtk2garmin
+rm -rf /opt/mtk2garmin_build/mtk2garmin
 
 git clone --depth=1 -b master --single-branch https://github.com/pailakka/mtk2garmin.git
 
