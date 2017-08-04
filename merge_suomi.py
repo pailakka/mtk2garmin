@@ -39,9 +39,9 @@ def createCommandList(filelist, k):
     cmd = []
     for i, fn in enumerate(filelist):
         if i == 0:
-            ocmd = './osmconvert64 suomi/%s' % fn
+            ocmd = './osmconvert suomi/%s' % fn
         else:
-            ocmd = './osmconvert64 - suomi/%s' % fn
+            ocmd = './osmconvert - suomi/%s' % fn
 
         if i == len(filelist) - 1:
             ocmd += ' -o=suomi/%s.osm.pbf' % k
