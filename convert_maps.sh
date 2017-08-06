@@ -4,7 +4,7 @@ echo "Installing packages"
 add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 apt-get update
 apt-get -y upgrade
-apt-get -y install default-jre git python unzip default-jdk maven python3 libgdal-java
+apt-get -y install default-jre git python unzip default-jdk maven python3 libgdal-java nsis
 
 
 time_stamp=$(date +%Y-%m-%d)
@@ -13,7 +13,8 @@ time_stamp=$(date +%Y-%m-%d)
 echo "Make /opt/mtk2garmin_build"
 mkdir -p /opt/mtk2garmin_build
 cd /opt/mtk2garmin_build
-mkdir -p "output/${time_stamp}"
+mkdir -p "/opt/mtk2garmin_build/output/${time_stamp}"
+mkdir -p "/var/www/jekku/public_html/kartat/${time_stamp}"
 
 rm -rf /opt/mtk2garmin_build/mtk2garmin
 
@@ -66,9 +67,9 @@ echo "Compiling typ done"
 echo "Compiling garmin img"
 java -jar -Xmx1G mkgmap-r3977/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
-cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.img"
+cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.img"
 aws s3 cp mtkgarmin/gmapsupp.img  "s3://kartat-build/${time_stamp}/mtk_suomi.img"
-mv mtkgarmin/gmapsupp.img "output/${time_stamp}/mtk_suomi.img"
+mv mtkgarmin/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.img"
 
 mkdir osmosis
 cd osmosis
@@ -88,16 +89,30 @@ echo "Running osmosis writer!"
 echo "Copying Mapsforge files"
 
 aws s3 cp all.map "s3://kartat-build/${time_stamp}/all.map"
-cp all.map "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.map"
-mv all.map "output/${time_stamp}/mtk_suomi.map"
+cp all.map "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.map"
+mv all.map "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.map"
 
 echo "Creating windows installer"
 cp peruskartta.typ mtkgarmin/peruskartta.typ
 cd mtkgarmin
 makensis osmmap.nsi
 echo "copying installer files"
-aws s3 cp "MTK Suomi.exe" "s3://kartat-build/${time_stamp}/mtk_suomi.zip"
-cp "MTK Suomi.exe" "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.exe"
-mv "MTK Suomi.exe" "../output/${time_stamp}/mtk_suomi.exe"
+aws s3 cp "MTK Suomi.exe" "s3://kartat-build/${time_stamp}/mtk_suomi.exe"
+cp "MTK Suomi.exe" "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.exe"
+mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
+cd ..
+
+cd mapsforge_peruskartta
+7za a peruskartta.zip Peruskartta.xml mml
+7za a tiekartta.zip Tiekartta.xml mml
+
+aws s3 cp "peruskartta.zip" "s3://kartat-build/${time_stamp}/peruskartta.zip"
+cp "peruskartta.zip" "/var/www/jekku/public_html/kartat/${time_stamp}/peruskartta.zip"
+mv "peruskartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/peruskartta.zip"
+
+aws s3 cp "tiekartta.zip" "s3://kartat-build/${time_stamp}/tiekartta.zip"
+cp "tiekartta.zip" "/var/www/jekku/public_html/kartat/${time_stamp}/tiekartta.zip"
+mv "tiekartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/tiekartta.zip"
+
 
 echo "Done!"
