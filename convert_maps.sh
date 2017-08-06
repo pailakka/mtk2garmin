@@ -64,7 +64,7 @@ echo "Compiling typ"
 java -cp "mkgmap-r3977/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
 echo "Compiling typ done"
 echo "Compiling garmin img"
-java -jar -Xmx1G mkgmap-r3977/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
+java -jar -Xmx15G mkgmap-r3977/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
 cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.img"
 aws s3 cp mtkgarmin/gmapsupp.img  "s3://kartat-build/${time_stamp}/mtk_suomi.img"
