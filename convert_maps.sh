@@ -6,9 +6,14 @@ apt-get update
 apt-get -y upgrade
 apt-get -y install default-jre git python unzip default-jdk maven python3 libgdal-java
 
+
+time_stamp=$(date +%Y-%m-%d)
+
+
 echo "Make /opt/mtk2garmin_build"
 mkdir -p /opt/mtk2garmin_build
 cd /opt/mtk2garmin_build
+mkdir -p "output/${time_stamp}"
 
 rm -rf /opt/mtk2garmin_build/mtk2garmin
 
@@ -52,7 +57,7 @@ unzip -o splitter.zip
 mkdir splitted
 
 echo "Splitting file..."
-java -jar -Xmx5G splitter-r584/splitter.jar --output-dir=splitted all_osm.osm.pbf > splitter.log
+java -jar -Xmx15G splitter-r584/splitter.jar --output-dir=splitted all_osm.osm.pbf
 echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
 echo "Compiling typ"
@@ -61,22 +66,38 @@ echo "Compiling typ done"
 echo "Compiling garmin img"
 java -jar -Xmx1G mkgmap-r3977/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
-
-aws s3 cp mtkgarmin/gmapsupp.img  s3://kartat-build/gmapsupp.img
+cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.img"
+aws s3 cp mtkgarmin/gmapsupp.img  "s3://kartat-build/${time_stamp}/mtk_suomi.img"
+mv mtkgarmin/gmapsupp.img "output/${time_stamp}/mtk_suomi.img"
 
 mkdir osmosis
 cd osmosis
-wget http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
+curl -O http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
 tar -xvzf osmosis-latest.tgz
 cd ../
 mkdir plugins
 cd plugins
-wget "https://jekku.hylly.org/mapsforge-map-writer-MTK2GARMIN-jar-with-dependencies.jar"
+curl -O "http://jekku.hylly.org/mapsforge-map-writer-MTK2GARMIN-jar-with-dependencies.jar"
 cd ../
 
 
 
 echo "Running osmosis writer!"
 ./mapsforge_convert.sh
-aws s3 cp all.map s3://kartat-build/all.map
+
+echo "Copying Mapsforge files"
+
+aws s3 cp all.map "s3://kartat-build/${time_stamp}/all.map"
+cp all.map "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.map"
+mv all.map "output/${time_stamp}/mtk_suomi.map"
+
+echo "Creating windows installer"
+cp peruskartta.typ mtkgarmin/peruskartta.typ
+cd mtkgarmin
+makensis osmmap.nsi
+echo "copying installer files"
+aws s3 cp "MTK Suomi.exe" "s3://kartat-build/${time_stamp}/mtk_suomi.zip"
+cp "MTK Suomi.exe" "/var/www/jekku/public_html/${time_stamp}/mtk_suomi.exe"
+mv "MTK Suomi.exe" "../output/${time_stamp}/mtk_suomi.exe"
+
 echo "Done!"
