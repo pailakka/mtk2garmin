@@ -42,9 +42,9 @@ class MTKToGarminConverter {
     private CoordinateTransformation srctowgs;
     private double minx = Double.POSITIVE_INFINITY, miny = Double.POSITIVE_INFINITY, maxx = Double.NEGATIVE_INFINITY,
             maxy = Double.NEGATIVE_INFINITY;
-    private long nodeidcounter = 5000000000L;
-    private long wayidcounter = 5000000000L;
-    private long relationidcounter = 5000000000L;
+    private long nodeidcounter = 10000000000L;
+    private long wayidcounter = 10000000000L;
+    private long relationidcounter = 10000000000L;
     private OSMPBF op;
     private double llx;
     private double lly;
