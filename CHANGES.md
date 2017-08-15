@@ -1,3 +1,8 @@
+v3.2 (15.08.2017)
+==========================
+- Karttojen tuotanto automatisoitu ja ajastettu viikottaiseksi
+- Pieniä korjauksia
+
 v3.1 (3.12.2016)
 ==========================
 - Korjattu Garmin versiota riivanneet ongelmat
