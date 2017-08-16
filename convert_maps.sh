@@ -48,24 +48,26 @@ cd mapsforge_peruskartta
 python3 tidy_tag_mapping.py
 cd ..
 
-wget -Omkgmap.zip http://www.mkgmap.org.uk/download/mkgmap-r3977.zip
-wget -Osplitter.zip http://www.mkgmap.org.uk/download/splitter-r584.zip
+mkdir mkgmap
+cd mkgmap
+wget -Omkgmap-latest.tar.gz http://www.mkgmap.org.uk/download/mkgmap-latest.tar.gz
+tar --extract --verbose --gzip --strip-components=1 --file=mkgmap-latest.tar.gz
 
-unzip -o mkgmap.zip
-unzip -o splitter.zip
-
+wget -Osplitter-latest.tar.gz http://www.mkgmap.org.uk/download/splitter-latest.tar.gz
+tar --extract --verbose --gzip --strip-components=1 --file=splitter-latest.tar.gz
+cd ..
 
 mkdir splitted
 
 echo "Splitting file..."
-java -jar -Xmx15G splitter-r584/splitter.jar --output-dir=splitted all_osm.osm.pbf
+java -jar -Xmx15G mkgmap/splitter.jar --output-dir=splitted all_osm.osm.pbf
 echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
 echo "Compiling typ"
-java -cp "mkgmap-r3977/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
+java -cp "mkgmap/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
 echo "Compiling typ done"
 echo "Compiling garmin img"
-java -jar -Xmx15G mkgmap-r3977/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
+java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
 cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.img"
 aws s3 cp mtkgarmin/gmapsupp.img  "s3://kartat-build/${time_stamp}/mtk_suomi.img"
