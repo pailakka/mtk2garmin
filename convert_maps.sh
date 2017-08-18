@@ -69,8 +69,6 @@ echo "Compiling typ done"
 echo "Compiling garmin img"
 java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
-cp mtkgarmin/gmapsupp.img "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.img"
-aws s3 cp mtkgarmin/gmapsupp.img  "s3://kartat-build/${time_stamp}/mtk_suomi.img"
 mv mtkgarmin/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.img"
 
 mkdir osmosis
@@ -89,9 +87,6 @@ echo "Running osmosis writer!"
 ./mapsforge_convert.sh
 
 echo "Copying Mapsforge files"
-
-aws s3 cp all.map "s3://kartat-build/${time_stamp}/all.map"
-cp all.map "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.map"
 mv all.map "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.map"
 
 echo "Creating windows installer"
@@ -99,21 +94,13 @@ cp peruskartta.typ mtkgarmin/peruskartta.typ
 cd mtkgarmin
 makensis osmmap.nsi
 echo "copying installer files"
-aws s3 cp "MTK Suomi.exe" "s3://kartat-build/${time_stamp}/mtk_suomi.exe"
-cp "MTK Suomi.exe" "/var/www/jekku/public_html/kartat/${time_stamp}/mtk_suomi.exe"
 mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
 cd ..
 
 cd mapsforge_peruskartta
 7za a peruskartta.zip Peruskartta.xml mml
 7za a tiekartta.zip Tiekartta.xml mml
-
-aws s3 cp "peruskartta.zip" "s3://kartat-build/${time_stamp}/peruskartta.zip"
-cp "peruskartta.zip" "/var/www/jekku/public_html/kartat/${time_stamp}/peruskartta.zip"
 mv "peruskartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/peruskartta.zip"
-
-aws s3 cp "tiekartta.zip" "s3://kartat-build/${time_stamp}/tiekartta.zip"
-cp "tiekartta.zip" "/var/www/jekku/public_html/kartat/${time_stamp}/tiekartta.zip"
 mv "tiekartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/tiekartta.zip"
 
 
