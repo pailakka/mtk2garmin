@@ -5,6 +5,7 @@ from collections import OrderedDict
 import hashlib
 import time
 import humanfriendly
+import datetime
 
 path = sys.argv[1]
 date = os.path.basename(path)
@@ -127,6 +128,13 @@ for fn in files:
         filebytes = f.tell()
     
     release_files[fn]['size'] = filebytes
+    try:
+        mtime = os.path.getmtime(fp)
+    except OSError:
+        mtime = 0
+    last_modified_date = datetime.datetime.fromtimestamp(mtime)
+
+    release_files[fn]['updated'] = last_modified_date
     release_files[fn]['hash'] = sha1hash.hexdigest()
 
     assert release_files[fn]['size'] and release_files[fn]['size'] > 0
@@ -157,8 +165,9 @@ with open(os.path.join(path,'site.html'),'w+') as f:
                                 <a class="dl" href="http://jekku.hylly.org/kartat/%(date)s/%(name)s">%(name)s</a>
                             </td>
                             <td>%(description)s</td>
+                            <td>%(updated)s</td>
                             <td>%(size_text)s</td>
-                            <td>%(hash)s</td>
+                            <td><code>%(hash)s</code></td>
                         </tr>''' % rf)
     f.write(footer % {'changes':changes,'date':date})
 

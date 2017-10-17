@@ -7,9 +7,8 @@
         <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Maastotietokanta Garmin-navigaattoreille ja Androidiin">
-        <meta name="author" content="Teemu Peltonen 2016">
-        <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.0.4/css/bootstrap-combined.min.css"
-        rel="stylesheet">
+        <meta name="author" content="Teemu Peltonen 2017">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
         <style>
             body {
                 padding-top: 60px;
@@ -41,18 +40,9 @@
                 fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         </script>
-        <div class="navbar navbar-fixed-top">
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-                    <a class="brand" href="#">Maastotietokanta Garminille ja Androidille</a>
-                </div>
-            </div>
-        </div>
+        <nav class="navbar navbar-dark bg-dark fixed-top ">
+                    <a class="navbar-brand" href="#">Maastotietokanta Garminille ja Androidille</a>
+        </nav>
         <div class="container">
             <table>
                 <tr>
@@ -97,23 +87,23 @@
                 peruskarttojen värityksiä muistuttava ratkaisu myös Garminin laitteisiin.
                 Muunnos toteutetaan osaltaa itse kehitetyillä ohjelmilla ja  avoimen lähdekoodin
                 <a href="http://www.mkgmap.org.uk/">mkgmap</a>:in avustuksella. Samoilla rakenteilla pystytään vaivattomasti tuottamaan myös <a href="https://github.com/mapsforge/mapsforge">Mapsforge</a> yhteensopivat karttatiedostot</p>
-            <ul class="thumbnails">
-                <li class="span3">
-                    <a href="img/scr1.png" class="thumbnail">
-        <img src="img/tscr1.png" alt="">
+            <div class="card-group">
+  <div class="card">
+    <a href="img/scr1.png" class="thumbnail">
+    <img class="card-img-top img-thumbnail" src="img/tscr1.png" alt="" />
         </a>
-                </li>
-                <li class="span3">
-                    <a href="img/scr2.png" class="thumbnail">
-        <img src="img/tscr2.png" alt="">
+                </div>
+  <div class="card">
+    <a href="img/scr2.png" class="thumbnail">
+    <img class="card-img-top img-thumbnail" src="img/tscr2.png" alt="" />
         </a>
-                </li>
-                <li class="span3">
-                    <a href="img/scr3.png" class="thumbnail">
-        <img src="img/tscr3.png" alt="">
+                </div>
+                  <div class="card">
+    <a href="img/scr3.png" class="thumbnail">
+    <img class="card-img-top img-thumbnail" src="img/tscr3.png" alt="" />
         </a>
-                </li>
-            </ul>
+                </div>
+            </div>
             <h1>Miksi?</h1>
             <p>Maanmittauslaitos vapautti aineistojaan 1.5.2012. Tämän seurauksena myös
                 maastotiedon graalin malja, Maastotietokanta tuli julkiseksi ja vapaasti
@@ -134,11 +124,12 @@
             <hr/>
             <h1>Tänne. Heti. Kaikki. Nyt.</h1>
             <p>
-                <table class="table table-striped table-bordered table-condensed">
+                <table class="table table-striped table-bordered table-sm">
                     <thead>
                         <tr>
                             <th id="t">Tiedosto</th>
                             <th>Käyttö</th>
+                            <th>Päivitetty</th>
                             <th id="k">Koko</th>
                             <th>SHA1-summa</th>
                         </tr>
