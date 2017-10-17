@@ -7,6 +7,9 @@ import time
 import humanfriendly
 import datetime
 
+from pushover import Client
+
+
 path = sys.argv[1]
 date = os.path.basename(path)
 files = os.listdir(path)
@@ -170,6 +173,9 @@ with open(os.path.join(path,'site.html'),'w+') as f:
                             <td><code>%(hash)s</code></td>
                         </tr>''' % rf)
     f.write(footer % {'changes':changes,'date':date})
+
+    Client().send_message(("http://jekku.hylly.org/kartat/%s/site.html\nhttp://kartat.hylly.org\n" % (date)) + ("mtk_garmin.img: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.img']))
+         + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])), title="mtk2garmin published")
 
     print("site.html written")
 
