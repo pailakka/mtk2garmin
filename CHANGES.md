@@ -1,4 +1,4 @@
-v3.2 (15.08.2017)
+v3.2 (17.10.2017)
 ==========================
 - Karttojen tuotanto automatisoitu ja ajastettu viikottaiseksi
 - Pieniä korjauksia
