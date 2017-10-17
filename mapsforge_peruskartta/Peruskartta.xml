@@ -337,7 +337,7 @@
 
 
 <!-- polku -->
-<rule e="way" k="highway" v="path|footway" zoom-min="13">
+<rule e="way" k="highway" v="path|footway|trail" zoom-min="13">
     <line stroke="#0000ff" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt" />
 </rule>
 <rule e="way" k="kohdeluokka" v="12313" zoom-min="13">
