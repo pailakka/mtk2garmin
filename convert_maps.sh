@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
-echo "Installing packages"
-add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
-apt-get update
-apt-get -y upgrade
-apt-get -y install default-jre git python unzip default-jdk maven python3 libgdal-java nsis
+#echo "Installing packages"
+#add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
+#apt-get update
+#apt-get -y upgrade
+#apt-get -y install default-jre git python unzip default-jdk maven python3 libgdal-java nsis
 
 
 time_stamp=$(date +%Y-%m-%d)
