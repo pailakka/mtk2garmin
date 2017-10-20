@@ -60,7 +60,7 @@ cd ..
 mkdir splitted
 
 echo "Splitting file..."
-java -jar -Xmx15G mkgmap/splitter.jar --output-dir=splitted all_osm.osm.pbf
+java -jar -Xmx15G mkgmap/splitter.jar --output-dir=splitted --max-areas=1024 --max-nodes=600000 all_osm.osm.pbf
 echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
 echo "Compiling typ"
