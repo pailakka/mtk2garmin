@@ -53,6 +53,15 @@ release_files = OrderedDict((
         'size':None,
         'hash':None
     }),
+    ('peruskartta_v3.zip',{
+        'type':'mapsforge_style',
+        'name':'peruskartta_v3.zip',
+        'description':'''Peruskartta-tyylimäärittelyt Mapsforge / Android< (v3-yhteensopiva)br/>
+                            <a href="orux-mf-theme://jekku.hylly.org/kartat/%(date)s/%(name)s">Asenna tyylimäärittelyt Oruxmapsiin</a><br/>
+                            <a href="locus-actions://http/jekku.hylly.org/kartat/%(date)s/%(locus_file)s">Asenna tyylimäärittelyt Locukseen</a>''',
+        'size':None,
+        'hash':None
+    }),
     ('tiekartta.zip',{
         'type':'mapsforge_style',
         'name':'tiekartta.zip',
@@ -175,7 +184,7 @@ with open(os.path.join(path,'site.html'),'w+') as f:
     f.write(footer % {'changes':changes,'date':date})
 
     Client().send_message(("http://jekku.hylly.org/kartat/%s/site.html\nhttp://kartat.hylly.org\n" % (date)) + ("mtk_garmin.img: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.img']))
-         + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])), title="mtk2garmin published")
+         + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])), title="mtk2garmin published",config_path="/opt/.pushoverrc")
 
     print("site.html written")
 

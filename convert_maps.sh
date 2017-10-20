@@ -100,8 +100,9 @@ cd ..
 cd mapsforge_peruskartta
 7za a peruskartta.zip Peruskartta.xml mml
 7za a tiekartta.zip Tiekartta.xml mml
+curl -O http://kartat.hylly.org/peruskartta_v3.zip -Operuskartta_v3.zip
 mv "peruskartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/peruskartta.zip"
 mv "tiekartta.zip" "/opt/mtk2garmin_build/output/${time_stamp}/tiekartta.zip"
-
+mv "peruskartta_v3.zip" "/opt/mtk2garmin_build/output/${time_stamp}/peruskartta_v3.zip"
 
 echo "Done!"
