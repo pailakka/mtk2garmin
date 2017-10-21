@@ -84,7 +84,7 @@ tyyppi=syvyyskayra_v {name '${ele|height:"m=>ft"}'} [0x24]
 
 
 highway=track [0x0c level 1]
-highway=trail [0x0c level 1]
+highway=trail [0x0d level 1]
 highway=path [0x0d level 1]
 highway=footway [0x0d level 1]
 
