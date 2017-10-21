@@ -183,8 +183,8 @@ with open(os.path.join(path,'site.html'),'w+') as f:
                         </tr>''' % rf)
     f.write(footer % {'changes':changes,'date':date})
 
-    Client().send_message(("http://jekku.hylly.org/kartat/%s/site.html\nhttp://kartat.hylly.org\n" % (date)) + ("mtk_garmin.img: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.img']))
-         + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])), title="mtk2garmin published",config_path="/opt/.pushoverrc")
+    Client(config_path="/opt/.pushoverrc").send_message(("http://jekku.hylly.org/kartat/%s/site.html\nhttp://kartat.hylly.org\n" % (date)) + ("mtk_garmin.img: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.img']))
+         + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])), title="mtk2garmin published")
 
     print("site.html written")
 
