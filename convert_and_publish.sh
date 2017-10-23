@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+set -o pipefail
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/local/go/bin
 date
 time_stamp=$(date +%Y-%m-%d)
