@@ -55,7 +55,7 @@ tar -xvzf osmosis-latest.tgz
 cd ../
 mkdir plugins
 cd plugins
-curl --fail -O "https://oss.sonatype.org/content/repositories/snapshots/org/mapsforge/mapsforge-map-writer/master-SNAPSHOT/mapsforge-map-writer-master-20171122.073203-184-jar-with-dependencies.jar"
+curl --fail -O "http://central.maven.org/maven2/org/mapsforge/mapsforge-map-writer/0.9.0/mapsforge-map-writer-0.9.0-jar-with-dependencies.jar"
 cd ../
 
 mkdir mkgmap
