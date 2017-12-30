@@ -4,16 +4,10 @@
 package org.openstreetmap.osmosis.osmbinary;
 
 public final class Osmformat {
-    static {
-    }
-
-    private Osmformat() {
-    }
-
+    private Osmformat() {}
     public static void registerAllExtensions(
             com.google.protobuf.ExtensionRegistryLite registry) {
     }
-
     public interface HeaderBlockOrBuilder extends
             // @@protoc_insertion_point(interface_extends:OSMPBF.HeaderBlock)
             com.google.protobuf.MessageLiteOrBuilder {
@@ -22,7 +16,6 @@ public final class Osmformat {
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
         boolean hasBbox();
-
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
@@ -32,35 +25,32 @@ public final class Osmformat {
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         java.util.List<String>
         getRequiredFeaturesList();
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         int getRequiredFeaturesCount();
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         java.lang.String getRequiredFeatures(int index);
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         com.google.protobuf.ByteString
@@ -71,17 +61,14 @@ public final class Osmformat {
          */
         java.util.List<String>
         getOptionalFeaturesList();
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         int getOptionalFeaturesCount();
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         java.lang.String getOptionalFeatures(int index);
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -92,12 +79,10 @@ public final class Osmformat {
          * <code>optional string writingprogram = 16;</code>
          */
         boolean hasWritingprogram();
-
         /**
          * <code>optional string writingprogram = 16;</code>
          */
         java.lang.String getWritingprogram();
-
         /**
          * <code>optional string writingprogram = 16;</code>
          */
@@ -108,25 +93,23 @@ public final class Osmformat {
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         boolean hasSource();
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         java.lang.String getSource();
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         com.google.protobuf.ByteString
@@ -138,18 +121,17 @@ public final class Osmformat {
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         boolean hasOsmosisReplicationTimestamp();
-
         /**
          * <pre>
          * replication timestamp, expressed in seconds since the epoch,
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         long getOsmosisReplicationTimestamp();
@@ -158,16 +140,15 @@ public final class Osmformat {
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         boolean hasOsmosisReplicationSequenceNumber();
-
         /**
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         long getOsmosisReplicationSequenceNumber();
@@ -176,1076 +157,36 @@ public final class Osmformat {
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         boolean hasOsmosisReplicationBaseUrl();
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         java.lang.String getOsmosisReplicationBaseUrl();
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         com.google.protobuf.ByteString
         getOsmosisReplicationBaseUrlBytes();
     }
-
-    public interface HeaderBBoxOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.HeaderBBox)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>required sint64 left = 1;</code>
-         */
-        boolean hasLeft();
-
-        /**
-         * <code>required sint64 left = 1;</code>
-         */
-        long getLeft();
-
-        /**
-         * <code>required sint64 right = 2;</code>
-         */
-        boolean hasRight();
-
-        /**
-         * <code>required sint64 right = 2;</code>
-         */
-        long getRight();
-
-        /**
-         * <code>required sint64 top = 3;</code>
-         */
-        boolean hasTop();
-
-        /**
-         * <code>required sint64 top = 3;</code>
-         */
-        long getTop();
-
-        /**
-         * <code>required sint64 bottom = 4;</code>
-         */
-        boolean hasBottom();
-
-        /**
-         * <code>required sint64 bottom = 4;</code>
-         */
-        long getBottom();
-    }
-
-    public interface PrimitiveBlockOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.PrimitiveBlock)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-         */
-        boolean hasStringtable();
-
-        /**
-         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getStringtable();
-
-        /**
-         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup>
-        getPrimitivegroupList();
-
-        /**
-         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getPrimitivegroup(int index);
-
-        /**
-         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-         */
-        int getPrimitivegroupCount();
-
-        /**
-         * <pre>
-         * Granularity, units of nanodegrees, used to store coordinates in this block
-         * </pre>
-         * <p>
-         * <code>optional int32 granularity = 17 [default = 100];</code>
-         */
-        boolean hasGranularity();
-
-        /**
-         * <pre>
-         * Granularity, units of nanodegrees, used to store coordinates in this block
-         * </pre>
-         * <p>
-         * <code>optional int32 granularity = 17 [default = 100];</code>
-         */
-        int getGranularity();
-
-        /**
-         * <pre>
-         * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-         * </pre>
-         * <p>
-         * <code>optional int64 lat_offset = 19 [default = 0];</code>
-         */
-        boolean hasLatOffset();
-
-        /**
-         * <pre>
-         * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-         * </pre>
-         * <p>
-         * <code>optional int64 lat_offset = 19 [default = 0];</code>
-         */
-        long getLatOffset();
-
-        /**
-         * <code>optional int64 lon_offset = 20 [default = 0];</code>
-         */
-        boolean hasLonOffset();
-
-        /**
-         * <code>optional int64 lon_offset = 20 [default = 0];</code>
-         */
-        long getLonOffset();
-
-        /**
-         * <pre>
-         * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-         * </pre>
-         * <p>
-         * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-         */
-        boolean hasDateGranularity();
-
-        /**
-         * <pre>
-         * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-         * </pre>
-         * <p>
-         * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-         */
-        int getDateGranularity();
-    }
-
-    public interface PrimitiveGroupOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.PrimitiveGroup)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>repeated .OSMPBF.Node nodes = 1;</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Node>
-        getNodesList();
-
-        /**
-         * <code>repeated .OSMPBF.Node nodes = 1;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Node getNodes(int index);
-
-        /**
-         * <code>repeated .OSMPBF.Node nodes = 1;</code>
-         */
-        int getNodesCount();
-
-        /**
-         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-         */
-        boolean hasDense();
-
-        /**
-         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDense();
-
-        /**
-         * <code>repeated .OSMPBF.Way ways = 3;</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Way>
-        getWaysList();
-
-        /**
-         * <code>repeated .OSMPBF.Way ways = 3;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Way getWays(int index);
-
-        /**
-         * <code>repeated .OSMPBF.Way ways = 3;</code>
-         */
-        int getWaysCount();
-
-        /**
-         * <code>repeated .OSMPBF.Relation relations = 4;</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation>
-        getRelationsList();
-
-        /**
-         * <code>repeated .OSMPBF.Relation relations = 4;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getRelations(int index);
-
-        /**
-         * <code>repeated .OSMPBF.Relation relations = 4;</code>
-         */
-        int getRelationsCount();
-
-        /**
-         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet>
-        getChangesetsList();
-
-        /**
-         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getChangesets(int index);
-
-        /**
-         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-         */
-        int getChangesetsCount();
-    }
-
-    public interface StringTableOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.StringTable)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>repeated bytes s = 1;</code>
-         */
-        java.util.List<com.google.protobuf.ByteString> getSList();
-
-        /**
-         * <code>repeated bytes s = 1;</code>
-         */
-        int getSCount();
-
-        /**
-         * <code>repeated bytes s = 1;</code>
-         */
-        com.google.protobuf.ByteString getS(int index);
-    }
-
-    public interface InfoOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.Info)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>optional int32 version = 1 [default = -1];</code>
-         */
-        boolean hasVersion();
-
-        /**
-         * <code>optional int32 version = 1 [default = -1];</code>
-         */
-        int getVersion();
-
-        /**
-         * <code>optional int64 timestamp = 2;</code>
-         */
-        boolean hasTimestamp();
-
-        /**
-         * <code>optional int64 timestamp = 2;</code>
-         */
-        long getTimestamp();
-
-        /**
-         * <code>optional int64 changeset = 3;</code>
-         */
-        boolean hasChangeset();
-
-        /**
-         * <code>optional int64 changeset = 3;</code>
-         */
-        long getChangeset();
-
-        /**
-         * <code>optional int32 uid = 4;</code>
-         */
-        boolean hasUid();
-
-        /**
-         * <code>optional int32 uid = 4;</code>
-         */
-        int getUid();
-
-        /**
-         * <pre>
-         * String IDs
-         * </pre>
-         * <p>
-         * <code>optional uint32 user_sid = 5;</code>
-         */
-        boolean hasUserSid();
-
-        /**
-         * <pre>
-         * String IDs
-         * </pre>
-         * <p>
-         * <code>optional uint32 user_sid = 5;</code>
-         */
-        int getUserSid();
-
-        /**
-         * <pre>
-         * The visible flag is used to store history information. It indicates that
-         * the current object version has been created by a delete operation on the
-         * OSM API.
-         * When a writer sets this flag, it MUST add a required_features tag with
-         * value "HistoricalInformation" to the HeaderBlock.
-         * If this flag is not available for some object it MUST be assumed to be
-         * true if the file has the required_features tag "HistoricalInformation"
-         * set.
-         * </pre>
-         * <p>
-         * <code>optional bool visible = 6;</code>
-         */
-        boolean hasVisible();
-
-        /**
-         * <pre>
-         * The visible flag is used to store history information. It indicates that
-         * the current object version has been created by a delete operation on the
-         * OSM API.
-         * When a writer sets this flag, it MUST add a required_features tag with
-         * value "HistoricalInformation" to the HeaderBlock.
-         * If this flag is not available for some object it MUST be assumed to be
-         * true if the file has the required_features tag "HistoricalInformation"
-         * set.
-         * </pre>
-         * <p>
-         * <code>optional bool visible = 6;</code>
-         */
-        boolean getVisible();
-    }
-
-    public interface DenseInfoOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.DenseInfo)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>repeated int32 version = 1 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getVersionList();
-
-        /**
-         * <code>repeated int32 version = 1 [packed = true];</code>
-         */
-        int getVersionCount();
-
-        /**
-         * <code>repeated int32 version = 1 [packed = true];</code>
-         */
-        int getVersion(int index);
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getTimestampList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-         */
-        int getTimestampCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-         */
-        long getTimestamp(int index);
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 changeset = 3 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getChangesetList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 changeset = 3 [packed = true];</code>
-         */
-        int getChangesetCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 changeset = 3 [packed = true];</code>
-         */
-        long getChangeset(int index);
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 uid = 4 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getUidList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 uid = 4 [packed = true];</code>
-         */
-        int getUidCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 uid = 4 [packed = true];</code>
-         */
-        int getUid(int index);
-
-        /**
-         * <pre>
-         * String IDs for usernames. DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getUserSidList();
-
-        /**
-         * <pre>
-         * String IDs for usernames. DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-         */
-        int getUserSidCount();
-
-        /**
-         * <pre>
-         * String IDs for usernames. DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-         */
-        int getUserSid(int index);
-
-        /**
-         * <pre>
-         * The visible flag is used to store history information. It indicates that
-         * the current object version has been created by a delete operation on the
-         * OSM API.
-         * When a writer sets this flag, it MUST add a required_features tag with
-         * value "HistoricalInformation" to the HeaderBlock.
-         * If this flag is not available for some object it MUST be assumed to be
-         * true if the file has the required_features tag "HistoricalInformation"
-         * set.
-         * </pre>
-         * <p>
-         * <code>repeated bool visible = 6 [packed = true];</code>
-         */
-        java.util.List<java.lang.Boolean> getVisibleList();
-
-        /**
-         * <pre>
-         * The visible flag is used to store history information. It indicates that
-         * the current object version has been created by a delete operation on the
-         * OSM API.
-         * When a writer sets this flag, it MUST add a required_features tag with
-         * value "HistoricalInformation" to the HeaderBlock.
-         * If this flag is not available for some object it MUST be assumed to be
-         * true if the file has the required_features tag "HistoricalInformation"
-         * set.
-         * </pre>
-         * <p>
-         * <code>repeated bool visible = 6 [packed = true];</code>
-         */
-        int getVisibleCount();
-
-        /**
-         * <pre>
-         * The visible flag is used to store history information. It indicates that
-         * the current object version has been created by a delete operation on the
-         * OSM API.
-         * When a writer sets this flag, it MUST add a required_features tag with
-         * value "HistoricalInformation" to the HeaderBlock.
-         * If this flag is not available for some object it MUST be assumed to be
-         * true if the file has the required_features tag "HistoricalInformation"
-         * set.
-         * </pre>
-         * <p>
-         * <code>repeated bool visible = 6 [packed = true];</code>
-         */
-        boolean getVisible(int index);
-    }
-
-    public interface ChangeSetOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.ChangeSet)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <pre>
-         *
-         *   // Parallel arrays.
-         *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-         *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-         *   optional Info info = 4;
-         * </pre>
-         * <p>
-         * <code>required int64 id = 1;</code>
-         */
-        boolean hasId();
-
-        /**
-         * <pre>
-         *
-         *   // Parallel arrays.
-         *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-         *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-         *   optional Info info = 4;
-         * </pre>
-         * <p>
-         * <code>required int64 id = 1;</code>
-         */
-        long getId();
-    }
-
-    public interface NodeOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.Node)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>required sint64 id = 1;</code>
-         */
-        boolean hasId();
-
-        /**
-         * <code>required sint64 id = 1;</code>
-         */
-        long getId();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getKeysList();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeysCount();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeys(int index);
-
-        /**
-         * <pre>
-         * String IDs.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getValsList();
-
-        /**
-         * <pre>
-         * String IDs.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getValsCount();
-
-        /**
-         * <pre>
-         * String IDs.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getVals(int index);
-
-        /**
-         * <pre>
-         * May be omitted in omitmeta
-         * </pre>
-         * <p>
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        boolean hasInfo();
-
-        /**
-         * <pre>
-         * May be omitted in omitmeta
-         * </pre>
-         * <p>
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
-
-        /**
-         * <code>required sint64 lat = 8;</code>
-         */
-        boolean hasLat();
-
-        /**
-         * <code>required sint64 lat = 8;</code>
-         */
-        long getLat();
-
-        /**
-         * <code>required sint64 lon = 9;</code>
-         */
-        boolean hasLon();
-
-        /**
-         * <code>required sint64 lon = 9;</code>
-         */
-        long getLon();
-    }
-
-    public interface DenseNodesOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.DenseNodes)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 id = 1 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getIdList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 id = 1 [packed = true];</code>
-         */
-        int getIdCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 id = 1 [packed = true];</code>
-         */
-        long getId(int index);
-
-        /**
-         * <pre>
-         * repeated Info info = 4;
-         * </pre>
-         * <p>
-         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-         */
-        boolean hasDenseinfo();
-
-        /**
-         * <pre>
-         * repeated Info info = 4;
-         * </pre>
-         * <p>
-         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDenseinfo();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lat = 8 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getLatList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lat = 8 [packed = true];</code>
-         */
-        int getLatCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lat = 8 [packed = true];</code>
-         */
-        long getLat(int index);
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lon = 9 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getLonList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lon = 9 [packed = true];</code>
-         */
-        int getLonCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 lon = 9 [packed = true];</code>
-         */
-        long getLon(int index);
-
-        /**
-         * <pre>
-         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-         * </pre>
-         * <p>
-         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getKeysValsList();
-
-        /**
-         * <pre>
-         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-         * </pre>
-         * <p>
-         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-         */
-        int getKeysValsCount();
-
-        /**
-         * <pre>
-         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-         * </pre>
-         * <p>
-         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-         */
-        int getKeysVals(int index);
-    }
-
-    public interface WayOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.Way)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>required int64 id = 1;</code>
-         */
-        boolean hasId();
-
-        /**
-         * <code>required int64 id = 1;</code>
-         */
-        long getId();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getKeysList();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeysCount();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeys(int index);
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getValsList();
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getValsCount();
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getVals(int index);
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        boolean hasInfo();
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 refs = 8 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getRefsList();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 refs = 8 [packed = true];</code>
-         */
-        int getRefsCount();
-
-        /**
-         * <pre>
-         * DELTA coded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 refs = 8 [packed = true];</code>
-         */
-        long getRefs(int index);
-    }
-
-    public interface RelationOrBuilder extends
-            // @@protoc_insertion_point(interface_extends:OSMPBF.Relation)
-            com.google.protobuf.MessageLiteOrBuilder {
-
-        /**
-         * <code>required int64 id = 1;</code>
-         */
-        boolean hasId();
-
-        /**
-         * <code>required int64 id = 1;</code>
-         */
-        long getId();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getKeysList();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeysCount();
-
-        /**
-         * <pre>
-         * Parallel arrays.
-         * </pre>
-         * <p>
-         * <code>repeated uint32 keys = 2 [packed = true];</code>
-         */
-        int getKeys(int index);
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getValsList();
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getValsCount();
-
-        /**
-         * <code>repeated uint32 vals = 3 [packed = true];</code>
-         */
-        int getVals(int index);
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        boolean hasInfo();
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
-
-        /**
-         * <pre>
-         * Parallel arrays
-         * </pre>
-         * <p>
-         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-         */
-        java.util.List<java.lang.Integer> getRolesSidList();
-
-        /**
-         * <pre>
-         * Parallel arrays
-         * </pre>
-         * <p>
-         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-         */
-        int getRolesSidCount();
-
-        /**
-         * <pre>
-         * Parallel arrays
-         * </pre>
-         * <p>
-         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-         */
-        int getRolesSid(int index);
-
-        /**
-         * <pre>
-         * DELTA encoded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 memids = 9 [packed = true];</code>
-         */
-        java.util.List<java.lang.Long> getMemidsList();
-
-        /**
-         * <pre>
-         * DELTA encoded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 memids = 9 [packed = true];</code>
-         */
-        int getMemidsCount();
-
-        /**
-         * <pre>
-         * DELTA encoded
-         * </pre>
-         * <p>
-         * <code>repeated sint64 memids = 9 [packed = true];</code>
-         */
-        long getMemids(int index);
-
-        /**
-         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-         */
-        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> getTypesList();
-
-        /**
-         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-         */
-        int getTypesCount();
-
-        /**
-         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-         */
-        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType getTypes(int index);
-    }
-
     /**
      * Protobuf type {@code OSMPBF.HeaderBlock}
      */
-    public static final class HeaderBlock extends
+    public  static final class HeaderBlock extends
             com.google.protobuf.GeneratedMessageLite<
                     HeaderBlock, HeaderBlock.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.HeaderBlock)
             HeaderBlockOrBuilder {
-        public static final int BBOX_FIELD_NUMBER = 1;
-        public static final int REQUIRED_FEATURES_FIELD_NUMBER = 4;
-        public static final int OPTIONAL_FEATURES_FIELD_NUMBER = 5;
-        public static final int WRITINGPROGRAM_FIELD_NUMBER = 16;
-        public static final int SOURCE_FIELD_NUMBER = 17;
-        public static final int OSMOSIS_REPLICATION_TIMESTAMP_FIELD_NUMBER = 32;
-        public static final int OSMOSIS_REPLICATION_SEQUENCE_NUMBER_FIELD_NUMBER = 33;
-        public static final int OSMOSIS_REPLICATION_BASE_URL_FIELD_NUMBER = 34;
-        // @@protoc_insertion_point(class_scope:OSMPBF.HeaderBlock)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<HeaderBlock> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new HeaderBlock();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox bbox_;
-        private com.google.protobuf.Internal.ProtobufList<String> requiredFeatures_;
-        private com.google.protobuf.Internal.ProtobufList<String> optionalFeatures_;
-        private java.lang.String writingprogram_;
-        private java.lang.String source_;
-        private long osmosisReplicationTimestamp_;
-        private long osmosisReplicationSequenceNumber_;
-        private java.lang.String osmosisReplicationBaseUrl_;
-        private byte memoizedIsInitialized = -1;
-
         private HeaderBlock() {
             requiredFeatures_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
             optionalFeatures_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
@@ -1253,131 +194,21 @@ public final class Osmformat {
             source_ = "";
             osmosisReplicationBaseUrl_ = "";
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<HeaderBlock> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int BBOX_FIELD_NUMBER = 1;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox bbox_;
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
         public boolean hasBbox() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox getBbox() {
             return bbox_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.getDefaultInstance() : bbox_;
         }
-
-        /**
-         * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-         */
-        private void setBbox(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.Builder builderForValue) {
-            bbox_ = builderForValue.build();
-            bitField0_ |= 0x00000001;
-        }
-
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
@@ -1388,7 +219,14 @@ public final class Osmformat {
             bbox_ = value;
             bitField0_ |= 0x00000001;
         }
-
+        /**
+         * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+         */
+        private void setBbox(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.Builder builderForValue) {
+            bbox_ = builderForValue.build();
+            bitField0_ |= 0x00000001;
+        }
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
@@ -1402,53 +240,50 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000001;
         }
-
         /**
          * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
          */
-        private void clearBbox() {
-            bbox_ = null;
+        private void clearBbox() {  bbox_ = null;
             bitField0_ = (bitField0_ & ~0x00000001);
         }
 
+        public static final int REQUIRED_FEATURES_FIELD_NUMBER = 4;
+        private com.google.protobuf.Internal.ProtobufList<String> requiredFeatures_;
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         public java.util.List<String> getRequiredFeaturesList() {
             return requiredFeatures_;
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         public int getRequiredFeaturesCount() {
             return requiredFeatures_.size();
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         public java.lang.String getRequiredFeatures(int index) {
             return requiredFeatures_.get(index);
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         public com.google.protobuf.ByteString
@@ -1456,19 +291,17 @@ public final class Osmformat {
             return com.google.protobuf.ByteString.copyFromUtf8(
                     requiredFeatures_.get(index));
         }
-
         private void ensureRequiredFeaturesIsMutable() {
             if (!requiredFeatures_.isModifiable()) {
                 requiredFeatures_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(requiredFeatures_);
             }
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         private void setRequiredFeatures(
@@ -1479,12 +312,11 @@ public final class Osmformat {
             ensureRequiredFeaturesIsMutable();
             requiredFeatures_.set(index, value);
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         private void addRequiredFeatures(
@@ -1495,12 +327,11 @@ public final class Osmformat {
             ensureRequiredFeaturesIsMutable();
             requiredFeatures_.add(value);
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         private void addAllRequiredFeatures(
@@ -1509,23 +340,21 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, requiredFeatures_);
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         private void clearRequiredFeatures() {
             requiredFeatures_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
         }
-
         /**
          * <pre>
          * Additional tags to aid in parsing this dataset
          * </pre>
-         * <p>
+         *
          * <code>repeated string required_features = 4;</code>
          */
         private void addRequiredFeaturesBytes(
@@ -1537,27 +366,26 @@ public final class Osmformat {
             requiredFeatures_.add(value.toStringUtf8());
         }
 
+        public static final int OPTIONAL_FEATURES_FIELD_NUMBER = 5;
+        private com.google.protobuf.Internal.ProtobufList<String> optionalFeatures_;
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         public java.util.List<String> getOptionalFeaturesList() {
             return optionalFeatures_;
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         public int getOptionalFeaturesCount() {
             return optionalFeatures_.size();
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         public java.lang.String getOptionalFeatures(int index) {
             return optionalFeatures_.get(index);
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -1566,14 +394,12 @@ public final class Osmformat {
             return com.google.protobuf.ByteString.copyFromUtf8(
                     optionalFeatures_.get(index));
         }
-
         private void ensureOptionalFeaturesIsMutable() {
             if (!optionalFeatures_.isModifiable()) {
                 optionalFeatures_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(optionalFeatures_);
             }
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -1585,7 +411,6 @@ public final class Osmformat {
             ensureOptionalFeaturesIsMutable();
             optionalFeatures_.set(index, value);
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -1597,7 +422,6 @@ public final class Osmformat {
             ensureOptionalFeaturesIsMutable();
             optionalFeatures_.add(value);
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -1607,14 +431,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, optionalFeatures_);
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
         private void clearOptionalFeatures() {
             optionalFeatures_ = com.google.protobuf.GeneratedMessageLite.emptyProtobufList();
         }
-
         /**
          * <code>repeated string optional_features = 5;</code>
          */
@@ -1627,20 +449,27 @@ public final class Osmformat {
             optionalFeatures_.add(value.toStringUtf8());
         }
 
+        public static final int WRITINGPROGRAM_FIELD_NUMBER = 16;
+        private java.lang.String writingprogram_;
         /**
          * <code>optional string writingprogram = 16;</code>
          */
         public boolean hasWritingprogram() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <code>optional string writingprogram = 16;</code>
          */
         public java.lang.String getWritingprogram() {
             return writingprogram_;
         }
-
+        /**
+         * <code>optional string writingprogram = 16;</code>
+         */
+        public com.google.protobuf.ByteString
+        getWritingprogramBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(writingprogram_);
+        }
         /**
          * <code>optional string writingprogram = 16;</code>
          */
@@ -1652,15 +481,13 @@ public final class Osmformat {
             bitField0_ |= 0x00000002;
             writingprogram_ = value;
         }
-
         /**
          * <code>optional string writingprogram = 16;</code>
          */
-        public com.google.protobuf.ByteString
-        getWritingprogramBytes() {
-            return com.google.protobuf.ByteString.copyFromUtf8(writingprogram_);
+        private void clearWritingprogram() {
+            bitField0_ = (bitField0_ & ~0x00000002);
+            writingprogram_ = getDefaultInstance().getWritingprogram();
         }
-
         /**
          * <code>optional string writingprogram = 16;</code>
          */
@@ -1673,41 +500,44 @@ public final class Osmformat {
             writingprogram_ = value.toStringUtf8();
         }
 
-        /**
-         * <code>optional string writingprogram = 16;</code>
-         */
-        private void clearWritingprogram() {
-            bitField0_ = (bitField0_ & ~0x00000002);
-            writingprogram_ = getDefaultInstance().getWritingprogram();
-        }
-
+        public static final int SOURCE_FIELD_NUMBER = 17;
+        private java.lang.String source_;
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         public boolean hasSource() {
             return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         public java.lang.String getSource() {
             return source_;
         }
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
+         * <code>optional string source = 17;</code>
+         */
+        public com.google.protobuf.ByteString
+        getSourceBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(source_);
+        }
+        /**
+         * <pre>
+         * From the bbox field.
+         * </pre>
+         *
          * <code>optional string source = 17;</code>
          */
         private void setSource(
@@ -1718,24 +548,22 @@ public final class Osmformat {
             bitField0_ |= 0x00000004;
             source_ = value;
         }
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
-        public com.google.protobuf.ByteString
-        getSourceBytes() {
-            return com.google.protobuf.ByteString.copyFromUtf8(source_);
+        private void clearSource() {
+            bitField0_ = (bitField0_ & ~0x00000004);
+            source_ = getDefaultInstance().getSource();
         }
-
         /**
          * <pre>
          * From the bbox field.
          * </pre>
-         * <p>
+         *
          * <code>optional string source = 17;</code>
          */
         private void setSourceBytes(
@@ -1747,65 +575,52 @@ public final class Osmformat {
             source_ = value.toStringUtf8();
         }
 
-        /**
-         * <pre>
-         * From the bbox field.
-         * </pre>
-         * <p>
-         * <code>optional string source = 17;</code>
-         */
-        private void clearSource() {
-            bitField0_ = (bitField0_ & ~0x00000004);
-            source_ = getDefaultInstance().getSource();
-        }
-
+        public static final int OSMOSIS_REPLICATION_TIMESTAMP_FIELD_NUMBER = 32;
+        private long osmosisReplicationTimestamp_;
         /**
          * <pre>
          * replication timestamp, expressed in seconds since the epoch,
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         public boolean hasOsmosisReplicationTimestamp() {
             return ((bitField0_ & 0x00000008) == 0x00000008);
         }
-
         /**
          * <pre>
          * replication timestamp, expressed in seconds since the epoch,
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         public long getOsmosisReplicationTimestamp() {
             return osmosisReplicationTimestamp_;
         }
-
         /**
          * <pre>
          * replication timestamp, expressed in seconds since the epoch,
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         private void setOsmosisReplicationTimestamp(long value) {
             bitField0_ |= 0x00000008;
             osmosisReplicationTimestamp_ = value;
         }
-
         /**
          * <pre>
          * replication timestamp, expressed in seconds since the epoch,
          * otherwise the same value as in the "timestamp=..." field
          * in the state.txt file used by Osmosis
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_timestamp = 32;</code>
          */
         private void clearOsmosisReplicationTimestamp() {
@@ -1813,45 +628,44 @@ public final class Osmformat {
             osmosisReplicationTimestamp_ = 0L;
         }
 
+        public static final int OSMOSIS_REPLICATION_SEQUENCE_NUMBER_FIELD_NUMBER = 33;
+        private long osmosisReplicationSequenceNumber_;
         /**
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         public boolean hasOsmosisReplicationSequenceNumber() {
             return ((bitField0_ & 0x00000010) == 0x00000010);
         }
-
         /**
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         public long getOsmosisReplicationSequenceNumber() {
             return osmosisReplicationSequenceNumber_;
         }
-
         /**
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         private void setOsmosisReplicationSequenceNumber(long value) {
             bitField0_ |= 0x00000010;
             osmosisReplicationSequenceNumber_ = value;
         }
-
         /**
          * <pre>
          * replication sequence number (sequenceNumber in state.txt)
          * </pre>
-         * <p>
+         *
          * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
          */
         private void clearOsmosisReplicationSequenceNumber() {
@@ -1859,33 +673,44 @@ public final class Osmformat {
             osmosisReplicationSequenceNumber_ = 0L;
         }
 
+        public static final int OSMOSIS_REPLICATION_BASE_URL_FIELD_NUMBER = 34;
+        private java.lang.String osmosisReplicationBaseUrl_;
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         public boolean hasOsmosisReplicationBaseUrl() {
             return ((bitField0_ & 0x00000020) == 0x00000020);
         }
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         public java.lang.String getOsmosisReplicationBaseUrl() {
             return osmosisReplicationBaseUrl_;
         }
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
+         * <code>optional string osmosis_replication_base_url = 34;</code>
+         */
+        public com.google.protobuf.ByteString
+        getOsmosisReplicationBaseUrlBytes() {
+            return com.google.protobuf.ByteString.copyFromUtf8(osmosisReplicationBaseUrl_);
+        }
+        /**
+         * <pre>
+         * replication base URL (from Osmosis' configuration.txt file)
+         * </pre>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         private void setOsmosisReplicationBaseUrl(
@@ -1896,24 +721,22 @@ public final class Osmformat {
             bitField0_ |= 0x00000020;
             osmosisReplicationBaseUrl_ = value;
         }
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
-        public com.google.protobuf.ByteString
-        getOsmosisReplicationBaseUrlBytes() {
-            return com.google.protobuf.ByteString.copyFromUtf8(osmosisReplicationBaseUrl_);
+        private void clearOsmosisReplicationBaseUrl() {
+            bitField0_ = (bitField0_ & ~0x00000020);
+            osmosisReplicationBaseUrl_ = getDefaultInstance().getOsmosisReplicationBaseUrl();
         }
-
         /**
          * <pre>
          * replication base URL (from Osmosis' configuration.txt file)
          * </pre>
-         * <p>
+         *
          * <code>optional string osmosis_replication_base_url = 34;</code>
          */
         private void setOsmosisReplicationBaseUrlBytes(
@@ -1923,18 +746,6 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000020;
             osmosisReplicationBaseUrl_ = value.toStringUtf8();
-        }
-
-        /**
-         * <pre>
-         * replication base URL (from Osmosis' configuration.txt file)
-         * </pre>
-         * <p>
-         * <code>optional string osmosis_replication_base_url = 34;</code>
-         */
-        private void clearOsmosisReplicationBaseUrl() {
-            bitField0_ = (bitField0_ & ~0x00000020);
-            osmosisReplicationBaseUrl_ = getDefaultInstance().getOsmosisReplicationBaseUrl();
         }
 
         public void writeTo(com.google.protobuf.CodedOutputStream output)
@@ -2018,7 +829,600 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.HeaderBlock}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.HeaderBlock)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlockOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public boolean hasBbox() {
+                return instance.hasBbox();
+            }
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox getBbox() {
+                return instance.getBbox();
+            }
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public Builder setBbox(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox value) {
+                copyOnWrite();
+                instance.setBbox(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public Builder setBbox(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.Builder builderForValue) {
+                copyOnWrite();
+                instance.setBbox(builderForValue);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public Builder mergeBbox(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox value) {
+                copyOnWrite();
+                instance.mergeBbox(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
+             */
+            public Builder clearBbox() {  copyOnWrite();
+                instance.clearBbox();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public java.util.List<String>
+            getRequiredFeaturesList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getRequiredFeaturesList());
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public int getRequiredFeaturesCount() {
+                return instance.getRequiredFeaturesCount();
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public java.lang.String getRequiredFeatures(int index) {
+                return instance.getRequiredFeatures(index);
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public com.google.protobuf.ByteString
+            getRequiredFeaturesBytes(int index) {
+                return instance.getRequiredFeaturesBytes(index);
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public Builder setRequiredFeatures(
+                    int index, java.lang.String value) {
+                copyOnWrite();
+                instance.setRequiredFeatures(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public Builder addRequiredFeatures(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.addRequiredFeatures(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public Builder addAllRequiredFeatures(
+                    java.lang.Iterable<java.lang.String> values) {
+                copyOnWrite();
+                instance.addAllRequiredFeatures(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public Builder clearRequiredFeatures() {
+                copyOnWrite();
+                instance.clearRequiredFeatures();
+                return this;
+            }
+            /**
+             * <pre>
+             * Additional tags to aid in parsing this dataset
+             * </pre>
+             *
+             * <code>repeated string required_features = 4;</code>
+             */
+            public Builder addRequiredFeaturesBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.addRequiredFeaturesBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public java.util.List<String>
+            getOptionalFeaturesList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getOptionalFeaturesList());
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public int getOptionalFeaturesCount() {
+                return instance.getOptionalFeaturesCount();
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public java.lang.String getOptionalFeatures(int index) {
+                return instance.getOptionalFeatures(index);
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public com.google.protobuf.ByteString
+            getOptionalFeaturesBytes(int index) {
+                return instance.getOptionalFeaturesBytes(index);
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public Builder setOptionalFeatures(
+                    int index, java.lang.String value) {
+                copyOnWrite();
+                instance.setOptionalFeatures(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public Builder addOptionalFeatures(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.addOptionalFeatures(value);
+                return this;
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public Builder addAllOptionalFeatures(
+                    java.lang.Iterable<java.lang.String> values) {
+                copyOnWrite();
+                instance.addAllOptionalFeatures(values);
+                return this;
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public Builder clearOptionalFeatures() {
+                copyOnWrite();
+                instance.clearOptionalFeatures();
+                return this;
+            }
+            /**
+             * <code>repeated string optional_features = 5;</code>
+             */
+            public Builder addOptionalFeaturesBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.addOptionalFeaturesBytes(value);
+                return this;
+            }
+
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public boolean hasWritingprogram() {
+                return instance.hasWritingprogram();
+            }
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public java.lang.String getWritingprogram() {
+                return instance.getWritingprogram();
+            }
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public com.google.protobuf.ByteString
+            getWritingprogramBytes() {
+                return instance.getWritingprogramBytes();
+            }
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public Builder setWritingprogram(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setWritingprogram(value);
+                return this;
+            }
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public Builder clearWritingprogram() {
+                copyOnWrite();
+                instance.clearWritingprogram();
+                return this;
+            }
+            /**
+             * <code>optional string writingprogram = 16;</code>
+             */
+            public Builder setWritingprogramBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setWritingprogramBytes(value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public boolean hasSource() {
+                return instance.hasSource();
+            }
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public java.lang.String getSource() {
+                return instance.getSource();
+            }
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public com.google.protobuf.ByteString
+            getSourceBytes() {
+                return instance.getSourceBytes();
+            }
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public Builder setSource(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setSource(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public Builder clearSource() {
+                copyOnWrite();
+                instance.clearSource();
+                return this;
+            }
+            /**
+             * <pre>
+             * From the bbox field.
+             * </pre>
+             *
+             * <code>optional string source = 17;</code>
+             */
+            public Builder setSourceBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setSourceBytes(value);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * replication timestamp, expressed in seconds since the epoch,
+             * otherwise the same value as in the "timestamp=..." field
+             * in the state.txt file used by Osmosis
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
+             */
+            public boolean hasOsmosisReplicationTimestamp() {
+                return instance.hasOsmosisReplicationTimestamp();
+            }
+            /**
+             * <pre>
+             * replication timestamp, expressed in seconds since the epoch,
+             * otherwise the same value as in the "timestamp=..." field
+             * in the state.txt file used by Osmosis
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
+             */
+            public long getOsmosisReplicationTimestamp() {
+                return instance.getOsmosisReplicationTimestamp();
+            }
+            /**
+             * <pre>
+             * replication timestamp, expressed in seconds since the epoch,
+             * otherwise the same value as in the "timestamp=..." field
+             * in the state.txt file used by Osmosis
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
+             */
+            public Builder setOsmosisReplicationTimestamp(long value) {
+                copyOnWrite();
+                instance.setOsmosisReplicationTimestamp(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * replication timestamp, expressed in seconds since the epoch,
+             * otherwise the same value as in the "timestamp=..." field
+             * in the state.txt file used by Osmosis
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
+             */
+            public Builder clearOsmosisReplicationTimestamp() {
+                copyOnWrite();
+                instance.clearOsmosisReplicationTimestamp();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * replication sequence number (sequenceNumber in state.txt)
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
+             */
+            public boolean hasOsmosisReplicationSequenceNumber() {
+                return instance.hasOsmosisReplicationSequenceNumber();
+            }
+            /**
+             * <pre>
+             * replication sequence number (sequenceNumber in state.txt)
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
+             */
+            public long getOsmosisReplicationSequenceNumber() {
+                return instance.getOsmosisReplicationSequenceNumber();
+            }
+            /**
+             * <pre>
+             * replication sequence number (sequenceNumber in state.txt)
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
+             */
+            public Builder setOsmosisReplicationSequenceNumber(long value) {
+                copyOnWrite();
+                instance.setOsmosisReplicationSequenceNumber(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * replication sequence number (sequenceNumber in state.txt)
+             * </pre>
+             *
+             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
+             */
+            public Builder clearOsmosisReplicationSequenceNumber() {
+                copyOnWrite();
+                instance.clearOsmosisReplicationSequenceNumber();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public boolean hasOsmosisReplicationBaseUrl() {
+                return instance.hasOsmosisReplicationBaseUrl();
+            }
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public java.lang.String getOsmosisReplicationBaseUrl() {
+                return instance.getOsmosisReplicationBaseUrl();
+            }
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public com.google.protobuf.ByteString
+            getOsmosisReplicationBaseUrlBytes() {
+                return instance.getOsmosisReplicationBaseUrlBytes();
+            }
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public Builder setOsmosisReplicationBaseUrl(
+                    java.lang.String value) {
+                copyOnWrite();
+                instance.setOsmosisReplicationBaseUrl(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public Builder clearOsmosisReplicationBaseUrl() {
+                copyOnWrite();
+                instance.clearOsmosisReplicationBaseUrl();
+                return this;
+            }
+            /**
+             * <pre>
+             * replication base URL (from Osmosis' configuration.txt file)
+             * </pre>
+             *
+             * <code>optional string osmosis_replication_base_url = 34;</code>
+             */
+            public Builder setOsmosisReplicationBaseUrlBytes(
+                    com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setOsmosisReplicationBaseUrlBytes(value);
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.HeaderBlock)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -2056,8 +1460,8 @@ public final class Osmformat {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock other = (org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock) arg1;
                     bbox_ = visitor.visitMessage(bbox_, other.bbox_);
-                    requiredFeatures_ = visitor.visitList(requiredFeatures_, other.requiredFeatures_);
-                    optionalFeatures_ = visitor.visitList(optionalFeatures_, other.optionalFeatures_);
+                    requiredFeatures_= visitor.visitList(requiredFeatures_, other.requiredFeatures_);
+                    optionalFeatures_= visitor.visitList(optionalFeatures_, other.optionalFeatures_);
                     writingprogram_ = visitor.visitString(
                             hasWritingprogram(), writingprogram_,
                             other.hasWritingprogram(), other.writingprogram_);
@@ -2168,17 +1572,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -2186,722 +1588,90 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.HeaderBlock}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.HeaderBlock)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlockOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.HeaderBlock)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new HeaderBlock();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public boolean hasBbox() {
-                return instance.hasBbox();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBlock getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox getBbox() {
-                return instance.getBbox();
-            }
+        private static volatile com.google.protobuf.Parser<HeaderBlock> PARSER;
 
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public Builder setBbox(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.Builder builderForValue) {
-                copyOnWrite();
-                instance.setBbox(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public Builder setBbox(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox value) {
-                copyOnWrite();
-                instance.setBbox(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public Builder mergeBbox(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox value) {
-                copyOnWrite();
-                instance.mergeBbox(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.HeaderBBox bbox = 1;</code>
-             */
-            public Builder clearBbox() {
-                copyOnWrite();
-                instance.clearBbox();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public java.util.List<String>
-            getRequiredFeaturesList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getRequiredFeaturesList());
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public int getRequiredFeaturesCount() {
-                return instance.getRequiredFeaturesCount();
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public java.lang.String getRequiredFeatures(int index) {
-                return instance.getRequiredFeatures(index);
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public com.google.protobuf.ByteString
-            getRequiredFeaturesBytes(int index) {
-                return instance.getRequiredFeaturesBytes(index);
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public Builder setRequiredFeatures(
-                    int index, java.lang.String value) {
-                copyOnWrite();
-                instance.setRequiredFeatures(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public Builder addRequiredFeatures(
-                    java.lang.String value) {
-                copyOnWrite();
-                instance.addRequiredFeatures(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public Builder addAllRequiredFeatures(
-                    java.lang.Iterable<java.lang.String> values) {
-                copyOnWrite();
-                instance.addAllRequiredFeatures(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public Builder clearRequiredFeatures() {
-                copyOnWrite();
-                instance.clearRequiredFeatures();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Additional tags to aid in parsing this dataset
-             * </pre>
-             * <p>
-             * <code>repeated string required_features = 4;</code>
-             */
-            public Builder addRequiredFeaturesBytes(
-                    com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.addRequiredFeaturesBytes(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public java.util.List<String>
-            getOptionalFeaturesList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getOptionalFeaturesList());
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public int getOptionalFeaturesCount() {
-                return instance.getOptionalFeaturesCount();
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public java.lang.String getOptionalFeatures(int index) {
-                return instance.getOptionalFeatures(index);
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public com.google.protobuf.ByteString
-            getOptionalFeaturesBytes(int index) {
-                return instance.getOptionalFeaturesBytes(index);
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public Builder setOptionalFeatures(
-                    int index, java.lang.String value) {
-                copyOnWrite();
-                instance.setOptionalFeatures(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public Builder addOptionalFeatures(
-                    java.lang.String value) {
-                copyOnWrite();
-                instance.addOptionalFeatures(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public Builder addAllOptionalFeatures(
-                    java.lang.Iterable<java.lang.String> values) {
-                copyOnWrite();
-                instance.addAllOptionalFeatures(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public Builder clearOptionalFeatures() {
-                copyOnWrite();
-                instance.clearOptionalFeatures();
-                return this;
-            }
-
-            /**
-             * <code>repeated string optional_features = 5;</code>
-             */
-            public Builder addOptionalFeaturesBytes(
-                    com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.addOptionalFeaturesBytes(value);
-                return this;
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public boolean hasWritingprogram() {
-                return instance.hasWritingprogram();
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public java.lang.String getWritingprogram() {
-                return instance.getWritingprogram();
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public Builder setWritingprogram(
-                    java.lang.String value) {
-                copyOnWrite();
-                instance.setWritingprogram(value);
-                return this;
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public com.google.protobuf.ByteString
-            getWritingprogramBytes() {
-                return instance.getWritingprogramBytes();
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public Builder setWritingprogramBytes(
-                    com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.setWritingprogramBytes(value);
-                return this;
-            }
-
-            /**
-             * <code>optional string writingprogram = 16;</code>
-             */
-            public Builder clearWritingprogram() {
-                copyOnWrite();
-                instance.clearWritingprogram();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public boolean hasSource() {
-                return instance.hasSource();
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public java.lang.String getSource() {
-                return instance.getSource();
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public Builder setSource(
-                    java.lang.String value) {
-                copyOnWrite();
-                instance.setSource(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public com.google.protobuf.ByteString
-            getSourceBytes() {
-                return instance.getSourceBytes();
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public Builder setSourceBytes(
-                    com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.setSourceBytes(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * From the bbox field.
-             * </pre>
-             * <p>
-             * <code>optional string source = 17;</code>
-             */
-            public Builder clearSource() {
-                copyOnWrite();
-                instance.clearSource();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication timestamp, expressed in seconds since the epoch,
-             * otherwise the same value as in the "timestamp=..." field
-             * in the state.txt file used by Osmosis
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
-             */
-            public boolean hasOsmosisReplicationTimestamp() {
-                return instance.hasOsmosisReplicationTimestamp();
-            }
-
-            /**
-             * <pre>
-             * replication timestamp, expressed in seconds since the epoch,
-             * otherwise the same value as in the "timestamp=..." field
-             * in the state.txt file used by Osmosis
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
-             */
-            public long getOsmosisReplicationTimestamp() {
-                return instance.getOsmosisReplicationTimestamp();
-            }
-
-            /**
-             * <pre>
-             * replication timestamp, expressed in seconds since the epoch,
-             * otherwise the same value as in the "timestamp=..." field
-             * in the state.txt file used by Osmosis
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
-             */
-            public Builder setOsmosisReplicationTimestamp(long value) {
-                copyOnWrite();
-                instance.setOsmosisReplicationTimestamp(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication timestamp, expressed in seconds since the epoch,
-             * otherwise the same value as in the "timestamp=..." field
-             * in the state.txt file used by Osmosis
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_timestamp = 32;</code>
-             */
-            public Builder clearOsmosisReplicationTimestamp() {
-                copyOnWrite();
-                instance.clearOsmosisReplicationTimestamp();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication sequence number (sequenceNumber in state.txt)
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
-             */
-            public boolean hasOsmosisReplicationSequenceNumber() {
-                return instance.hasOsmosisReplicationSequenceNumber();
-            }
-
-            /**
-             * <pre>
-             * replication sequence number (sequenceNumber in state.txt)
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
-             */
-            public long getOsmosisReplicationSequenceNumber() {
-                return instance.getOsmosisReplicationSequenceNumber();
-            }
-
-            /**
-             * <pre>
-             * replication sequence number (sequenceNumber in state.txt)
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
-             */
-            public Builder setOsmosisReplicationSequenceNumber(long value) {
-                copyOnWrite();
-                instance.setOsmosisReplicationSequenceNumber(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication sequence number (sequenceNumber in state.txt)
-             * </pre>
-             * <p>
-             * <code>optional int64 osmosis_replication_sequence_number = 33;</code>
-             */
-            public Builder clearOsmosisReplicationSequenceNumber() {
-                copyOnWrite();
-                instance.clearOsmosisReplicationSequenceNumber();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public boolean hasOsmosisReplicationBaseUrl() {
-                return instance.hasOsmosisReplicationBaseUrl();
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public java.lang.String getOsmosisReplicationBaseUrl() {
-                return instance.getOsmosisReplicationBaseUrl();
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public Builder setOsmosisReplicationBaseUrl(
-                    java.lang.String value) {
-                copyOnWrite();
-                instance.setOsmosisReplicationBaseUrl(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public com.google.protobuf.ByteString
-            getOsmosisReplicationBaseUrlBytes() {
-                return instance.getOsmosisReplicationBaseUrlBytes();
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public Builder setOsmosisReplicationBaseUrlBytes(
-                    com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.setOsmosisReplicationBaseUrlBytes(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * replication base URL (from Osmosis' configuration.txt file)
-             * </pre>
-             * <p>
-             * <code>optional string osmosis_replication_base_url = 34;</code>
-             */
-            public Builder clearOsmosisReplicationBaseUrl() {
-                copyOnWrite();
-                instance.clearOsmosisReplicationBaseUrl();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.HeaderBlock)
+        public static com.google.protobuf.Parser<HeaderBlock> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface HeaderBBoxOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.HeaderBBox)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>required sint64 left = 1;</code>
+         */
+        boolean hasLeft();
+        /**
+         * <code>required sint64 left = 1;</code>
+         */
+        long getLeft();
+
+        /**
+         * <code>required sint64 right = 2;</code>
+         */
+        boolean hasRight();
+        /**
+         * <code>required sint64 right = 2;</code>
+         */
+        long getRight();
+
+        /**
+         * <code>required sint64 top = 3;</code>
+         */
+        boolean hasTop();
+        /**
+         * <code>required sint64 top = 3;</code>
+         */
+        long getTop();
+
+        /**
+         * <code>required sint64 bottom = 4;</code>
+         */
+        boolean hasBottom();
+        /**
+         * <code>required sint64 bottom = 4;</code>
+         */
+        long getBottom();
+    }
     /**
      * Protobuf type {@code OSMPBF.HeaderBBox}
      */
-    public static final class HeaderBBox extends
+    public  static final class HeaderBBox extends
             com.google.protobuf.GeneratedMessageLite<
                     HeaderBBox, HeaderBBox.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.HeaderBBox)
             HeaderBBoxOrBuilder {
-        public static final int LEFT_FIELD_NUMBER = 1;
-        public static final int RIGHT_FIELD_NUMBER = 2;
-        public static final int TOP_FIELD_NUMBER = 3;
-        public static final int BOTTOM_FIELD_NUMBER = 4;
-        // @@protoc_insertion_point(class_scope:OSMPBF.HeaderBBox)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<HeaderBBox> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new HeaderBBox();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private long left_;
-        private long right_;
-        private long top_;
-        private long bottom_;
-        private byte memoizedIsInitialized = -1;
-
         private HeaderBBox() {
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<HeaderBBox> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int LEFT_FIELD_NUMBER = 1;
+        private long left_;
         /**
          * <code>required sint64 left = 1;</code>
          */
         public boolean hasLeft() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>required sint64 left = 1;</code>
          */
         public long getLeft() {
             return left_;
         }
-
         /**
          * <code>required sint64 left = 1;</code>
          */
@@ -2909,7 +1679,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000001;
             left_ = value;
         }
-
         /**
          * <code>required sint64 left = 1;</code>
          */
@@ -2918,20 +1687,20 @@ public final class Osmformat {
             left_ = 0L;
         }
 
+        public static final int RIGHT_FIELD_NUMBER = 2;
+        private long right_;
         /**
          * <code>required sint64 right = 2;</code>
          */
         public boolean hasRight() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <code>required sint64 right = 2;</code>
          */
         public long getRight() {
             return right_;
         }
-
         /**
          * <code>required sint64 right = 2;</code>
          */
@@ -2939,7 +1708,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000002;
             right_ = value;
         }
-
         /**
          * <code>required sint64 right = 2;</code>
          */
@@ -2948,20 +1716,20 @@ public final class Osmformat {
             right_ = 0L;
         }
 
+        public static final int TOP_FIELD_NUMBER = 3;
+        private long top_;
         /**
          * <code>required sint64 top = 3;</code>
          */
         public boolean hasTop() {
             return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-
         /**
          * <code>required sint64 top = 3;</code>
          */
         public long getTop() {
             return top_;
         }
-
         /**
          * <code>required sint64 top = 3;</code>
          */
@@ -2969,7 +1737,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000004;
             top_ = value;
         }
-
         /**
          * <code>required sint64 top = 3;</code>
          */
@@ -2978,20 +1745,20 @@ public final class Osmformat {
             top_ = 0L;
         }
 
+        public static final int BOTTOM_FIELD_NUMBER = 4;
+        private long bottom_;
         /**
          * <code>required sint64 bottom = 4;</code>
          */
         public boolean hasBottom() {
             return ((bitField0_ & 0x00000008) == 0x00000008);
         }
-
         /**
          * <code>required sint64 bottom = 4;</code>
          */
         public long getBottom() {
             return bottom_;
         }
-
         /**
          * <code>required sint64 bottom = 4;</code>
          */
@@ -2999,7 +1766,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000008;
             bottom_ = value;
         }
-
         /**
          * <code>required sint64 bottom = 4;</code>
          */
@@ -3051,7 +1817,207 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.HeaderBBox}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.HeaderBBox)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBoxOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>required sint64 left = 1;</code>
+             */
+            public boolean hasLeft() {
+                return instance.hasLeft();
+            }
+            /**
+             * <code>required sint64 left = 1;</code>
+             */
+            public long getLeft() {
+                return instance.getLeft();
+            }
+            /**
+             * <code>required sint64 left = 1;</code>
+             */
+            public Builder setLeft(long value) {
+                copyOnWrite();
+                instance.setLeft(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 left = 1;</code>
+             */
+            public Builder clearLeft() {
+                copyOnWrite();
+                instance.clearLeft();
+                return this;
+            }
+
+            /**
+             * <code>required sint64 right = 2;</code>
+             */
+            public boolean hasRight() {
+                return instance.hasRight();
+            }
+            /**
+             * <code>required sint64 right = 2;</code>
+             */
+            public long getRight() {
+                return instance.getRight();
+            }
+            /**
+             * <code>required sint64 right = 2;</code>
+             */
+            public Builder setRight(long value) {
+                copyOnWrite();
+                instance.setRight(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 right = 2;</code>
+             */
+            public Builder clearRight() {
+                copyOnWrite();
+                instance.clearRight();
+                return this;
+            }
+
+            /**
+             * <code>required sint64 top = 3;</code>
+             */
+            public boolean hasTop() {
+                return instance.hasTop();
+            }
+            /**
+             * <code>required sint64 top = 3;</code>
+             */
+            public long getTop() {
+                return instance.getTop();
+            }
+            /**
+             * <code>required sint64 top = 3;</code>
+             */
+            public Builder setTop(long value) {
+                copyOnWrite();
+                instance.setTop(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 top = 3;</code>
+             */
+            public Builder clearTop() {
+                copyOnWrite();
+                instance.clearTop();
+                return this;
+            }
+
+            /**
+             * <code>required sint64 bottom = 4;</code>
+             */
+            public boolean hasBottom() {
+                return instance.hasBottom();
+            }
+            /**
+             * <code>required sint64 bottom = 4;</code>
+             */
+            public long getBottom() {
+                return instance.getBottom();
+            }
+            /**
+             * <code>required sint64 bottom = 4;</code>
+             */
+            public Builder setBottom(long value) {
+                copyOnWrite();
+                instance.setBottom(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 bottom = 4;</code>
+             */
+            public Builder clearBottom() {
+                copyOnWrite();
+                instance.clearBottom();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.HeaderBBox)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -3170,17 +2136,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -3188,314 +2152,140 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.HeaderBBox}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.HeaderBBox)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBoxOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.HeaderBBox)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new HeaderBBox();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>required sint64 left = 1;</code>
-             */
-            public boolean hasLeft() {
-                return instance.hasLeft();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.HeaderBBox getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>required sint64 left = 1;</code>
-             */
-            public long getLeft() {
-                return instance.getLeft();
-            }
+        private static volatile com.google.protobuf.Parser<HeaderBBox> PARSER;
 
-            /**
-             * <code>required sint64 left = 1;</code>
-             */
-            public Builder setLeft(long value) {
-                copyOnWrite();
-                instance.setLeft(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 left = 1;</code>
-             */
-            public Builder clearLeft() {
-                copyOnWrite();
-                instance.clearLeft();
-                return this;
-            }
-
-            /**
-             * <code>required sint64 right = 2;</code>
-             */
-            public boolean hasRight() {
-                return instance.hasRight();
-            }
-
-            /**
-             * <code>required sint64 right = 2;</code>
-             */
-            public long getRight() {
-                return instance.getRight();
-            }
-
-            /**
-             * <code>required sint64 right = 2;</code>
-             */
-            public Builder setRight(long value) {
-                copyOnWrite();
-                instance.setRight(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 right = 2;</code>
-             */
-            public Builder clearRight() {
-                copyOnWrite();
-                instance.clearRight();
-                return this;
-            }
-
-            /**
-             * <code>required sint64 top = 3;</code>
-             */
-            public boolean hasTop() {
-                return instance.hasTop();
-            }
-
-            /**
-             * <code>required sint64 top = 3;</code>
-             */
-            public long getTop() {
-                return instance.getTop();
-            }
-
-            /**
-             * <code>required sint64 top = 3;</code>
-             */
-            public Builder setTop(long value) {
-                copyOnWrite();
-                instance.setTop(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 top = 3;</code>
-             */
-            public Builder clearTop() {
-                copyOnWrite();
-                instance.clearTop();
-                return this;
-            }
-
-            /**
-             * <code>required sint64 bottom = 4;</code>
-             */
-            public boolean hasBottom() {
-                return instance.hasBottom();
-            }
-
-            /**
-             * <code>required sint64 bottom = 4;</code>
-             */
-            public long getBottom() {
-                return instance.getBottom();
-            }
-
-            /**
-             * <code>required sint64 bottom = 4;</code>
-             */
-            public Builder setBottom(long value) {
-                copyOnWrite();
-                instance.setBottom(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 bottom = 4;</code>
-             */
-            public Builder clearBottom() {
-                copyOnWrite();
-                instance.clearBottom();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.HeaderBBox)
+        public static com.google.protobuf.Parser<HeaderBBox> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface PrimitiveBlockOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.PrimitiveBlock)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+         */
+        boolean hasStringtable();
+        /**
+         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getStringtable();
+
+        /**
+         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup>
+        getPrimitivegroupList();
+        /**
+         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getPrimitivegroup(int index);
+        /**
+         * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+         */
+        int getPrimitivegroupCount();
+
+        /**
+         * <pre>
+         * Granularity, units of nanodegrees, used to store coordinates in this block
+         * </pre>
+         *
+         * <code>optional int32 granularity = 17 [default = 100];</code>
+         */
+        boolean hasGranularity();
+        /**
+         * <pre>
+         * Granularity, units of nanodegrees, used to store coordinates in this block
+         * </pre>
+         *
+         * <code>optional int32 granularity = 17 [default = 100];</code>
+         */
+        int getGranularity();
+
+        /**
+         * <pre>
+         * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+         * </pre>
+         *
+         * <code>optional int64 lat_offset = 19 [default = 0];</code>
+         */
+        boolean hasLatOffset();
+        /**
+         * <pre>
+         * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+         * </pre>
+         *
+         * <code>optional int64 lat_offset = 19 [default = 0];</code>
+         */
+        long getLatOffset();
+
+        /**
+         * <code>optional int64 lon_offset = 20 [default = 0];</code>
+         */
+        boolean hasLonOffset();
+        /**
+         * <code>optional int64 lon_offset = 20 [default = 0];</code>
+         */
+        long getLonOffset();
+
+        /**
+         * <pre>
+         * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+         * </pre>
+         *
+         * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+         */
+        boolean hasDateGranularity();
+        /**
+         * <pre>
+         * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+         * </pre>
+         *
+         * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+         */
+        int getDateGranularity();
+    }
     /**
      * Protobuf type {@code OSMPBF.PrimitiveBlock}
      */
-    public static final class PrimitiveBlock extends
+    public  static final class PrimitiveBlock extends
             com.google.protobuf.GeneratedMessageLite<
                     PrimitiveBlock, PrimitiveBlock.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.PrimitiveBlock)
             PrimitiveBlockOrBuilder {
-        public static final int STRINGTABLE_FIELD_NUMBER = 1;
-        public static final int PRIMITIVEGROUP_FIELD_NUMBER = 2;
-        public static final int GRANULARITY_FIELD_NUMBER = 17;
-        public static final int LAT_OFFSET_FIELD_NUMBER = 19;
-        public static final int LON_OFFSET_FIELD_NUMBER = 20;
-        public static final int DATE_GRANULARITY_FIELD_NUMBER = 18;
-        // @@protoc_insertion_point(class_scope:OSMPBF.PrimitiveBlock)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<PrimitiveBlock> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new PrimitiveBlock();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable stringtable_;
-        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> primitivegroup_;
-        private int granularity_;
-        private long latOffset_;
-        private long lonOffset_;
-        private int dateGranularity_;
-        private byte memoizedIsInitialized = -1;
-
         private PrimitiveBlock() {
             primitivegroup_ = emptyProtobufList();
             granularity_ = 100;
             dateGranularity_ = 1000;
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<PrimitiveBlock> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int STRINGTABLE_FIELD_NUMBER = 1;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable stringtable_;
         /**
          * <code>required .OSMPBF.StringTable stringtable = 1;</code>
          */
         public boolean hasStringtable() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>required .OSMPBF.StringTable stringtable = 1;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getStringtable() {
             return stringtable_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.getDefaultInstance() : stringtable_;
         }
-
-        /**
-         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-         */
-        private void setStringtable(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.Builder builderForValue) {
-            stringtable_ = builderForValue.build();
-            bitField0_ |= 0x00000001;
-        }
-
         /**
          * <code>required .OSMPBF.StringTable stringtable = 1;</code>
          */
@@ -3506,7 +2296,14 @@ public final class Osmformat {
             stringtable_ = value;
             bitField0_ |= 0x00000001;
         }
-
+        /**
+         * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+         */
+        private void setStringtable(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.Builder builderForValue) {
+            stringtable_ = builderForValue.build();
+            bitField0_ |= 0x00000001;
+        }
         /**
          * <code>required .OSMPBF.StringTable stringtable = 1;</code>
          */
@@ -3520,22 +2317,21 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000001;
         }
-
         /**
          * <code>required .OSMPBF.StringTable stringtable = 1;</code>
          */
-        private void clearStringtable() {
-            stringtable_ = null;
+        private void clearStringtable() {  stringtable_ = null;
             bitField0_ = (bitField0_ & ~0x00000001);
         }
 
+        public static final int PRIMITIVEGROUP_FIELD_NUMBER = 2;
+        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> primitivegroup_;
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
         public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> getPrimitivegroupList() {
             return primitivegroup_;
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3543,21 +2339,18 @@ public final class Osmformat {
         getPrimitivegroupOrBuilderList() {
             return primitivegroup_;
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
         public int getPrimitivegroupCount() {
             return primitivegroup_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getPrimitivegroup(int index) {
             return primitivegroup_.get(index);
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3565,7 +2358,6 @@ public final class Osmformat {
                 int index) {
             return primitivegroup_.get(index);
         }
-
         private void ensurePrimitivegroupIsMutable() {
             if (!primitivegroup_.isModifiable()) {
                 primitivegroup_ =
@@ -3584,7 +2376,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.set(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3593,7 +2384,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.set(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3604,7 +2394,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.add(value);
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3616,7 +2405,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.add(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3625,7 +2413,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.add(builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3634,7 +2421,6 @@ public final class Osmformat {
             ensurePrimitivegroupIsMutable();
             primitivegroup_.add(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3644,14 +2430,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, primitivegroup_);
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
         private void clearPrimitivegroup() {
             primitivegroup_ = emptyProtobufList();
         }
-
         /**
          * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
          */
@@ -3660,45 +2444,44 @@ public final class Osmformat {
             primitivegroup_.remove(index);
         }
 
+        public static final int GRANULARITY_FIELD_NUMBER = 17;
+        private int granularity_;
         /**
          * <pre>
          * Granularity, units of nanodegrees, used to store coordinates in this block
          * </pre>
-         * <p>
+         *
          * <code>optional int32 granularity = 17 [default = 100];</code>
          */
         public boolean hasGranularity() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <pre>
          * Granularity, units of nanodegrees, used to store coordinates in this block
          * </pre>
-         * <p>
+         *
          * <code>optional int32 granularity = 17 [default = 100];</code>
          */
         public int getGranularity() {
             return granularity_;
         }
-
         /**
          * <pre>
          * Granularity, units of nanodegrees, used to store coordinates in this block
          * </pre>
-         * <p>
+         *
          * <code>optional int32 granularity = 17 [default = 100];</code>
          */
         private void setGranularity(int value) {
             bitField0_ |= 0x00000002;
             granularity_ = value;
         }
-
         /**
          * <pre>
          * Granularity, units of nanodegrees, used to store coordinates in this block
          * </pre>
-         * <p>
+         *
          * <code>optional int32 granularity = 17 [default = 100];</code>
          */
         private void clearGranularity() {
@@ -3706,45 +2489,44 @@ public final class Osmformat {
             granularity_ = 100;
         }
 
+        public static final int LAT_OFFSET_FIELD_NUMBER = 19;
+        private long latOffset_;
         /**
          * <pre>
          * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
          * </pre>
-         * <p>
+         *
          * <code>optional int64 lat_offset = 19 [default = 0];</code>
          */
         public boolean hasLatOffset() {
             return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-
         /**
          * <pre>
          * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
          * </pre>
-         * <p>
+         *
          * <code>optional int64 lat_offset = 19 [default = 0];</code>
          */
         public long getLatOffset() {
             return latOffset_;
         }
-
         /**
          * <pre>
          * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
          * </pre>
-         * <p>
+         *
          * <code>optional int64 lat_offset = 19 [default = 0];</code>
          */
         private void setLatOffset(long value) {
             bitField0_ |= 0x00000004;
             latOffset_ = value;
         }
-
         /**
          * <pre>
          * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
          * </pre>
-         * <p>
+         *
          * <code>optional int64 lat_offset = 19 [default = 0];</code>
          */
         private void clearLatOffset() {
@@ -3752,20 +2534,20 @@ public final class Osmformat {
             latOffset_ = 0L;
         }
 
+        public static final int LON_OFFSET_FIELD_NUMBER = 20;
+        private long lonOffset_;
         /**
          * <code>optional int64 lon_offset = 20 [default = 0];</code>
          */
         public boolean hasLonOffset() {
             return ((bitField0_ & 0x00000008) == 0x00000008);
         }
-
         /**
          * <code>optional int64 lon_offset = 20 [default = 0];</code>
          */
         public long getLonOffset() {
             return lonOffset_;
         }
-
         /**
          * <code>optional int64 lon_offset = 20 [default = 0];</code>
          */
@@ -3773,7 +2555,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000008;
             lonOffset_ = value;
         }
-
         /**
          * <code>optional int64 lon_offset = 20 [default = 0];</code>
          */
@@ -3782,45 +2563,44 @@ public final class Osmformat {
             lonOffset_ = 0L;
         }
 
+        public static final int DATE_GRANULARITY_FIELD_NUMBER = 18;
+        private int dateGranularity_;
         /**
          * <pre>
          * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
          * </pre>
-         * <p>
+         *
          * <code>optional int32 date_granularity = 18 [default = 1000];</code>
          */
         public boolean hasDateGranularity() {
             return ((bitField0_ & 0x00000010) == 0x00000010);
         }
-
         /**
          * <pre>
          * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
          * </pre>
-         * <p>
+         *
          * <code>optional int32 date_granularity = 18 [default = 1000];</code>
          */
         public int getDateGranularity() {
             return dateGranularity_;
         }
-
         /**
          * <pre>
          * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
          * </pre>
-         * <p>
+         *
          * <code>optional int32 date_granularity = 18 [default = 1000];</code>
          */
         private void setDateGranularity(int value) {
             bitField0_ |= 0x00000010;
             dateGranularity_ = value;
         }
-
         /**
          * <pre>
          * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
          * </pre>
-         * <p>
+         *
          * <code>optional int32 date_granularity = 18 [default = 1000];</code>
          */
         private void clearDateGranularity() {
@@ -3885,7 +2665,397 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.PrimitiveBlock}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.PrimitiveBlock)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlockOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public boolean hasStringtable() {
+                return instance.hasStringtable();
+            }
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getStringtable() {
+                return instance.getStringtable();
+            }
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public Builder setStringtable(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable value) {
+                copyOnWrite();
+                instance.setStringtable(value);
+                return this;
+            }
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public Builder setStringtable(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.Builder builderForValue) {
+                copyOnWrite();
+                instance.setStringtable(builderForValue);
+                return this;
+            }
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public Builder mergeStringtable(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable value) {
+                copyOnWrite();
+                instance.mergeStringtable(value);
+                return this;
+            }
+            /**
+             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
+             */
+            public Builder clearStringtable() {  copyOnWrite();
+                instance.clearStringtable();
+                return this;
+            }
+
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> getPrimitivegroupList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getPrimitivegroupList());
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public int getPrimitivegroupCount() {
+                return instance.getPrimitivegroupCount();
+            }/**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getPrimitivegroup(int index) {
+                return instance.getPrimitivegroup(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder setPrimitivegroup(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
+                copyOnWrite();
+                instance.setPrimitivegroup(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder setPrimitivegroup(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
+                copyOnWrite();
+                instance.setPrimitivegroup(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder addPrimitivegroup(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
+                copyOnWrite();
+                instance.addPrimitivegroup(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder addPrimitivegroup(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
+                copyOnWrite();
+                instance.addPrimitivegroup(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder addPrimitivegroup(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
+                copyOnWrite();
+                instance.addPrimitivegroup(builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder addPrimitivegroup(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
+                copyOnWrite();
+                instance.addPrimitivegroup(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder addAllPrimitivegroup(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> values) {
+                copyOnWrite();
+                instance.addAllPrimitivegroup(values);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder clearPrimitivegroup() {
+                copyOnWrite();
+                instance.clearPrimitivegroup();
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
+             */
+            public Builder removePrimitivegroup(int index) {
+                copyOnWrite();
+                instance.removePrimitivegroup(index);
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Granularity, units of nanodegrees, used to store coordinates in this block
+             * </pre>
+             *
+             * <code>optional int32 granularity = 17 [default = 100];</code>
+             */
+            public boolean hasGranularity() {
+                return instance.hasGranularity();
+            }
+            /**
+             * <pre>
+             * Granularity, units of nanodegrees, used to store coordinates in this block
+             * </pre>
+             *
+             * <code>optional int32 granularity = 17 [default = 100];</code>
+             */
+            public int getGranularity() {
+                return instance.getGranularity();
+            }
+            /**
+             * <pre>
+             * Granularity, units of nanodegrees, used to store coordinates in this block
+             * </pre>
+             *
+             * <code>optional int32 granularity = 17 [default = 100];</code>
+             */
+            public Builder setGranularity(int value) {
+                copyOnWrite();
+                instance.setGranularity(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Granularity, units of nanodegrees, used to store coordinates in this block
+             * </pre>
+             *
+             * <code>optional int32 granularity = 17 [default = 100];</code>
+             */
+            public Builder clearGranularity() {
+                copyOnWrite();
+                instance.clearGranularity();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+             * </pre>
+             *
+             * <code>optional int64 lat_offset = 19 [default = 0];</code>
+             */
+            public boolean hasLatOffset() {
+                return instance.hasLatOffset();
+            }
+            /**
+             * <pre>
+             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+             * </pre>
+             *
+             * <code>optional int64 lat_offset = 19 [default = 0];</code>
+             */
+            public long getLatOffset() {
+                return instance.getLatOffset();
+            }
+            /**
+             * <pre>
+             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+             * </pre>
+             *
+             * <code>optional int64 lat_offset = 19 [default = 0];</code>
+             */
+            public Builder setLatOffset(long value) {
+                copyOnWrite();
+                instance.setLatOffset(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
+             * </pre>
+             *
+             * <code>optional int64 lat_offset = 19 [default = 0];</code>
+             */
+            public Builder clearLatOffset() {
+                copyOnWrite();
+                instance.clearLatOffset();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 lon_offset = 20 [default = 0];</code>
+             */
+            public boolean hasLonOffset() {
+                return instance.hasLonOffset();
+            }
+            /**
+             * <code>optional int64 lon_offset = 20 [default = 0];</code>
+             */
+            public long getLonOffset() {
+                return instance.getLonOffset();
+            }
+            /**
+             * <code>optional int64 lon_offset = 20 [default = 0];</code>
+             */
+            public Builder setLonOffset(long value) {
+                copyOnWrite();
+                instance.setLonOffset(value);
+                return this;
+            }
+            /**
+             * <code>optional int64 lon_offset = 20 [default = 0];</code>
+             */
+            public Builder clearLonOffset() {
+                copyOnWrite();
+                instance.clearLonOffset();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+             * </pre>
+             *
+             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+             */
+            public boolean hasDateGranularity() {
+                return instance.hasDateGranularity();
+            }
+            /**
+             * <pre>
+             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+             * </pre>
+             *
+             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+             */
+            public int getDateGranularity() {
+                return instance.getDateGranularity();
+            }
+            /**
+             * <pre>
+             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+             * </pre>
+             *
+             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+             */
+            public Builder setDateGranularity(int value) {
+                copyOnWrite();
+                instance.setDateGranularity(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
+             * </pre>
+             *
+             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
+             */
+            public Builder clearDateGranularity() {
+                copyOnWrite();
+                instance.clearDateGranularity();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.PrimitiveBlock)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -3928,7 +3098,7 @@ public final class Osmformat {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock other = (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock) arg1;
                     stringtable_ = visitor.visitMessage(stringtable_, other.stringtable_);
-                    primitivegroup_ = visitor.visitList(primitivegroup_, other.primitivegroup_);
+                    primitivegroup_= visitor.visitList(primitivegroup_, other.primitivegroup_);
                     granularity_ = visitor.visitInt(
                             hasGranularity(), granularity_,
                             other.hasGranularity(), other.granularity_);
@@ -4019,17 +3189,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -4037,509 +3205,121 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.PrimitiveBlock}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.PrimitiveBlock)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlockOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.PrimitiveBlock)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new PrimitiveBlock();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public boolean hasStringtable() {
-                return instance.hasStringtable();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveBlock getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getStringtable() {
-                return instance.getStringtable();
-            }
+        private static volatile com.google.protobuf.Parser<PrimitiveBlock> PARSER;
 
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public Builder setStringtable(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.Builder builderForValue) {
-                copyOnWrite();
-                instance.setStringtable(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public Builder setStringtable(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable value) {
-                copyOnWrite();
-                instance.setStringtable(value);
-                return this;
-            }
-
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public Builder mergeStringtable(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable value) {
-                copyOnWrite();
-                instance.mergeStringtable(value);
-                return this;
-            }
-
-            /**
-             * <code>required .OSMPBF.StringTable stringtable = 1;</code>
-             */
-            public Builder clearStringtable() {
-                copyOnWrite();
-                instance.clearStringtable();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> getPrimitivegroupList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getPrimitivegroupList());
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public int getPrimitivegroupCount() {
-                return instance.getPrimitivegroupCount();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getPrimitivegroup(int index) {
-                return instance.getPrimitivegroup(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder setPrimitivegroup(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
-                copyOnWrite();
-                instance.setPrimitivegroup(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder setPrimitivegroup(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
-                copyOnWrite();
-                instance.setPrimitivegroup(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder addPrimitivegroup(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
-                copyOnWrite();
-                instance.addPrimitivegroup(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder addPrimitivegroup(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup value) {
-                copyOnWrite();
-                instance.addPrimitivegroup(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder addPrimitivegroup(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
-                copyOnWrite();
-                instance.addPrimitivegroup(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder addPrimitivegroup(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.Builder builderForValue) {
-                copyOnWrite();
-                instance.addPrimitivegroup(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder addAllPrimitivegroup(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup> values) {
-                copyOnWrite();
-                instance.addAllPrimitivegroup(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder clearPrimitivegroup() {
-                copyOnWrite();
-                instance.clearPrimitivegroup();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.PrimitiveGroup primitivegroup = 2;</code>
-             */
-            public Builder removePrimitivegroup(int index) {
-                copyOnWrite();
-                instance.removePrimitivegroup(index);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Granularity, units of nanodegrees, used to store coordinates in this block
-             * </pre>
-             * <p>
-             * <code>optional int32 granularity = 17 [default = 100];</code>
-             */
-            public boolean hasGranularity() {
-                return instance.hasGranularity();
-            }
-
-            /**
-             * <pre>
-             * Granularity, units of nanodegrees, used to store coordinates in this block
-             * </pre>
-             * <p>
-             * <code>optional int32 granularity = 17 [default = 100];</code>
-             */
-            public int getGranularity() {
-                return instance.getGranularity();
-            }
-
-            /**
-             * <pre>
-             * Granularity, units of nanodegrees, used to store coordinates in this block
-             * </pre>
-             * <p>
-             * <code>optional int32 granularity = 17 [default = 100];</code>
-             */
-            public Builder setGranularity(int value) {
-                copyOnWrite();
-                instance.setGranularity(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Granularity, units of nanodegrees, used to store coordinates in this block
-             * </pre>
-             * <p>
-             * <code>optional int32 granularity = 17 [default = 100];</code>
-             */
-            public Builder clearGranularity() {
-                copyOnWrite();
-                instance.clearGranularity();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-             * </pre>
-             * <p>
-             * <code>optional int64 lat_offset = 19 [default = 0];</code>
-             */
-            public boolean hasLatOffset() {
-                return instance.hasLatOffset();
-            }
-
-            /**
-             * <pre>
-             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-             * </pre>
-             * <p>
-             * <code>optional int64 lat_offset = 19 [default = 0];</code>
-             */
-            public long getLatOffset() {
-                return instance.getLatOffset();
-            }
-
-            /**
-             * <pre>
-             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-             * </pre>
-             * <p>
-             * <code>optional int64 lat_offset = 19 [default = 0];</code>
-             */
-            public Builder setLatOffset(long value) {
-                copyOnWrite();
-                instance.setLatOffset(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Offset value between the output coordinates coordinates and the granularity grid in unites of nanodegrees.
-             * </pre>
-             * <p>
-             * <code>optional int64 lat_offset = 19 [default = 0];</code>
-             */
-            public Builder clearLatOffset() {
-                copyOnWrite();
-                instance.clearLatOffset();
-                return this;
-            }
-
-            /**
-             * <code>optional int64 lon_offset = 20 [default = 0];</code>
-             */
-            public boolean hasLonOffset() {
-                return instance.hasLonOffset();
-            }
-
-            /**
-             * <code>optional int64 lon_offset = 20 [default = 0];</code>
-             */
-            public long getLonOffset() {
-                return instance.getLonOffset();
-            }
-
-            /**
-             * <code>optional int64 lon_offset = 20 [default = 0];</code>
-             */
-            public Builder setLonOffset(long value) {
-                copyOnWrite();
-                instance.setLonOffset(value);
-                return this;
-            }
-
-            /**
-             * <code>optional int64 lon_offset = 20 [default = 0];</code>
-             */
-            public Builder clearLonOffset() {
-                copyOnWrite();
-                instance.clearLonOffset();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-             * </pre>
-             * <p>
-             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-             */
-            public boolean hasDateGranularity() {
-                return instance.hasDateGranularity();
-            }
-
-            /**
-             * <pre>
-             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-             * </pre>
-             * <p>
-             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-             */
-            public int getDateGranularity() {
-                return instance.getDateGranularity();
-            }
-
-            /**
-             * <pre>
-             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-             * </pre>
-             * <p>
-             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-             */
-            public Builder setDateGranularity(int value) {
-                copyOnWrite();
-                instance.setDateGranularity(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Granularity of dates, normally represented in units of milliseconds since the 1970 epoch.
-             * </pre>
-             * <p>
-             * <code>optional int32 date_granularity = 18 [default = 1000];</code>
-             */
-            public Builder clearDateGranularity() {
-                copyOnWrite();
-                instance.clearDateGranularity();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.PrimitiveBlock)
+        public static com.google.protobuf.Parser<PrimitiveBlock> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface PrimitiveGroupOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.PrimitiveGroup)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>repeated .OSMPBF.Node nodes = 1;</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Node>
+        getNodesList();
+        /**
+         * <code>repeated .OSMPBF.Node nodes = 1;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Node getNodes(int index);
+        /**
+         * <code>repeated .OSMPBF.Node nodes = 1;</code>
+         */
+        int getNodesCount();
+
+        /**
+         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+         */
+        boolean hasDense();
+        /**
+         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDense();
+
+        /**
+         * <code>repeated .OSMPBF.Way ways = 3;</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Way>
+        getWaysList();
+        /**
+         * <code>repeated .OSMPBF.Way ways = 3;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Way getWays(int index);
+        /**
+         * <code>repeated .OSMPBF.Way ways = 3;</code>
+         */
+        int getWaysCount();
+
+        /**
+         * <code>repeated .OSMPBF.Relation relations = 4;</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation>
+        getRelationsList();
+        /**
+         * <code>repeated .OSMPBF.Relation relations = 4;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getRelations(int index);
+        /**
+         * <code>repeated .OSMPBF.Relation relations = 4;</code>
+         */
+        int getRelationsCount();
+
+        /**
+         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet>
+        getChangesetsList();
+        /**
+         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getChangesets(int index);
+        /**
+         * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+         */
+        int getChangesetsCount();
+    }
     /**
      * <pre>
      * Group of OSMPrimitives. All primitives in a group must be the same type.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code OSMPBF.PrimitiveGroup}
      */
-    public static final class PrimitiveGroup extends
+    public  static final class PrimitiveGroup extends
             com.google.protobuf.GeneratedMessageLite<
                     PrimitiveGroup, PrimitiveGroup.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.PrimitiveGroup)
             PrimitiveGroupOrBuilder {
-        public static final int NODES_FIELD_NUMBER = 1;
-        public static final int DENSE_FIELD_NUMBER = 2;
-        public static final int WAYS_FIELD_NUMBER = 3;
-        public static final int RELATIONS_FIELD_NUMBER = 4;
-        public static final int CHANGESETS_FIELD_NUMBER = 5;
-        // @@protoc_insertion_point(class_scope:OSMPBF.PrimitiveGroup)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<PrimitiveGroup> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new PrimitiveGroup();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Node> nodes_;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes dense_;
-        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Way> ways_;
-        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> relations_;
-        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> changesets_;
-        private byte memoizedIsInitialized = -1;
-
         private PrimitiveGroup() {
             nodes_ = emptyProtobufList();
             ways_ = emptyProtobufList();
             relations_ = emptyProtobufList();
             changesets_ = emptyProtobufList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<PrimitiveGroup> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int NODES_FIELD_NUMBER = 1;
+        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Node> nodes_;
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
         public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Node> getNodesList() {
             return nodes_;
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4547,21 +3327,18 @@ public final class Osmformat {
         getNodesOrBuilderList() {
             return nodes_;
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
         public int getNodesCount() {
             return nodes_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Node getNodes(int index) {
             return nodes_.get(index);
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4569,7 +3346,6 @@ public final class Osmformat {
                 int index) {
             return nodes_.get(index);
         }
-
         private void ensureNodesIsMutable() {
             if (!nodes_.isModifiable()) {
                 nodes_ =
@@ -4588,7 +3364,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.set(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4597,7 +3372,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.set(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4608,7 +3382,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.add(value);
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4620,7 +3393,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.add(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4629,7 +3401,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.add(builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4638,7 +3409,6 @@ public final class Osmformat {
             ensureNodesIsMutable();
             nodes_.add(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4648,14 +3418,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, nodes_);
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
         private void clearNodes() {
             nodes_ = emptyProtobufList();
         }
-
         /**
          * <code>repeated .OSMPBF.Node nodes = 1;</code>
          */
@@ -4664,29 +3432,20 @@ public final class Osmformat {
             nodes_.remove(index);
         }
 
+        public static final int DENSE_FIELD_NUMBER = 2;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes dense_;
         /**
          * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
          */
         public boolean hasDense() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDense() {
             return dense_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.getDefaultInstance() : dense_;
         }
-
-        /**
-         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-         */
-        private void setDense(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.Builder builderForValue) {
-            dense_ = builderForValue.build();
-            bitField0_ |= 0x00000001;
-        }
-
         /**
          * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
          */
@@ -4697,7 +3456,14 @@ public final class Osmformat {
             dense_ = value;
             bitField0_ |= 0x00000001;
         }
-
+        /**
+         * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+         */
+        private void setDense(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.Builder builderForValue) {
+            dense_ = builderForValue.build();
+            bitField0_ |= 0x00000001;
+        }
         /**
          * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
          */
@@ -4711,22 +3477,21 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000001;
         }
-
         /**
          * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
          */
-        private void clearDense() {
-            dense_ = null;
+        private void clearDense() {  dense_ = null;
             bitField0_ = (bitField0_ & ~0x00000001);
         }
 
+        public static final int WAYS_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Way> ways_;
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
         public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Way> getWaysList() {
             return ways_;
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4734,21 +3499,18 @@ public final class Osmformat {
         getWaysOrBuilderList() {
             return ways_;
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
         public int getWaysCount() {
             return ways_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Way getWays(int index) {
             return ways_.get(index);
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4756,7 +3518,6 @@ public final class Osmformat {
                 int index) {
             return ways_.get(index);
         }
-
         private void ensureWaysIsMutable() {
             if (!ways_.isModifiable()) {
                 ways_ =
@@ -4775,7 +3536,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.set(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4784,7 +3544,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.set(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4795,7 +3554,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.add(value);
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4807,7 +3565,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.add(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4816,7 +3573,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.add(builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4825,7 +3581,6 @@ public final class Osmformat {
             ensureWaysIsMutable();
             ways_.add(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4835,14 +3590,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, ways_);
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
         private void clearWays() {
             ways_ = emptyProtobufList();
         }
-
         /**
          * <code>repeated .OSMPBF.Way ways = 3;</code>
          */
@@ -4851,13 +3604,14 @@ public final class Osmformat {
             ways_.remove(index);
         }
 
+        public static final int RELATIONS_FIELD_NUMBER = 4;
+        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> relations_;
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
         public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> getRelationsList() {
             return relations_;
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4865,21 +3619,18 @@ public final class Osmformat {
         getRelationsOrBuilderList() {
             return relations_;
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
         public int getRelationsCount() {
             return relations_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getRelations(int index) {
             return relations_.get(index);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4887,7 +3638,6 @@ public final class Osmformat {
                 int index) {
             return relations_.get(index);
         }
-
         private void ensureRelationsIsMutable() {
             if (!relations_.isModifiable()) {
                 relations_ =
@@ -4906,7 +3656,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.set(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4915,7 +3664,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.set(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4926,7 +3674,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.add(value);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4938,7 +3685,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.add(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4947,7 +3693,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.add(builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4956,7 +3701,6 @@ public final class Osmformat {
             ensureRelationsIsMutable();
             relations_.add(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4966,14 +3710,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, relations_);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
         private void clearRelations() {
             relations_ = emptyProtobufList();
         }
-
         /**
          * <code>repeated .OSMPBF.Relation relations = 4;</code>
          */
@@ -4982,13 +3724,14 @@ public final class Osmformat {
             relations_.remove(index);
         }
 
+        public static final int CHANGESETS_FIELD_NUMBER = 5;
+        private com.google.protobuf.Internal.ProtobufList<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> changesets_;
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
         public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> getChangesetsList() {
             return changesets_;
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -4996,21 +3739,18 @@ public final class Osmformat {
         getChangesetsOrBuilderList() {
             return changesets_;
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
         public int getChangesetsCount() {
             return changesets_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getChangesets(int index) {
             return changesets_.get(index);
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5018,7 +3758,6 @@ public final class Osmformat {
                 int index) {
             return changesets_.get(index);
         }
-
         private void ensureChangesetsIsMutable() {
             if (!changesets_.isModifiable()) {
                 changesets_ =
@@ -5037,7 +3776,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.set(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5046,7 +3784,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.set(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5057,7 +3794,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.add(value);
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5069,7 +3805,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.add(index, value);
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5078,7 +3813,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.add(builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5087,7 +3821,6 @@ public final class Osmformat {
             ensureChangesetsIsMutable();
             changesets_.add(index, builderForValue.build());
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5097,14 +3830,12 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, changesets_);
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
         private void clearChangesets() {
             changesets_ = emptyProtobufList();
         }
-
         /**
          * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
          */
@@ -5163,7 +3894,528 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * <pre>
+         * Group of OSMPrimitives. All primitives in a group must be the same type.
+         * </pre>
+         *
+         * Protobuf type {@code OSMPBF.PrimitiveGroup}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.PrimitiveGroup)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroupOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Node> getNodesList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getNodesList());
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public int getNodesCount() {
+                return instance.getNodesCount();
+            }/**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Node getNodes(int index) {
+                return instance.getNodes(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder setNodes(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
+                copyOnWrite();
+                instance.setNodes(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder setNodes(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
+                copyOnWrite();
+                instance.setNodes(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder addNodes(org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
+                copyOnWrite();
+                instance.addNodes(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder addNodes(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
+                copyOnWrite();
+                instance.addNodes(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder addNodes(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
+                copyOnWrite();
+                instance.addNodes(builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder addNodes(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
+                copyOnWrite();
+                instance.addNodes(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder addAllNodes(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Node> values) {
+                copyOnWrite();
+                instance.addAllNodes(values);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder clearNodes() {
+                copyOnWrite();
+                instance.clearNodes();
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Node nodes = 1;</code>
+             */
+            public Builder removeNodes(int index) {
+                copyOnWrite();
+                instance.removeNodes(index);
+                return this;
+            }
+
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public boolean hasDense() {
+                return instance.hasDense();
+            }
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDense() {
+                return instance.getDense();
+            }
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public Builder setDense(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes value) {
+                copyOnWrite();
+                instance.setDense(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public Builder setDense(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.Builder builderForValue) {
+                copyOnWrite();
+                instance.setDense(builderForValue);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public Builder mergeDense(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes value) {
+                copyOnWrite();
+                instance.mergeDense(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
+             */
+            public Builder clearDense() {  copyOnWrite();
+                instance.clearDense();
+                return this;
+            }
+
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Way> getWaysList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getWaysList());
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public int getWaysCount() {
+                return instance.getWaysCount();
+            }/**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Way getWays(int index) {
+                return instance.getWays(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder setWays(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
+                copyOnWrite();
+                instance.setWays(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder setWays(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
+                copyOnWrite();
+                instance.setWays(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder addWays(org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
+                copyOnWrite();
+                instance.addWays(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder addWays(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
+                copyOnWrite();
+                instance.addWays(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder addWays(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
+                copyOnWrite();
+                instance.addWays(builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder addWays(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
+                copyOnWrite();
+                instance.addWays(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder addAllWays(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Way> values) {
+                copyOnWrite();
+                instance.addAllWays(values);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder clearWays() {
+                copyOnWrite();
+                instance.clearWays();
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Way ways = 3;</code>
+             */
+            public Builder removeWays(int index) {
+                copyOnWrite();
+                instance.removeWays(index);
+                return this;
+            }
+
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> getRelationsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getRelationsList());
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public int getRelationsCount() {
+                return instance.getRelationsCount();
+            }/**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getRelations(int index) {
+                return instance.getRelations(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder setRelations(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
+                copyOnWrite();
+                instance.setRelations(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder setRelations(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
+                copyOnWrite();
+                instance.setRelations(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder addRelations(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
+                copyOnWrite();
+                instance.addRelations(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder addRelations(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
+                copyOnWrite();
+                instance.addRelations(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder addRelations(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
+                copyOnWrite();
+                instance.addRelations(builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder addRelations(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
+                copyOnWrite();
+                instance.addRelations(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder addAllRelations(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> values) {
+                copyOnWrite();
+                instance.addAllRelations(values);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder clearRelations() {
+                copyOnWrite();
+                instance.clearRelations();
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation relations = 4;</code>
+             */
+            public Builder removeRelations(int index) {
+                copyOnWrite();
+                instance.removeRelations(index);
+                return this;
+            }
+
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> getChangesetsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getChangesetsList());
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public int getChangesetsCount() {
+                return instance.getChangesetsCount();
+            }/**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getChangesets(int index) {
+                return instance.getChangesets(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder setChangesets(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
+                copyOnWrite();
+                instance.setChangesets(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder setChangesets(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
+                copyOnWrite();
+                instance.setChangesets(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder addChangesets(org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
+                copyOnWrite();
+                instance.addChangesets(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder addChangesets(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
+                copyOnWrite();
+                instance.addChangesets(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder addChangesets(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
+                copyOnWrite();
+                instance.addChangesets(builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder addChangesets(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
+                copyOnWrite();
+                instance.addChangesets(index, builderForValue);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder addAllChangesets(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> values) {
+                copyOnWrite();
+                instance.addAllChangesets(values);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder clearChangesets() {
+                copyOnWrite();
+                instance.clearChangesets();
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
+             */
+            public Builder removeChangesets(int index) {
+                copyOnWrite();
+                instance.removeChangesets(index);
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.PrimitiveGroup)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -5226,11 +4478,11 @@ public final class Osmformat {
                 case VISIT: {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup other = (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup) arg1;
-                    nodes_ = visitor.visitList(nodes_, other.nodes_);
+                    nodes_= visitor.visitList(nodes_, other.nodes_);
                     dense_ = visitor.visitMessage(dense_, other.dense_);
-                    ways_ = visitor.visitList(ways_, other.ways_);
-                    relations_ = visitor.visitList(relations_, other.relations_);
-                    changesets_ = visitor.visitList(changesets_, other.changesets_);
+                    ways_= visitor.visitList(ways_, other.ways_);
+                    relations_= visitor.visitList(relations_, other.relations_);
+                    changesets_= visitor.visitList(changesets_, other.changesets_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                         bitField0_ |= other.bitField0_;
@@ -5316,17 +4568,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -5334,646 +4584,61 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * <pre>
-         * Group of OSMPrimitives. All primitives in a group must be the same type.
-         * </pre>
-         * <p>
-         * Protobuf type {@code OSMPBF.PrimitiveGroup}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.PrimitiveGroup)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroupOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.PrimitiveGroup)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new PrimitiveGroup();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Node> getNodesList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getNodesList());
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.PrimitiveGroup getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public int getNodesCount() {
-                return instance.getNodesCount();
-            }
+        private static volatile com.google.protobuf.Parser<PrimitiveGroup> PARSER;
 
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Node getNodes(int index) {
-                return instance.getNodes(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder setNodes(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
-                copyOnWrite();
-                instance.setNodes(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder setNodes(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
-                copyOnWrite();
-                instance.setNodes(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder addNodes(org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
-                copyOnWrite();
-                instance.addNodes(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder addNodes(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node value) {
-                copyOnWrite();
-                instance.addNodes(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder addNodes(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
-                copyOnWrite();
-                instance.addNodes(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder addNodes(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Node.Builder builderForValue) {
-                copyOnWrite();
-                instance.addNodes(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder addAllNodes(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Node> values) {
-                copyOnWrite();
-                instance.addAllNodes(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder clearNodes() {
-                copyOnWrite();
-                instance.clearNodes();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Node nodes = 1;</code>
-             */
-            public Builder removeNodes(int index) {
-                copyOnWrite();
-                instance.removeNodes(index);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public boolean hasDense() {
-                return instance.hasDense();
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDense() {
-                return instance.getDense();
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public Builder setDense(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.Builder builderForValue) {
-                copyOnWrite();
-                instance.setDense(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public Builder setDense(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes value) {
-                copyOnWrite();
-                instance.setDense(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public Builder mergeDense(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes value) {
-                copyOnWrite();
-                instance.mergeDense(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.DenseNodes dense = 2;</code>
-             */
-            public Builder clearDense() {
-                copyOnWrite();
-                instance.clearDense();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Way> getWaysList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getWaysList());
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public int getWaysCount() {
-                return instance.getWaysCount();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Way getWays(int index) {
-                return instance.getWays(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder setWays(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
-                copyOnWrite();
-                instance.setWays(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder setWays(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
-                copyOnWrite();
-                instance.setWays(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder addWays(org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
-                copyOnWrite();
-                instance.addWays(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder addWays(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way value) {
-                copyOnWrite();
-                instance.addWays(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder addWays(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
-                copyOnWrite();
-                instance.addWays(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder addWays(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Way.Builder builderForValue) {
-                copyOnWrite();
-                instance.addWays(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder addAllWays(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Way> values) {
-                copyOnWrite();
-                instance.addAllWays(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder clearWays() {
-                copyOnWrite();
-                instance.clearWays();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Way ways = 3;</code>
-             */
-            public Builder removeWays(int index) {
-                copyOnWrite();
-                instance.removeWays(index);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> getRelationsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getRelationsList());
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public int getRelationsCount() {
-                return instance.getRelationsCount();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getRelations(int index) {
-                return instance.getRelations(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder setRelations(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
-                copyOnWrite();
-                instance.setRelations(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder setRelations(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
-                copyOnWrite();
-                instance.setRelations(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder addRelations(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
-                copyOnWrite();
-                instance.addRelations(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder addRelations(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation value) {
-                copyOnWrite();
-                instance.addRelations(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder addRelations(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
-                copyOnWrite();
-                instance.addRelations(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder addRelations(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.Builder builderForValue) {
-                copyOnWrite();
-                instance.addRelations(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder addAllRelations(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Relation> values) {
-                copyOnWrite();
-                instance.addAllRelations(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder clearRelations() {
-                copyOnWrite();
-                instance.clearRelations();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation relations = 4;</code>
-             */
-            public Builder removeRelations(int index) {
-                copyOnWrite();
-                instance.removeRelations(index);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> getChangesetsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getChangesetsList());
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public int getChangesetsCount() {
-                return instance.getChangesetsCount();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getChangesets(int index) {
-                return instance.getChangesets(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder setChangesets(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
-                copyOnWrite();
-                instance.setChangesets(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder setChangesets(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
-                copyOnWrite();
-                instance.setChangesets(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder addChangesets(org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
-                copyOnWrite();
-                instance.addChangesets(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder addChangesets(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet value) {
-                copyOnWrite();
-                instance.addChangesets(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder addChangesets(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
-                copyOnWrite();
-                instance.addChangesets(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder addChangesets(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.Builder builderForValue) {
-                copyOnWrite();
-                instance.addChangesets(index, builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder addAllChangesets(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet> values) {
-                copyOnWrite();
-                instance.addAllChangesets(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder clearChangesets() {
-                copyOnWrite();
-                instance.clearChangesets();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.ChangeSet changesets = 5;</code>
-             */
-            public Builder removeChangesets(int index) {
-                copyOnWrite();
-                instance.removeChangesets(index);
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.PrimitiveGroup)
+        public static com.google.protobuf.Parser<PrimitiveGroup> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface StringTableOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.StringTable)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>repeated bytes s = 1;</code>
+         */
+        java.util.List<com.google.protobuf.ByteString> getSList();
+        /**
+         * <code>repeated bytes s = 1;</code>
+         */
+        int getSCount();
+        /**
+         * <code>repeated bytes s = 1;</code>
+         */
+        com.google.protobuf.ByteString getS(int index);
+    }
     /**
      * <pre>
-     * * String table, contains the common strings in each block.
-     * Note that we reserve index '0' as a delimiter, so the entry at that
-     * index in the table is ALWAYS blank and unused.
+     ** String table, contains the common strings in each block.
+     *Note that we reserve index '0' as a delimiter, so the entry at that
+     *index in the table is ALWAYS blank and unused.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code OSMPBF.StringTable}
      */
-    public static final class StringTable extends
+    public  static final class StringTable extends
             com.google.protobuf.GeneratedMessageLite<
                     StringTable, StringTable.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.StringTable)
             StringTableOrBuilder {
-        public static final int S_FIELD_NUMBER = 1;
-        // @@protoc_insertion_point(class_scope:OSMPBF.StringTable)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<StringTable> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new StringTable();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> s_;
-
         private StringTable() {
             s_ = emptyProtobufList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<StringTable> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        public static final int S_FIELD_NUMBER = 1;
+        private com.google.protobuf.Internal.ProtobufList<com.google.protobuf.ByteString> s_;
         /**
          * <code>repeated bytes s = 1;</code>
          */
@@ -5981,28 +4646,24 @@ public final class Osmformat {
         getSList() {
             return s_;
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
         public int getSCount() {
             return s_.size();
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
         public com.google.protobuf.ByteString getS(int index) {
             return s_.get(index);
         }
-
         private void ensureSIsMutable() {
             if (!s_.isModifiable()) {
                 s_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(s_);
             }
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
@@ -6014,7 +4675,6 @@ public final class Osmformat {
             ensureSIsMutable();
             s_.set(index, value);
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
@@ -6025,7 +4685,6 @@ public final class Osmformat {
             ensureSIsMutable();
             s_.add(value);
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
@@ -6035,7 +4694,6 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, s_);
         }
-
         /**
          * <code>repeated bytes s = 1;</code>
          */
@@ -6070,7 +4728,151 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * <pre>
+         ** String table, contains the common strings in each block.
+         *Note that we reserve index '0' as a delimiter, so the entry at that
+         *index in the table is ALWAYS blank and unused.
+         * </pre>
+         *
+         * Protobuf type {@code OSMPBF.StringTable}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.StringTable)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.StringTableOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public java.util.List<com.google.protobuf.ByteString>
+            getSList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getSList());
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public int getSCount() {
+                return instance.getSCount();
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public com.google.protobuf.ByteString getS(int index) {
+                return instance.getS(index);
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public Builder setS(
+                    int index, com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.setS(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public Builder addS(com.google.protobuf.ByteString value) {
+                copyOnWrite();
+                instance.addS(value);
+                return this;
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public Builder addAllS(
+                    java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
+                copyOnWrite();
+                instance.addAllS(values);
+                return this;
+            }
+            /**
+             * <code>repeated bytes s = 1;</code>
+             */
+            public Builder clearS() {
+                copyOnWrite();
+                instance.clearS();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.StringTable)
+        }
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -6091,7 +4893,7 @@ public final class Osmformat {
                 case VISIT: {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable other = (org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable) arg1;
-                    s_ = visitor.visitList(s_, other.s_);
+                    s_= visitor.visitList(s_, other.s_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                     }
@@ -6135,17 +4937,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -6153,245 +4953,143 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * <pre>
-         * * String table, contains the common strings in each block.
-         * Note that we reserve index '0' as a delimiter, so the entry at that
-         * index in the table is ALWAYS blank and unused.
-         * </pre>
-         * <p>
-         * Protobuf type {@code OSMPBF.StringTable}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.StringTable)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.StringTableOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.StringTable)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new StringTable();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public java.util.List<com.google.protobuf.ByteString>
-            getSList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getSList());
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.StringTable getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public int getSCount() {
-                return instance.getSCount();
-            }
+        private static volatile com.google.protobuf.Parser<StringTable> PARSER;
 
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public com.google.protobuf.ByteString getS(int index) {
-                return instance.getS(index);
-            }
-
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public Builder setS(
-                    int index, com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.setS(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public Builder addS(com.google.protobuf.ByteString value) {
-                copyOnWrite();
-                instance.addS(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public Builder addAllS(
-                    java.lang.Iterable<? extends com.google.protobuf.ByteString> values) {
-                copyOnWrite();
-                instance.addAllS(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated bytes s = 1;</code>
-             */
-            public Builder clearS() {
-                copyOnWrite();
-                instance.clearS();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.StringTable)
+        public static com.google.protobuf.Parser<StringTable> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface InfoOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.Info)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>optional int32 version = 1 [default = -1];</code>
+         */
+        boolean hasVersion();
+        /**
+         * <code>optional int32 version = 1 [default = -1];</code>
+         */
+        int getVersion();
+
+        /**
+         * <code>optional int64 timestamp = 2;</code>
+         */
+        boolean hasTimestamp();
+        /**
+         * <code>optional int64 timestamp = 2;</code>
+         */
+        long getTimestamp();
+
+        /**
+         * <code>optional int64 changeset = 3;</code>
+         */
+        boolean hasChangeset();
+        /**
+         * <code>optional int64 changeset = 3;</code>
+         */
+        long getChangeset();
+
+        /**
+         * <code>optional int32 uid = 4;</code>
+         */
+        boolean hasUid();
+        /**
+         * <code>optional int32 uid = 4;</code>
+         */
+        int getUid();
+
+        /**
+         * <pre>
+         * String IDs
+         * </pre>
+         *
+         * <code>optional uint32 user_sid = 5;</code>
+         */
+        boolean hasUserSid();
+        /**
+         * <pre>
+         * String IDs
+         * </pre>
+         *
+         * <code>optional uint32 user_sid = 5;</code>
+         */
+        int getUserSid();
+
+        /**
+         * <pre>
+         * The visible flag is used to store history information. It indicates that
+         * the current object version has been created by a delete operation on the
+         * OSM API.
+         * When a writer sets this flag, it MUST add a required_features tag with
+         * value "HistoricalInformation" to the HeaderBlock.
+         * If this flag is not available for some object it MUST be assumed to be
+         * true if the file has the required_features tag "HistoricalInformation"
+         * set.
+         * </pre>
+         *
+         * <code>optional bool visible = 6;</code>
+         */
+        boolean hasVisible();
+        /**
+         * <pre>
+         * The visible flag is used to store history information. It indicates that
+         * the current object version has been created by a delete operation on the
+         * OSM API.
+         * When a writer sets this flag, it MUST add a required_features tag with
+         * value "HistoricalInformation" to the HeaderBlock.
+         * If this flag is not available for some object it MUST be assumed to be
+         * true if the file has the required_features tag "HistoricalInformation"
+         * set.
+         * </pre>
+         *
+         * <code>optional bool visible = 6;</code>
+         */
+        boolean getVisible();
+    }
     /**
      * <pre>
      * Optional metadata that may be included into each primitive.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code OSMPBF.Info}
      */
-    public static final class Info extends
+    public  static final class Info extends
             com.google.protobuf.GeneratedMessageLite<
                     Info, Info.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.Info)
             InfoOrBuilder {
-        public static final int VERSION_FIELD_NUMBER = 1;
-        public static final int TIMESTAMP_FIELD_NUMBER = 2;
-        public static final int CHANGESET_FIELD_NUMBER = 3;
-        public static final int UID_FIELD_NUMBER = 4;
-        public static final int USER_SID_FIELD_NUMBER = 5;
-        public static final int VISIBLE_FIELD_NUMBER = 6;
-        // @@protoc_insertion_point(class_scope:OSMPBF.Info)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Info DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<Info> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new Info();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private int version_;
-        private long timestamp_;
-        private long changeset_;
-        private int uid_;
-        private int userSid_;
-        private boolean visible_;
-
         private Info() {
             version_ = -1;
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Info prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<Info> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int VERSION_FIELD_NUMBER = 1;
+        private int version_;
         /**
          * <code>optional int32 version = 1 [default = -1];</code>
          */
         public boolean hasVersion() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>optional int32 version = 1 [default = -1];</code>
          */
         public int getVersion() {
             return version_;
         }
-
         /**
          * <code>optional int32 version = 1 [default = -1];</code>
          */
@@ -6399,7 +5097,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000001;
             version_ = value;
         }
-
         /**
          * <code>optional int32 version = 1 [default = -1];</code>
          */
@@ -6408,20 +5105,20 @@ public final class Osmformat {
             version_ = -1;
         }
 
+        public static final int TIMESTAMP_FIELD_NUMBER = 2;
+        private long timestamp_;
         /**
          * <code>optional int64 timestamp = 2;</code>
          */
         public boolean hasTimestamp() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <code>optional int64 timestamp = 2;</code>
          */
         public long getTimestamp() {
             return timestamp_;
         }
-
         /**
          * <code>optional int64 timestamp = 2;</code>
          */
@@ -6429,7 +5126,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000002;
             timestamp_ = value;
         }
-
         /**
          * <code>optional int64 timestamp = 2;</code>
          */
@@ -6438,20 +5134,20 @@ public final class Osmformat {
             timestamp_ = 0L;
         }
 
+        public static final int CHANGESET_FIELD_NUMBER = 3;
+        private long changeset_;
         /**
          * <code>optional int64 changeset = 3;</code>
          */
         public boolean hasChangeset() {
             return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-
         /**
          * <code>optional int64 changeset = 3;</code>
          */
         public long getChangeset() {
             return changeset_;
         }
-
         /**
          * <code>optional int64 changeset = 3;</code>
          */
@@ -6459,7 +5155,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000004;
             changeset_ = value;
         }
-
         /**
          * <code>optional int64 changeset = 3;</code>
          */
@@ -6468,20 +5163,20 @@ public final class Osmformat {
             changeset_ = 0L;
         }
 
+        public static final int UID_FIELD_NUMBER = 4;
+        private int uid_;
         /**
          * <code>optional int32 uid = 4;</code>
          */
         public boolean hasUid() {
             return ((bitField0_ & 0x00000008) == 0x00000008);
         }
-
         /**
          * <code>optional int32 uid = 4;</code>
          */
         public int getUid() {
             return uid_;
         }
-
         /**
          * <code>optional int32 uid = 4;</code>
          */
@@ -6489,7 +5184,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000008;
             uid_ = value;
         }
-
         /**
          * <code>optional int32 uid = 4;</code>
          */
@@ -6498,45 +5192,44 @@ public final class Osmformat {
             uid_ = 0;
         }
 
+        public static final int USER_SID_FIELD_NUMBER = 5;
+        private int userSid_;
         /**
          * <pre>
          * String IDs
          * </pre>
-         * <p>
+         *
          * <code>optional uint32 user_sid = 5;</code>
          */
         public boolean hasUserSid() {
             return ((bitField0_ & 0x00000010) == 0x00000010);
         }
-
         /**
          * <pre>
          * String IDs
          * </pre>
-         * <p>
+         *
          * <code>optional uint32 user_sid = 5;</code>
          */
         public int getUserSid() {
             return userSid_;
         }
-
         /**
          * <pre>
          * String IDs
          * </pre>
-         * <p>
+         *
          * <code>optional uint32 user_sid = 5;</code>
          */
         private void setUserSid(int value) {
             bitField0_ |= 0x00000010;
             userSid_ = value;
         }
-
         /**
          * <pre>
          * String IDs
          * </pre>
-         * <p>
+         *
          * <code>optional uint32 user_sid = 5;</code>
          */
         private void clearUserSid() {
@@ -6544,6 +5237,8 @@ public final class Osmformat {
             userSid_ = 0;
         }
 
+        public static final int VISIBLE_FIELD_NUMBER = 6;
+        private boolean visible_;
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -6555,13 +5250,12 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>optional bool visible = 6;</code>
          */
         public boolean hasVisible() {
             return ((bitField0_ & 0x00000020) == 0x00000020);
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -6573,13 +5267,12 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>optional bool visible = 6;</code>
          */
         public boolean getVisible() {
             return visible_;
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -6591,14 +5284,13 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>optional bool visible = 6;</code>
          */
         private void setVisible(boolean value) {
             bitField0_ |= 0x00000020;
             visible_ = value;
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -6610,7 +5302,7 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>optional bool visible = 6;</code>
          */
         private void clearVisible() {
@@ -6675,7 +5367,328 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Info prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * <pre>
+         * Optional metadata that may be included into each primitive.
+         * </pre>
+         *
+         * Protobuf type {@code OSMPBF.Info}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.Info, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.Info)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.InfoOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Info.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>optional int32 version = 1 [default = -1];</code>
+             */
+            public boolean hasVersion() {
+                return instance.hasVersion();
+            }
+            /**
+             * <code>optional int32 version = 1 [default = -1];</code>
+             */
+            public int getVersion() {
+                return instance.getVersion();
+            }
+            /**
+             * <code>optional int32 version = 1 [default = -1];</code>
+             */
+            public Builder setVersion(int value) {
+                copyOnWrite();
+                instance.setVersion(value);
+                return this;
+            }
+            /**
+             * <code>optional int32 version = 1 [default = -1];</code>
+             */
+            public Builder clearVersion() {
+                copyOnWrite();
+                instance.clearVersion();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 timestamp = 2;</code>
+             */
+            public boolean hasTimestamp() {
+                return instance.hasTimestamp();
+            }
+            /**
+             * <code>optional int64 timestamp = 2;</code>
+             */
+            public long getTimestamp() {
+                return instance.getTimestamp();
+            }
+            /**
+             * <code>optional int64 timestamp = 2;</code>
+             */
+            public Builder setTimestamp(long value) {
+                copyOnWrite();
+                instance.setTimestamp(value);
+                return this;
+            }
+            /**
+             * <code>optional int64 timestamp = 2;</code>
+             */
+            public Builder clearTimestamp() {
+                copyOnWrite();
+                instance.clearTimestamp();
+                return this;
+            }
+
+            /**
+             * <code>optional int64 changeset = 3;</code>
+             */
+            public boolean hasChangeset() {
+                return instance.hasChangeset();
+            }
+            /**
+             * <code>optional int64 changeset = 3;</code>
+             */
+            public long getChangeset() {
+                return instance.getChangeset();
+            }
+            /**
+             * <code>optional int64 changeset = 3;</code>
+             */
+            public Builder setChangeset(long value) {
+                copyOnWrite();
+                instance.setChangeset(value);
+                return this;
+            }
+            /**
+             * <code>optional int64 changeset = 3;</code>
+             */
+            public Builder clearChangeset() {
+                copyOnWrite();
+                instance.clearChangeset();
+                return this;
+            }
+
+            /**
+             * <code>optional int32 uid = 4;</code>
+             */
+            public boolean hasUid() {
+                return instance.hasUid();
+            }
+            /**
+             * <code>optional int32 uid = 4;</code>
+             */
+            public int getUid() {
+                return instance.getUid();
+            }
+            /**
+             * <code>optional int32 uid = 4;</code>
+             */
+            public Builder setUid(int value) {
+                copyOnWrite();
+                instance.setUid(value);
+                return this;
+            }
+            /**
+             * <code>optional int32 uid = 4;</code>
+             */
+            public Builder clearUid() {
+                copyOnWrite();
+                instance.clearUid();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * String IDs
+             * </pre>
+             *
+             * <code>optional uint32 user_sid = 5;</code>
+             */
+            public boolean hasUserSid() {
+                return instance.hasUserSid();
+            }
+            /**
+             * <pre>
+             * String IDs
+             * </pre>
+             *
+             * <code>optional uint32 user_sid = 5;</code>
+             */
+            public int getUserSid() {
+                return instance.getUserSid();
+            }
+            /**
+             * <pre>
+             * String IDs
+             * </pre>
+             *
+             * <code>optional uint32 user_sid = 5;</code>
+             */
+            public Builder setUserSid(int value) {
+                copyOnWrite();
+                instance.setUserSid(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs
+             * </pre>
+             *
+             * <code>optional uint32 user_sid = 5;</code>
+             */
+            public Builder clearUserSid() {
+                copyOnWrite();
+                instance.clearUserSid();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>optional bool visible = 6;</code>
+             */
+            public boolean hasVisible() {
+                return instance.hasVisible();
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>optional bool visible = 6;</code>
+             */
+            public boolean getVisible() {
+                return instance.getVisible();
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>optional bool visible = 6;</code>
+             */
+            public Builder setVisible(boolean value) {
+                copyOnWrite();
+                instance.setVisible(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>optional bool visible = 6;</code>
+             */
+            public Builder clearVisible() {
+                copyOnWrite();
+                instance.clearVisible();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.Info)
+        }
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -6779,17 +5792,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Info.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Info.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -6797,320 +5808,200 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * <pre>
-         * Optional metadata that may be included into each primitive.
-         * </pre>
-         * <p>
-         * Protobuf type {@code OSMPBF.Info}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.Info, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.Info)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.InfoOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Info.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.Info)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Info DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new Info();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>optional int32 version = 1 [default = -1];</code>
-             */
-            public boolean hasVersion() {
-                return instance.hasVersion();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Info getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>optional int32 version = 1 [default = -1];</code>
-             */
-            public int getVersion() {
-                return instance.getVersion();
-            }
+        private static volatile com.google.protobuf.Parser<Info> PARSER;
 
-            /**
-             * <code>optional int32 version = 1 [default = -1];</code>
-             */
-            public Builder setVersion(int value) {
-                copyOnWrite();
-                instance.setVersion(value);
-                return this;
-            }
-
-            /**
-             * <code>optional int32 version = 1 [default = -1];</code>
-             */
-            public Builder clearVersion() {
-                copyOnWrite();
-                instance.clearVersion();
-                return this;
-            }
-
-            /**
-             * <code>optional int64 timestamp = 2;</code>
-             */
-            public boolean hasTimestamp() {
-                return instance.hasTimestamp();
-            }
-
-            /**
-             * <code>optional int64 timestamp = 2;</code>
-             */
-            public long getTimestamp() {
-                return instance.getTimestamp();
-            }
-
-            /**
-             * <code>optional int64 timestamp = 2;</code>
-             */
-            public Builder setTimestamp(long value) {
-                copyOnWrite();
-                instance.setTimestamp(value);
-                return this;
-            }
-
-            /**
-             * <code>optional int64 timestamp = 2;</code>
-             */
-            public Builder clearTimestamp() {
-                copyOnWrite();
-                instance.clearTimestamp();
-                return this;
-            }
-
-            /**
-             * <code>optional int64 changeset = 3;</code>
-             */
-            public boolean hasChangeset() {
-                return instance.hasChangeset();
-            }
-
-            /**
-             * <code>optional int64 changeset = 3;</code>
-             */
-            public long getChangeset() {
-                return instance.getChangeset();
-            }
-
-            /**
-             * <code>optional int64 changeset = 3;</code>
-             */
-            public Builder setChangeset(long value) {
-                copyOnWrite();
-                instance.setChangeset(value);
-                return this;
-            }
-
-            /**
-             * <code>optional int64 changeset = 3;</code>
-             */
-            public Builder clearChangeset() {
-                copyOnWrite();
-                instance.clearChangeset();
-                return this;
-            }
-
-            /**
-             * <code>optional int32 uid = 4;</code>
-             */
-            public boolean hasUid() {
-                return instance.hasUid();
-            }
-
-            /**
-             * <code>optional int32 uid = 4;</code>
-             */
-            public int getUid() {
-                return instance.getUid();
-            }
-
-            /**
-             * <code>optional int32 uid = 4;</code>
-             */
-            public Builder setUid(int value) {
-                copyOnWrite();
-                instance.setUid(value);
-                return this;
-            }
-
-            /**
-             * <code>optional int32 uid = 4;</code>
-             */
-            public Builder clearUid() {
-                copyOnWrite();
-                instance.clearUid();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs
-             * </pre>
-             * <p>
-             * <code>optional uint32 user_sid = 5;</code>
-             */
-            public boolean hasUserSid() {
-                return instance.hasUserSid();
-            }
-
-            /**
-             * <pre>
-             * String IDs
-             * </pre>
-             * <p>
-             * <code>optional uint32 user_sid = 5;</code>
-             */
-            public int getUserSid() {
-                return instance.getUserSid();
-            }
-
-            /**
-             * <pre>
-             * String IDs
-             * </pre>
-             * <p>
-             * <code>optional uint32 user_sid = 5;</code>
-             */
-            public Builder setUserSid(int value) {
-                copyOnWrite();
-                instance.setUserSid(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs
-             * </pre>
-             * <p>
-             * <code>optional uint32 user_sid = 5;</code>
-             */
-            public Builder clearUserSid() {
-                copyOnWrite();
-                instance.clearUserSid();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>optional bool visible = 6;</code>
-             */
-            public boolean hasVisible() {
-                return instance.hasVisible();
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>optional bool visible = 6;</code>
-             */
-            public boolean getVisible() {
-                return instance.getVisible();
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>optional bool visible = 6;</code>
-             */
-            public Builder setVisible(boolean value) {
-                copyOnWrite();
-                instance.setVisible(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>optional bool visible = 6;</code>
-             */
-            public Builder clearVisible() {
-                copyOnWrite();
-                instance.clearVisible();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.Info)
+        public static com.google.protobuf.Parser<Info> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface DenseInfoOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.DenseInfo)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>repeated int32 version = 1 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getVersionList();
+        /**
+         * <code>repeated int32 version = 1 [packed = true];</code>
+         */
+        int getVersionCount();
+        /**
+         * <code>repeated int32 version = 1 [packed = true];</code>
+         */
+        int getVersion(int index);
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getTimestampList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+         */
+        int getTimestampCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+         */
+        long getTimestamp(int index);
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 changeset = 3 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getChangesetList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 changeset = 3 [packed = true];</code>
+         */
+        int getChangesetCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 changeset = 3 [packed = true];</code>
+         */
+        long getChangeset(int index);
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 uid = 4 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getUidList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 uid = 4 [packed = true];</code>
+         */
+        int getUidCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 uid = 4 [packed = true];</code>
+         */
+        int getUid(int index);
+
+        /**
+         * <pre>
+         * String IDs for usernames. DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getUserSidList();
+        /**
+         * <pre>
+         * String IDs for usernames. DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+         */
+        int getUserSidCount();
+        /**
+         * <pre>
+         * String IDs for usernames. DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+         */
+        int getUserSid(int index);
+
+        /**
+         * <pre>
+         * The visible flag is used to store history information. It indicates that
+         * the current object version has been created by a delete operation on the
+         * OSM API.
+         * When a writer sets this flag, it MUST add a required_features tag with
+         * value "HistoricalInformation" to the HeaderBlock.
+         * If this flag is not available for some object it MUST be assumed to be
+         * true if the file has the required_features tag "HistoricalInformation"
+         * set.
+         * </pre>
+         *
+         * <code>repeated bool visible = 6 [packed = true];</code>
+         */
+        java.util.List<java.lang.Boolean> getVisibleList();
+        /**
+         * <pre>
+         * The visible flag is used to store history information. It indicates that
+         * the current object version has been created by a delete operation on the
+         * OSM API.
+         * When a writer sets this flag, it MUST add a required_features tag with
+         * value "HistoricalInformation" to the HeaderBlock.
+         * If this flag is not available for some object it MUST be assumed to be
+         * true if the file has the required_features tag "HistoricalInformation"
+         * set.
+         * </pre>
+         *
+         * <code>repeated bool visible = 6 [packed = true];</code>
+         */
+        int getVisibleCount();
+        /**
+         * <pre>
+         * The visible flag is used to store history information. It indicates that
+         * the current object version has been created by a delete operation on the
+         * OSM API.
+         * When a writer sets this flag, it MUST add a required_features tag with
+         * value "HistoricalInformation" to the HeaderBlock.
+         * If this flag is not available for some object it MUST be assumed to be
+         * true if the file has the required_features tag "HistoricalInformation"
+         * set.
+         * </pre>
+         *
+         * <code>repeated bool visible = 6 [packed = true];</code>
+         */
+        boolean getVisible(int index);
+    }
     /**
      * <pre>
-     * * Optional metadata that may be included into each primitive. Special dense format used in DenseNodes.
+     ** Optional metadata that may be included into each primitive. Special dense format used in DenseNodes.
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code OSMPBF.DenseInfo}
      */
-    public static final class DenseInfo extends
+    public  static final class DenseInfo extends
             com.google.protobuf.GeneratedMessageLite<
                     DenseInfo, DenseInfo.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.DenseInfo)
             DenseInfoOrBuilder {
-        public static final int VERSION_FIELD_NUMBER = 1;
-        public static final int TIMESTAMP_FIELD_NUMBER = 2;
-        public static final int CHANGESET_FIELD_NUMBER = 3;
-        public static final int UID_FIELD_NUMBER = 4;
-        public static final int USER_SID_FIELD_NUMBER = 5;
-        public static final int VISIBLE_FIELD_NUMBER = 6;
-        // @@protoc_insertion_point(class_scope:OSMPBF.DenseInfo)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<DenseInfo> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new DenseInfo();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private com.google.protobuf.Internal.IntList version_;
-        private int versionMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.LongList timestamp_;
-        private int timestampMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.LongList changeset_;
-        private int changesetMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList uid_;
-        private int uidMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList userSid_;
-        private int userSidMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.BooleanList visible_;
-        private int visibleMemoizedSerializedSize = -1;
-
         private DenseInfo() {
             version_ = emptyIntList();
             timestamp_ = emptyLongList();
@@ -7119,108 +6010,8 @@ public final class Osmformat {
             userSid_ = emptyIntList();
             visible_ = emptyBooleanList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<DenseInfo> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        public static final int VERSION_FIELD_NUMBER = 1;
+        private com.google.protobuf.Internal.IntList version_;
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
@@ -7228,28 +6019,25 @@ public final class Osmformat {
         getVersionList() {
             return version_;
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
         public int getVersionCount() {
             return version_.size();
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
         public int getVersion(int index) {
             return version_.getInt(index);
         }
-
+        private int versionMemoizedSerializedSize = -1;
         private void ensureVersionIsMutable() {
             if (!version_.isModifiable()) {
                 version_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(version_);
             }
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
@@ -7258,7 +6046,6 @@ public final class Osmformat {
             ensureVersionIsMutable();
             version_.setInt(index, value);
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
@@ -7266,7 +6053,6 @@ public final class Osmformat {
             ensureVersionIsMutable();
             version_.addInt(value);
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
@@ -7276,7 +6062,6 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, version_);
         }
-
         /**
          * <code>repeated int32 version = 1 [packed = true];</code>
          */
@@ -7284,52 +6069,51 @@ public final class Osmformat {
             version_ = emptyIntList();
         }
 
+        public static final int TIMESTAMP_FIELD_NUMBER = 2;
+        private com.google.protobuf.Internal.LongList timestamp_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getTimestampList() {
             return timestamp_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         public int getTimestampCount() {
             return timestamp_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         public long getTimestamp(int index) {
             return timestamp_.getLong(index);
         }
-
+        private int timestampMemoizedSerializedSize = -1;
         private void ensureTimestampIsMutable() {
             if (!timestamp_.isModifiable()) {
                 timestamp_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(timestamp_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         private void setTimestamp(
@@ -7337,24 +6121,22 @@ public final class Osmformat {
             ensureTimestampIsMutable();
             timestamp_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         private void addTimestamp(long value) {
             ensureTimestampIsMutable();
             timestamp_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         private void addAllTimestamp(
@@ -7363,64 +6145,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, timestamp_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 timestamp = 2 [packed = true];</code>
          */
         private void clearTimestamp() {
             timestamp_ = emptyLongList();
         }
 
+        public static final int CHANGESET_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.LongList changeset_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getChangesetList() {
             return changeset_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         public int getChangesetCount() {
             return changeset_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         public long getChangeset(int index) {
             return changeset_.getLong(index);
         }
-
+        private int changesetMemoizedSerializedSize = -1;
         private void ensureChangesetIsMutable() {
             if (!changeset_.isModifiable()) {
                 changeset_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(changeset_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         private void setChangeset(
@@ -7428,24 +6208,22 @@ public final class Osmformat {
             ensureChangesetIsMutable();
             changeset_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         private void addChangeset(long value) {
             ensureChangesetIsMutable();
             changeset_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         private void addAllChangeset(
@@ -7454,64 +6232,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, changeset_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 changeset = 3 [packed = true];</code>
          */
         private void clearChangeset() {
             changeset_ = emptyLongList();
         }
 
+        public static final int UID_FIELD_NUMBER = 4;
+        private com.google.protobuf.Internal.IntList uid_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getUidList() {
             return uid_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         public int getUidCount() {
             return uid_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         public int getUid(int index) {
             return uid_.getInt(index);
         }
-
+        private int uidMemoizedSerializedSize = -1;
         private void ensureUidIsMutable() {
             if (!uid_.isModifiable()) {
                 uid_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(uid_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         private void setUid(
@@ -7519,24 +6295,22 @@ public final class Osmformat {
             ensureUidIsMutable();
             uid_.setInt(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         private void addUid(int value) {
             ensureUidIsMutable();
             uid_.addInt(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         private void addAllUid(
@@ -7545,64 +6319,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, uid_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 uid = 4 [packed = true];</code>
          */
         private void clearUid() {
             uid_ = emptyIntList();
         }
 
+        public static final int USER_SID_FIELD_NUMBER = 5;
+        private com.google.protobuf.Internal.IntList userSid_;
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getUserSidList() {
             return userSid_;
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         public int getUserSidCount() {
             return userSid_.size();
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         public int getUserSid(int index) {
             return userSid_.getInt(index);
         }
-
+        private int userSidMemoizedSerializedSize = -1;
         private void ensureUserSidIsMutable() {
             if (!userSid_.isModifiable()) {
                 userSid_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(userSid_);
             }
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         private void setUserSid(
@@ -7610,24 +6382,22 @@ public final class Osmformat {
             ensureUserSidIsMutable();
             userSid_.setInt(index, value);
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         private void addUserSid(int value) {
             ensureUserSidIsMutable();
             userSid_.addInt(value);
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         private void addAllUserSid(
@@ -7636,18 +6406,19 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, userSid_);
         }
-
         /**
          * <pre>
          * String IDs for usernames. DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint32 user_sid = 5 [packed = true];</code>
          */
         private void clearUserSid() {
             userSid_ = emptyIntList();
         }
 
+        public static final int VISIBLE_FIELD_NUMBER = 6;
+        private com.google.protobuf.Internal.BooleanList visible_;
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7659,14 +6430,13 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         public java.util.List<java.lang.Boolean>
         getVisibleList() {
             return visible_;
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7678,13 +6448,12 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         public int getVisibleCount() {
             return visible_.size();
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7696,20 +6465,19 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         public boolean getVisible(int index) {
             return visible_.getBoolean(index);
         }
-
+        private int visibleMemoizedSerializedSize = -1;
         private void ensureVisibleIsMutable() {
             if (!visible_.isModifiable()) {
                 visible_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(visible_);
             }
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7721,7 +6489,7 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         private void setVisible(
@@ -7729,7 +6497,6 @@ public final class Osmformat {
             ensureVisibleIsMutable();
             visible_.setBoolean(index, value);
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7741,14 +6508,13 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         private void addVisible(boolean value) {
             ensureVisibleIsMutable();
             visible_.addBoolean(value);
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7760,7 +6526,7 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         private void addAllVisible(
@@ -7769,7 +6535,6 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, visible_);
         }
-
         /**
          * <pre>
          * The visible flag is used to store history information. It indicates that
@@ -7781,7 +6546,7 @@ public final class Osmformat {
          * true if the file has the required_features tag "HistoricalInformation"
          * set.
          * </pre>
-         * <p>
+         *
          * <code>repeated bool visible = 6 [packed = true];</code>
          */
         private void clearVisible() {
@@ -7927,7 +6692,613 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * <pre>
+         ** Optional metadata that may be included into each primitive. Special dense format used in DenseNodes.
+         * </pre>
+         *
+         * Protobuf type {@code OSMPBF.DenseInfo}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.DenseInfo)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfoOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getVersionList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getVersionList());
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public int getVersionCount() {
+                return instance.getVersionCount();
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public int getVersion(int index) {
+                return instance.getVersion(index);
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public Builder setVersion(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setVersion(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public Builder addVersion(int value) {
+                copyOnWrite();
+                instance.addVersion(value);
+                return this;
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public Builder addAllVersion(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllVersion(values);
+                return this;
+            }
+            /**
+             * <code>repeated int32 version = 1 [packed = true];</code>
+             */
+            public Builder clearVersion() {
+                copyOnWrite();
+                instance.clearVersion();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getTimestampList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getTimestampList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public int getTimestampCount() {
+                return instance.getTimestampCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public long getTimestamp(int index) {
+                return instance.getTimestamp(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public Builder setTimestamp(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setTimestamp(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public Builder addTimestamp(long value) {
+                copyOnWrite();
+                instance.addTimestamp(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public Builder addAllTimestamp(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllTimestamp(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
+             */
+            public Builder clearTimestamp() {
+                copyOnWrite();
+                instance.clearTimestamp();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getChangesetList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getChangesetList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public int getChangesetCount() {
+                return instance.getChangesetCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public long getChangeset(int index) {
+                return instance.getChangeset(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public Builder setChangeset(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setChangeset(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public Builder addChangeset(long value) {
+                copyOnWrite();
+                instance.addChangeset(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public Builder addAllChangeset(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllChangeset(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 changeset = 3 [packed = true];</code>
+             */
+            public Builder clearChangeset() {
+                copyOnWrite();
+                instance.clearChangeset();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getUidList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getUidList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public int getUidCount() {
+                return instance.getUidCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public int getUid(int index) {
+                return instance.getUid(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public Builder setUid(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setUid(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public Builder addUid(int value) {
+                copyOnWrite();
+                instance.addUid(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public Builder addAllUid(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllUid(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 uid = 4 [packed = true];</code>
+             */
+            public Builder clearUid() {
+                copyOnWrite();
+                instance.clearUid();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getUserSidList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getUserSidList());
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public int getUserSidCount() {
+                return instance.getUserSidCount();
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public int getUserSid(int index) {
+                return instance.getUserSid(index);
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public Builder setUserSid(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setUserSid(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public Builder addUserSid(int value) {
+                copyOnWrite();
+                instance.addUserSid(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public Builder addAllUserSid(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllUserSid(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs for usernames. DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
+             */
+            public Builder clearUserSid() {
+                copyOnWrite();
+                instance.clearUserSid();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Boolean>
+            getVisibleList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getVisibleList());
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public int getVisibleCount() {
+                return instance.getVisibleCount();
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public boolean getVisible(int index) {
+                return instance.getVisible(index);
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public Builder setVisible(
+                    int index, boolean value) {
+                copyOnWrite();
+                instance.setVisible(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public Builder addVisible(boolean value) {
+                copyOnWrite();
+                instance.addVisible(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public Builder addAllVisible(
+                    java.lang.Iterable<? extends java.lang.Boolean> values) {
+                copyOnWrite();
+                instance.addAllVisible(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * The visible flag is used to store history information. It indicates that
+             * the current object version has been created by a delete operation on the
+             * OSM API.
+             * When a writer sets this flag, it MUST add a required_features tag with
+             * value "HistoricalInformation" to the HeaderBlock.
+             * If this flag is not available for some object it MUST be assumed to be
+             * true if the file has the required_features tag "HistoricalInformation"
+             * set.
+             * </pre>
+             *
+             * <code>repeated bool visible = 6 [packed = true];</code>
+             */
+            public Builder clearVisible() {
+                copyOnWrite();
+                instance.clearVisible();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.DenseInfo)
+        }
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -7953,12 +7324,12 @@ public final class Osmformat {
                 case VISIT: {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo other = (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo) arg1;
-                    version_ = visitor.visitIntList(version_, other.version_);
-                    timestamp_ = visitor.visitLongList(timestamp_, other.timestamp_);
-                    changeset_ = visitor.visitLongList(changeset_, other.changeset_);
-                    uid_ = visitor.visitIntList(uid_, other.uid_);
-                    userSid_ = visitor.visitIntList(userSid_, other.userSid_);
-                    visible_ = visitor.visitBooleanList(visible_, other.visible_);
+                    version_= visitor.visitIntList(version_, other.version_);
+                    timestamp_= visitor.visitLongList(timestamp_, other.timestamp_);
+                    changeset_= visitor.visitLongList(changeset_, other.changeset_);
+                    uid_= visitor.visitIntList(uid_, other.uid_);
+                    userSid_= visitor.visitIntList(userSid_, other.userSid_);
+                    visible_= visitor.visitBooleanList(visible_, other.visible_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                     }
@@ -8102,7 +7473,7 @@ public final class Osmformat {
                                     if (!visible_.isModifiable() && input.getBytesUntilLimit() > 0) {
                                         final int currentSize = visible_.size();
                                         visible_ = visible_.mutableCopyWithCapacity(
-                                                currentSize + (length / 1));
+                                                currentSize + (length/1));
                                     }
                                     while (input.getBytesUntilLimit() > 0) {
                                         visible_.addBoolean(input.readBool());
@@ -8121,17 +7492,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -8139,714 +7508,72 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * <pre>
-         * * Optional metadata that may be included into each primitive. Special dense format used in DenseNodes.
-         * </pre>
-         * <p>
-         * Protobuf type {@code OSMPBF.DenseInfo}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.DenseInfo)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfoOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.DenseInfo)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new DenseInfo();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getVersionList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getVersionList());
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public int getVersionCount() {
-                return instance.getVersionCount();
-            }
+        private static volatile com.google.protobuf.Parser<DenseInfo> PARSER;
 
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public int getVersion(int index) {
-                return instance.getVersion(index);
-            }
-
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public Builder setVersion(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setVersion(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public Builder addVersion(int value) {
-                copyOnWrite();
-                instance.addVersion(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public Builder addAllVersion(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllVersion(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated int32 version = 1 [packed = true];</code>
-             */
-            public Builder clearVersion() {
-                copyOnWrite();
-                instance.clearVersion();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getTimestampList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getTimestampList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public int getTimestampCount() {
-                return instance.getTimestampCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public long getTimestamp(int index) {
-                return instance.getTimestamp(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public Builder setTimestamp(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setTimestamp(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public Builder addTimestamp(long value) {
-                copyOnWrite();
-                instance.addTimestamp(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public Builder addAllTimestamp(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllTimestamp(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 timestamp = 2 [packed = true];</code>
-             */
-            public Builder clearTimestamp() {
-                copyOnWrite();
-                instance.clearTimestamp();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getChangesetList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getChangesetList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public int getChangesetCount() {
-                return instance.getChangesetCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public long getChangeset(int index) {
-                return instance.getChangeset(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public Builder setChangeset(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setChangeset(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public Builder addChangeset(long value) {
-                copyOnWrite();
-                instance.addChangeset(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public Builder addAllChangeset(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllChangeset(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 changeset = 3 [packed = true];</code>
-             */
-            public Builder clearChangeset() {
-                copyOnWrite();
-                instance.clearChangeset();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getUidList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getUidList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public int getUidCount() {
-                return instance.getUidCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public int getUid(int index) {
-                return instance.getUid(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public Builder setUid(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setUid(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public Builder addUid(int value) {
-                copyOnWrite();
-                instance.addUid(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public Builder addAllUid(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllUid(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 uid = 4 [packed = true];</code>
-             */
-            public Builder clearUid() {
-                copyOnWrite();
-                instance.clearUid();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getUserSidList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getUserSidList());
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public int getUserSidCount() {
-                return instance.getUserSidCount();
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public int getUserSid(int index) {
-                return instance.getUserSid(index);
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public Builder setUserSid(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setUserSid(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public Builder addUserSid(int value) {
-                copyOnWrite();
-                instance.addUserSid(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public Builder addAllUserSid(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllUserSid(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs for usernames. DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint32 user_sid = 5 [packed = true];</code>
-             */
-            public Builder clearUserSid() {
-                copyOnWrite();
-                instance.clearUserSid();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Boolean>
-            getVisibleList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getVisibleList());
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public int getVisibleCount() {
-                return instance.getVisibleCount();
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public boolean getVisible(int index) {
-                return instance.getVisible(index);
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public Builder setVisible(
-                    int index, boolean value) {
-                copyOnWrite();
-                instance.setVisible(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public Builder addVisible(boolean value) {
-                copyOnWrite();
-                instance.addVisible(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public Builder addAllVisible(
-                    java.lang.Iterable<? extends java.lang.Boolean> values) {
-                copyOnWrite();
-                instance.addAllVisible(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * The visible flag is used to store history information. It indicates that
-             * the current object version has been created by a delete operation on the
-             * OSM API.
-             * When a writer sets this flag, it MUST add a required_features tag with
-             * value "HistoricalInformation" to the HeaderBlock.
-             * If this flag is not available for some object it MUST be assumed to be
-             * true if the file has the required_features tag "HistoricalInformation"
-             * set.
-             * </pre>
-             * <p>
-             * <code>repeated bool visible = 6 [packed = true];</code>
-             */
-            public Builder clearVisible() {
-                copyOnWrite();
-                instance.clearVisible();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.DenseInfo)
+        public static com.google.protobuf.Parser<DenseInfo> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface ChangeSetOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.ChangeSet)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <pre>
+         *
+         *   // Parallel arrays.
+         *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+         *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+         *   optional Info info = 4;
+         * </pre>
+         *
+         * <code>required int64 id = 1;</code>
+         */
+        boolean hasId();
+        /**
+         * <pre>
+         *
+         *   // Parallel arrays.
+         *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+         *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+         *   optional Info info = 4;
+         * </pre>
+         *
+         * <code>required int64 id = 1;</code>
+         */
+        long getId();
+    }
     /**
      * <pre>
      * THIS IS STUB DESIGN FOR CHANGESETS. NOT USED RIGHT NOW.
      * TODO:    REMOVE THIS?
      * </pre>
-     * <p>
+     *
      * Protobuf type {@code OSMPBF.ChangeSet}
      */
-    public static final class ChangeSet extends
+    public  static final class ChangeSet extends
             com.google.protobuf.GeneratedMessageLite<
                     ChangeSet, ChangeSet.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.ChangeSet)
             ChangeSetOrBuilder {
-        public static final int ID_FIELD_NUMBER = 1;
-        // @@protoc_insertion_point(class_scope:OSMPBF.ChangeSet)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<ChangeSet> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new ChangeSet();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private long id_;
-        private byte memoizedIsInitialized = -1;
-
         private ChangeSet() {
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<ChangeSet> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private long id_;
         /**
          * <pre>
          *
@@ -8855,13 +7582,12 @@ public final class Osmformat {
          *   repeated uint32 vals = 3 [packed = true]; // String IDs.
          *   optional Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>required int64 id = 1;</code>
          */
         public boolean hasId() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <pre>
          *
@@ -8870,13 +7596,12 @@ public final class Osmformat {
          *   repeated uint32 vals = 3 [packed = true]; // String IDs.
          *   optional Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>required int64 id = 1;</code>
          */
         public long getId() {
             return id_;
         }
-
         /**
          * <pre>
          *
@@ -8885,14 +7610,13 @@ public final class Osmformat {
          *   repeated uint32 vals = 3 [packed = true]; // String IDs.
          *   optional Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>required int64 id = 1;</code>
          */
         private void setId(long value) {
             bitField0_ |= 0x00000001;
             id_ = value;
         }
-
         /**
          * <pre>
          *
@@ -8901,7 +7625,7 @@ public final class Osmformat {
          *   repeated uint32 vals = 3 [packed = true]; // String IDs.
          *   optional Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>required int64 id = 1;</code>
          */
         private void clearId() {
@@ -8931,7 +7655,157 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * <pre>
+         * THIS IS STUB DESIGN FOR CHANGESETS. NOT USED RIGHT NOW.
+         * TODO:    REMOVE THIS?
+         * </pre>
+         *
+         * Protobuf type {@code OSMPBF.ChangeSet}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.ChangeSet)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSetOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <pre>
+             *
+             *   // Parallel arrays.
+             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+             *   optional Info info = 4;
+             * </pre>
+             *
+             * <code>required int64 id = 1;</code>
+             */
+            public boolean hasId() {
+                return instance.hasId();
+            }
+            /**
+             * <pre>
+             *
+             *   // Parallel arrays.
+             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+             *   optional Info info = 4;
+             * </pre>
+             *
+             * <code>required int64 id = 1;</code>
+             */
+            public long getId() {
+                return instance.getId();
+            }
+            /**
+             * <pre>
+             *
+             *   // Parallel arrays.
+             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+             *   optional Info info = 4;
+             * </pre>
+             *
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder setId(long value) {
+                copyOnWrite();
+                instance.setId(value);
+                return this;
+            }
+            /**
+             * <pre>
+             *
+             *   // Parallel arrays.
+             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
+             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
+             *   optional Info info = 4;
+             * </pre>
+             *
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.ChangeSet)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -9008,17 +7882,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -9026,247 +7898,150 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * <pre>
-         * THIS IS STUB DESIGN FOR CHANGESETS. NOT USED RIGHT NOW.
-         * TODO:    REMOVE THIS?
-         * </pre>
-         * <p>
-         * Protobuf type {@code OSMPBF.ChangeSet}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.ChangeSet)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSetOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.ChangeSet)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new ChangeSet();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <pre>
-             *
-             *   // Parallel arrays.
-             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-             *   optional Info info = 4;
-             * </pre>
-             * <p>
-             * <code>required int64 id = 1;</code>
-             */
-            public boolean hasId() {
-                return instance.hasId();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.ChangeSet getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <pre>
-             *
-             *   // Parallel arrays.
-             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-             *   optional Info info = 4;
-             * </pre>
-             * <p>
-             * <code>required int64 id = 1;</code>
-             */
-            public long getId() {
-                return instance.getId();
-            }
+        private static volatile com.google.protobuf.Parser<ChangeSet> PARSER;
 
-            /**
-             * <pre>
-             *
-             *   // Parallel arrays.
-             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-             *   optional Info info = 4;
-             * </pre>
-             * <p>
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder setId(long value) {
-                copyOnWrite();
-                instance.setId(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             *
-             *   // Parallel arrays.
-             *   repeated uint32 keys = 2 [packed = true]; // String IDs.
-             *   repeated uint32 vals = 3 [packed = true]; // String IDs.
-             *   optional Info info = 4;
-             * </pre>
-             * <p>
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder clearId() {
-                copyOnWrite();
-                instance.clearId();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.ChangeSet)
+        public static com.google.protobuf.Parser<ChangeSet> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface NodeOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.Node)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>required sint64 id = 1;</code>
+         */
+        boolean hasId();
+        /**
+         * <code>required sint64 id = 1;</code>
+         */
+        long getId();
+
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getKeysList();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeysCount();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeys(int index);
+
+        /**
+         * <pre>
+         * String IDs.
+         * </pre>
+         *
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getValsList();
+        /**
+         * <pre>
+         * String IDs.
+         * </pre>
+         *
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getValsCount();
+        /**
+         * <pre>
+         * String IDs.
+         * </pre>
+         *
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getVals(int index);
+
+        /**
+         * <pre>
+         * May be omitted in omitmeta
+         * </pre>
+         *
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        boolean hasInfo();
+        /**
+         * <pre>
+         * May be omitted in omitmeta
+         * </pre>
+         *
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
+
+        /**
+         * <code>required sint64 lat = 8;</code>
+         */
+        boolean hasLat();
+        /**
+         * <code>required sint64 lat = 8;</code>
+         */
+        long getLat();
+
+        /**
+         * <code>required sint64 lon = 9;</code>
+         */
+        boolean hasLon();
+        /**
+         * <code>required sint64 lon = 9;</code>
+         */
+        long getLon();
+    }
     /**
      * Protobuf type {@code OSMPBF.Node}
      */
-    public static final class Node extends
+    public  static final class Node extends
             com.google.protobuf.GeneratedMessageLite<
                     Node, Node.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.Node)
             NodeOrBuilder {
-        public static final int ID_FIELD_NUMBER = 1;
-        public static final int KEYS_FIELD_NUMBER = 2;
-        public static final int VALS_FIELD_NUMBER = 3;
-        public static final int INFO_FIELD_NUMBER = 4;
-        public static final int LAT_FIELD_NUMBER = 8;
-        public static final int LON_FIELD_NUMBER = 9;
-        // @@protoc_insertion_point(class_scope:OSMPBF.Node)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Node DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<Node> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new Node();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private long id_;
-        private com.google.protobuf.Internal.IntList keys_;
-        private int keysMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList vals_;
-        private int valsMemoizedSerializedSize = -1;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
-        private long lat_;
-        private long lon_;
-        private byte memoizedIsInitialized = -1;
-
         private Node() {
             keys_ = emptyIntList();
             vals_ = emptyIntList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Node prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<Node> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private long id_;
         /**
          * <code>required sint64 id = 1;</code>
          */
         public boolean hasId() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>required sint64 id = 1;</code>
          */
         public long getId() {
             return id_;
         }
-
         /**
          * <code>required sint64 id = 1;</code>
          */
@@ -9274,7 +8049,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000001;
             id_ = value;
         }
-
         /**
          * <code>required sint64 id = 1;</code>
          */
@@ -9283,52 +8057,51 @@ public final class Osmformat {
             id_ = 0L;
         }
 
+        public static final int KEYS_FIELD_NUMBER = 2;
+        private com.google.protobuf.Internal.IntList keys_;
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getKeysList() {
             return keys_;
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeysCount() {
             return keys_.size();
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeys(int index) {
             return keys_.getInt(index);
         }
-
+        private int keysMemoizedSerializedSize = -1;
         private void ensureKeysIsMutable() {
             if (!keys_.isModifiable()) {
                 keys_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(keys_);
             }
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void setKeys(
@@ -9336,24 +8109,22 @@ public final class Osmformat {
             ensureKeysIsMutable();
             keys_.setInt(index, value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addKeys(int value) {
             ensureKeysIsMutable();
             keys_.addInt(value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addAllKeys(
@@ -9362,64 +8133,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, keys_);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void clearKeys() {
             keys_ = emptyIntList();
         }
 
+        public static final int VALS_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.IntList vals_;
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getValsList() {
             return vals_;
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getValsCount() {
             return vals_.size();
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getVals(int index) {
             return vals_.getInt(index);
         }
-
+        private int valsMemoizedSerializedSize = -1;
         private void ensureValsIsMutable() {
             if (!vals_.isModifiable()) {
                 vals_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(vals_);
             }
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         private void setVals(
@@ -9427,24 +8196,22 @@ public final class Osmformat {
             ensureValsIsMutable();
             vals_.setInt(index, value);
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         private void addVals(int value) {
             ensureValsIsMutable();
             vals_.addInt(value);
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         private void addAllVals(
@@ -9453,58 +8220,44 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, vals_);
         }
-
         /**
          * <pre>
          * String IDs.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         private void clearVals() {
             vals_ = emptyIntList();
         }
 
+        public static final int INFO_FIELD_NUMBER = 4;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
         /**
          * <pre>
          * May be omitted in omitmeta
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public boolean hasInfo() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <pre>
          * May be omitted in omitmeta
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
             return info_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.Info.getDefaultInstance() : info_;
         }
-
         /**
          * <pre>
          * May be omitted in omitmeta
          * </pre>
-         * <p>
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        private void setInfo(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-            info_ = builderForValue.build();
-            bitField0_ |= 0x00000002;
-        }
-
-        /**
-         * <pre>
-         * May be omitted in omitmeta
-         * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         private void setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
@@ -9514,12 +8267,23 @@ public final class Osmformat {
             info_ = value;
             bitField0_ |= 0x00000002;
         }
-
         /**
          * <pre>
          * May be omitted in omitmeta
          * </pre>
-         * <p>
+         *
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        private void setInfo(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+            info_ = builderForValue.build();
+            bitField0_ |= 0x00000002;
+        }
+        /**
+         * <pre>
+         * May be omitted in omitmeta
+         * </pre>
+         *
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         private void mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
@@ -9532,33 +8296,31 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000002;
         }
-
         /**
          * <pre>
          * May be omitted in omitmeta
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
-        private void clearInfo() {
-            info_ = null;
+        private void clearInfo() {  info_ = null;
             bitField0_ = (bitField0_ & ~0x00000002);
         }
 
+        public static final int LAT_FIELD_NUMBER = 8;
+        private long lat_;
         /**
          * <code>required sint64 lat = 8;</code>
          */
         public boolean hasLat() {
             return ((bitField0_ & 0x00000004) == 0x00000004);
         }
-
         /**
          * <code>required sint64 lat = 8;</code>
          */
         public long getLat() {
             return lat_;
         }
-
         /**
          * <code>required sint64 lat = 8;</code>
          */
@@ -9566,7 +8328,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000004;
             lat_ = value;
         }
-
         /**
          * <code>required sint64 lat = 8;</code>
          */
@@ -9575,20 +8336,20 @@ public final class Osmformat {
             lat_ = 0L;
         }
 
+        public static final int LON_FIELD_NUMBER = 9;
+        private long lon_;
         /**
          * <code>required sint64 lon = 9;</code>
          */
         public boolean hasLon() {
             return ((bitField0_ & 0x00000008) == 0x00000008);
         }
-
         /**
          * <code>required sint64 lon = 9;</code>
          */
         public long getLon() {
             return lon_;
         }
-
         /**
          * <code>required sint64 lon = 9;</code>
          */
@@ -9596,7 +8357,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000008;
             lon_ = value;
         }
-
         /**
          * <code>required sint64 lon = 9;</code>
          */
@@ -9691,7 +8451,413 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Node prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.Node}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.Node, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.Node)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.NodeOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Node.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>required sint64 id = 1;</code>
+             */
+            public boolean hasId() {
+                return instance.hasId();
+            }
+            /**
+             * <code>required sint64 id = 1;</code>
+             */
+            public long getId() {
+                return instance.getId();
+            }
+            /**
+             * <code>required sint64 id = 1;</code>
+             */
+            public Builder setId(long value) {
+                copyOnWrite();
+                instance.setId(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 id = 1;</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getKeysList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getKeysList());
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeysCount() {
+                return instance.getKeysCount();
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeys(int index) {
+                return instance.getKeys(index);
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder setKeys(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setKeys(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addKeys(int value) {
+                copyOnWrite();
+                instance.addKeys(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addAllKeys(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllKeys(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder clearKeys() {
+                copyOnWrite();
+                instance.clearKeys();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getValsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getValsList());
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getValsCount() {
+                return instance.getValsCount();
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getVals(int index) {
+                return instance.getVals(index);
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder setVals(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setVals(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addVals(int value) {
+                copyOnWrite();
+                instance.addVals(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addAllVals(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllVals(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * String IDs.
+             * </pre>
+             *
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder clearVals() {
+                copyOnWrite();
+                instance.clearVals();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public boolean hasInfo() {
+                return instance.hasInfo();
+            }
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
+                return instance.getInfo();
+            }
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.setInfo(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+                copyOnWrite();
+                instance.setInfo(builderForValue);
+                return this;
+            }
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.mergeInfo(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * May be omitted in omitmeta
+             * </pre>
+             *
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder clearInfo() {  copyOnWrite();
+                instance.clearInfo();
+                return this;
+            }
+
+            /**
+             * <code>required sint64 lat = 8;</code>
+             */
+            public boolean hasLat() {
+                return instance.hasLat();
+            }
+            /**
+             * <code>required sint64 lat = 8;</code>
+             */
+            public long getLat() {
+                return instance.getLat();
+            }
+            /**
+             * <code>required sint64 lat = 8;</code>
+             */
+            public Builder setLat(long value) {
+                copyOnWrite();
+                instance.setLat(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 lat = 8;</code>
+             */
+            public Builder clearLat() {
+                copyOnWrite();
+                instance.clearLat();
+                return this;
+            }
+
+            /**
+             * <code>required sint64 lon = 9;</code>
+             */
+            public boolean hasLon() {
+                return instance.hasLon();
+            }
+            /**
+             * <code>required sint64 lon = 9;</code>
+             */
+            public long getLon() {
+                return instance.getLon();
+            }
+            /**
+             * <code>required sint64 lon = 9;</code>
+             */
+            public Builder setLon(long value) {
+                copyOnWrite();
+                instance.setLon(value);
+                return this;
+            }
+            /**
+             * <code>required sint64 lon = 9;</code>
+             */
+            public Builder clearLon() {
+                copyOnWrite();
+                instance.clearLon();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.Node)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -9741,8 +8907,8 @@ public final class Osmformat {
                     id_ = visitor.visitLong(
                             hasId(), id_,
                             other.hasId(), other.id_);
-                    keys_ = visitor.visitIntList(keys_, other.keys_);
-                    vals_ = visitor.visitIntList(vals_, other.vals_);
+                    keys_= visitor.visitIntList(keys_, other.keys_);
+                    vals_= visitor.visitIntList(vals_, other.vals_);
                     info_ = visitor.visitMessage(info_, other.info_);
                     lat_ = visitor.visitLong(
                             hasLat(), lat_,
@@ -9856,17 +9022,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Node.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Node.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -9874,560 +9038,206 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.Node}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.Node, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.Node)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.NodeOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Node.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.Node)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Node DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new Node();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>required sint64 id = 1;</code>
-             */
-            public boolean hasId() {
-                return instance.hasId();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Node getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>required sint64 id = 1;</code>
-             */
-            public long getId() {
-                return instance.getId();
-            }
+        private static volatile com.google.protobuf.Parser<Node> PARSER;
 
-            /**
-             * <code>required sint64 id = 1;</code>
-             */
-            public Builder setId(long value) {
-                copyOnWrite();
-                instance.setId(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 id = 1;</code>
-             */
-            public Builder clearId() {
-                copyOnWrite();
-                instance.clearId();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getKeysList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getKeysList());
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeysCount() {
-                return instance.getKeysCount();
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeys(int index) {
-                return instance.getKeys(index);
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder setKeys(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setKeys(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addKeys(int value) {
-                copyOnWrite();
-                instance.addKeys(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addAllKeys(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllKeys(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder clearKeys() {
-                copyOnWrite();
-                instance.clearKeys();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getValsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getValsList());
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getValsCount() {
-                return instance.getValsCount();
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getVals(int index) {
-                return instance.getVals(index);
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder setVals(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setVals(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addVals(int value) {
-                copyOnWrite();
-                instance.addVals(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addAllVals(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllVals(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * String IDs.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder clearVals() {
-                copyOnWrite();
-                instance.clearVals();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public boolean hasInfo() {
-                return instance.hasInfo();
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
-                return instance.getInfo();
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-                copyOnWrite();
-                instance.setInfo(builderForValue);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.setInfo(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.mergeInfo(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * May be omitted in omitmeta
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder clearInfo() {
-                copyOnWrite();
-                instance.clearInfo();
-                return this;
-            }
-
-            /**
-             * <code>required sint64 lat = 8;</code>
-             */
-            public boolean hasLat() {
-                return instance.hasLat();
-            }
-
-            /**
-             * <code>required sint64 lat = 8;</code>
-             */
-            public long getLat() {
-                return instance.getLat();
-            }
-
-            /**
-             * <code>required sint64 lat = 8;</code>
-             */
-            public Builder setLat(long value) {
-                copyOnWrite();
-                instance.setLat(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 lat = 8;</code>
-             */
-            public Builder clearLat() {
-                copyOnWrite();
-                instance.clearLat();
-                return this;
-            }
-
-            /**
-             * <code>required sint64 lon = 9;</code>
-             */
-            public boolean hasLon() {
-                return instance.hasLon();
-            }
-
-            /**
-             * <code>required sint64 lon = 9;</code>
-             */
-            public long getLon() {
-                return instance.getLon();
-            }
-
-            /**
-             * <code>required sint64 lon = 9;</code>
-             */
-            public Builder setLon(long value) {
-                copyOnWrite();
-                instance.setLon(value);
-                return this;
-            }
-
-            /**
-             * <code>required sint64 lon = 9;</code>
-             */
-            public Builder clearLon() {
-                copyOnWrite();
-                instance.clearLon();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.Node)
+        public static com.google.protobuf.Parser<Node> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface DenseNodesOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.DenseNodes)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 id = 1 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getIdList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 id = 1 [packed = true];</code>
+         */
+        int getIdCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 id = 1 [packed = true];</code>
+         */
+        long getId(int index);
+
+        /**
+         * <pre>
+         *repeated Info info = 4;
+         * </pre>
+         *
+         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+         */
+        boolean hasDenseinfo();
+        /**
+         * <pre>
+         *repeated Info info = 4;
+         * </pre>
+         *
+         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDenseinfo();
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lat = 8 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getLatList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lat = 8 [packed = true];</code>
+         */
+        int getLatCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lat = 8 [packed = true];</code>
+         */
+        long getLat(int index);
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lon = 9 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getLonList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lon = 9 [packed = true];</code>
+         */
+        int getLonCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 lon = 9 [packed = true];</code>
+         */
+        long getLon(int index);
+
+        /**
+         * <pre>
+         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+         * </pre>
+         *
+         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getKeysValsList();
+        /**
+         * <pre>
+         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+         * </pre>
+         *
+         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+         */
+        int getKeysValsCount();
+        /**
+         * <pre>
+         * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+         * </pre>
+         *
+         * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+         */
+        int getKeysVals(int index);
+    }
     /**
      * Protobuf type {@code OSMPBF.DenseNodes}
      */
-    public static final class DenseNodes extends
+    public  static final class DenseNodes extends
             com.google.protobuf.GeneratedMessageLite<
                     DenseNodes, DenseNodes.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.DenseNodes)
             DenseNodesOrBuilder {
-        public static final int ID_FIELD_NUMBER = 1;
-        public static final int DENSEINFO_FIELD_NUMBER = 5;
-        public static final int LAT_FIELD_NUMBER = 8;
-        public static final int LON_FIELD_NUMBER = 9;
-        public static final int KEYS_VALS_FIELD_NUMBER = 10;
-        // @@protoc_insertion_point(class_scope:OSMPBF.DenseNodes)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<DenseNodes> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new DenseNodes();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private com.google.protobuf.Internal.LongList id_;
-        private int idMemoizedSerializedSize = -1;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo denseinfo_;
-        private com.google.protobuf.Internal.LongList lat_;
-        private int latMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.LongList lon_;
-        private int lonMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList keysVals_;
-        private int keysValsMemoizedSerializedSize = -1;
-
         private DenseNodes() {
             id_ = emptyLongList();
             lat_ = emptyLongList();
             lon_ = emptyLongList();
             keysVals_ = emptyIntList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<DenseNodes> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private com.google.protobuf.Internal.LongList id_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getIdList() {
             return id_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         public int getIdCount() {
             return id_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         public long getId(int index) {
             return id_.getLong(index);
         }
-
+        private int idMemoizedSerializedSize = -1;
         private void ensureIdIsMutable() {
             if (!id_.isModifiable()) {
                 id_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(id_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         private void setId(
@@ -10435,24 +9245,22 @@ public final class Osmformat {
             ensureIdIsMutable();
             id_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         private void addId(long value) {
             ensureIdIsMutable();
             id_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         private void addAllId(
@@ -10461,58 +9269,44 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, id_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 id = 1 [packed = true];</code>
          */
         private void clearId() {
             id_ = emptyLongList();
         }
 
+        public static final int DENSEINFO_FIELD_NUMBER = 5;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo denseinfo_;
         /**
          * <pre>
-         * repeated Info info = 4;
+         *repeated Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
          */
         public boolean hasDenseinfo() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <pre>
-         * repeated Info info = 4;
+         *repeated Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDenseinfo() {
             return denseinfo_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.getDefaultInstance() : denseinfo_;
         }
-
         /**
          * <pre>
-         * repeated Info info = 4;
+         *repeated Info info = 4;
          * </pre>
-         * <p>
-         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-         */
-        private void setDenseinfo(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.Builder builderForValue) {
-            denseinfo_ = builderForValue.build();
-            bitField0_ |= 0x00000001;
-        }
-
-        /**
-         * <pre>
-         * repeated Info info = 4;
-         * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
          */
         private void setDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
@@ -10522,12 +9316,23 @@ public final class Osmformat {
             denseinfo_ = value;
             bitField0_ |= 0x00000001;
         }
-
         /**
          * <pre>
-         * repeated Info info = 4;
+         *repeated Info info = 4;
          * </pre>
-         * <p>
+         *
+         * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+         */
+        private void setDenseinfo(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.Builder builderForValue) {
+            denseinfo_ = builderForValue.build();
+            bitField0_ |= 0x00000001;
+        }
+        /**
+         * <pre>
+         *repeated Info info = 4;
+         * </pre>
+         *
          * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
          */
         private void mergeDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
@@ -10540,65 +9345,62 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000001;
         }
-
         /**
          * <pre>
-         * repeated Info info = 4;
+         *repeated Info info = 4;
          * </pre>
-         * <p>
+         *
          * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
          */
-        private void clearDenseinfo() {
-            denseinfo_ = null;
+        private void clearDenseinfo() {  denseinfo_ = null;
             bitField0_ = (bitField0_ & ~0x00000001);
         }
 
+        public static final int LAT_FIELD_NUMBER = 8;
+        private com.google.protobuf.Internal.LongList lat_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getLatList() {
             return lat_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         public int getLatCount() {
             return lat_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         public long getLat(int index) {
             return lat_.getLong(index);
         }
-
+        private int latMemoizedSerializedSize = -1;
         private void ensureLatIsMutable() {
             if (!lat_.isModifiable()) {
                 lat_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(lat_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         private void setLat(
@@ -10606,24 +9408,22 @@ public final class Osmformat {
             ensureLatIsMutable();
             lat_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         private void addLat(long value) {
             ensureLatIsMutable();
             lat_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         private void addAllLat(
@@ -10632,64 +9432,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, lat_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lat = 8 [packed = true];</code>
          */
         private void clearLat() {
             lat_ = emptyLongList();
         }
 
+        public static final int LON_FIELD_NUMBER = 9;
+        private com.google.protobuf.Internal.LongList lon_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getLonList() {
             return lon_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         public int getLonCount() {
             return lon_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         public long getLon(int index) {
             return lon_.getLong(index);
         }
-
+        private int lonMemoizedSerializedSize = -1;
         private void ensureLonIsMutable() {
             if (!lon_.isModifiable()) {
                 lon_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(lon_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         private void setLon(
@@ -10697,24 +9495,22 @@ public final class Osmformat {
             ensureLonIsMutable();
             lon_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         private void addLon(long value) {
             ensureLonIsMutable();
             lon_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         private void addAllLon(
@@ -10723,64 +9519,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, lon_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 lon = 9 [packed = true];</code>
          */
         private void clearLon() {
             lon_ = emptyLongList();
         }
 
+        public static final int KEYS_VALS_FIELD_NUMBER = 10;
+        private com.google.protobuf.Internal.IntList keysVals_;
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getKeysValsList() {
             return keysVals_;
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         public int getKeysValsCount() {
             return keysVals_.size();
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         public int getKeysVals(int index) {
             return keysVals_.getInt(index);
         }
-
+        private int keysValsMemoizedSerializedSize = -1;
         private void ensureKeysValsIsMutable() {
             if (!keysVals_.isModifiable()) {
                 keysVals_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(keysVals_);
             }
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         private void setKeysVals(
@@ -10788,24 +9582,22 @@ public final class Osmformat {
             ensureKeysValsIsMutable();
             keysVals_.setInt(index, value);
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         private void addKeysVals(int value) {
             ensureKeysValsIsMutable();
             keysVals_.addInt(value);
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         private void addAllKeysVals(
@@ -10814,12 +9606,11 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, keysVals_);
         }
-
         /**
          * <pre>
          * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 keys_vals = 10 [packed = true];</code>
          */
         private void clearKeysVals() {
@@ -10933,7 +9724,491 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.DenseNodes}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.DenseNodes)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodesOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getIdList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getIdList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public int getIdCount() {
+                return instance.getIdCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public long getId(int index) {
+                return instance.getId(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public Builder setId(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setId(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public Builder addId(long value) {
+                copyOnWrite();
+                instance.addId(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public Builder addAllId(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllId(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 id = 1 [packed = true];</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public boolean hasDenseinfo() {
+                return instance.hasDenseinfo();
+            }
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDenseinfo() {
+                return instance.getDenseinfo();
+            }
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public Builder setDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
+                copyOnWrite();
+                instance.setDenseinfo(value);
+                return this;
+            }
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public Builder setDenseinfo(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.Builder builderForValue) {
+                copyOnWrite();
+                instance.setDenseinfo(builderForValue);
+                return this;
+            }
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public Builder mergeDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
+                copyOnWrite();
+                instance.mergeDenseinfo(value);
+                return this;
+            }
+            /**
+             * <pre>
+             *repeated Info info = 4;
+             * </pre>
+             *
+             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
+             */
+            public Builder clearDenseinfo() {  copyOnWrite();
+                instance.clearDenseinfo();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getLatList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getLatList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public int getLatCount() {
+                return instance.getLatCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public long getLat(int index) {
+                return instance.getLat(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public Builder setLat(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setLat(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public Builder addLat(long value) {
+                copyOnWrite();
+                instance.addLat(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public Builder addAllLat(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllLat(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lat = 8 [packed = true];</code>
+             */
+            public Builder clearLat() {
+                copyOnWrite();
+                instance.clearLat();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getLonList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getLonList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public int getLonCount() {
+                return instance.getLonCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public long getLon(int index) {
+                return instance.getLon(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public Builder setLon(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setLon(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public Builder addLon(long value) {
+                copyOnWrite();
+                instance.addLon(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public Builder addAllLon(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllLon(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 lon = 9 [packed = true];</code>
+             */
+            public Builder clearLon() {
+                copyOnWrite();
+                instance.clearLon();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getKeysValsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getKeysValsList());
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public int getKeysValsCount() {
+                return instance.getKeysValsCount();
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public int getKeysVals(int index) {
+                return instance.getKeysVals(index);
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public Builder setKeysVals(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setKeysVals(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public Builder addKeysVals(int value) {
+                copyOnWrite();
+                instance.addKeysVals(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public Builder addAllKeysVals(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllKeysVals(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
+             * </pre>
+             *
+             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
+             */
+            public Builder clearKeysVals() {
+                copyOnWrite();
+                instance.clearKeysVals();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.DenseNodes)
+        }
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -10957,11 +10232,11 @@ public final class Osmformat {
                 case VISIT: {
                     Visitor visitor = (Visitor) arg0;
                     org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes other = (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes) arg1;
-                    id_ = visitor.visitLongList(id_, other.id_);
+                    id_= visitor.visitLongList(id_, other.id_);
                     denseinfo_ = visitor.visitMessage(denseinfo_, other.denseinfo_);
-                    lat_ = visitor.visitLongList(lat_, other.lat_);
-                    lon_ = visitor.visitLongList(lon_, other.lon_);
-                    keysVals_ = visitor.visitIntList(keysVals_, other.keysVals_);
+                    lat_= visitor.visitLongList(lat_, other.lat_);
+                    lon_= visitor.visitLongList(lon_, other.lon_);
+                    keysVals_= visitor.visitIntList(keysVals_, other.keysVals_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                         bitField0_ |= other.bitField0_;
@@ -11095,17 +10370,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -11113,609 +10386,138 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.DenseNodes}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.DenseNodes)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodesOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.DenseNodes)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new DenseNodes();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getIdList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getIdList());
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.DenseNodes getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public int getIdCount() {
-                return instance.getIdCount();
-            }
+        private static volatile com.google.protobuf.Parser<DenseNodes> PARSER;
 
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public long getId(int index) {
-                return instance.getId(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public Builder setId(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setId(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public Builder addId(long value) {
-                copyOnWrite();
-                instance.addId(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public Builder addAllId(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllId(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 id = 1 [packed = true];</code>
-             */
-            public Builder clearId() {
-                copyOnWrite();
-                instance.clearId();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public boolean hasDenseinfo() {
-                return instance.hasDenseinfo();
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo getDenseinfo() {
-                return instance.getDenseinfo();
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public Builder setDenseinfo(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo.Builder builderForValue) {
-                copyOnWrite();
-                instance.setDenseinfo(builderForValue);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public Builder setDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
-                copyOnWrite();
-                instance.setDenseinfo(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public Builder mergeDenseinfo(org.openstreetmap.osmosis.osmbinary.Osmformat.DenseInfo value) {
-                copyOnWrite();
-                instance.mergeDenseinfo(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * repeated Info info = 4;
-             * </pre>
-             * <p>
-             * <code>optional .OSMPBF.DenseInfo denseinfo = 5;</code>
-             */
-            public Builder clearDenseinfo() {
-                copyOnWrite();
-                instance.clearDenseinfo();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getLatList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getLatList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public int getLatCount() {
-                return instance.getLatCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public long getLat(int index) {
-                return instance.getLat(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public Builder setLat(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setLat(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public Builder addLat(long value) {
-                copyOnWrite();
-                instance.addLat(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public Builder addAllLat(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllLat(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lat = 8 [packed = true];</code>
-             */
-            public Builder clearLat() {
-                copyOnWrite();
-                instance.clearLat();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getLonList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getLonList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public int getLonCount() {
-                return instance.getLonCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public long getLon(int index) {
-                return instance.getLon(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public Builder setLon(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setLon(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public Builder addLon(long value) {
-                copyOnWrite();
-                instance.addLon(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public Builder addAllLon(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllLon(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 lon = 9 [packed = true];</code>
-             */
-            public Builder clearLon() {
-                copyOnWrite();
-                instance.clearLon();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getKeysValsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getKeysValsList());
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public int getKeysValsCount() {
-                return instance.getKeysValsCount();
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public int getKeysVals(int index) {
-                return instance.getKeysVals(index);
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public Builder setKeysVals(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setKeysVals(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public Builder addKeysVals(int value) {
-                copyOnWrite();
-                instance.addKeysVals(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public Builder addAllKeysVals(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllKeysVals(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Special packing of keys and vals into one array. May be empty if all nodes in this block are tagless.
-             * </pre>
-             * <p>
-             * <code>repeated int32 keys_vals = 10 [packed = true];</code>
-             */
-            public Builder clearKeysVals() {
-                copyOnWrite();
-                instance.clearKeysVals();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.DenseNodes)
+        public static com.google.protobuf.Parser<DenseNodes> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface WayOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.Way)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>required int64 id = 1;</code>
+         */
+        boolean hasId();
+        /**
+         * <code>required int64 id = 1;</code>
+         */
+        long getId();
+
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getKeysList();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeysCount();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeys(int index);
+
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getValsList();
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getValsCount();
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getVals(int index);
+
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        boolean hasInfo();
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
+
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 refs = 8 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getRefsList();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 refs = 8 [packed = true];</code>
+         */
+        int getRefsCount();
+        /**
+         * <pre>
+         * DELTA coded
+         * </pre>
+         *
+         * <code>repeated sint64 refs = 8 [packed = true];</code>
+         */
+        long getRefs(int index);
+    }
     /**
      * Protobuf type {@code OSMPBF.Way}
      */
-    public static final class Way extends
+    public  static final class Way extends
             com.google.protobuf.GeneratedMessageLite<
                     Way, Way.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.Way)
             WayOrBuilder {
-        public static final int ID_FIELD_NUMBER = 1;
-        public static final int KEYS_FIELD_NUMBER = 2;
-        public static final int VALS_FIELD_NUMBER = 3;
-        public static final int INFO_FIELD_NUMBER = 4;
-        public static final int REFS_FIELD_NUMBER = 8;
-        // @@protoc_insertion_point(class_scope:OSMPBF.Way)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Way DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<Way> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new Way();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private long id_;
-        private com.google.protobuf.Internal.IntList keys_;
-        private int keysMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList vals_;
-        private int valsMemoizedSerializedSize = -1;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
-        private com.google.protobuf.Internal.LongList refs_;
-        private int refsMemoizedSerializedSize = -1;
-        private byte memoizedIsInitialized = -1;
-
         private Way() {
             keys_ = emptyIntList();
             vals_ = emptyIntList();
             refs_ = emptyLongList();
         }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Way prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<Way> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private long id_;
         /**
          * <code>required int64 id = 1;</code>
          */
         public boolean hasId() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
         public long getId() {
             return id_;
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
@@ -11723,7 +10525,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000001;
             id_ = value;
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
@@ -11732,52 +10533,51 @@ public final class Osmformat {
             id_ = 0L;
         }
 
+        public static final int KEYS_FIELD_NUMBER = 2;
+        private com.google.protobuf.Internal.IntList keys_;
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getKeysList() {
             return keys_;
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeysCount() {
             return keys_.size();
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeys(int index) {
             return keys_.getInt(index);
         }
-
+        private int keysMemoizedSerializedSize = -1;
         private void ensureKeysIsMutable() {
             if (!keys_.isModifiable()) {
                 keys_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(keys_);
             }
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void setKeys(
@@ -11785,24 +10585,22 @@ public final class Osmformat {
             ensureKeysIsMutable();
             keys_.setInt(index, value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addKeys(int value) {
             ensureKeysIsMutable();
             keys_.addInt(value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addAllKeys(
@@ -11811,18 +10609,19 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, keys_);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void clearKeys() {
             keys_ = emptyIntList();
         }
 
+        public static final int VALS_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.IntList vals_;
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -11830,28 +10629,25 @@ public final class Osmformat {
         getValsList() {
             return vals_;
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getValsCount() {
             return vals_.size();
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getVals(int index) {
             return vals_.getInt(index);
         }
-
+        private int valsMemoizedSerializedSize = -1;
         private void ensureValsIsMutable() {
             if (!vals_.isModifiable()) {
                 vals_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(vals_);
             }
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -11860,7 +10656,6 @@ public final class Osmformat {
             ensureValsIsMutable();
             vals_.setInt(index, value);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -11868,7 +10663,6 @@ public final class Osmformat {
             ensureValsIsMutable();
             vals_.addInt(value);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -11878,7 +10672,6 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, vals_);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -11886,29 +10679,20 @@ public final class Osmformat {
             vals_ = emptyIntList();
         }
 
+        public static final int INFO_FIELD_NUMBER = 4;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public boolean hasInfo() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
             return info_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.Info.getDefaultInstance() : info_;
         }
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        private void setInfo(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-            info_ = builderForValue.build();
-            bitField0_ |= 0x00000002;
-        }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
@@ -11919,7 +10703,14 @@ public final class Osmformat {
             info_ = value;
             bitField0_ |= 0x00000002;
         }
-
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        private void setInfo(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+            info_ = builderForValue.build();
+            bitField0_ |= 0x00000002;
+        }
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
@@ -11933,61 +10724,58 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000002;
         }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
-        private void clearInfo() {
-            info_ = null;
+        private void clearInfo() {  info_ = null;
             bitField0_ = (bitField0_ & ~0x00000002);
         }
 
+        public static final int REFS_FIELD_NUMBER = 8;
+        private com.google.protobuf.Internal.LongList refs_;
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getRefsList() {
             return refs_;
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         public int getRefsCount() {
             return refs_.size();
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         public long getRefs(int index) {
             return refs_.getLong(index);
         }
-
+        private int refsMemoizedSerializedSize = -1;
         private void ensureRefsIsMutable() {
             if (!refs_.isModifiable()) {
                 refs_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(refs_);
             }
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         private void setRefs(
@@ -11995,24 +10783,22 @@ public final class Osmformat {
             ensureRefsIsMutable();
             refs_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         private void addRefs(long value) {
             ensureRefsIsMutable();
             refs_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         private void addAllRefs(
@@ -12021,12 +10807,11 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, refs_);
         }
-
         /**
          * <pre>
          * DELTA coded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 refs = 8 [packed = true];</code>
          */
         private void clearRefs() {
@@ -12126,7 +10911,386 @@ public final class Osmformat {
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Way prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.Way}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.Way, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.Way)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.WayOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Way.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public boolean hasId() {
+                return instance.hasId();
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public long getId() {
+                return instance.getId();
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder setId(long value) {
+                copyOnWrite();
+                instance.setId(value);
+                return this;
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getKeysList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getKeysList());
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeysCount() {
+                return instance.getKeysCount();
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeys(int index) {
+                return instance.getKeys(index);
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder setKeys(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setKeys(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addKeys(int value) {
+                copyOnWrite();
+                instance.addKeys(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addAllKeys(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllKeys(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder clearKeys() {
+                copyOnWrite();
+                instance.clearKeys();
+                return this;
+            }
+
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getValsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getValsList());
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getValsCount() {
+                return instance.getValsCount();
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getVals(int index) {
+                return instance.getVals(index);
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder setVals(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setVals(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addVals(int value) {
+                copyOnWrite();
+                instance.addVals(value);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addAllVals(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllVals(values);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder clearVals() {
+                copyOnWrite();
+                instance.clearVals();
+                return this;
+            }
+
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public boolean hasInfo() {
+                return instance.hasInfo();
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
+                return instance.getInfo();
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.setInfo(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+                copyOnWrite();
+                instance.setInfo(builderForValue);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.mergeInfo(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder clearInfo() {  copyOnWrite();
+                instance.clearInfo();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getRefsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getRefsList());
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public int getRefsCount() {
+                return instance.getRefsCount();
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public long getRefs(int index) {
+                return instance.getRefs(index);
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public Builder setRefs(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setRefs(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public Builder addRefs(long value) {
+                copyOnWrite();
+                instance.addRefs(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public Builder addAllRefs(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllRefs(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA coded
+             * </pre>
+             *
+             * <code>repeated sint64 refs = 8 [packed = true];</code>
+             */
+            public Builder clearRefs() {
+                copyOnWrite();
+                instance.clearRefs();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.Way)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -12165,10 +11329,10 @@ public final class Osmformat {
                     id_ = visitor.visitLong(
                             hasId(), id_,
                             other.hasId(), other.id_);
-                    keys_ = visitor.visitIntList(keys_, other.keys_);
-                    vals_ = visitor.visitIntList(vals_, other.vals_);
+                    keys_= visitor.visitIntList(keys_, other.keys_);
+                    vals_= visitor.visitIntList(vals_, other.vals_);
                     info_ = visitor.visitMessage(info_, other.info_);
-                    refs_ = visitor.visitLongList(refs_, other.refs_);
+                    refs_= visitor.visitLongList(refs_, other.refs_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                         bitField0_ |= other.bitField0_;
@@ -12286,17 +11450,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Way.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Way.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -12304,394 +11466,156 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.Way}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.Way, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.Way)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.WayOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Way.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
 
+        // @@protoc_insertion_point(class_scope:OSMPBF.Way)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Way DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new Way();
+            DEFAULT_INSTANCE.makeImmutable();
+        }
 
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public boolean hasId() {
-                return instance.hasId();
-            }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Way getDefaultInstance() {
+            return DEFAULT_INSTANCE;
+        }
 
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public long getId() {
-                return instance.getId();
-            }
+        private static volatile com.google.protobuf.Parser<Way> PARSER;
 
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder setId(long value) {
-                copyOnWrite();
-                instance.setId(value);
-                return this;
-            }
-
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder clearId() {
-                copyOnWrite();
-                instance.clearId();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getKeysList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getKeysList());
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeysCount() {
-                return instance.getKeysCount();
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeys(int index) {
-                return instance.getKeys(index);
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder setKeys(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setKeys(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addKeys(int value) {
-                copyOnWrite();
-                instance.addKeys(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addAllKeys(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllKeys(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder clearKeys() {
-                copyOnWrite();
-                instance.clearKeys();
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getValsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getValsList());
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getValsCount() {
-                return instance.getValsCount();
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getVals(int index) {
-                return instance.getVals(index);
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder setVals(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setVals(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addVals(int value) {
-                copyOnWrite();
-                instance.addVals(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addAllVals(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllVals(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder clearVals() {
-                copyOnWrite();
-                instance.clearVals();
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public boolean hasInfo() {
-                return instance.hasInfo();
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
-                return instance.getInfo();
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-                copyOnWrite();
-                instance.setInfo(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.setInfo(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.mergeInfo(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder clearInfo() {
-                copyOnWrite();
-                instance.clearInfo();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getRefsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getRefsList());
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public int getRefsCount() {
-                return instance.getRefsCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public long getRefs(int index) {
-                return instance.getRefs(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public Builder setRefs(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setRefs(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public Builder addRefs(long value) {
-                copyOnWrite();
-                instance.addRefs(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public Builder addAllRefs(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllRefs(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA coded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 refs = 8 [packed = true];</code>
-             */
-            public Builder clearRefs() {
-                copyOnWrite();
-                instance.clearRefs();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.Way)
+        public static com.google.protobuf.Parser<Way> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
         }
     }
 
+    public interface RelationOrBuilder extends
+            // @@protoc_insertion_point(interface_extends:OSMPBF.Relation)
+            com.google.protobuf.MessageLiteOrBuilder {
+
+        /**
+         * <code>required int64 id = 1;</code>
+         */
+        boolean hasId();
+        /**
+         * <code>required int64 id = 1;</code>
+         */
+        long getId();
+
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getKeysList();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeysCount();
+        /**
+         * <pre>
+         * Parallel arrays.
+         * </pre>
+         *
+         * <code>repeated uint32 keys = 2 [packed = true];</code>
+         */
+        int getKeys(int index);
+
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getValsList();
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getValsCount();
+        /**
+         * <code>repeated uint32 vals = 3 [packed = true];</code>
+         */
+        int getVals(int index);
+
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        boolean hasInfo();
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo();
+
+        /**
+         * <pre>
+         * Parallel arrays
+         * </pre>
+         *
+         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+         */
+        java.util.List<java.lang.Integer> getRolesSidList();
+        /**
+         * <pre>
+         * Parallel arrays
+         * </pre>
+         *
+         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+         */
+        int getRolesSidCount();
+        /**
+         * <pre>
+         * Parallel arrays
+         * </pre>
+         *
+         * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+         */
+        int getRolesSid(int index);
+
+        /**
+         * <pre>
+         * DELTA encoded
+         * </pre>
+         *
+         * <code>repeated sint64 memids = 9 [packed = true];</code>
+         */
+        java.util.List<java.lang.Long> getMemidsList();
+        /**
+         * <pre>
+         * DELTA encoded
+         * </pre>
+         *
+         * <code>repeated sint64 memids = 9 [packed = true];</code>
+         */
+        int getMemidsCount();
+        /**
+         * <pre>
+         * DELTA encoded
+         * </pre>
+         *
+         * <code>repeated sint64 memids = 9 [packed = true];</code>
+         */
+        long getMemids(int index);
+
+        /**
+         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+         */
+        java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> getTypesList();
+        /**
+         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+         */
+        int getTypesCount();
+        /**
+         * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+         */
+        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType getTypes(int index);
+    }
     /**
      * Protobuf type {@code OSMPBF.Relation}
      */
-    public static final class Relation extends
+    public  static final class Relation extends
             com.google.protobuf.GeneratedMessageLite<
                     Relation, Relation.Builder> implements
             // @@protoc_insertion_point(message_implements:OSMPBF.Relation)
             RelationOrBuilder {
-        public static final int ID_FIELD_NUMBER = 1;
-        public static final int KEYS_FIELD_NUMBER = 2;
-        public static final int VALS_FIELD_NUMBER = 3;
-        public static final int INFO_FIELD_NUMBER = 4;
-        public static final int ROLES_SID_FIELD_NUMBER = 8;
-        public static final int MEMIDS_FIELD_NUMBER = 9;
-        public static final int TYPES_FIELD_NUMBER = 10;
-        private static final com.google.protobuf.Internal.ListAdapter.Converter<
-                java.lang.Integer, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> types_converter_ =
-                new com.google.protobuf.Internal.ListAdapter.Converter<
-                        java.lang.Integer, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType>() {
-                    public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType convert(java.lang.Integer from) {
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType result = org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType.forNumber(from);
-                        return result == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType.NODE : result;
-                    }
-                };
-        // @@protoc_insertion_point(class_scope:OSMPBF.Relation)
-        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Relation DEFAULT_INSTANCE;
-        private static volatile com.google.protobuf.Parser<Relation> PARSER;
-
-        static {
-            DEFAULT_INSTANCE = new Relation();
-            DEFAULT_INSTANCE.makeImmutable();
-        }
-
-        private int bitField0_;
-        private long id_;
-        private com.google.protobuf.Internal.IntList keys_;
-        private int keysMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList vals_;
-        private int valsMemoizedSerializedSize = -1;
-        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
-        private com.google.protobuf.Internal.IntList rolesSid_;
-        private int rolesSidMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.LongList memids_;
-        private int memidsMemoizedSerializedSize = -1;
-        private com.google.protobuf.Internal.IntList types_;
-        private int typesMemoizedSerializedSize;
-        private byte memoizedIsInitialized = -1;
-
         private Relation() {
             keys_ = emptyIntList();
             vals_ = emptyIntList();
@@ -12699,122 +11623,96 @@ public final class Osmformat {
             memids_ = emptyLongList();
             types_ = emptyIntList();
         }
+        /**
+         * Protobuf enum {@code OSMPBF.Relation.MemberType}
+         */
+        public enum MemberType
+                implements com.google.protobuf.Internal.EnumLite {
+            /**
+             * <code>NODE = 0;</code>
+             */
+            NODE(0),
+            /**
+             * <code>WAY = 1;</code>
+             */
+            WAY(1),
+            /**
+             * <code>RELATION = 2;</code>
+             */
+            RELATION(2),
+            ;
 
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                java.nio.ByteBuffer data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
+            /**
+             * <code>NODE = 0;</code>
+             */
+            public static final int NODE_VALUE = 0;
+            /**
+             * <code>WAY = 1;</code>
+             */
+            public static final int WAY_VALUE = 1;
+            /**
+             * <code>RELATION = 2;</code>
+             */
+            public static final int RELATION_VALUE = 2;
+
+
+            public final int getNumber() {
+                return value;
+            }
+
+            /**
+             * @deprecated Use {@link #forNumber(int)} instead.
+             */
+            @java.lang.Deprecated
+            public static MemberType valueOf(int value) {
+                return forNumber(value);
+            }
+
+            public static MemberType forNumber(int value) {
+                switch (value) {
+                    case 0: return NODE;
+                    case 1: return WAY;
+                    case 2: return RELATION;
+                    default: return null;
+                }
+            }
+
+            public static com.google.protobuf.Internal.EnumLiteMap<MemberType>
+            internalGetValueMap() {
+                return internalValueMap;
+            }
+            private static final com.google.protobuf.Internal.EnumLiteMap<
+                    MemberType> internalValueMap =
+                    new com.google.protobuf.Internal.EnumLiteMap<MemberType>() {
+                        public MemberType findValueByNumber(int number) {
+                            return MemberType.forNumber(number);
+                        }
+                    };
+
+            private final int value;
+
+            private MemberType(int value) {
+                this.value = value;
+            }
+
+            // @@protoc_insertion_point(enum_scope:OSMPBF.Relation.MemberType)
         }
 
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                java.nio.ByteBuffer data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                com.google.protobuf.ByteString data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                com.google.protobuf.ByteString data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(byte[] data)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                byte[] data,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws com.google.protobuf.InvalidProtocolBufferException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, data, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseDelimitedFrom(java.io.InputStream input)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseDelimitedFrom(
-                java.io.InputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                com.google.protobuf.CodedInputStream input)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
-                com.google.protobuf.CodedInputStream input,
-                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-                throws java.io.IOException {
-            return com.google.protobuf.GeneratedMessageLite.parseFrom(
-                    DEFAULT_INSTANCE, input, extensionRegistry);
-        }
-
-        public static Builder newBuilder() {
-            return DEFAULT_INSTANCE.toBuilder();
-        }
-
-        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation prototype) {
-            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
-        }
-
-        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getDefaultInstance() {
-            return DEFAULT_INSTANCE;
-        }
-
-        public static com.google.protobuf.Parser<Relation> parser() {
-            return DEFAULT_INSTANCE.getParserForType();
-        }
-
+        private int bitField0_;
+        public static final int ID_FIELD_NUMBER = 1;
+        private long id_;
         /**
          * <code>required int64 id = 1;</code>
          */
         public boolean hasId() {
             return ((bitField0_ & 0x00000001) == 0x00000001);
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
         public long getId() {
             return id_;
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
@@ -12822,7 +11720,6 @@ public final class Osmformat {
             bitField0_ |= 0x00000001;
             id_ = value;
         }
-
         /**
          * <code>required int64 id = 1;</code>
          */
@@ -12831,52 +11728,51 @@ public final class Osmformat {
             id_ = 0L;
         }
 
+        public static final int KEYS_FIELD_NUMBER = 2;
+        private com.google.protobuf.Internal.IntList keys_;
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getKeysList() {
             return keys_;
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeysCount() {
             return keys_.size();
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         public int getKeys(int index) {
             return keys_.getInt(index);
         }
-
+        private int keysMemoizedSerializedSize = -1;
         private void ensureKeysIsMutable() {
             if (!keys_.isModifiable()) {
                 keys_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(keys_);
             }
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void setKeys(
@@ -12884,24 +11780,22 @@ public final class Osmformat {
             ensureKeysIsMutable();
             keys_.setInt(index, value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addKeys(int value) {
             ensureKeysIsMutable();
             keys_.addInt(value);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void addAllKeys(
@@ -12910,18 +11804,19 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, keys_);
         }
-
         /**
          * <pre>
          * Parallel arrays.
          * </pre>
-         * <p>
+         *
          * <code>repeated uint32 keys = 2 [packed = true];</code>
          */
         private void clearKeys() {
             keys_ = emptyIntList();
         }
 
+        public static final int VALS_FIELD_NUMBER = 3;
+        private com.google.protobuf.Internal.IntList vals_;
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -12929,28 +11824,25 @@ public final class Osmformat {
         getValsList() {
             return vals_;
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getValsCount() {
             return vals_.size();
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
         public int getVals(int index) {
             return vals_.getInt(index);
         }
-
+        private int valsMemoizedSerializedSize = -1;
         private void ensureValsIsMutable() {
             if (!vals_.isModifiable()) {
                 vals_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(vals_);
             }
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -12959,7 +11851,6 @@ public final class Osmformat {
             ensureValsIsMutable();
             vals_.setInt(index, value);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -12967,7 +11858,6 @@ public final class Osmformat {
             ensureValsIsMutable();
             vals_.addInt(value);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -12977,7 +11867,6 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, vals_);
         }
-
         /**
          * <code>repeated uint32 vals = 3 [packed = true];</code>
          */
@@ -12985,29 +11874,20 @@ public final class Osmformat {
             vals_ = emptyIntList();
         }
 
+        public static final int INFO_FIELD_NUMBER = 4;
+        private org.openstreetmap.osmosis.osmbinary.Osmformat.Info info_;
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public boolean hasInfo() {
             return ((bitField0_ & 0x00000002) == 0x00000002);
         }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
             return info_ == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.Info.getDefaultInstance() : info_;
         }
-
-        /**
-         * <code>optional .OSMPBF.Info info = 4;</code>
-         */
-        private void setInfo(
-                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-            info_ = builderForValue.build();
-            bitField0_ |= 0x00000002;
-        }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
@@ -13018,7 +11898,14 @@ public final class Osmformat {
             info_ = value;
             bitField0_ |= 0x00000002;
         }
-
+        /**
+         * <code>optional .OSMPBF.Info info = 4;</code>
+         */
+        private void setInfo(
+                org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+            info_ = builderForValue.build();
+            bitField0_ |= 0x00000002;
+        }
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
@@ -13032,61 +11919,58 @@ public final class Osmformat {
             }
             bitField0_ |= 0x00000002;
         }
-
         /**
          * <code>optional .OSMPBF.Info info = 4;</code>
          */
-        private void clearInfo() {
-            info_ = null;
+        private void clearInfo() {  info_ = null;
             bitField0_ = (bitField0_ & ~0x00000002);
         }
 
+        public static final int ROLES_SID_FIELD_NUMBER = 8;
+        private com.google.protobuf.Internal.IntList rolesSid_;
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         public java.util.List<java.lang.Integer>
         getRolesSidList() {
             return rolesSid_;
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         public int getRolesSidCount() {
             return rolesSid_.size();
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         public int getRolesSid(int index) {
             return rolesSid_.getInt(index);
         }
-
+        private int rolesSidMemoizedSerializedSize = -1;
         private void ensureRolesSidIsMutable() {
             if (!rolesSid_.isModifiable()) {
                 rolesSid_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(rolesSid_);
             }
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         private void setRolesSid(
@@ -13094,24 +11978,22 @@ public final class Osmformat {
             ensureRolesSidIsMutable();
             rolesSid_.setInt(index, value);
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         private void addRolesSid(int value) {
             ensureRolesSidIsMutable();
             rolesSid_.addInt(value);
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         private void addAllRolesSid(
@@ -13120,64 +12002,62 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, rolesSid_);
         }
-
         /**
          * <pre>
          * Parallel arrays
          * </pre>
-         * <p>
+         *
          * <code>repeated int32 roles_sid = 8 [packed = true];</code>
          */
         private void clearRolesSid() {
             rolesSid_ = emptyIntList();
         }
 
+        public static final int MEMIDS_FIELD_NUMBER = 9;
+        private com.google.protobuf.Internal.LongList memids_;
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         public java.util.List<java.lang.Long>
         getMemidsList() {
             return memids_;
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         public int getMemidsCount() {
             return memids_.size();
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         public long getMemids(int index) {
             return memids_.getLong(index);
         }
-
+        private int memidsMemoizedSerializedSize = -1;
         private void ensureMemidsIsMutable() {
             if (!memids_.isModifiable()) {
                 memids_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(memids_);
             }
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         private void setMemids(
@@ -13185,24 +12065,22 @@ public final class Osmformat {
             ensureMemidsIsMutable();
             memids_.setLong(index, value);
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         private void addMemids(long value) {
             ensureMemidsIsMutable();
             memids_.addLong(value);
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         private void addAllMemids(
@@ -13211,18 +12089,28 @@ public final class Osmformat {
             com.google.protobuf.AbstractMessageLite.addAll(
                     values, memids_);
         }
-
         /**
          * <pre>
          * DELTA encoded
          * </pre>
-         * <p>
+         *
          * <code>repeated sint64 memids = 9 [packed = true];</code>
          */
         private void clearMemids() {
             memids_ = emptyLongList();
         }
 
+        public static final int TYPES_FIELD_NUMBER = 10;
+        private com.google.protobuf.Internal.IntList types_;
+        private static final com.google.protobuf.Internal.ListAdapter.Converter<
+                java.lang.Integer, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> types_converter_ =
+                new com.google.protobuf.Internal.ListAdapter.Converter<
+                        java.lang.Integer, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType>() {
+                    public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType convert(java.lang.Integer from) {
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType result = org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType.forNumber(from);
+                        return result == null ? org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType.NODE : result;
+                    }
+                };
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
@@ -13230,28 +12118,25 @@ public final class Osmformat {
             return new com.google.protobuf.Internal.ListAdapter<
                     java.lang.Integer, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType>(types_, types_converter_);
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
         public int getTypesCount() {
             return types_.size();
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
         public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType getTypes(int index) {
             return types_converter_.convert(types_.getInt(index));
         }
-
+        private int typesMemoizedSerializedSize;
         private void ensureTypesIsMutable() {
             if (!types_.isModifiable()) {
                 types_ =
                         com.google.protobuf.GeneratedMessageLite.mutableCopy(types_);
             }
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
@@ -13263,7 +12148,6 @@ public final class Osmformat {
             ensureTypesIsMutable();
             types_.setInt(index, value.getNumber());
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
@@ -13274,7 +12158,6 @@ public final class Osmformat {
             ensureTypesIsMutable();
             types_.addInt(value.getNumber());
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
@@ -13285,7 +12168,6 @@ public final class Osmformat {
                 types_.addInt(value.getNumber());
             }
         }
-
         /**
          * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
          */
@@ -13416,19 +12298,531 @@ public final class Osmformat {
                             .computeEnumSizeNoTag(types_.getInt(i));
                 }
                 size += dataSize;
-                if (!getTypesList().isEmpty()) {
-                    size += 1;
+                if (!getTypesList().isEmpty()) {  size += 1;
                     size += com.google.protobuf.CodedOutputStream
                             .computeUInt32SizeNoTag(dataSize);
-                }
-                typesMemoizedSerializedSize = dataSize;
+                }typesMemoizedSerializedSize = dataSize;
             }
             size += unknownFields.getSerializedSize();
             memoizedSerializedSize = size;
             return size;
         }
 
-        @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                com.google.protobuf.ByteString data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                com.google.protobuf.ByteString data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(byte[] data)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                byte[] data,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws com.google.protobuf.InvalidProtocolBufferException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, data, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseDelimitedFrom(java.io.InputStream input)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseDelimitedFrom(
+                java.io.InputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                com.google.protobuf.CodedInputStream input)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input);
+        }
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation parseFrom(
+                com.google.protobuf.CodedInputStream input,
+                com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+                throws java.io.IOException {
+            return com.google.protobuf.GeneratedMessageLite.parseFrom(
+                    DEFAULT_INSTANCE, input, extensionRegistry);
+        }
+
+        public static Builder newBuilder() {
+            return DEFAULT_INSTANCE.toBuilder();
+        }
+        public static Builder newBuilder(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation prototype) {
+            return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
+        }
+
+        /**
+         * Protobuf type {@code OSMPBF.Relation}
+         */
+        public static final class Builder extends
+                com.google.protobuf.GeneratedMessageLite.Builder<
+                        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation, Builder> implements
+                // @@protoc_insertion_point(builder_implements:OSMPBF.Relation)
+                org.openstreetmap.osmosis.osmbinary.Osmformat.RelationOrBuilder {
+            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.newBuilder()
+            private Builder() {
+                super(DEFAULT_INSTANCE);
+            }
+
+
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public boolean hasId() {
+                return instance.hasId();
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public long getId() {
+                return instance.getId();
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder setId(long value) {
+                copyOnWrite();
+                instance.setId(value);
+                return this;
+            }
+            /**
+             * <code>required int64 id = 1;</code>
+             */
+            public Builder clearId() {
+                copyOnWrite();
+                instance.clearId();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getKeysList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getKeysList());
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeysCount() {
+                return instance.getKeysCount();
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public int getKeys(int index) {
+                return instance.getKeys(index);
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder setKeys(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setKeys(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addKeys(int value) {
+                copyOnWrite();
+                instance.addKeys(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder addAllKeys(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllKeys(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays.
+             * </pre>
+             *
+             * <code>repeated uint32 keys = 2 [packed = true];</code>
+             */
+            public Builder clearKeys() {
+                copyOnWrite();
+                instance.clearKeys();
+                return this;
+            }
+
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getValsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getValsList());
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getValsCount() {
+                return instance.getValsCount();
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public int getVals(int index) {
+                return instance.getVals(index);
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder setVals(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setVals(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addVals(int value) {
+                copyOnWrite();
+                instance.addVals(value);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder addAllVals(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllVals(values);
+                return this;
+            }
+            /**
+             * <code>repeated uint32 vals = 3 [packed = true];</code>
+             */
+            public Builder clearVals() {
+                copyOnWrite();
+                instance.clearVals();
+                return this;
+            }
+
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public boolean hasInfo() {
+                return instance.hasInfo();
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
+                return instance.getInfo();
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.setInfo(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder setInfo(
+                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
+                copyOnWrite();
+                instance.setInfo(builderForValue);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
+                copyOnWrite();
+                instance.mergeInfo(value);
+                return this;
+            }
+            /**
+             * <code>optional .OSMPBF.Info info = 4;</code>
+             */
+            public Builder clearInfo() {  copyOnWrite();
+                instance.clearInfo();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Integer>
+            getRolesSidList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getRolesSidList());
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public int getRolesSidCount() {
+                return instance.getRolesSidCount();
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public int getRolesSid(int index) {
+                return instance.getRolesSid(index);
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public Builder setRolesSid(
+                    int index, int value) {
+                copyOnWrite();
+                instance.setRolesSid(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public Builder addRolesSid(int value) {
+                copyOnWrite();
+                instance.addRolesSid(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public Builder addAllRolesSid(
+                    java.lang.Iterable<? extends java.lang.Integer> values) {
+                copyOnWrite();
+                instance.addAllRolesSid(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * Parallel arrays
+             * </pre>
+             *
+             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
+             */
+            public Builder clearRolesSid() {
+                copyOnWrite();
+                instance.clearRolesSid();
+                return this;
+            }
+
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public java.util.List<java.lang.Long>
+            getMemidsList() {
+                return java.util.Collections.unmodifiableList(
+                        instance.getMemidsList());
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public int getMemidsCount() {
+                return instance.getMemidsCount();
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public long getMemids(int index) {
+                return instance.getMemids(index);
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public Builder setMemids(
+                    int index, long value) {
+                copyOnWrite();
+                instance.setMemids(index, value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public Builder addMemids(long value) {
+                copyOnWrite();
+                instance.addMemids(value);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public Builder addAllMemids(
+                    java.lang.Iterable<? extends java.lang.Long> values) {
+                copyOnWrite();
+                instance.addAllMemids(values);
+                return this;
+            }
+            /**
+             * <pre>
+             * DELTA encoded
+             * </pre>
+             *
+             * <code>repeated sint64 memids = 9 [packed = true];</code>
+             */
+            public Builder clearMemids() {
+                copyOnWrite();
+                instance.clearMemids();
+                return this;
+            }
+
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> getTypesList() {
+                return instance.getTypesList();
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public int getTypesCount() {
+                return instance.getTypesCount();
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType getTypes(int index) {
+                return instance.getTypes(index);
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public Builder setTypes(
+                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType value) {
+                copyOnWrite();
+                instance.setTypes(index, value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public Builder addTypes(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType value) {
+                copyOnWrite();
+                instance.addTypes(value);
+                return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public Builder addAllTypes(
+                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> values) {
+                copyOnWrite();
+                instance.addAllTypes(values);  return this;
+            }
+            /**
+             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
+             */
+            public Builder clearTypes() {
+                copyOnWrite();
+                instance.clearTypes();
+                return this;
+            }
+
+            // @@protoc_insertion_point(builder_scope:OSMPBF.Relation)
+        }
+        private byte memoizedIsInitialized = -1;
         protected final Object dynamicMethod(
                 com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
                 Object arg0, Object arg1) {
@@ -13469,12 +12863,12 @@ public final class Osmformat {
                     id_ = visitor.visitLong(
                             hasId(), id_,
                             other.hasId(), other.id_);
-                    keys_ = visitor.visitIntList(keys_, other.keys_);
-                    vals_ = visitor.visitIntList(vals_, other.vals_);
+                    keys_= visitor.visitIntList(keys_, other.keys_);
+                    vals_= visitor.visitIntList(vals_, other.vals_);
                     info_ = visitor.visitMessage(info_, other.info_);
-                    rolesSid_ = visitor.visitIntList(rolesSid_, other.rolesSid_);
-                    memids_ = visitor.visitLongList(memids_, other.memids_);
-                    types_ = visitor.visitIntList(types_, other.types_);
+                    rolesSid_= visitor.visitIntList(rolesSid_, other.rolesSid_);
+                    memids_= visitor.visitLongList(memids_, other.memids_);
+                    types_= visitor.visitIntList(types_, other.types_);
                     if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
                             .INSTANCE) {
                         bitField0_ |= other.bitField0_;
@@ -13623,7 +13017,7 @@ public final class Osmformat {
                                     }
                                     int length = input.readRawVarint32();
                                     int oldLimit = input.pushLimit(length);
-                                    while (input.getBytesUntilLimit() > 0) {
+                                    while(input.getBytesUntilLimit() > 0) {
                                         int rawValue = input.readEnum();
                                         org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType value = org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType.forNumber(rawValue);
                                         if (value == null) {
@@ -13646,17 +13040,15 @@ public final class Osmformat {
                     } finally {
                     }
                 }
-                // fall through
                 case GET_DEFAULT_INSTANCE: {
                     return DEFAULT_INSTANCE;
                 }
                 case GET_PARSER: {
-                    if (PARSER == null) {
-                        synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.class) {
-                            if (PARSER == null) {
-                                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
-                            }
+                    if (PARSER == null) {    synchronized (org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.class) {
+                        if (PARSER == null) {
+                            PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
                         }
+                    }
                     }
                     return PARSER;
                 }
@@ -13664,568 +13056,27 @@ public final class Osmformat {
             throw new UnsupportedOperationException();
         }
 
-        /**
-         * Protobuf enum {@code OSMPBF.Relation.MemberType}
-         */
-        public enum MemberType
-                implements com.google.protobuf.Internal.EnumLite {
-            /**
-             * <code>NODE = 0;</code>
-             */
-            NODE(0),
-            /**
-             * <code>WAY = 1;</code>
-             */
-            WAY(1),
-            /**
-             * <code>RELATION = 2;</code>
-             */
-            RELATION(2),;
 
-            /**
-             * <code>NODE = 0;</code>
-             */
-            public static final int NODE_VALUE = 0;
-            /**
-             * <code>WAY = 1;</code>
-             */
-            public static final int WAY_VALUE = 1;
-            /**
-             * <code>RELATION = 2;</code>
-             */
-            public static final int RELATION_VALUE = 2;
-            private static final com.google.protobuf.Internal.EnumLiteMap<
-                    MemberType> internalValueMap =
-                    new com.google.protobuf.Internal.EnumLiteMap<MemberType>() {
-                        public MemberType findValueByNumber(int number) {
-                            return MemberType.forNumber(number);
-                        }
-                    };
-            private final int value;
-
-            MemberType(int value) {
-                this.value = value;
-            }
-
-            /**
-             * @deprecated Use {@link #forNumber(int)} instead.
-             */
-            @java.lang.Deprecated
-            public static MemberType valueOf(int value) {
-                return forNumber(value);
-            }
-
-            public static MemberType forNumber(int value) {
-                switch (value) {
-                    case 0:
-                        return NODE;
-                    case 1:
-                        return WAY;
-                    case 2:
-                        return RELATION;
-                    default:
-                        return null;
-                }
-            }
-
-            public static com.google.protobuf.Internal.EnumLiteMap<MemberType>
-            internalGetValueMap() {
-                return internalValueMap;
-            }
-
-            public final int getNumber() {
-                return value;
-            }
-
-            // @@protoc_insertion_point(enum_scope:OSMPBF.Relation.MemberType)
+        // @@protoc_insertion_point(class_scope:OSMPBF.Relation)
+        private static final org.openstreetmap.osmosis.osmbinary.Osmformat.Relation DEFAULT_INSTANCE;
+        static {
+            DEFAULT_INSTANCE = new Relation();
+            DEFAULT_INSTANCE.makeImmutable();
         }
 
-        /**
-         * Protobuf type {@code OSMPBF.Relation}
-         */
-        public static final class Builder extends
-                com.google.protobuf.GeneratedMessageLite.Builder<
-                        org.openstreetmap.osmosis.osmbinary.Osmformat.Relation, Builder> implements
-                // @@protoc_insertion_point(builder_implements:OSMPBF.Relation)
-                org.openstreetmap.osmosis.osmbinary.Osmformat.RelationOrBuilder {
-            // Construct using org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.newBuilder()
-            private Builder() {
-                super(DEFAULT_INSTANCE);
-            }
-
-
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public boolean hasId() {
-                return instance.hasId();
-            }
-
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public long getId() {
-                return instance.getId();
-            }
-
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder setId(long value) {
-                copyOnWrite();
-                instance.setId(value);
-                return this;
-            }
-
-            /**
-             * <code>required int64 id = 1;</code>
-             */
-            public Builder clearId() {
-                copyOnWrite();
-                instance.clearId();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getKeysList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getKeysList());
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeysCount() {
-                return instance.getKeysCount();
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public int getKeys(int index) {
-                return instance.getKeys(index);
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder setKeys(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setKeys(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addKeys(int value) {
-                copyOnWrite();
-                instance.addKeys(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder addAllKeys(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllKeys(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays.
-             * </pre>
-             * <p>
-             * <code>repeated uint32 keys = 2 [packed = true];</code>
-             */
-            public Builder clearKeys() {
-                copyOnWrite();
-                instance.clearKeys();
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getValsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getValsList());
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getValsCount() {
-                return instance.getValsCount();
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public int getVals(int index) {
-                return instance.getVals(index);
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder setVals(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setVals(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addVals(int value) {
-                copyOnWrite();
-                instance.addVals(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder addAllVals(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllVals(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated uint32 vals = 3 [packed = true];</code>
-             */
-            public Builder clearVals() {
-                copyOnWrite();
-                instance.clearVals();
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public boolean hasInfo() {
-                return instance.hasInfo();
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Info getInfo() {
-                return instance.getInfo();
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(
-                    org.openstreetmap.osmosis.osmbinary.Osmformat.Info.Builder builderForValue) {
-                copyOnWrite();
-                instance.setInfo(builderForValue);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder setInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.setInfo(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder mergeInfo(org.openstreetmap.osmosis.osmbinary.Osmformat.Info value) {
-                copyOnWrite();
-                instance.mergeInfo(value);
-                return this;
-            }
-
-            /**
-             * <code>optional .OSMPBF.Info info = 4;</code>
-             */
-            public Builder clearInfo() {
-                copyOnWrite();
-                instance.clearInfo();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Integer>
-            getRolesSidList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getRolesSidList());
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public int getRolesSidCount() {
-                return instance.getRolesSidCount();
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public int getRolesSid(int index) {
-                return instance.getRolesSid(index);
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public Builder setRolesSid(
-                    int index, int value) {
-                copyOnWrite();
-                instance.setRolesSid(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public Builder addRolesSid(int value) {
-                copyOnWrite();
-                instance.addRolesSid(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public Builder addAllRolesSid(
-                    java.lang.Iterable<? extends java.lang.Integer> values) {
-                copyOnWrite();
-                instance.addAllRolesSid(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * Parallel arrays
-             * </pre>
-             * <p>
-             * <code>repeated int32 roles_sid = 8 [packed = true];</code>
-             */
-            public Builder clearRolesSid() {
-                copyOnWrite();
-                instance.clearRolesSid();
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public java.util.List<java.lang.Long>
-            getMemidsList() {
-                return java.util.Collections.unmodifiableList(
-                        instance.getMemidsList());
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public int getMemidsCount() {
-                return instance.getMemidsCount();
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public long getMemids(int index) {
-                return instance.getMemids(index);
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public Builder setMemids(
-                    int index, long value) {
-                copyOnWrite();
-                instance.setMemids(index, value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public Builder addMemids(long value) {
-                copyOnWrite();
-                instance.addMemids(value);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public Builder addAllMemids(
-                    java.lang.Iterable<? extends java.lang.Long> values) {
-                copyOnWrite();
-                instance.addAllMemids(values);
-                return this;
-            }
-
-            /**
-             * <pre>
-             * DELTA encoded
-             * </pre>
-             * <p>
-             * <code>repeated sint64 memids = 9 [packed = true];</code>
-             */
-            public Builder clearMemids() {
-                copyOnWrite();
-                instance.clearMemids();
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public java.util.List<org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> getTypesList() {
-                return instance.getTypesList();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public int getTypesCount() {
-                return instance.getTypesCount();
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType getTypes(int index) {
-                return instance.getTypes(index);
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public Builder setTypes(
-                    int index, org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType value) {
-                copyOnWrite();
-                instance.setTypes(index, value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public Builder addTypes(org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType value) {
-                copyOnWrite();
-                instance.addTypes(value);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public Builder addAllTypes(
-                    java.lang.Iterable<? extends org.openstreetmap.osmosis.osmbinary.Osmformat.Relation.MemberType> values) {
-                copyOnWrite();
-                instance.addAllTypes(values);
-                return this;
-            }
-
-            /**
-             * <code>repeated .OSMPBF.Relation.MemberType types = 10 [packed = true];</code>
-             */
-            public Builder clearTypes() {
-                copyOnWrite();
-                instance.clearTypes();
-                return this;
-            }
-
-            // @@protoc_insertion_point(builder_scope:OSMPBF.Relation)
+        public static org.openstreetmap.osmosis.osmbinary.Osmformat.Relation getDefaultInstance() {
+            return DEFAULT_INSTANCE;
         }
+
+        private static volatile com.google.protobuf.Parser<Relation> PARSER;
+
+        public static com.google.protobuf.Parser<Relation> parser() {
+            return DEFAULT_INSTANCE.getParserForType();
+        }
+    }
+
+
+    static {
     }
 
     // @@protoc_insertion_point(outer_class_scope)
