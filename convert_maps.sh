@@ -48,6 +48,16 @@ cd mapsforge_peruskartta
 python3 tidy_tag_mapping.py
 cd ..
 
+mkdir osmosis
+cd osmosis
+curl --fail -O http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
+tar -xvzf osmosis-latest.tgz
+cd ../
+mkdir plugins
+cd plugins
+curl --fail -O "https://oss.sonatype.org/content/repositories/snapshots/org/mapsforge/mapsforge-map-writer/master-SNAPSHOT/mapsforge-map-writer-master-20171122.073203-184-jar-with-dependencies.jar"
+cd ../
+
 mkdir mkgmap
 cd mkgmap
 wget -Omkgmap-latest.tar.gz http://www.mkgmap.org.uk/download/mkgmap-latest.tar.gz
@@ -70,18 +80,6 @@ echo "Compiling garmin img"
 java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
 mv mtkgarmin/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.img"
-
-mkdir osmosis
-cd osmosis
-curl -O http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
-tar -xvzf osmosis-latest.tgz
-cd ../
-mkdir plugins
-cd plugins
-curl -O "https://oss.sonatype.org/content/repositories/snapshots/org/mapsforge/mapsforge-map-writer/master-SNAPSHOT/mapsforge-map-writer-master-20171122.073203-184-jar-with-dependencies.jar"
-cd ../
-
-
 
 echo "Running osmosis writer!"
 ./mapsforge_convert.sh
