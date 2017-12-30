@@ -51,6 +51,7 @@ kohdeluokka=44902 [0x2c04 level 1]  #Muistomerkin selite
 kohdeluokka=45000 [0x5201 level 1]  #Nakotorni
 kohdeluokka=45200 [0x660f level 1]  #Portti
 kohdeluokka=45300 [0x6413 level 1]  #Savupiippu
+kohdeluokka=44600 [0x6413 level 1]  #Kellotapuli
 kohdeluokka=45710 [0x2b06 level 1]  #Tulentekopaikka
 kohdeluokka=45800 [0x1204 level 1]  #Vesitorni
 kohdeluokka=48111 [0x0100 level 3]  #Kaupungin nimi

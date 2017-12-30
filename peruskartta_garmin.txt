@@ -1897,8 +1897,6 @@ DayXpm="8 12 3 1"   Colormode=16
 
 [_point]
 Type=0x6413
-;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_9/User customizable point type/Non NT, NT
-String1=0x00,Savupiippu
 ExtendedLabels=N
 DayXpm="8 8 3 1"   Colormode=16
 "!	c #FFFFFF"
