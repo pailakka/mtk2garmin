@@ -165,7 +165,9 @@
 <osm-tag key="kohdeluokka" value="82500" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="95300" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="34100" zoom-appear="10" /> <!-- kallio -->
+<osm-tag key="tyyppi" value="syvyyspiste_p" zoom-appear="10" />
 <osm-tag key="tyyppi" value="syvyyspiste" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="54210" zoom-appear="10" />
 <osm-tag key="amenity" value="shelter" zoom-appear="12" />
 <osm-tag key="amenity" value="toilets" zoom-appear="12" />
 <osm-tag key="tourism" value="fireplace" zoom-appear="12" />
@@ -249,6 +251,7 @@
 <osm-tag key="kohdeluokka" value="26116" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="26117" zoom-appear="10" />
 <osm-tag key="tyyppi" value="rajavyohykkeentakaraja" zoom-appear="10" />
+<osm-tag key="tyyppi" value="kiinteistoraja" zoom-appear="14" />
 <osm-tag key="kohdeluokka" value="45700" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="42210" zoom-appear="14" />
 <osm-tag key="kohdeluokka" value="42211" zoom-appear="14" />
@@ -283,7 +286,7 @@
 <osm-tag key="kohdeluokka" value="35422" zoom-appear="10" />
 
 <osm-tag key="tyyppi" value="syvyyskayra_v" zoom-appear="14" />
-<osm-tag key="tyyppi" value="syvyyskayrat" zoom-appear="14" />
+<osm-tag key="tyyppi" value="syvyyskayra" zoom-appear="14" />
 <osm-tag key="tyyppi" value="taytemaa" zoom-appear="10" />
 <osm-tag key="paallyste" value="0" zoom-appear="10" renderable="false"/>
 <osm-tag key="paallyste" value="1" zoom-appear="10" renderable="false"/>

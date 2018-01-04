@@ -26,6 +26,7 @@ mkdir inputdata
 ./get_additional_data.sh
 
 ln -s /home/teemu/mtk/tuotteet/maastotietokanta/kaikki/etrs89/gml inputdata/mtk
+ln -s /home/teemu/mtk/tuotteet/kiinteistorekisterikartta/avoin/karttalehdittain/tm35fin/shp inputdata/krk
 
 mvn install
 java -jar -Xmx5G target/mtk2garmin-0.0.1-SNAPSHOT.jar mtk2garmin.conf 

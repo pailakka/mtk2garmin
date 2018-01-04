@@ -69,6 +69,7 @@ kohdeluokka=12312 [0x11 level 2]    #Talvitie
 kohdeluokka=34800 [0x10102 level 1] #Luiska
 kohdeluokka=14121 [0x19 level 3]    #Kapearaiteinen rautatie
 kohdeluokka=36312 [0x1f level 1]    #Virtavesi, 2-5m
+tyyppi=kiinteistoraja [0x1b] #Kiinteistoraja
 
 
 #tyyppi=syvyyskayrat & ele ~ '\d*[24680]0\.0' {name ${ele|conv:"m=>ft"}';addlabel '${ele}'} [0x25]

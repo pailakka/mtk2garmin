@@ -23,6 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
 class MTKToGarminConverter {
@@ -36,6 +37,12 @@ class MTKToGarminConverter {
     private final Int2ObjectAVLTreeMap<Long2ObjectAVLTreeMap<Node>> nodepos = new Int2ObjectAVLTreeMap<>();
     private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
     private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
+
+    static final Set<String> leftLetters = new HashSet<>(
+            Arrays.asList("A", "B", "C", "D"));
+
+    static final Set<String> rightLetters = new HashSet<String>(
+            Arrays.asList("E", "F", "G", "H"));
 
     private final Driver memoryd = ogr.GetDriverByName("memory");
 
@@ -102,6 +109,7 @@ class MTKToGarminConverter {
         File srcdir = new File(conf.getString("maastotietokanta"));
         for (File g1 : srcdir.listFiles()) {
             for (File g2 : g1.listFiles()) {
+
                 for (File g3 : g2.listFiles()) {
                     if (!g3.getName().endsWith(".zip")) {
                         continue;
@@ -117,7 +125,8 @@ class MTKToGarminConverter {
             }
         }
 
-        Object[] areassorted = areas.keySet().toArray();
+        String[] areassorted = areas.keySet().stream().map(s -> s.toString()).collect(Collectors.toList()).toArray(new String[0]);
+
         Arrays.sort(areassorted);
         MTKToGarminConverter mtk2g = new MTKToGarminConverter();
 
@@ -146,7 +155,8 @@ class MTKToGarminConverter {
         InitializedDatasource metsapoints = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp");
 
 
-        for (Object area : areassorted) {
+
+        for (String area : areassorted) {
             ArrayList<File> files = areas.get(area);
             String[] filenames = new String[files.size()];
             int i = 0;
@@ -160,6 +170,8 @@ class MTKToGarminConverter {
 
             for (String fn : filenames) {
                 String cell = fn.substring(fn.lastIndexOf(File.separator) + 1, fn.lastIndexOf(File.separator) + 7);
+                String cellWithoutLetter = cell.substring(0, cell.length() - 1);
+                String cellLetter = cell.substring(cell.length() - 1, cell.length());
 
                 stringtable = new StringTable();
                 tyyppi_string_id = stringtable.getStringId("tyyppi");
@@ -168,10 +180,11 @@ class MTKToGarminConverter {
                 syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
                 mtk2g.startWritingOSMPBF(Paths.get(outdir.toString(), String.format("%s.osm.pbf", cell)).toString());
 
-                System.out.println(fn + " (" + cell + ")");
+                System.out.println(fn + " (" + cell + " / " + cellWithoutLetter + " / " + cellLetter + ")");
 
                 double[] mml_extent = gridExtents.get(cell);
                 long st;
+
 
                 st = System.nanoTime();
                 DataSource mtkds = mtk2g.readOGRsource(stringtable, mtk2g.startReadingOGRFile("/vsizip/" + fn), featurePreprocessMML, tagHandlerMML, true, null);
@@ -179,6 +192,35 @@ class MTKToGarminConverter {
                 System.out.println("mtk read " + (System.nanoTime() - st) / 1000000000.0);
                 mtk2g.printCounts();
                 System.out.println(Arrays.toString(mml_extent));
+
+
+                st = System.nanoTime();
+                File cellKrkPath = new File(Paths.get(conf.getString("kiinteistorajat"), area.substring(0, 3)).toString());
+                File[] krkFiles = cellKrkPath.listFiles();
+
+                if (krkFiles != null) {
+                    for (File krkf : krkFiles) {
+                        String krkfn = krkf.getName();
+                        if (!krkfn.startsWith(cellWithoutLetter)) continue;
+                        String krkCell = krkfn.substring(krkfn.lastIndexOf(File.separator) + 1, krkfn.lastIndexOf(File.separator) + 7);
+                        String krkCellLetter = krkCell.substring(krkCell.length() - 1, krkCell.length());
+
+                        if ("L".equals(cellLetter) && !leftLetters.contains(krkCellLetter)) continue;
+                        if ("R".equals(cellLetter) && !rightLetters.contains(krkCellLetter)) continue;
+
+
+                        System.out.println(krkCell + " / " + krkCellLetter);
+                        System.out.println(krkf.getAbsolutePath());
+                        DataSource krkds = mtk2g.readOGRsource(stringtable, mtk2g.startReadingOGRFile("/vsizip/" + krkf.getAbsolutePath() + "/" + krkCell + "_kiinteistoraja.shp"), shapePreprocessor, tagHandlerMML, false, mml_extent);
+                        krkds.delete();
+                    }
+                    System.out.println("krk read " + (System.nanoTime() - st) / 1000000000.0);
+                    mtk2g.printCounts();
+                    System.out.println(Arrays.toString(mml_extent));
+                } else {
+                    System.out.println("No krk exists for " + cell);
+                }
+
 
                 st = System.nanoTime();
                 mtk2g.readOGRsource(stringtable, syvyyskayrat, shapePreprocessor, syvyysTagHandler, false, mml_extent);
@@ -451,6 +493,7 @@ class MTKToGarminConverter {
         geom.delete();
         feat.delete();
         String tyyppi = lyrname.toLowerCase();
+        if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
 
         short tyyppi_value_id = stringtable.getStringId(tyyppi);
 
@@ -602,8 +645,9 @@ class MTKToGarminConverter {
 
     private double[] extendExtent(double[] ext1, double[] ext2) {
 
-        return new double[]{(ext1[0] < ext2[0] ? ext1[0] : ext2[0]), (ext1[1] > ext2[1] ? ext1[1] : ext2[1]),
-                (ext1[2] < ext2[2] ? ext1[2] : ext2[2]), (ext1[3] > ext2[3] ? ext1[3] : ext2[3]),};
+        return new double[]{
+                Math.min(ext1[0], ext2[0]), Math.max(ext1[1], ext2[1]),
+                Math.min(ext1[2], ext2[2]), Math.max(ext1[3], ext2[3])};
     }
 
     private void clearNodeCache(int cell) {

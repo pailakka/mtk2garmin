@@ -1011,6 +1011,15 @@ Xpm="0 0 1 0"
 ExtendedLabels=N
 [end]
 
+[_line]
+Type=00x1b
+;GRMN_TYPE: Roads/ALLEY, DRIVEWAY/Alleyway, private driveway to residence/Non NT, NT
+UseOrientation=Y
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #FF0000"
+ExtendedLabels=N
+[end]
 
 [_line]
 Type=0x08
@@ -1720,7 +1729,7 @@ DayXpm="12 12 2 1"   Colormode=16
 
 
 [_point]
-Type=0x6614
+Type=0x6613
 ;GRMN_TYPE: Geographical Named Points of Interest - Land Related/ROCK/Rock/Non NT, NT
 String1=0x00,Kivi
 ExtendedLabels=N
@@ -1897,6 +1906,7 @@ DayXpm="8 12 3 1"   Colormode=16
 
 [_point]
 Type=0x6413
+String1=0x00,Kellotapuli / savupiippu
 ExtendedLabels=N
 DayXpm="8 8 3 1"   Colormode=16
 "!	c #FFFFFF"
