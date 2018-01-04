@@ -51,7 +51,7 @@ cd ..
 
 mkdir osmosis
 cd osmosis
-curl --fail -O http://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
+curl --fail -O https://bretth.dev.openstreetmap.org/osmosis-build/osmosis-latest.tgz -Oosmosis-latest.tgz
 tar -xvzf osmosis-latest.tgz
 cd ../
 mkdir plugins
