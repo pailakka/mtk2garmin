@@ -1632,8 +1632,7 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x064
-SubType=0x11
+Type=0x2f12
 ;GRMN_TYPE: Geographical Named Points of Interest/TOWER/Tower/Non NT, NT
 String1=0x00,Masto
 ExtendedLabels=N
@@ -1721,8 +1720,7 @@ DayXpm="12 12 2 1"   Colormode=16
 
 
 [_point]
-Type=0x066
-SubType=0x14
+Type=0x6614
 ;GRMN_TYPE: Geographical Named Points of Interest - Land Related/ROCK/Rock/Non NT, NT
 String1=0x00,Kivi
 ExtendedLabels=N
@@ -1762,8 +1760,7 @@ DayXpm="8 8 3 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x00
+Type=0x6501
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_1/User customizable point type/Non NT, NT
 String1=0x00,Vedenalainen kivi
 ExtendedLabels=N
@@ -1782,8 +1779,7 @@ DayXpm="7 7 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x01
+Type=0x6502
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_2/User customizable point type/Non NT, NT
 String1=0x00,Pinnassa kivi
 ExtendedLabels=N
@@ -1802,8 +1798,7 @@ DayXpm="7 7 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x02
+Type=0x6503
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_3/User customizable point type/Non NT, NT
 String1=0x00,Vedenpäällinen kivi
 ExtendedLabels=N
@@ -1822,8 +1817,7 @@ DayXpm="7 7 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x04
+Type=0x1204
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_5/User customizable point type/Non NT, NT
 String1=0x00,Vesitorni
 ExtendedLabels=N
@@ -1839,8 +1833,7 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x05
+Type=0x6604
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_6/User customizable point type/Non NT, NT
 String1=0x00,Kaislikko
 ExtendedLabels=N
@@ -1858,9 +1851,7 @@ DayXpm="9 6 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x06
-;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_7/User customizable point type/Non NT, NT
+Type=0x6417
 String1=0x00,Pylväs
 ExtendedLabels=N
 DayXpm="9 9 3 1"   Colormode=16
@@ -1881,9 +1872,7 @@ DayXpm="9 9 3 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x07
-;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_8/User customizable point type/Non NT, NT
+Type=0x5201
 String1=0x00,Näkötorni
 ExtendedLabels=N
 DayXpm="8 12 3 1"   Colormode=16
@@ -1907,10 +1896,7 @@ DayXpm="8 12 3 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x08
-;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_9/User customizable point type/Non NT, NT
-String1=0x00,Savupiippu
+Type=0x6413
 ExtendedLabels=N
 DayXpm="8 8 3 1"   Colormode=16
 "!	c #FFFFFF"
@@ -1929,8 +1915,7 @@ DayXpm="8 8 3 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x09
+Type=0x2b06
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_10/User customizable point type/Non NT, NT
 String1=0x00,Tulentekopaikka
 ExtendedLabels=N
@@ -2036,8 +2021,7 @@ DayXpm="10 14 82 2"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0a
+Type=0x6618
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_11/User customizable point type/Non NT, NT
 String1=0x00,Merkittävä luonnokohde
 ExtendedLabels=N
@@ -2053,8 +2037,7 @@ DayXpm="4 4 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0b
+Type=0x6615
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_12/User customizable point type/Non NT, NT
 String1=0x00,Harva louhikko
 ExtendedLabels=N
@@ -2071,8 +2054,7 @@ DayXpm="3 5 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0c
+Type=0x2d0c
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_13/User customizable point type/Non NT, NT
 String1=0x00,Havumetsä
 ExtendedLabels=N
@@ -2092,8 +2074,7 @@ DayXpm="7 8 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0d
+Type=0x2d0d
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_14/User customizable point type/Non NT, NT
 String1=0x00,Lehtimetsä
 String2=0x06,Lehtimetsä
@@ -2113,8 +2094,7 @@ DayXpm="7 7 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0e
+Type=0x2d0e
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_15/User customizable point type/Non NT, NT
 String1=0x00,Sekametsä
 String2=0x06,Sekametsä
@@ -2135,10 +2115,7 @@ DayXpm="7 8 2 1"   Colormode=16
 
 
 [_point]
-Type=0x115
-SubType=0x0f
-;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_16/User customizable point type/Non NT, NT
-String1=0x01,
+Type=0x6612
 ExtendedLabels=N
 DayXpm="5 5 3 1"   Colormode=16
 "!	c #000000"
