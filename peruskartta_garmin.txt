@@ -1012,7 +1012,7 @@ ExtendedLabels=N
 [end]
 
 [_line]
-Type=00x1b
+Type=0x1b
 ;GRMN_TYPE: Roads/ALLEY, DRIVEWAY/Alleyway, private driveway to residence/Non NT, NT
 UseOrientation=Y
 LineWidth=2
