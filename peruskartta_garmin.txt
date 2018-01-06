@@ -1013,9 +1013,10 @@ ExtendedLabels=N
 
 [_line]
 Type=0x1b
+String1=0x00,Kiinteistöraja
 ;GRMN_TYPE: Roads/ALLEY, DRIVEWAY/Alleyway, private driveway to residence/Non NT, NT
 UseOrientation=Y
-LineWidth=2
+LineWidth=1
 Xpm="0 0 1 0"
 "1 c #FF0000"
 ExtendedLabels=N

@@ -1,3 +1,10 @@
+v3.3 (5.1.2017)
+==========================
+- Tuotannon automatisointia parannettu
+- Symbolikorjauksia
+- Syvyyskäyrien ja -pisteiden näkymistä korjattu
+- Lisätty kiinteistörajat
+
 v3.2 (17.10.2017)
 ==========================
 - Karttojen tuotanto automatisoitu ja ajastettu viikottaiseksi

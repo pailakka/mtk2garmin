@@ -599,8 +599,8 @@
         <line stroke="#4d00ff" stroke-width="1.5" stroke-dasharray="2,5" stroke-linecap="butt"/>
     </rule>
 
-    <rule e="way" k="tyyppi" v="kiinteistoraja"> <!-- rajavyohykkeentakaraja -->
-        <line stroke="#ff0000" stroke-width="1.0" stroke-linecap="butt"/>
+    <rule e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
+        <line stroke="#ff0000" stroke-width="0.5" stroke-linecap="butt"/>
     </rule>
 
 
