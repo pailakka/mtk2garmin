@@ -1011,6 +1011,27 @@ Xpm="0 0 1 0"
 ExtendedLabels=N
 [end]
 
+
+[_line]
+Type=0x10f17
+String1=0x00,Laivaväylä
+UseOrientation=Y
+LineWidth=2
+Xpm="0 0 1 0"
+"1 c #000000"
+ExtendedLabels=N
+[end]
+
+[_line]
+Type=0x10f18
+String1=0x00,Venereitti
+UseOrientation=Y
+LineWidth=1
+Xpm="0 0 1 0"
+"1 c #000000"
+ExtendedLabels=N
+[end]
+
 [_line]
 Type=0x1b
 String1=0x00,Kiinteistöraja
@@ -1277,41 +1298,44 @@ ExtendedLabels=N
 
 [_line]
 Type=0x20
-;GRMN_TYPE: Contour Lines/MINOR_CONTOUR/Minor land-based contour line/Non NT
-UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #C08040"
-ExtendedLabels=Y
-FontStyle=NoLabel (invisible)
-CustomColor=No
+"a c #C08040"
+FontStyle=SmallFont
 [end]
 
+[_line]
+Type=0x21
+LineWidth=1
+Xpm="0 0 1 0"
+"a c #C08040"
+FontStyle=NormalFont
+[end]
 
 [_line]
 Type=0x22
-;GRMN_TYPE: Contour Lines/MAJOR_CONTOUR/Major contour (should be used for about every 10th contour line)/Non NT
-UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
-"1 c #C08040"
-ExtendedLabels=Y
-FontStyle=SmallFont
-CustomColor=Day
-DaycustomColor:#C08040
+"a c #C08040"
+FontStyle=NormalFont
 [end]
 
 
 [_line]
 Type=0x24
-;GRMN_TYPE: Contour Lines/INT_BATHY_CONTOUR/Intermediate bathymetric, or depth, contour (should be used for about every 5th contour line)/Non NT
-UseOrientation=Y
 LineWidth=1
 Xpm="0 0 1 0"
-"1 c #80FFFF"
-ExtendedLabels=N
+"a c #C08040"
+FontStyle=NormalFont
 [end]
 
+[_line]
+Type=0x25
+LineWidth=2
+Xpm="0 0 1 0"
+"a c #C08040"
+FontStyle=NormalFont
+[end]
 
 [_line]
 Type=0x28
