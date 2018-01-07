@@ -1301,7 +1301,7 @@ Type=0x20
 LineWidth=1
 Xpm="0 0 1 0"
 "a c #C08040"
-FontStyle=SmallFont
+FontStyle=NoLabel
 [end]
 
 [_line]
@@ -1309,7 +1309,7 @@ Type=0x21
 LineWidth=1
 Xpm="0 0 1 0"
 "a c #C08040"
-FontStyle=NormalFont
+FontStyle=NoLabel
 [end]
 
 [_line]
@@ -1317,7 +1317,7 @@ Type=0x22
 LineWidth=2
 Xpm="0 0 1 0"
 "a c #C08040"
-FontStyle=NormalFont
+FontStyle=NoLabel
 [end]
 
 
@@ -1325,16 +1325,16 @@ FontStyle=NormalFont
 Type=0x24
 LineWidth=1
 Xpm="0 0 1 0"
-"a c #C08040"
-FontStyle=NormalFont
+"a c #80FFFF"
+FontStyle=NoLabel
 [end]
 
 [_line]
 Type=0x25
 LineWidth=2
 Xpm="0 0 1 0"
-"a c #C08040"
-FontStyle=NormalFont
+"a c #80FFFF"
+FontStyle=NoLabel
 [end]
 
 [_line]
