@@ -1,4 +1,4 @@
-v3.3 (5.1.2017)
+v3.3 (5.1.2018)
 ==========================
 - Tuotannon automatisointia parannettu
 - Symbolikorjauksia

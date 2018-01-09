@@ -56,7 +56,7 @@ release_files = OrderedDict((
     ('peruskartta_v3.zip',{
         'type':'mapsforge_style',
         'name':'peruskartta_v3.zip',
-        'description':'''Peruskartta-tyylimäärittelyt Mapsforge / Android< (v3-yhteensopiva)br/>
+        'description':'''Peruskartta-tyylimäärittelyt Mapsforge / Android< (v3-yhteensopiva)<br/>
                             <a href="orux-mf-theme://jekku.hylly.org/kartat/%(date)s/%(name)s">Asenna tyylimäärittelyt Oruxmapsiin</a><br/>
                             <a href="locus-actions://http/jekku.hylly.org/kartat/%(date)s/%(locus_file)s">Asenna tyylimäärittelyt Locukseen</a>''',
         'size':None,
