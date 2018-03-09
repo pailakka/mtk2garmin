@@ -472,7 +472,9 @@ class MTKToGarminConverter {
         }
 
         geom = feat.GetGeometryRef();
-	if (geom == null) return true;
+
+	    if (geom == null) return true;
+
 
         geom = geom.SimplifyPreserveTopology(0.5);
 
@@ -483,6 +485,8 @@ class MTKToGarminConverter {
 
         GeomHandlerResult ghr;
 
+        if (geom == null) return true;
+        
         if (geom.GetGeometryCount() < 2) {
             if (geom.GetGeometryCount() > 0) {
                 geom = geom.GetGeometryRef(0);
