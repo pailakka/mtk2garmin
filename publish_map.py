@@ -34,6 +34,13 @@ release_files = OrderedDict((
         'size':None,
         'hash':None
     }),
+    ('mtk_suomi_osx.zip',{
+        'type':'garmin_map',
+        'name':'mtk_suomi_osx.zip',
+        'description':'''macOS BaseCamp yhteensopiva versio Garmin kartasta.''',
+        'size':None,
+        'hash':None
+    }),
     ('mtk_suomi.map',{
         'type':'mapsforge_map',
         'name':'mtk_suomi.map',

@@ -96,6 +96,11 @@ echo "copying installer files"
 mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
 cd ..
 
+echo "converting osx files"
+./convert_osx_map.sh
+echo "copying osx files"
+mv "mtk_suomi_osx.zip" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_osx.zip"
+
 cd mapsforge_peruskartta
 7za a peruskartta.zip Peruskartta.xml mml
 7za a tiekartta.zip Tiekartta.xml mml
