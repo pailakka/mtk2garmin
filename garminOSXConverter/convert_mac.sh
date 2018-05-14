@@ -10,3 +10,4 @@ mkdir /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_osx
 
 7z a /opt/mtk2garmin_build/mtk2garmin/mtk_suomi_osx.zip /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_osx/mtk_suomi.gmap
 
+exit 0
