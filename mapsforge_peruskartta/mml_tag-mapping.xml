@@ -5,6 +5,10 @@
 
     <pois>
 <osm-tag key="kohdeluokka" value="12200" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="12101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="12301" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="14201" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="16101" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="16120" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="16121" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="16122" zoom-appear="10" />
@@ -138,6 +142,8 @@
 <osm-tag key="kohdeluokka" value="38800" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="38901" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="38991" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="42101" zoom-appear="10" />
+<osm-tag key="kohdeluokka" value="42201" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="44591" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="44600" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="44700" zoom-appear="10" />
@@ -196,6 +202,8 @@
 <osm-tag key="cat_id" value="1212" zoom-appear="12"/>
 </pois>
 <ways>
+<osm-tag key="tyyppi" value="taajaanrakennettualue" zoom-appear="12" />
+<osm-tag key="tyyppi" value="tieviiva" zoom-appear="12" />
 <osm-tag key="tyyppi" value="aita" zoom-appear="12" />
 <osm-tag key="tyyppi" value="allas" zoom-appear="10" />
 <osm-tag key="kohdeluokka" value="82100" zoom-appear="5" />
