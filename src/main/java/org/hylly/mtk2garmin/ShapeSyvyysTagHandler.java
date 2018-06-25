@@ -5,6 +5,7 @@ import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 
+import java.util.Arrays;
 import java.util.Collections;
 
 class ShapeSyvyysTagHandler implements TagHandlerI {
@@ -12,15 +13,17 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
 
     private final StringTable stringtable;
 
-    private final short depth, ele;
+    private final short depthContour, depthSounding, ele;
 
     ShapeSyvyysTagHandler(StringTable stringtable) {
         this.stringtable = stringtable;
 
-        depth = stringtable.getStringId("VALDCO");
+        depthContour = stringtable.getStringId("VALDCO");
+        depthSounding = stringtable.getStringId("DEPTH");
         ele = stringtable.getStringId("ele");
 
-        wantedFields = new ObjectOpenHashSet<>(Collections.singletonList("VALDCO"));
+        wantedFields = new ObjectOpenHashSet<>(
+                Arrays.asList("VALDCO", "DEPTH"));
     }
 
     @Override
@@ -34,7 +37,7 @@ class ShapeSyvyysTagHandler implements TagHandlerI {
             String val = k.getValue();
             short key = k.getShortKey();
 
-            if (key == depth) {
+            if (key == depthContour || key == depthSounding) {
                 key = ele;
                 val = String.format("%.1f", Float.parseFloat(val));
 
