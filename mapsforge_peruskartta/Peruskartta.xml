@@ -2,27 +2,8 @@
 
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme.xsd"
-             version="5" map-background="#FFFFFF">
+             version="1" map-background="#FFFFFF">
 
-    <stylemenu id="r4menu" defaultvalue="parcels" defaultlang="fi">
-
-        <layer id="parcels" enabled="true" visible="false">
-            <name lang="en" value="cycling_routes" />
-            <cat id="kiinteistorajat" />
-        </layer>
-
-        <layer id="parcelshide" enabled="true" visible="true">
-            <name lang="fi" value="Ei kiinteistörajoja" />
-            <name lang="en" value="No parcels" />
-        </layer>
-
-        <layer id="parcelsshow" enabled="true" visible="true">
-            <name lang="fi" value="Kiinteistörajat" />
-            <name lang="en" value="Parcels" />
-            <overlay id="parcels" />
-        </layer>
-
-    </stylemenu>
 
     <rule e="any" k="kohdeluokka" v="32101" zoom-min="14"> <!--Maa-aineksenottoalueen nimi -->
         <caption k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
@@ -215,7 +196,7 @@
 
     <rule e="way" k="tyyppi" v="louhos" zoom-min="12">
         <area src="file:/mml/Pkivikko_0_0_0_60.svg" fill="#ffffd9" stroke="#000000" stroke-width="0.2"
-              symbol-width="150" symbol-height="150"/>
+              symbol-width="150" symbol-height="150" />
     </rule>
 
     <rule e="way" k="tyyppi" v="hietikko" zoom-min="12">
@@ -330,20 +311,20 @@
 
 
     <rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="14">
-        <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square" curve=“cubic”/>
+        <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square"/>
         <pathText k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"
                   display="always"/>
     </rule>
 
     <rule e="way" k="tyyppi" v="syvyyskayra|syvyyskayra_v" zoom-min="14">
-        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square" curve=“cubic”/>
+        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
         <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
     </rule>
-
 
     <rule e="any" k="tyyppi" v="syvyyspiste|syvyyspiste_p" zoom-min="14">
         <caption k="name" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF" stroke-width="1"/>
     </rule>
+
 
     <rule e="way" k="tyyppi" v="taytemaa" zoom-min="12">
         <line stroke="#ffffd9" stroke-width="0.2" stroke-linecap="square"/>
@@ -527,12 +508,7 @@
 
         <rule e="way" k="kohdeluokka" v="12121">
             <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
-            <rule e="way" k="paallyste" v="~">
-                <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="paallyste" v="0|1">
-                <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt"/>
             <rule e="way" k="valmiusaste" v="1|2|3">
                 <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
             </rule>
@@ -540,12 +516,7 @@
 
         <rule e="way" k="kohdeluokka" v="12122">
             <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
-            <rule e="way" k="paallyste" v="~">
-                <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="paallyste" v="0|1">
-                <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt"/>
             <rule e="way" k="valmiusaste" v="1|2|3">
                 <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
             </rule>
@@ -553,12 +524,7 @@
 
         <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
             <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
-            <rule e="way" k="paallyste" v="~">
-                <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
-            <rule e="way" k="paallyste" v="0|1">
-                <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt"/>
-            </rule>
+            <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
             <rule e="way" k="valmiusaste" v="1|2|3">
                 <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20"/>
             </rule>
@@ -643,7 +609,7 @@
         <line stroke="#4d00ff" stroke-width="1.5" stroke-dasharray="2,5" stroke-linecap="butt"/>
     </rule>
 
-    <rule cat="kiinteistorajat" e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
+    <rule e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
         <line stroke="#ff0000" stroke-width="0.5" stroke-linecap="butt"/>
     </rule>
 
@@ -748,7 +714,7 @@
     <!--  45300 Savupiippu -->
     <rule e="any" k="kohdeluokka" v="45300" zoom-min="12">
         <circle radius="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
-        <!--<symbol src="file:/mml/Ssp.svg"  symbol-width="8" symbol-height="8"/>-->
+        <!--<symbol src="file:/mml/Ssp.svg" symbol-width="8" symbol-height="8"/>-->
     </rule>
 
     <!--  45500 Tuulivoimala -->
