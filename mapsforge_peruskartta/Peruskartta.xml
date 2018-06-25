@@ -4,6 +4,21 @@
              xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme.xsd"
              version="5" map-background="#FFFFFF">
 
+    <stylemenu id="r4menu" defaultvalue="parcels" defaultlang="en">
+
+        <layer id="noparcels" visible="true">
+            <name lang="fi" value="Ei kiinteistörajoja" />
+            <name lang="en" value="No parcels" />
+        </layer>
+
+        <layer id="parcels" visible="true">
+            <name lang="fi" value="Kiinteistöajat" />
+            <name lang="en" value="Parcels" />
+            <cat id="kiinteistorajat" />
+            <overlay id="kiinteistorajat" />
+        </layer>
+
+    </stylemenu>
 
     <rule e="any" k="kohdeluokka" v="32101" zoom-min="14"> <!--Maa-aineksenottoalueen nimi -->
         <caption k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
@@ -311,25 +326,20 @@
 
 
     <rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="14">
-        <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square"/>
+        <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square" curve=“cubic”/>
         <pathText k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"
                   display="always"/>
     </rule>
 
-    <rule e="way" k="tyyppi" v="syvyyskayra" zoom-min="14">
-        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
+    <rule e="way" k="tyyppi" v="syvyyskayra|syvyyskayra_v" zoom-min="14">
+        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square" curve=“cubic”/>
         <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
     </rule>
 
-    <rule e="way" k="tyyppi" v="syvyyskayra_v" zoom-min="14">
-        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
-        <pathText k="ele" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
-    </rule>
 
-    <rule e="any" k="tyyppi" v="syvyyspiste" zoom-min="14">
+    <rule e="any" k="tyyppi" v="syvyyspiste|syvyyspiste_p" zoom-min="14">
         <caption k="name" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF" stroke-width="1"/>
     </rule>
-
 
     <rule e="way" k="tyyppi" v="taytemaa" zoom-min="12">
         <line stroke="#ffffd9" stroke-width="0.2" stroke-linecap="square"/>
@@ -614,7 +624,7 @@
         <line stroke="#4d00ff" stroke-width="1.5" stroke-dasharray="2,5" stroke-linecap="butt"/>
     </rule>
 
-    <rule e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
+    <rule cat="kiinteistorajat" e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
         <line stroke="#ff0000" stroke-width="0.5" stroke-linecap="butt"/>
     </rule>
 

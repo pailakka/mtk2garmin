@@ -75,7 +75,7 @@ kohdeluokka=72440 [0x6618 level 1]  #Muu rauhoitettu kohde
 
 
 tyyppi=syvyyspiste_p {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]
-kohdeluokka=54210 {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]  #Syvyyspiste
+tyyppi=syvyyspiste {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]  #Syvyyspiste
 tourism=wilderness_hut [0x2b01]
 tourism=wilderness_hut & fee=yes [0x2b01]
 
