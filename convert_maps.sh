@@ -74,13 +74,19 @@ echo "Splitting file..."
 java -jar -Xmx15G mkgmap/splitter.jar --output-dir=splitted --max-areas=1024 --max-nodes=600000 all_osm.osm.pbf
 echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
+(cat mkgmap_mtk2garmin_noparcel.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin_noparcel.args
 echo "Compiling typ"
 java -cp "mkgmap/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
 echo "Compiling typ done"
-echo "Compiling garmin img"
+
+echo "Compiling garmin img parcels"
 java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
 
+echo "Compiling garmin img noparcels"
+java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin_noparcel.args peruskartta.typ
+
 mv mtkgarmin/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.img"
+mv mtkgarmin_noparcel/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr.img"
 
 echo "Running osmosis writer!"
 ./mapsforge_convert.sh
@@ -88,7 +94,7 @@ echo "Running osmosis writer!"
 echo "Copying Mapsforge files"
 mv all.map "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.map"
 
-echo "Creating windows installer"
+echo "Creating windows installer parcel"
 cp peruskartta.typ mtkgarmin/peruskartta.typ
 cd mtkgarmin
 makensis osmmap.nsi
@@ -96,10 +102,20 @@ echo "copying installer files"
 mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
 cd ..
 
+echo "Creating windows installer noparcel"
+cp peruskartta.typ mtkgarmin_noparcel/peruskartta.typ
+cd mtkgarmin_noparcel
+makensis osmmap.nsi
+echo "copying installer files"
+mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr.exe"
+cd ..
+
+
 echo "converting osx files"
 ./convert_osx_map.sh
 echo "copying osx files"
 mv "mtk_suomi_osx.zip" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_osx.zip"
+mv "mtk_suomi_noparcel_osx.zip" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr_osx.zip"
 
 cd mapsforge_peruskartta
 7za a peruskartta.zip Peruskartta.xml mml

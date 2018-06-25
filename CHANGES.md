@@ -1,3 +1,8 @@
+v3.4 (30.6.2018)
+==========================
+- Korjattu Liikennevirasto aineistojen syvyyspisteiden esitys
+- Lisätty kartat ja tyylit ilman kiinteistörajoja
+
 v3.3 (5.1.2018)
 ==========================
 - Tuotannon automatisointia parannettu
