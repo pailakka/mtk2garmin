@@ -23,7 +23,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.zip.GZIPOutputStream;
 
 class MTKToGarminConverter {
@@ -38,10 +37,10 @@ class MTKToGarminConverter {
     private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
     private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
 
-    static final Set<String> leftLetters = new HashSet<>(
+    private static final Set<String> leftLetters = new HashSet<>(
             Arrays.asList("A", "B", "C", "D"));
 
-    static final Set<String> rightLetters = new HashSet<String>(
+    private static final Set<String> rightLetters = new HashSet<>(
             Arrays.asList("E", "F", "G", "H"));
 
     private final Driver memoryd = ogr.GetDriverByName("memory");
@@ -107,13 +106,14 @@ class MTKToGarminConverter {
 
         HashMap<String, ArrayList<File>> areas = new HashMap<>();
         File srcdir = new File(conf.getString("maastotietokanta"));
-        for (File g1 : srcdir.listFiles()) {
-            for (File g2 : g1.listFiles()) {
+        for (File g1 : Objects.requireNonNull(srcdir.listFiles())) {
+            for (File g2 : Objects.requireNonNull(g1.listFiles())) {
 
-                for (File g3 : g2.listFiles()) {
+                for (File g3 : Objects.requireNonNull(g2.listFiles())) {
                     if (!g3.getName().endsWith(".zip")) {
                         continue;
                     }
+
 
                     String area = g3.getName().substring(0, 4);
 
@@ -125,9 +125,8 @@ class MTKToGarminConverter {
             }
         }
 
-        String[] areassorted = areas.keySet().stream().map(s -> s.toString()).collect(Collectors.toList()).toArray(new String[0]);
+        String[] areassorted = areas.keySet().stream().map(String::toString).sorted().toArray(String[]::new);
 
-        Arrays.sort(areassorted);
         MTKToGarminConverter mtk2g = new MTKToGarminConverter();
 
         ShapeRetkeilyTagHandler retkeilyTagHandler;
@@ -957,7 +956,7 @@ class MTKToGarminConverter {
             return type;
         }
 
-        public void setType() {
+        void setType() {
             this.type = "way";
         }
 
