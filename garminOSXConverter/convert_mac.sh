@@ -6,6 +6,10 @@ tar -xvzf jmc_cli_linux.tar.gz
 
 rm -rf /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_osx
 mkdir /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_osx
+
+rm -rf /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_noparcel_osx
+mkdir /opt/mtk2garmin_build/mtk2garmin/mtkgarmin_noparcel_osx
+
 ./jmc_cli -src=/opt/mtk2garmin_build/mtk2garmin/mtkgarmin/ -dest=/opt/mtk2garmin_build/mtk2garmin/mtkgarmin_osx/ -gmap=mtk_suomi.gmap
 ./jmc_cli -src=/opt/mtk2garmin_build/mtk2garmin/mtkgarmin_noparcel/ -dest=/opt/mtk2garmin_build/mtk2garmin/mtkgarmin_noparcel_osx/ -gmap=mtk_suomi_noparcel.gmap
 
