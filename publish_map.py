@@ -45,7 +45,7 @@ release_files = OrderedDict((
     }),
     ('mtk_suomi_eikr.exe', {
         'type': 'garmin_map',
-        'name': 'mtk_suomi.exe',
+        'name': 'mtk_suomi_eikr.exe',
         'description': '''Versio ilman kiintestörajoja. MapSource, BaseCamp ja MapInstall yhteensopiva versio. Tämän avulla voit
                                     valita haluamasi alueet (aluejako ETRS-TM35 lehtijako) ja siirtää vain
                                     ne laitteeseen, tarpeellinen esimerkiksi vanhempien laitteiden kanssa. <strong>Aja mtk_suomi.exe ja seuraa asennusohjelman ohjeita.</strong>''',
@@ -61,7 +61,7 @@ release_files = OrderedDict((
     }),
     ('mtk_suomi_eikr_osx.zip', {
         'type': 'garmin_map',
-        'name': 'mtk_suomi_osx.zip',
+        'name': 'mtk_suomi_eikr_osx.zip',
         'description': '''Versio ilman kiintestörajoja. macOS BaseCamp yhteensopiva versio Garmin kartasta.''',
         'size': None,
         'hash': None
