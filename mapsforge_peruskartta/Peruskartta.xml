@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <rendertheme xmlns="http://mapsforge.org/renderTheme" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/dev/resources/renderTheme.xsd"
+             xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/master/resources/renderTheme.xsd"
              version="1" map-background="#FFFFFF">
 
     <stylemenu id="r4menu" defaultvalue="parcelsno" defaultlang="fi">
@@ -20,8 +20,8 @@
 
 
     <rule e="way" k="tyyppi" v="tieviiva">
-        <pathText k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="4"
-                  display="always"/>
+        <pathText k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4" display="always" priority="2" repeat-gap="500"/>
+        <pathText k="ref" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4" repeat-gap="1000" display="always" priority="1" repeat-start="50"/>
     </rule>
 
     <rule e="any" k="kohdeluokka" v="32101" zoom-min="14"> <!--Maa-aineksenottoalueen nimi -->
@@ -57,14 +57,14 @@
     <rule e="any" k="kohdeluokka" v="35010" zoom-min="14">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="any" k="kohdeluokka" v="35020" zoom-min="14">
+    <rule e="any" k="kohdeluokka" v="35020" zoom-min="12">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="any" k="kohdeluokka" v="35030" zoom-min="14">
+    <rule e="any" k="kohdeluokka" v="35030" zoom-min="12">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="any" k="kohdeluokka" v="35040" zoom-min="14">
-        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+    <rule e="any" k="kohdeluokka" v="35040" zoom-min="12">
+        <caption priority="50" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="2" display="always" />
     </rule>
     <rule e="any" k="kohdeluokka" v="35050" zoom-min="14">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
@@ -72,8 +72,8 @@
     <rule e="any" k="kohdeluokka" v="35060" zoom-min="14">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     </rule>
-    <rule e="any" k="kohdeluokka" v="35070" zoom-min="14">
-        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
+    <rule e="any" k="kohdeluokka" v="35070" zoom-min="12">
+        <caption priority="10" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
     </rule>
     <rule e="any" k="kohdeluokka" v="35080" zoom-min="14">
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="2"/>
@@ -186,7 +186,7 @@
     </rule>
 
     <rule e="node" k="kohdeluokka" v="34100" zoom-min="14">
-        <circle radius="2" scale-radius="true" fill="#D1C7D1"/>
+        <circle radius="2" r="2" scale-radius="true" fill="#D1C7D1"/>
     </rule>
 
 
@@ -340,6 +340,7 @@
 
     <rule e="any" k="tyyppi" v="syvyyspiste|syvyyspiste_p" zoom-min="14">
         <caption priority="10" k="ele" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF" stroke-width="1"/>
+        <caption priority="10" k="name" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF" stroke-width="1"/>    
     </rule>
 
 
@@ -673,13 +674,13 @@
 
     <!-- 22392 Suurjännitelinjan pylväs -->
     <rule e="any" k="kohdeluokka" v="22392" zoom-min="14">
-        <circle radius="3" scale-radius="false" fill="#000000"/>
+        <circle radius="3" r="3" scale-radius="false" fill="#000000"/>
     </rule>
 
 
     <!-- 22392 Ilmaradan pylväs -->
     <rule e="any" k="kohdeluokka" v="44591" zoom-min="15">
-        <circle radius="2" scale-radius="false" fill="#000000"/>
+        <circle radius="2" r="2" scale-radius="false" fill="#000000"/>
     </rule>
 
 
@@ -714,7 +715,7 @@
 
     <!--  22100 Muuntaja -->
     <rule e="any" k="kohdeluokka" v="22100" zoom-min="12">
-        <circle radius="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
+        <circle radius="1" r="1" stroke="#000000" stroke-width="0.5" fill="#FFFFFF" scale-radius="true"/>
     </rule>
 
     <!--  34200 Harva louhikko -->
@@ -725,7 +726,7 @@
 
     <!--  45300 Savupiippu -->
     <rule e="any" k="kohdeluokka" v="45300" zoom-min="12">
-        <circle radius="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
+        <circle radius="1" r="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
         <!--<symbol src="file:/mml/Ssp.svg" symbol-width="8" symbol-height="8"/>-->
     </rule>
 
@@ -1528,20 +1529,6 @@
     <!--  22311 sahkolinja, jakelujannita  -->
     <rule e="way" k="kohdeluokka" v="22312" zoom-min="12">
         <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
-    </rule>
-
-
-    <rule e="way" k="*" v="*">
-        <pathText k="ele" font-style="bold" font-size="10" fill="#000000" stroke="#ffffff"   stroke-width="2.00"/>
-        <pathText k="name" font-style="bold" font-size="12" fill="#000000" stroke="#ffffff" stroke-width="4.00"  />
-        <pathText k="ref" font-size="10" fill="#000000" stroke="#ffffff" stroke-width="4.00" />
-    </rule>
-
-
-    <rule e="node" k="*" v="*">
-        <caption k="ele" font-style="bold" font-size="10" fill="#ff0000" stroke="#ffffff"   stroke-width="1.00"/>
-        <caption k="name" font-style="bold" font-size="12" fill="#ff0000" stroke="#ffffff" stroke-width="2.00"  />
-        <caption k="ref" font-size="10" fill="#ff0000" stroke="#ffffff" stroke-width="2.00" />
     </rule>
 
 </rendertheme>
