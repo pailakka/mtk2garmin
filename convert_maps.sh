@@ -56,7 +56,7 @@ tar -xvzf osmosis-latest.tgz
 cd ../
 mkdir plugins
 cd plugins
-curl --fail -O "http://central.maven.org/maven2/org/mapsforge/mapsforge-map-writer/0.9.0/mapsforge-map-writer-0.9.0-jar-with-dependencies.jar"
+curl --fail -O "http://central.maven.org/maven2/org/mapsforge/mapsforge-map-writer/0.10.0/mapsforge-map-writer-0.10.0-jar-with-dependencies.jar"
 cd ../
 
 mkdir mkgmap
