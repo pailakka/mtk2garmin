@@ -13,3 +13,4 @@ docker run -e JAVACMD_OPTIONS=-Xmx25G \
            simplification-max-zoom=13 simplification-factor=4 threads=2 \
            label-position=true polylabel=true \
            tag-conf-file=/mapdata/mapsforge_peruskartta/mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2017"
+cd ..
