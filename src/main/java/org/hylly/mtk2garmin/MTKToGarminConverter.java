@@ -154,7 +154,6 @@ class MTKToGarminConverter {
         InitializedDatasource metsapoints = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp");
 
 
-
         for (String area : areassorted) {
             ArrayList<File> files = areas.get(area);
             String[] filenames = new String[files.size()];
@@ -472,7 +471,7 @@ class MTKToGarminConverter {
 
         geom = feat.GetGeometryRef();
 
-	    if (geom == null) return true;
+        if (geom == null) return true;
 
 
         geom = geom.SimplifyPreserveTopology(0.5);
@@ -485,7 +484,7 @@ class MTKToGarminConverter {
         GeomHandlerResult ghr;
 
         if (geom == null) return true;
-        
+
         if (geom.GetGeometryCount() < 2) {
             if (geom.GetGeometryCount() > 0) {
                 geom = geom.GetGeometryRef(0);
@@ -577,7 +576,7 @@ class MTKToGarminConverter {
         for (Long2ObjectMap.Entry<Node> nk : node_keys_sorted) {
             Node n = nk.getValue();
             fos.write(String.format("\t\t<node id=\"%d\" visible=\"true\" version=\"1\" lat=\"%f\" lon=\"%f\"",
-                    n.getId(), n.getLat(), n.getLon()).getBytes());
+                    Long.valueOf(n.getId()), Double.valueOf(n.getLat()), Double.valueOf(n.getLon())).getBytes());
 
             if (n.nodeTags.size() > 0) {
 
@@ -594,10 +593,10 @@ class MTKToGarminConverter {
 
         for (long wk : waykeys) {
             Way w = ways.get(wk);
-            fos.write(String.format("\t<way id=\"%d\" visible=\"true\" version=\"1\">\n", w.getId()).getBytes());
+            fos.write(String.format("\t<way id=\"%d\" visible=\"true\" version=\"1\">\n", Long.valueOf(w.getId())).getBytes());
 
             for (int i = 0; i < w.refs.size(); i++) {
-                fos.write(String.format("\t\t<nd ref=\"%d\" />\n", w.refs.getLong(i)).getBytes());
+                fos.write(String.format("\t\t<nd ref=\"%d\" />\n", Long.valueOf(w.refs.getLong(i))).getBytes());
             }
             this.writeOSMXMLTags(stringtable, fos, w.tags);
             fos.write("\t</way>\n".getBytes());
@@ -607,9 +606,9 @@ class MTKToGarminConverter {
 
         for (long rk : relkeys) {
             Relation r = relations.get(rk);
-            fos.write(String.format("\t<relation id=\"%d\" version=\"1\" visible=\"true\">\n", r.getId()).getBytes());
+            fos.write(String.format("\t<relation id=\"%d\" version=\"1\" visible=\"true\">\n", Long.valueOf(r.getId())).getBytes());
             for (RelationMember m : r.members) {
-                fos.write(String.format("\t\t<member type=\"%s\" ref=\"%d\" role=\"%s\"/>\n", m.getType(), m.getId(),
+                fos.write(String.format("\t\t<member type=\"%s\" ref=\"%d\" role=\"%s\"/>\n", m.getType(), Long.valueOf(m.getId()),
                         m.getRole()).getBytes());
             }
             this.writeOSMXMLTags(stringtable, fos, r.tags);
@@ -627,9 +626,9 @@ class MTKToGarminConverter {
 
     private void writeOSMPBFElements(StringTable stringtable) throws IOException {
 
-        op.writePBFElements(stringtable, false, nodes, null, null);
-        op.writePBFElements(stringtable, false, null, ways, null);
-        op.writePBFElements(stringtable, false, null, null, relations);
+        op.writePBFElements(stringtable, Boolean.FALSE, nodes, null, null);
+        op.writePBFElements(stringtable, Boolean.FALSE, null, ways, null);
+        op.writePBFElements(stringtable, Boolean.FALSE, null, null, relations);
 
         // this.initElements();
     }
@@ -642,9 +641,9 @@ class MTKToGarminConverter {
     public void writeOSMPBF(StringTable stringtable, String ofn) throws IOException {
         op = new OSMPBF();
         op.writePBFHeaders(ofn, minx, miny, maxx, maxy);
-        op.writePBFElements(stringtable, true, nodes, null, null);
-        op.writePBFElements(stringtable, true, null, ways, null);
-        op.writePBFElements(stringtable, true, null, null, relations);
+        op.writePBFElements(stringtable, Boolean.TRUE, nodes, null, null);
+        op.writePBFElements(stringtable, Boolean.TRUE, null, ways, null);
+        op.writePBFElements(stringtable, Boolean.TRUE, null, null, relations);
     }
 
     private double[] extendExtent(double[] ext1, double[] ext2) {

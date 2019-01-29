@@ -29,20 +29,20 @@ class MMLTagHandler implements TagHandlerI {
         nimisuomi = stringtable.getStringId("nimi_suomi");
         nimiruotsi = stringtable.getStringId("nimi_ruotsi");
         teksti = stringtable.getStringId("teksti");
-        teksti_kieli = stringtable.getStringId("teksti_kieli");    
+        teksti_kieli = stringtable.getStringId("teksti_kieli");
         tienro = stringtable.getStringId("tienumero");
         tasosij = stringtable.getStringId("tasosijainti");
         bridge = stringtable.getStringId("bridge");
         tunnel = stringtable.getStringId("tunnel");
         yes = stringtable.getStringId("yes");
-        
+
         ele = stringtable.getStringId("ele");
         name = stringtable.getStringId("name");
         ref = stringtable.getStringId("ref");
         fin = stringtable.getStringId("fin");
-        
+
         this.stringtable = stringtable;
-        
+
     }
 
     @Override
@@ -54,18 +54,18 @@ class MMLTagHandler implements TagHandlerI {
     public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
         if (tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
-    	}
-    	
+        }
+
         for (Entry<String> k : fields.short2ObjectEntrySet()) {
-            
-        	short kk = k.getShortKey();
+
+            short kk = k.getShortKey();
             String val = k.getValue();
-            
+
             if (val.length() == 0) {
                 continue;
             }
             if (kk == korarvo || kk == syvarvo) {
-                Double korarvo = (Integer.parseInt(val) / 1000.0);
+                Double korarvo = Double.valueOf(Integer.parseInt(val) / 1000.0);
                 kk = ele;
                 val = String.format("%.1f", korarvo);
             }
@@ -73,7 +73,7 @@ class MMLTagHandler implements TagHandlerI {
             if (kk == nimisuomi || kk == teksti) {
                 kk = name;
             }
-            
+
             if (kk == nimiruotsi) {
                 if (!tags.containsKey(name)) {
                     kk = name;
@@ -83,23 +83,27 @@ class MMLTagHandler implements TagHandlerI {
             }
 
             if (kk == tienro) {
+                int tienroVal = Integer.parseInt(val);
+                if (tienroVal > 9999) {
+                    continue;
+                }
                 kk = ref;
             }
 
             if (kk == tasosij) {
-            	int sijval = Integer.parseInt(val);
-            	if (sijval > 0) {
-                  tags.put(bridge, yes);
-            	} else if (sijval < 0) {
-                tags.put(tunnel, yes);
-            	}
+                int sijval = Integer.parseInt(val);
+                if (sijval > 0) {
+                    tags.put(bridge, yes);
+                } else if (sijval < 0) {
+                    tags.put(tunnel, yes);
+                }
             }
 
             tags.put(kk, this.stringtable.getStringId(val));
         }
-        
+
         if (tyyppi.equals("sahkolinja")) {
-        	tags.remove(bridge);
+            tags.remove(bridge);
         }
 
     }

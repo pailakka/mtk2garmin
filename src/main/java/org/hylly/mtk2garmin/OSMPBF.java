@@ -21,12 +21,12 @@ import java.util.zip.Deflater;
 
 @SuppressWarnings("FieldCanBeLocal")
 class OSMPBF {
-    private static final Double nano = .000000001;
+    private static final Double nano = Double.valueOf(.000000001);
     private final String writingprogram = "mtk2garmin";
-    private final Integer granularity = 100;
-    private final Long lat_offset = 0L;
-    private final Long lon_offset = 0L;
-    private final Integer date_granularity = 1000;
+    private final Integer granularity = Integer.valueOf(100);
+    private final Long lat_offset = Long.valueOf(0L);
+    private final Long lon_offset = Long.valueOf(0L);
+    private final Integer date_granularity = Integer.valueOf(1000);
     private String ofn;
     private BufferedOutputStream of;
     private DataOutputStream od;
@@ -47,10 +47,10 @@ class OSMPBF {
         Osmformat.HeaderBBox.Builder bboxbuilder = Osmformat.HeaderBBox
                 .newBuilder();
 
-        bboxbuilder.setLeft((long) (d / nano));
-        bboxbuilder.setRight((long) (f / nano));
-        bboxbuilder.setTop((long) (g / nano));
-        bboxbuilder.setBottom((long) (e / nano));
+        bboxbuilder.setLeft((long) (d / nano.doubleValue()));
+        bboxbuilder.setRight((long) (f / nano.doubleValue()));
+        bboxbuilder.setTop((long) (g / nano.doubleValue()));
+        bboxbuilder.setBottom((long) (e / nano.doubleValue()));
 
         hbbuilder.setBbox(bboxbuilder);
 
@@ -58,12 +58,12 @@ class OSMPBF {
     }
 
     private int topbfcoord(double coord) {
-        return (int) ((coord / this.granularity) / nano);
+        return (int) ((coord / this.granularity.doubleValue()) / nano.doubleValue());
     }
 
     @SuppressWarnings("unused")
     private double frompbfcoord(int coord) {
-        return nano * (this.granularity * (double) coord);
+        return nano.doubleValue() * (this.granularity.doubleValue() * (double) coord);
     }
 
     private Osmformat.StringTable buildStringTable(StringTable stringtable) {
@@ -83,10 +83,10 @@ class OSMPBF {
             Long2ObjectOpenHashMap<Relation> relations) {
         Osmformat.PrimitiveBlock.Builder pbbuilder = Osmformat.PrimitiveBlock
                 .newBuilder();
-        pbbuilder.setGranularity(this.granularity);
-        pbbuilder.setLatOffset(this.lat_offset);
-        pbbuilder.setLonOffset(this.lon_offset);
-        pbbuilder.setDateGranularity(this.date_granularity);
+        pbbuilder.setGranularity(this.granularity.intValue());
+        pbbuilder.setLatOffset(this.lat_offset.longValue());
+        pbbuilder.setLonOffset(this.lon_offset.longValue());
+        pbbuilder.setDateGranularity(this.date_granularity.intValue());
 
         Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable, nodes, ways,
                 relations);
@@ -260,13 +260,13 @@ class OSMPBF {
         Osmformat.PrimitiveBlock pb = this
                 .createOSMDataBlock(stringtable, nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());
-        Integer header_sersize = data.header.getSerializedSize();
-        od.writeInt(header_sersize);
+        Integer header_sersize = Integer.valueOf(data.header.getSerializedSize());
+        od.writeInt(header_sersize.intValue());
         data.header.writeTo(of);
         data.body.writeTo(of);
 
         of.flush();
-        if (close_file) {
+        if (close_file.booleanValue()) {
             of.close();
         }
     }
@@ -289,8 +289,8 @@ class OSMPBF {
                 maxy);
 
         PBFBlob head = this.createBlob("OSMHeader", hb.toByteArray());
-        Integer header_sersize = head.header.getSerializedSize();
-        od.writeInt(header_sersize);
+        Integer header_sersize = Integer.valueOf(head.header.getSerializedSize());
+        od.writeInt(header_sersize.intValue());
         head.header.writeTo(of);
         head.body.writeTo(of);
 
