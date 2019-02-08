@@ -8,5 +8,5 @@ import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 interface TagHandlerI {
 
 	ObjectOpenHashSet<String> getWantedFields();
-	void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi);
+	void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea);
 }

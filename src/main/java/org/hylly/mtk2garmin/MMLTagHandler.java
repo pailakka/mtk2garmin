@@ -14,7 +14,11 @@ class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
 
     private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli;
-    private final short tienro, tasosij, bridge, tunnel, yes;
+    private final short tienro;
+    private final short tasosij;
+    private final short bridge;
+    private final short tunnel;
+    private final short yes;
 
     private final short ele, name, ref, fin;
 
@@ -51,7 +55,7 @@ class MMLTagHandler implements TagHandlerI {
     }
 
     @Override
-    public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
+    public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea) {
         if (tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
         }
@@ -65,7 +69,7 @@ class MMLTagHandler implements TagHandlerI {
                 continue;
             }
             if (kk == korarvo || kk == syvarvo) {
-                Double korarvo = Double.valueOf(Integer.parseInt(val) / 1000.0);
+                Double korarvo = Integer.parseInt(val) / 1000.0;
                 kk = ele;
                 val = String.format("%.1f", korarvo);
             }

@@ -29,7 +29,7 @@ class ShapeRetkeilyTagHandler implements TagHandlerI {
     }
 
     @Override
-    public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi) {
+    public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea) {
         for (Entry<String> k : fields.short2ObjectEntrySet()) {
             String val = k.getValue();
             

@@ -493,6 +493,8 @@ class MTKToGarminConverter {
         } else {
             ghr = this.handleMultiGeom(stringtable.getStringId("type"), stringtable.getStringId("multipolygon"), geom);
         }
+        double geomarea = geom.Area();
+
         geom.delete();
         feat.delete();
         String tyyppi = lyrname.toLowerCase();
@@ -504,7 +506,7 @@ class MTKToGarminConverter {
 
             if (!n.isWaypart()) {
                 n.addTag(tyyppi_string_id, tyyppi_value_id);
-                tagHandler.addElementTags(n.nodeTags, fields, tyyppi);
+                tagHandler.addElementTags(n.nodeTags, fields, tyyppi, geomarea);
             }
 
             if (!nodes.containsKey(n.getHash())) {
@@ -515,7 +517,7 @@ class MTKToGarminConverter {
         for (Way w : ghr.ways) {
             if (!w.getRole().equals("inner")) {
                 w.tags.put(tyyppi_string_id, tyyppi_value_id);
-                tagHandler.addElementTags(w.tags, fields, tyyppi);
+                tagHandler.addElementTags(w.tags, fields, tyyppi, geomarea);
             }
             if (!ways.containsKey(w.getId())) {
                 ways.put(w.getId(), w);
@@ -525,7 +527,7 @@ class MTKToGarminConverter {
         for (Relation r : ghr.relations) {
 
             r.tags.put(tyyppi_string_id, tyyppi_value_id);
-            tagHandler.addElementTags(r.tags, fields, tyyppi);
+            tagHandler.addElementTags(r.tags, fields, tyyppi, geomarea);
             if (!relations.containsKey(r.getId()))
                 relations.put(r.getId(), r);
         }
