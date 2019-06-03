@@ -148,10 +148,10 @@ class MTKToGarminConverter {
         InitializedDatasource syvyyskayrat = mtk2g.createMemoryCacheFromOGRFile(conf.getString("syvyyskayrat"));
         InitializedDatasource syvyyspisteet = mtk2g.createMemoryCacheFromOGRFile(conf.getString("syvyyspisteet"));
 
-        InitializedDatasource kesaretkeily = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/kesaretkeilyreitit.zip/kesaretkeilyreititLine.shp");
-        InitializedDatasource ulkoilureitit = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/ulkoilureitit.zip/ulkoilureititLine.shp");
-        InitializedDatasource luontopolut = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/luontopolut.zip/luontopolutLine.shp");
-        InitializedDatasource metsapoints = mtk2g.createMemoryCacheFromOGRFile("/vsizip/" + conf.getString("retkikartta") + "/point_dump.zip/point_dumpPoint.shp");
+        InitializedDatasource kesaretkeily = mtk2g.createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/kesaretkeilyreitit.gml");
+        InitializedDatasource ulkoilureitit = mtk2g.createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/ulkoilureitit.gml");
+        InitializedDatasource luontopolut = mtk2g.createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/luontopolut.gml");
+        InitializedDatasource metsapoints = mtk2g.createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/point_dump.gml");
 
 
         for (String area : areassorted) {
