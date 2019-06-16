@@ -42,6 +42,7 @@ kohdeluokka=45111 [0x10f01 level 1] #Pistolaituri, alle 5 m
 kohdeluokka=84113 [0x1d level 4]  #Kunnan raja
 kohdeluokka=44211 [0x10f00 level 2] #Aita,tekoaines
 kohdeluokka=72000 [0x12 level 1]    #Suojelualueen reunaviiva
+kohdeluokka=62100 [0x13 level 2]    #Ampuma-alueen reunaviiva
 kohdeluokka=14131 [0x19 level 2]    #Metro
 kohdeluokka=26112 [0x28 level 1]    #Putkijohto, kiintea aine
 kohdeluokka=14112 [0x19 level 3]    #Rautatie, sahkoistamaton

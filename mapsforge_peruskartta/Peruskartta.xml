@@ -1531,4 +1531,10 @@
         <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
     </rule>
 
+
+    <!--  62100 ampuma-alue  -->
+    <rule e="way" k="kohdeluokka" v="62100" zoom-min="10">
+        <line stroke="#c100ab" stroke-width="2" stroke-linecap="round"/>
+    </rule>
+
 </rendertheme>

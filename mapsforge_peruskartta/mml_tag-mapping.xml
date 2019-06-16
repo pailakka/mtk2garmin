@@ -351,5 +351,6 @@
         <osm-tag key="kohdeluokka" value="72440" zoom-appear="12"/>
         <osm-tag key="kohdeluokka" value="72420" zoom-appear="12"/>
         <osm-tag key="kohdeluokka" value="72410" zoom-appear="12"/>
+        <osm-tag key="kohdeluokka" value="62100" zoom-appear="10"/>
     </ways>
 </tag-mapping>

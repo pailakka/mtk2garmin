@@ -1,7 +1,7 @@
 ; PERUSKAR.TYP
 ; Longueur: 5288 octets
-; Fichier TYP compilé     20.11.2016     13:32:01
-; Décompilé le 20.11.2016 à 13:32:04
+; Fichier TYP compilï¿½     20.11.2016     13:32:01
+; Dï¿½compilï¿½ le 20.11.2016 ï¿½ 13:32:04
 
 [_id]
 ProductCode=1
@@ -83,7 +83,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x07
 ;GRMN_TYPE: Large Manmade Areas/AIRPORT/Airport area/Non NT
-String1=0x00,Lentokenttäalue
+String1=0x00,Lentokenttï¿½alue
 ExtendedLabels=N
 Xpm="0 0 1 0"
 "1 c #FFFF8C"
@@ -395,7 +395,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x10f01
 ;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_2/Customizable area/Non NT, NT
-String1=0x00,Täytemaa
+String1=0x00,Tï¿½ytemaa
 ExtendedLabels=N
 Xpm="32 32 2 1"
 "! c #000000"
@@ -577,7 +577,7 @@ Xpm="0 0 1 0"
 [_polygon]
 Type=0x10f09
 ;GRMN_TYPE: Customizable Areas/CUSTOMIZABLE_AREA_10/Customizable area/Non NT, NT
-String1=0x00,Vesijättö
+String1=0x00,Vesijï¿½ttï¿½
 ExtendedLabels=N
 Xpm="0 0 1 0"
 "1 c #FFFF3F"
@@ -997,7 +997,7 @@ Xpm="0 0 2 0"
 "1 c #C00000"
 "2 c #000000"
 ExtendedLabels=N
-String1=0x00,Päällystetty
+String1=0x00,Pï¿½ï¿½llystetty
 [end]
 
 
@@ -1014,7 +1014,7 @@ ExtendedLabels=N
 
 [_line]
 Type=0x10f17
-String1=0x00,Laivaväylä
+String1=0x00,Laivavï¿½ylï¿½
 UseOrientation=Y
 LineWidth=2
 Xpm="0 0 1 0"
@@ -1034,7 +1034,7 @@ ExtendedLabels=N
 
 [_line]
 Type=0x1b
-String1=0x00,Kiinteistöraja
+String1=0x00,Kiinteistï¿½raja
 ;GRMN_TYPE: Roads/ALLEY, DRIVEWAY/Alleyway, private driveway to residence/Non NT, NT
 UseOrientation=Y
 LineWidth=1
@@ -1053,7 +1053,7 @@ Xpm="0 0 2 0"
 "1 c #7B6500"
 "2 c #000000"
 ExtendedLabels=N
-String1=0x00,Päällystämätön
+String1=0x00,Pï¿½ï¿½llystï¿½mï¿½tï¿½n
 [end]
 
 
@@ -1124,7 +1124,7 @@ Xpm="32 1 2  1"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Kävely- ja pyörätie
+String1=0x00,Kï¿½vely- ja pyï¿½rï¿½tie
 ExtendedLabels=N
 [end]
 
@@ -1138,7 +1138,7 @@ Xpm="32 1 2  1"
 "  c none"
 "!!!!!   !!!!!   !!!!!   !!!!!   "
 ;12345678901234567890123456789012
-String1=0x00,Kävely- ja pyörätie
+String1=0x00,Kï¿½vely- ja pyï¿½rï¿½tie
 ExtendedLabels=N
 [end]
 
@@ -1191,6 +1191,22 @@ String1=0x00,Suojelualue
 ExtendedLabels=N
 [end]
 
+[_line]
+Type=0x13
+;GRMN_TYPE: Customizable Line Types/CUSTOMIZABLE_ROUTE_LINE_6/Routable customizable line/Non NT, NT
+UseOrientation=N
+Xpm="32 5 2  1"
+"! c #c100ab"
+"  c none"
+"!   !   !   !   !   !   !   !   "
+"   !   !   !   !   !   !   !   !"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+" !   !   !   !   !   !   !   !  "
+"!   !   !   !   !   !   !   !   "
+;12345678901234567890123456789012
+String1=0x00,Ampuma-alue
+ExtendedLabels=N
+[end]
 
 [_line]
 Type=0x16
@@ -1246,7 +1262,7 @@ Xpm="32 4 2  1"
 " !   !   !   !   !   !   !   !  "
 "!   !   !   !   !   !   !   !   "
 ;12345678901234567890123456789012
-String1=0x00,Rajavyöhyke
+String1=0x00,Rajavyï¿½hyke
 ExtendedLabels=N
 [end]
 
@@ -1362,7 +1378,7 @@ Xpm="32 3 2  1"
 "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 "!                               "
 ;12345678901234567890123456789012
-String1=0x00,Sähkölinja
+String1=0x00,Sï¿½hkï¿½linja
 ExtendedLabels=N
 [end]
 
@@ -1380,7 +1396,7 @@ Xpm="32 5 2  1"
 "!   !   !   !   !   !   !   !   "
 "!   !   !   !   !   !   !   !   "
 ;12345678901234567890123456789012
-String1=0x00,Jyrkänne
+String1=0x00,Jyrkï¿½nne
 ExtendedLabels=N
 [end]
 
@@ -1567,7 +1583,7 @@ DayXpm="4 4 2 1"   Colormode=16
 Type=0x02c
 SubType=0x02
 ;GRMN_TYPE: Business - Attractions/MUSEUM/Museum or historical society/Non NT
-String1=0x00,Muinaisjäännös
+String1=0x00,Muinaisjï¿½ï¿½nnï¿½s
 ExtendedLabels=N
 DayXpm="14 12 18 2"   Colormode=16
 "!!	c #F8E068"
@@ -1710,7 +1726,7 @@ DayXpm="4 4 2 1"   Colormode=16
 Type=0x065
 SubType=0x11
 ;GRMN_TYPE: Geographical Named Points of Interest - Water Related/SPRING/Spring/Non NT, NT
-String1=0x00,Lähde
+String1=0x00,Lï¿½hde
 ExtendedLabels=N
 DayXpm="6 7 4 1"   Colormode=16
 "!	c #10223D"
@@ -1834,7 +1850,7 @@ DayXpm="7 7 2 1"   Colormode=16
 [_point]
 Type=0x6503
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_3/User customizable point type/Non NT, NT
-String1=0x00,Vedenpäällinen kivi
+String1=0x00,Vedenpï¿½ï¿½llinen kivi
 ExtendedLabels=N
 DayXpm="7 7 2 1"   Colormode=16
 "!	c #000000"
@@ -1886,7 +1902,7 @@ DayXpm="9 6 2 1"   Colormode=16
 
 [_point]
 Type=0x6417
-String1=0x00,Pylväs
+String1=0x00,Pylvï¿½s
 ExtendedLabels=N
 DayXpm="9 9 3 1"   Colormode=16
 "!	c #000000"
@@ -1907,7 +1923,7 @@ DayXpm="9 9 3 1"   Colormode=16
 
 [_point]
 Type=0x5201
-String1=0x00,Näkötorni
+String1=0x00,Nï¿½kï¿½torni
 ExtendedLabels=N
 DayXpm="8 12 3 1"   Colormode=16
 "!	c #FFFFFF"
@@ -2058,7 +2074,7 @@ DayXpm="10 14 82 2"   Colormode=16
 [_point]
 Type=0x6618
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_11/User customizable point type/Non NT, NT
-String1=0x00,Merkittävä luonnokohde
+String1=0x00,Merkittï¿½vï¿½ luonnokohde
 ExtendedLabels=N
 DayXpm="4 4 2 1"   Colormode=16
 "!	c #303030"
@@ -2091,7 +2107,7 @@ DayXpm="3 5 2 1"   Colormode=16
 [_point]
 Type=0x2d0c
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_13/User customizable point type/Non NT, NT
-String1=0x00,Havumetsä
+String1=0x00,Havumetsï¿½
 ExtendedLabels=N
 DayXpm="7 8 2 1"   Colormode=16
 "!	c #000000"
@@ -2111,8 +2127,8 @@ DayXpm="7 8 2 1"   Colormode=16
 [_point]
 Type=0x2d0d
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_14/User customizable point type/Non NT, NT
-String1=0x00,Lehtimetsä
-String2=0x06,Lehtimetsä
+String1=0x00,Lehtimetsï¿½
+String2=0x06,Lehtimetsï¿½
 ExtendedLabels=N
 DayXpm="7 7 2 1"   Colormode=16
 "!	c #000000"
@@ -2131,8 +2147,8 @@ DayXpm="7 7 2 1"   Colormode=16
 [_point]
 Type=0x2d0e
 ;GRMN_TYPE: User Customizable Points/CUSTOMIZABLE_POINT_15/User customizable point type/Non NT, NT
-String1=0x00,Sekametsä
-String2=0x06,Sekametsä
+String1=0x00,Sekametsï¿½
+String2=0x06,Sekametsï¿½
 ExtendedLabels=N
 DayXpm="7 8 2 1"   Colormode=16
 "!	c #000000"
