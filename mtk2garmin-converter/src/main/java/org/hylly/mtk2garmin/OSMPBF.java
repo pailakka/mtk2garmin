@@ -68,9 +68,9 @@ class OSMPBF {
 
     private Osmformat.StringTable buildStringTable(StringTable stringtable) {
         Osmformat.StringTable.Builder stbuilder = Osmformat.StringTable.newBuilder();
-        for (int i = 0; i < stringtable.getStringtableSize(); i++) {
-            stbuilder.addS(ByteString.copyFromUtf8(stringtable.getStringById(i)));
-        }
+        stringtable.getStringTable()
+                .forEach(string -> stbuilder.addS(ByteString.copyFromUtf8(string)));
+
         System.out.println(stbuilder.getSCount() + " strings in OSMPBF stringtable from MTK2Garmin stringtable " + stringtable.getStringtableSize());
         //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTable.toArray()));
         //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTableTranslate.entrySet().toArray()));

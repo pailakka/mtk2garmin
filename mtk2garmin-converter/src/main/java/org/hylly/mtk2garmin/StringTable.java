@@ -28,6 +28,9 @@ class StringTable {
     String getStringById(int id) {
         return this.stringTable.get(id);
     }
+    ObjectArrayList<String>  getStringTable() {
+        return stringTable;
+    }
 
     int getStringtableSize() {
         return stringTable.size();

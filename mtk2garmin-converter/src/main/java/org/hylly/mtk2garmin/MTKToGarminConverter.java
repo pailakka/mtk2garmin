@@ -23,6 +23,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.LongStream;
 import java.util.zip.GZIPOutputStream;
 
 class MTKToGarminConverter {
@@ -82,8 +84,6 @@ class MTKToGarminConverter {
 
         System.out.println(conf.root().render());
         ogr.RegisterAll();
-        // wget --no-check-certificate -O grid.gml
-        // "https://tiedostopalvelu.maanmittauslaitos.fi/geoserver/ows/?service=wfs&request=GetFeature&typeName=Grid"
 
         DataSource gridds = ogr.Open(conf.getString("grid"));
         Layer lyr = gridds.GetLayer(0);
@@ -113,7 +113,6 @@ class MTKToGarminConverter {
                     if (!g3.getName().endsWith(".zip")) {
                         continue;
                     }
-
 
                     String area = g3.getName().substring(0, 4);
 
@@ -169,7 +168,7 @@ class MTKToGarminConverter {
             for (String fn : filenames) {
                 String cell = fn.substring(fn.lastIndexOf(File.separator) + 1, fn.lastIndexOf(File.separator) + 7);
                 String cellWithoutLetter = cell.substring(0, cell.length() - 1);
-                String cellLetter = cell.substring(cell.length() - 1, cell.length());
+                String cellLetter = cell.substring(cell.length() - 1);
 
                 stringtable = new StringTable();
                 tyyppi_string_id = stringtable.getStringId("tyyppi");
@@ -201,7 +200,7 @@ class MTKToGarminConverter {
                         String krkfn = krkf.getName();
                         if (!krkfn.startsWith(cellWithoutLetter)) continue;
                         String krkCell = krkfn.substring(krkfn.lastIndexOf(File.separator) + 1, krkfn.lastIndexOf(File.separator) + 7);
-                        String krkCellLetter = krkCell.substring(krkCell.length() - 1, krkCell.length());
+                        String krkCellLetter = krkCell.substring(krkCell.length() - 1);
 
                         if ("L".equals(cellLetter) && !leftLetters.contains(krkCellLetter)) continue;
                         if ("R".equals(cellLetter) && !rightLetters.contains(krkCellLetter)) continue;
@@ -578,7 +577,7 @@ class MTKToGarminConverter {
         for (Long2ObjectMap.Entry<Node> nk : node_keys_sorted) {
             Node n = nk.getValue();
             fos.write(String.format("\t\t<node id=\"%d\" visible=\"true\" version=\"1\" lat=\"%f\" lon=\"%f\"",
-                    Long.valueOf(n.getId()), Double.valueOf(n.getLat()), Double.valueOf(n.getLon())).getBytes());
+                    n.getId(), n.getLat(), n.getLon()).getBytes());
 
             if (n.nodeTags.size() > 0) {
 
@@ -595,10 +594,10 @@ class MTKToGarminConverter {
 
         for (long wk : waykeys) {
             Way w = ways.get(wk);
-            fos.write(String.format("\t<way id=\"%d\" visible=\"true\" version=\"1\">\n", Long.valueOf(w.getId())).getBytes());
+            fos.write(String.format("\t<way id=\"%d\" visible=\"true\" version=\"1\">\n", w.getId()).getBytes());
 
             for (int i = 0; i < w.refs.size(); i++) {
-                fos.write(String.format("\t\t<nd ref=\"%d\" />\n", Long.valueOf(w.refs.getLong(i))).getBytes());
+                fos.write(String.format("\t\t<nd ref=\"%d\" />\n", w.refs.getLong(i)).getBytes());
             }
             this.writeOSMXMLTags(stringtable, fos, w.tags);
             fos.write("\t</way>\n".getBytes());
@@ -608,10 +607,10 @@ class MTKToGarminConverter {
 
         for (long rk : relkeys) {
             Relation r = relations.get(rk);
-            fos.write(String.format("\t<relation id=\"%d\" version=\"1\" visible=\"true\">\n", Long.valueOf(r.getId())).getBytes());
+            fos.write(String.format("\t<relation id=\"%d\" version=\"1\" visible=\"true\">\n", r.getId()).getBytes());
             for (RelationMember m : r.members) {
-                fos.write(String.format("\t\t<member type=\"%s\" ref=\"%d\" role=\"%s\"/>\n", m.getType(), Long.valueOf(m.getId()),
-                        m.getRole()).getBytes());
+                fos.write(String.format("\t\t<member type=\"%s\" ref=\"%d\" role=\"%s\"/>\n",
+                        new Object[]{m.getType(), Long.valueOf(m.getId()), m.getRole()}).getBytes());
             }
             this.writeOSMXMLTags(stringtable, fos, r.tags);
             fos.write("\t</relation>\n".getBytes());
@@ -796,13 +795,21 @@ class MTKToGarminConverter {
 
             lyr.ResetReading();
 
-            for (Feature feat = lyr.GetNextFeature(); feat != null; feat = lyr.GetNextFeature()) {
-
-                if (!this.handleFeature(stringtable, lyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
+            Layer finalLyr = lyr;
+            AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
+            LongStream.range(0, lyr.GetFeatureCount(1))
+                    .parallel()
+                    .takeWhile(fid -> breakLayerLoop.get())
+                    .forEach(fid -> {
+                Feature feat = finalLyr.GetFeature(fid);
+                if (!this.handleFeature(stringtable, finalLyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
                     System.out.println("BREAK");
-                    break layerloop;
+                    breakLayerLoop.set(true);
                 }
+            });
 
+            if (breakLayerLoop.get()) {
+                break;
             }
         }
         System.out.println("Ignored fields: " + Arrays.toString(ignored_fields.toArray()));
