@@ -1,0 +1,37 @@
+version: "3.7"
+services:
+  dataloader:
+    build: ./dataloader
+    volumes:
+      - "./inputdata:/inputdata"
+  osmprocessor:
+    build: ./osmprocessor
+    volumes:
+      - "./tmpoutput:/tmpoutput"
+  garminstage:
+    build: ./osmprocessor
+    volumes:
+      - "./tmpoutput:/tmpoutput"
+  mapsforgestage:
+    build: ./osmprocessor
+    volumes:
+      - "./tmpoutput:/tmpoutput"
+  publish:
+    build: ./publisher
+    volumes:
+      - "./tmpoutput:/tmpoutput"
+  awsstage:
+    build: ./publisher
+    volumes:
+      - "./tmpoutput:/tmpoutput"
+  converter:
+    build:
+      context: ./mtk2garmin-converter
+      cache_from:
+        - ubuntu:bionic
+    volumes:
+      - "./mtk2garmin.conf:/opt/mtk2garmin/mtk2garmin.conf"
+      - "./inputdata:/inputdata"
+      - "./tmpoutput:/tmpoutput"
+      - "/home/teemu/mtk/tuotteet/maastotietokanta/kaikki/etrs89/gml:/inputdata/mtk"
+      - "/home/teemu/mtk/tuotteet/kiinteistorekisterikartta/avoin/karttalehdittain/tm35fin/shp:/inputdata/mtk"
