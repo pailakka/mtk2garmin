@@ -21,8 +21,6 @@ jobs:
         snapshot: true
         workdir: mapcreator/ubuntugis-base 
         dockerfile: Dockerfile 
-    - name: Build the Docker image
-      run: docker build ./mtk2garmin-converter --file ./mtk2garmin-converter/Dockerfile --tag teemupel/mtk2garmin-converter
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
