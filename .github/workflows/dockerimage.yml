@@ -15,7 +15,7 @@ jobs:
     - name: Publish base to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: teemupel/mtk2garmin-ubuntugis-base
+        name: teemupel/mtk2garmin-ubuntugis-base:$(date +%s)
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
     - name: Build the Docker image
@@ -23,6 +23,6 @@ jobs:
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: teemupel/mtk2garmin-converter
+        name: teemupel/mtk2garmin-converter:$(date +%s)
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
