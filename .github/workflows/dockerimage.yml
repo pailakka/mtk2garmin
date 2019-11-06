@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-      with:
-        path: mtk2garmin-converter
     - name: Build and publish mtk2garmin-converter to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
@@ -19,4 +17,5 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         snapshot: true
-        dockerfile: Dockerfile 
+        dockerfile: Dockerfile
+        workdir: mtk2garmin-converter
