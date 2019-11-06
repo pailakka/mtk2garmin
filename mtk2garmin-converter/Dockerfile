@@ -1,4 +1,4 @@
-FROM mtk2garmin-ubuntugis-base
+FROM teemupel/mtk2garmin-ubuntugis-base
 
 RUN apt install -y maven openjdk-11-jre openjdk-11-jre
 
