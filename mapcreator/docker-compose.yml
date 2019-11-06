@@ -1,0 +1,16 @@
+version: '3'
+services:
+  mml-client:
+    image: teemupel/mml-muutostietopalvelu-client
+  mapsforge:
+    image: teemupel/mapsforge
+  mtk2garmin-converter:
+    image: teemupel/mtk2garmin-converter
+  osxconverter:
+    build:
+      context: ../garminOSXConverter
+    image: temeupel/osxconverter
+
+
+volumes:
+  additional-data:
