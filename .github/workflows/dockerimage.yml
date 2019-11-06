@@ -9,10 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Build the base Docker image
-      run: docker build ./mapcreator/ubuntugis-base --file ./mapcreator/ubuntugis-base/Dockerfile --tag teemupel/mtk2garmin-ubuntugis-base
-    - name: Publish base to Registry
+    - name: Build and publish base to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: teemupel/mtk2garmin-ubuntugis-base
@@ -21,7 +18,7 @@ jobs:
         snapshot: true
         workdir: mapcreator/ubuntugis-base 
         dockerfile: Dockerfile 
-    - name: Publish to Registry
+    - name: Build and publish converter to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: teemupel/mtk2garmin-converter
