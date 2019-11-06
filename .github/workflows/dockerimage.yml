@@ -11,18 +11,24 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the base Docker image
-      run: docker build ./mapcreator/ubuntugis-base --file ./mapcreator/ubuntugis-base/Dockerfile --tag teemupel/mtk2garmin-ubuntugis-base:$(date +%s)
+      run: docker build ./mapcreator/ubuntugis-base --file ./mapcreator/ubuntugis-base/Dockerfile --tag teemupel/mtk2garmin-ubuntugis-base
     - name: Publish base to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: teemupel/mtk2garmin-ubuntugis-base:$(date +%s)
+        name: teemupel/mtk2garmin-ubuntugis-base
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: true
+        workdir: mapcreator/ubuntugis-base 
+        dockerfile: Dockerfile 
     - name: Build the Docker image
-      run: docker build ./mtk2garmin-converter --file ./mtk2garmin-converter/Dockerfile --tag teemupel/mtk2garmin-converter:$(date +%s)
+      run: docker build ./mtk2garmin-converter --file ./mtk2garmin-converter/Dockerfile --tag teemupel/mtk2garmin-converter
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: teemupel/mtk2garmin-converter:$(date +%s)
+        name: teemupel/mtk2garmin-converter
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: true
+        workdir: mtk2garmin-converter 
+        dockerfile: Dockerfile 
