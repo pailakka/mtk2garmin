@@ -3,25 +3,12 @@ import pprint
 import sys
 import subprocess
 import json
-infiles = [fn for fn in os.listdir('suomi') if len(
+
+basepath = '/convertedpbf'
+infiles = [fn for fn in os.listdir(basepath) if len(
     fn) == 14 and fn.endswith('.osm.pbf')]
 
 print(len(infiles), 'files')
-'''
-outdata = {}
-for fn in infiles:
-    fp = os.path.join('suomi',fn)
-    cmd = ['osmconvert64',fp,'--out-statistics']
-    print cmd
-    outdata[fn] = subprocess.check_output(cmd,stderr=subprocess.STDOUT)
-    #break
-
-f = open('stats.json','wb')
-json.dump(outdata,f)
-f.close()
-sys.exit(1)
-'''
-
 
 def getGroups(files, glen):
     groups = {}
@@ -39,12 +26,12 @@ def createCommandList(filelist, k):
     cmd = []
     for i, fn in enumerate(filelist):
         if i == 0:
-            ocmd = './osmconvert suomi/%s' % fn
+            ocmd = './osmconvert %s' % os.path.join(basepath,fn)
         else:
-            ocmd = './osmconvert - suomi/%s' % fn
+            ocmd = './osmconvert - %s' % os.path.join(basepath,fn)
 
         if i == len(filelist) - 1:
-            ocmd += ' -o=suomi/%s.osm.pbf' % k
+            ocmd += ' -o=%s' %  % os.path.join(basepath,'%s.osm.pbf' % k)
         else:
             ocmd += ' --out-o5m'
 
@@ -74,7 +61,7 @@ for k3 in g3:
             f = open('merge_all1.sh', 'a+')
             f.write('|'.join(cmd1))
             f.write('; ')
-            f.write('rm -f %s' % ' '.join(('suomi/%s' % f for f in g1[k1])))
+            f.write('rm -f %s' % ' '.join((os.path.join(basepath,f) for f in g1[k1])))
             f.write('\n')
             f.close()
         cmd2 = createCommandList(['%s.osm.pbf' % fn for fn in g2[k2]], k2)
@@ -82,7 +69,7 @@ for k3 in g3:
         f = open('merge_all2.sh', 'a+')
         f.write('|'.join(cmd2))
         f.write('; ')
-        f.write('rm -f %s' % ' '.join(('suomi/%s.osm.pbf' % f for f in g2[k2])))
+        f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g2[k2])))
         f.write('\n')
         f.close()
     cmd3 = createCommandList(['%s.osm.pbf' % fn for fn in g3[k3]], k3)
@@ -90,7 +77,7 @@ for k3 in g3:
     f = open('merge_all3.sh', 'a+')
     f.write('|'.join(cmd3))
     f.write('; ')
-    f.write('rm -f %s' % ' '.join(('suomi/%s.osm.pbf' % f for f in g3[k3])))
+    f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g3[k3])))
     f.write('\n')
 
     f.close()

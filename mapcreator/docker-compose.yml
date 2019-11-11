@@ -2,15 +2,37 @@ version: '3'
 services:
   mml-client:
     image: teemupel/mml-muutostietopalvelu-client
+    volumes:
+      - ./mmlclient.toml:/go/src/app/mmlclient.toml
+      - /opt/mtkdata/:/mtkdata
+      - /opt/krkdata/:/krkdata
   mapsforge:
     image: teemupel/mapsforge
   mtk2garmin-converter:
     image: teemupel/mtk2garmin-converter
+    volumes:
+      - ./mtk2garmin.conf:/opt/mtk2garmin/mtk2garmin.conf
+      - /opt/mtkdata/:/mtkdata
+      - /opt/krkdata/:/krkdata
+      - additional-data:/additional-data:ro
+      - converted:/convertedpbf
+  merger:
+    build: ./merge
+    image: localhost:32000/mtk2garmin-merger
+    volumes:
+      - converted:/convertedpbf
+      - additional-data:/additional-data:ro
   osxconverter:
-    build:
-      context: ../garminOSXConverter
-    image: temeupel/osxconverter
-
+    build: ../garminOSXConverter
+    image: localhost:32000/osxconverter
+  additional-data:
+    image: localhost:32000/mtk2garmin-additional-data:latest
+    volumes:
+      - additional-data:/additional-data
+  mkgmap:
+    image: teemupel/mkgmap
+    build: ../mkgmap-converter
 
 volumes:
   additional-data:
+  converted:

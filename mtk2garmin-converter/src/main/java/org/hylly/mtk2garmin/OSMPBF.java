@@ -4,10 +4,6 @@ import com.google.protobuf.ByteString;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortMap.Entry;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
-import org.hylly.mtk2garmin.MTKToGarminConverter.Node;
-import org.hylly.mtk2garmin.MTKToGarminConverter.Relation;
-import org.hylly.mtk2garmin.MTKToGarminConverter.RelationMember;
-import org.hylly.mtk2garmin.MTKToGarminConverter.Way;
 import org.openstreetmap.osmosis.osmbinary.Fileformat;
 import org.openstreetmap.osmosis.osmbinary.Osmformat;
 
