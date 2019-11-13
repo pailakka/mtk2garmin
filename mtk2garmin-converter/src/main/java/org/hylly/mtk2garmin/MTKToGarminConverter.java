@@ -46,10 +46,7 @@ class MTKToGarminConverter {
     private short tyyppi_string_id;
     private final Int2ObjectMap<Long2ObjectMap<Node>> nodepos;
 
-//    private final Long2ObjectOpenHashMap<Node> nodes = new Long2ObjectOpenHashMap<>(50000);
-//
-//    private final Long2ObjectOpenHashMap<Way> ways = new Long2ObjectOpenHashMap<>(5000);
-//    private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
+
 
     private Driver memoryd;
 
@@ -62,25 +59,16 @@ class MTKToGarminConverter {
     private AtomicLong relationidcounter = new AtomicLong(10000000000L);
 
     private OSMPBF op;
-    private double llx;
-    private double lly;
-    private double urx;
-    private double ury;
-    private int max_nodes = 0;
-    private int max_ways = 0;
-    private int max_relations = 0;
+
     private final Config conf;
 
 
-    private InitializedDatasource syvyyskayrat;
-    private InitializedDatasource syvyyspisteet;
-    private InitializedDatasource kesaretkeily;
-    private InitializedDatasource ulkoilureitit;
-    private InitializedDatasource luontopolut;
-    private InitializedDatasource metsapoints;
+
 
     private MMLFeaturePreprocess featurePreprocessMML;
     private ShapeFeaturePreprocess shapePreprocessor;
+    private final GeomUtils geomUtils;
+    private CachedAdditionalDataSources cachedDatasources;
 
 
     void doConvert() {
@@ -117,22 +105,23 @@ class MTKToGarminConverter {
                 .map(e -> e.getValue())
                 .forEach(areaCells -> {
                     areaCells.parallelStream().forEach(cellFile -> {
-                        logger.info(Thread.currentThread().getId() + " -> " + cellFile.toString());
+                        logger.info("Processing file: " + cellFile.toString() + " in thread [" + Thread.currentThread().getId() + "]");
 
-
+                        SingleCellConverter cellConverter = null;
+                        try {
+                            cellConverter = new SingleCellConverter(cellFile, outdir, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, wgs84ref);
+                            cellConverter.doConvert();
+                        } catch (IOException e) {
+                            logger.severe("Converting file " + cellFile + " failed. Exception: " + e.toString());
+                            e.printStackTrace();
+                        }
                     });
                 });
 
     }
 
     private void initializeCachedDatasources() {
-        syvyyskayrat = createMemoryCacheFromOGRFile(conf.getString("syvyyskayrat"));
-        syvyyspisteet = createMemoryCacheFromOGRFile(conf.getString("syvyyspisteet"));
-
-        kesaretkeily = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/kesaretkeilyreitit.gml");
-        ulkoilureitit = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/ulkoilureitit.gml");
-        luontopolut = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/luontopolut.gml");
-        metsapoints = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/point_dump.gml");
+        cachedDatasources = new CachedAdditionalDataSources(conf, geomUtils);
     }
 
     private Stream<File> getMTKCellFiles(File mtkDirectory) {
@@ -151,6 +140,7 @@ class MTKToGarminConverter {
         conf = readConfigFile(configFile);
         initializeOGR();
         readGridExtents();
+        geomUtils = new GeomUtils();
     }
 
     private Config readConfigFile(File configFile) {
@@ -194,62 +184,6 @@ class MTKToGarminConverter {
         lyr.delete();
         gridds.delete();
     }
-
-    private InitializedDatasource createMemoryCacheFromOGRFile(String fn) {
-        logger.info("Copying " + fn + " to in memory cache");
-
-        InitializedDatasource is = new InitializedDatasource();
-
-        DataSource ds = ogr.Open(fn, false);
-
-
-        if (ds == null) {
-            logger.severe("Reading file " + fn + " failed");
-            System.exit(1);
-        }
-
-        DataSource mds = memoryd.CopyDataSource(ds, "mem_" + fn);
-
-        ds.delete();
-        logger.info(fn + " copied to cache. " + mds.GetLayerCount() + " layers");
-        is.ds = mds;
-
-        is.cell = calculateDatasourceCell(is.ds);
-        return is;
-    }
-
-    private int calculateDatasourceCell(DataSource ds) {
-        Layer lyr;
-        double[] extent = new double[]{Double.POSITIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY,
-                Double.NEGATIVE_INFINITY};
-
-        for (int i = 0; i < ds.GetLayerCount(); i++) {
-            lyr = ds.GetLayer(i);
-            extent = this.extendExtent(extent, lyr.GetExtent());
-        }
-
-        int cell = this.extent2grid(extent);
-
-        double[] ll = this.grid2xy(cell);
-
-        double[] ur = new double[]{ll[0] + 12e3, ll[1] + 12e3};
-
-        this.setCellBBOX(ll, ur);
-
-        if (!nodepos.containsKey(cell)) {
-            nodepos.put(cell, Long2ObjectMaps.synchronize(new Long2ObjectAVLTreeMap<>()));
-        }
-
-        return cell;
-    }
-
-    private double[] extendExtent(double[] ext1, double[] ext2) {
-
-        return new double[]{
-                Math.min(ext1[0], ext2[0]), Math.max(ext1[1], ext2[1]),
-                Math.min(ext1[2], ext2[2]), Math.max(ext1[3], ext2[3])};
-    }
-
 
     static void printTags(StringTable stringtable, Short2ShortRBTreeMap tags) {
         for (Short2ShortMap.Entry t : tags.short2ShortEntrySet()) {
@@ -398,9 +332,7 @@ class MTKToGarminConverter {
             this.relations.trim();
         }
     */
-    private double[] grid2xy(int grid) {
-        return new double[]{(grid >> 16) * 12e3 + COORD_DELTA_X, (grid & 0xFFFF) * 12e3 + COORD_DELTA_Y};
-    }
+
 
     /*
         private GeomHandlerResult handleSingleGeom(Geometry geom) {
@@ -576,81 +508,7 @@ class MTKToGarminConverter {
 
         }
 
-        private boolean handleFeature(StringTable stringtable, String lyrname, ArrayList<Field> fieldMapping, Feature feat,
-                                      FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler) {
-            Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
-            Geometry geom;
-            for (Field f : fieldMapping) {
-                fields.put(stringtable.getStringId(f.getFieldName()),
-                        feat.GetFieldAsString(f.getFieldIndex()).intern());
-            }
 
-            geom = feat.GetGeometryRef();
-
-            if (geom == null) return true;
-
-
-            geom = geom.SimplifyPreserveTopology(0.5);
-
-            if (srctowgs == null) {
-                SpatialReference sref = geom.GetSpatialReference();
-                srctowgs = osr.CreateCoordinateTransformation(sref, wgs84ref);
-            }
-
-            GeomHandlerResult ghr;
-
-            if (geom == null) return true;
-
-            if (geom.GetGeometryCount() < 2) {
-                if (geom.GetGeometryCount() > 0) {
-                    geom = geom.GetGeometryRef(0);
-                }
-                ghr = this.handleSingleGeom(geom);
-            } else {
-                ghr = this.handleMultiGeom(stringtable.getStringId("type"), stringtable.getStringId("multipolygon"), geom);
-            }
-            double geomarea = geom.Area();
-
-            geom.delete();
-            feat.delete();
-            String tyyppi = lyrname.toLowerCase();
-            if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
-
-            short tyyppi_value_id = stringtable.getStringId(tyyppi);
-
-            for (Node n : ghr.nodes) {
-
-                if (!n.isWaypart()) {
-                    n.addTag(tyyppi_string_id, tyyppi_value_id);
-                    tagHandler.addElementTags(n.nodeTags, fields, tyyppi, geomarea);
-                }
-
-                if (!nodes.containsKey(n.getHash())) {
-                    nodes.put(n.getHash(), n);
-                }
-            }
-
-            for (Way w : ghr.ways) {
-                if (!w.getRole().equals("inner")) {
-                    w.tags.put(tyyppi_string_id, tyyppi_value_id);
-                    tagHandler.addElementTags(w.tags, fields, tyyppi, geomarea);
-                }
-                if (!ways.containsKey(w.getId())) {
-                    ways.put(w.getId(), w);
-                }
-            }
-
-            for (Relation r : ghr.relations) {
-
-                r.tags.put(tyyppi_string_id, tyyppi_value_id);
-                tagHandler.addElementTags(r.tags, fields, tyyppi, geomarea);
-                if (!relations.containsKey(r.getId()))
-                    relations.put(r.getId(), r);
-            }
-
-            return true;
-
-        }
 
         private void writeOSMXMLTags(StringTable stringtable, OutputStream fos, Short2ShortRBTreeMap nodeTags) throws IOException {
             if (nodeTags.size() == 0)
@@ -789,123 +647,8 @@ class MTKToGarminConverter {
 
 
 
-        private InitializedDatasource startReadingOGRFile(String fn) {
-            System.out.println("Initializing file " + fn);
-            InitializedDatasource is = new InitializedDatasource();
-            DataSource ds = ogr.Open(fn, false);
-            is.ds = ds;
-            if (ds == null) {
-                System.out.println("Reading file " + fn + " failed");
-                System.exit(1);
 
-            }
-
-
-            is.cell = calculateDatasourceCell(is.ds);
-            return is;
-        }
-
-
-
-        private DataSource readOGRsource(StringTable stringtable, InitializedDatasource is, FeaturePreprocessI featurePreprocess, TagHandlerI tagHandler,
-                                         boolean doClearNodeCache, double[] filterExtent) {
-
-            DataSource ds = is.ds;
-
-            if (doClearNodeCache) {
-                this.clearNodeCache(is.cell);
-            }
-
-            if (ds == null) {
-                return is.ds;
-            }
-            Layer lyr;
-            String fname;
-
-            String attributefilter = featurePreprocess.getAttributeFilterString();
-
-            HashSet<String> ignored_fields = new HashSet<>();
-            FieldDefn fdefn;
-
-            layerloop:
-            for (int i = 0; i < ds.GetLayerCount(); i++) {
-                lyr = ds.GetLayer(i);
-                Vector<String> ignoredFields = new Vector<>();
-
-                if (filterExtent != null) {
-                    System.out.println("Filter rect: " + Arrays.toString(filterExtent));
-                    lyr.SetSpatialFilterRect(filterExtent[0], filterExtent[2], filterExtent[1], filterExtent[3]);
-                }
-
-                if (attributefilter != null) {
-                    lyr.SetAttributeFilter(attributefilter);
-                }
-
-                FeatureDefn lyrdefn = lyr.GetLayerDefn();
-                ArrayList<Field> fieldMapping = new ArrayList<>();
-                for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
-                    fdefn = lyrdefn.GetFieldDefn(i1);
-                    fname = fdefn.GetName();
-
-                    if (!tagHandler.getWantedFields().contains(fname)) {
-                        ignoredFields.add(fname);
-
-                    } else {
-                        fieldMapping.add(new Field(fname, fdefn.GetFieldType(), i1));
-                    }
-                }
-
-
-                ignored_fields.addAll(ignoredFields);
-                if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
-                    lyr.SetIgnoredFields(ignoredFields);
-                }
-
-                lyr.ResetReading();
-
-                Layer finalLyr = lyr;
-                AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
-                LongStream.range(0, lyr.GetFeatureCount(1))
-                        .parallel()
-                        .takeWhile(fid -> breakLayerLoop.get())
-                        .forEach(fid -> {
-                    Feature feat = finalLyr.GetFeature(fid);
-                    if (!this.handleFeature(stringtable, finalLyr.GetName(), fieldMapping, feat, featurePreprocess, tagHandler)) {
-                        System.out.println("BREAK");
-                        breakLayerLoop.set(true);
-                    }
-                });
-
-                if (breakLayerLoop.get()) {
-                    break;
-                }
-            }
-            System.out.println("Ignored fields: " + Arrays.toString(ignored_fields.toArray()));
-            // return is.extent;
-
-            return is.ds;
-
-        }
     */
-    private int xy2grid(double x, double y) {
-        int gx = (int) Math.floor((x - COORD_DELTA_X) / 12e3);
-        int gy = (int) Math.floor((y - COORD_DELTA_Y) / 12e3);
-
-        return gx << 16 | gy;
-
-    }
-
-    private int extent2grid(double[] extent) {
-        return xy2grid(extent[1] - 5, extent[3] - 5);
-    }
-
-    private void setCellBBOX(double[] ll, double[] ur) {
-        this.llx = ll[0];
-        this.lly = ll[1];
-        this.urx = ur[0];
-        this.ury = ur[1];
-
-    }
 
 //    private void printCounts() {
 //        System.out.println(nodes.size() + " nodes " + ways.size() + " ways " + relations.size() + " relations");
@@ -919,11 +662,6 @@ class MTKToGarminConverter {
 //        System.out.println("max_nodes " + max_nodes + ", max_ways " + max_ways + ", max_relations " + max_relations);
 //
 //    }
-
-    private class InitializedDatasource {
-        DataSource ds;
-        int cell;
-    }
 
     private class GeomHandlerResult {
         final ArrayList<Node> nodes = new ArrayList<>();
