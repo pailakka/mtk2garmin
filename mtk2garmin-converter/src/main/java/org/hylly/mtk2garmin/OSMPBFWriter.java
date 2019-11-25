@@ -19,7 +19,7 @@ public class OSMPBFWriter {
         op.writePBFHeaders();
     }
 
-    private void writeOSMPBFElements(StringTable stringtable, Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways, Long2ObjectOpenHashMap<Relation> relations) throws IOException {
+    void writeOSMPBFElements(StringTable stringtable, Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways, Long2ObjectOpenHashMap<Relation> relations) throws IOException {
         op.writePBFElements(stringtable, Boolean.FALSE, nodes, null, null);
         op.writePBFElements(stringtable, Boolean.FALSE, null, ways, null);
         op.writePBFElements(stringtable, Boolean.FALSE, null, null, relations);
@@ -27,7 +27,7 @@ public class OSMPBFWriter {
         // this.initElements();
     }
 
-    private void closeOSMPBFFile() throws IOException {
+    void closeOSMPBFFile() throws IOException {
         op.closePBF();
     }
 }

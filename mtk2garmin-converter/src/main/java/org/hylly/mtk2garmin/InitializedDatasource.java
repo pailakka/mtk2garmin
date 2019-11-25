@@ -4,5 +4,8 @@ import org.gdal.ogr.DataSource;
 
 class InitializedDatasource {
     DataSource ds;
-    int cell;
+
+    public InitializedDatasource(DataSource ds) {
+        this.ds = ds;
+    }
 }

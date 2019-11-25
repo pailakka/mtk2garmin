@@ -11,6 +11,15 @@ public class Node {
     Short2ShortRBTreeMap nodeTags;
     boolean waypart;
 
+    Node(long hash, int cell, double lon, double lat, boolean waypart) {
+        this.id = -1;
+        this.hash = hash;
+        this.lon = lon;
+        this.lat = lat;
+        this.cell = cell;
+        this.waypart = waypart;
+    }
+
     Node(long id, long hash, int cell, double lon, double lat, boolean waypart) {
         this.id = id;
         this.hash = hash;

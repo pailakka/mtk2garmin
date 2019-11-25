@@ -5,9 +5,8 @@ import com.typesafe.config.ConfigFactory;
 import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
-import it.unimi.dsi.fastutil.longs.Long2ObjectAVLTreeMap;
+import it.unimi.dsi.fastutil.longs.Long2LongAVLTreeMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import it.unimi.dsi.fastutil.objects.Object2ObjectRBTreeMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortMap;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
@@ -16,7 +15,6 @@ import org.apache.commons.io.filefilter.DirectoryFileFilter;
 import org.apache.commons.io.filefilter.RegexFileFilter;
 import org.gdal.ogr.*;
 import org.gdal.osr.CoordinateTransformation;
-import org.gdal.osr.SpatialReference;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -31,21 +29,12 @@ import java.util.stream.Stream;
 class MTKToGarminConverter {
     Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
 
-    private final SpatialReference wgs84ref = new SpatialReference();
     private final Object2ObjectRBTreeMap<String, double[]> gridExtents = new Object2ObjectRBTreeMap<>();
     private final double COORD_DELTA_X = 62000.0 - 6e3;
     private final double COORD_DELTA_Y = 6594000.0;
-    private final double COORD_ACC = 2;
-    private final Set<String> leftLetters = new HashSet<>(
-            Arrays.asList("A", "B", "C", "D"));
-
-    private final Set<String> rightLetters = new HashSet<>(
-            Arrays.asList("E", "F", "G", "H"));
-
 
     private short tyyppi_string_id;
-    private final Int2ObjectMap<Long2ObjectMap<Node>> nodepos;
-
+    private final Int2ObjectMap<Long2LongAVLTreeMap> nodepos;
 
 
     private Driver memoryd;
@@ -54,16 +43,12 @@ class MTKToGarminConverter {
     private double minx = Double.POSITIVE_INFINITY, miny = Double.POSITIVE_INFINITY, maxx = Double.NEGATIVE_INFINITY,
             maxy = Double.NEGATIVE_INFINITY;
 
-    private AtomicLong nodeidcounter = new AtomicLong(10000000000L);
-    private AtomicLong wayidcounter = new AtomicLong(10000000000L);
-    private AtomicLong relationidcounter = new AtomicLong(10000000000L);
+
+    private final FeatureIDProvider featureIDProvider = new FeatureIDProvider();
 
     private OSMPBF op;
 
     private final Config conf;
-
-
-
 
     private MMLFeaturePreprocess featurePreprocessMML;
     private ShapeFeaturePreprocess shapePreprocessor;
@@ -102,14 +87,13 @@ class MTKToGarminConverter {
                 .entrySet()
                 .stream()
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .map(e -> e.getValue())
+                .filter(e -> e.getKey().startsWith("L434"))
+                .map(Map.Entry::getValue)
                 .forEach(areaCells -> {
                     areaCells.parallelStream().forEach(cellFile -> {
                         logger.info("Processing file: " + cellFile.toString() + " in thread [" + Thread.currentThread().getId() + "]");
-
-                        SingleCellConverter cellConverter = null;
                         try {
-                            cellConverter = new SingleCellConverter(cellFile, outdir, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, wgs84ref);
+                            SingleCellConverter cellConverter = new SingleCellConverter(cellFile, outdir, conf, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, featureIDProvider, cachedDatasources);
                             cellConverter.doConvert();
                         } catch (IOException e) {
                             logger.severe("Converting file " + cellFile + " failed. Exception: " + e.toString());
@@ -134,7 +118,7 @@ class MTKToGarminConverter {
     }
 
     MTKToGarminConverter(File configFile) {
-        Int2ObjectAVLTreeMap<Long2ObjectMap<Node>> nodeposUnsafe = new Int2ObjectAVLTreeMap<>();
+        Int2ObjectAVLTreeMap<Long2LongAVLTreeMap> nodeposUnsafe = new Int2ObjectAVLTreeMap<>();
         nodepos = Int2ObjectMaps.synchronize(nodeposUnsafe);
 
         conf = readConfigFile(configFile);
@@ -155,7 +139,6 @@ class MTKToGarminConverter {
         logger.info("Initializing ogr");
         ogr.UseExceptions();
         Locale.setDefault(new Locale("en", "US"));
-        wgs84ref.SetWellKnownGeogCS("WGS84");
         ogr.RegisterAll();
 
         memoryd = ogr.GetDriverByName("memory");
@@ -335,105 +318,6 @@ class MTKToGarminConverter {
 
 
     /*
-        private GeomHandlerResult handleSingleGeom(Geometry geom) {
-
-            GeomHandlerResult ghr = new GeomHandlerResult();
-
-            if (geom.IsEmpty())
-                return ghr;
-
-            boolean ispoint = geom.GetGeometryType() == ogr.wkbPoint || geom.GetGeometryType() == ogr.wkbPoint25D;
-
-            LongArrayList waynodes = new LongArrayList();
-
-            double[][] srcpoints = geom.GetPoints();
-            double[][] wgspoints = geom.GetPoints();
-
-            srctowgs.TransformPoints(wgspoints);
-            Way w = null;
-            long wid;
-            if (!ispoint) {
-                wid = wayidcounter;
-                wayidcounter++;
-                w = new Way();
-                w.id = wid;
-            }
-            long phash;
-            long nid;
-            Node n;
-
-            int pcell;
-            for (int i = 0; i < srcpoints.length; i++) {
-
-                phash = hashCoords(srcpoints[i][0], srcpoints[i][1]);
-                pcell = xy2grid(srcpoints[i][0], srcpoints[i][1]);
-
-                if (!nodes.containsKey(phash) && (!nodepos.containsKey(pcell) || !nodepos.get(pcell).containsKey(phash))) {
-                    if (wgspoints[i][0] < this.minx) {
-                        this.minx = wgspoints[i][0];
-                    }
-                    if (wgspoints[i][1] < this.miny) {
-                        this.miny = wgspoints[i][1];
-                    }
-
-                    if (wgspoints[i][0] > this.maxx) {
-                        this.maxx = wgspoints[i][0];
-                    }
-                    if (wgspoints[i][1] > this.maxy) {
-                        this.maxy = wgspoints[i][1];
-                    }
-
-                    if (!nodepos.containsKey(pcell)) {
-                        System.out.println("Adding nodepos hashmap: " + pcell);
-                        nodepos.put(pcell, new Long2ObjectAVLTreeMap<>());
-                    }
-
-                    if (nodepos.get(pcell).containsKey(phash)) {
-                        n = nodepos.get(pcell).get(phash);
-                        n.clearTags();
-                    } else {
-                        nid = nodeidcounter;
-                        nodeidcounter++;
-                        n = new Node(nid, phash, pcell, wgspoints[i][0], wgspoints[i][1], !ispoint);
-
-                        if (this.nodeNearCellBorder(srcpoints[i])) {
-                            nodepos.get(pcell).put(phash, n);
-                        }
-                    }
-
-                    nodes.put(phash, n);
-                    ghr.nodes.add(n);
-                    if (!ispoint) {
-                        waynodes.add(n.getId());
-                    }
-                } else {
-                    if (nodes.containsKey(phash)) {
-                        n = nodes.get(phash);
-
-                        nodepos.get(pcell).put(phash, n);
-                    } else {
-                        n = nodepos.get(pcell).get(phash);
-                        n.clearTags();
-                        nodes.put(phash, n);
-                    }
-                    n.waypart = !ispoint;
-                    ghr.nodes.add(n);
-                    if (!ispoint) {
-                        waynodes.add(n.getId());
-                    }
-                }
-
-            }
-
-            if (w != null) {
-
-                w.refs = waynodes;
-                ghr.ways.add(w);
-            }
-
-            return ghr;
-
-        }
 
         private boolean nodeNearCellBorder(double[] srcpoints) {
             double dist = this.calculateMinNodeCellBorderDistance(srcpoints[0], srcpoints[1]);
@@ -445,69 +329,6 @@ class MTKToGarminConverter {
             return Math.min(Math.abs(this.llx - x),
                     Math.min(Math.abs(this.lly - y), Math.min(Math.abs(this.urx - x), Math.abs(this.ury - y))));
         }
-
-        private GeomHandlerResult handleMultiGeom(short type, short multipolygon, Geometry geom) {
-
-            GeomHandlerResult ighr;
-            Geometry igeom;
-            GeomHandlerResult ghr = new GeomHandlerResult();
-
-            if (!geom.GetGeometryName().equals("POLYGON")) {
-                for (int i = 0; i < geom.GetGeometryCount(); i++) {
-                    igeom = geom.GetGeometryRef(i);
-                    ighr = this.handleSingleGeom(igeom);
-                    ghr.nodes.addAll(ighr.nodes);
-                    ghr.ways.addAll(ighr.ways);
-                }
-                return ghr;
-            }
-
-            long rid = relationidcounter;
-            relationidcounter++;
-            Relation r = new Relation();
-            r.setId(rid);
-            r.tags.put(type, multipolygon);
-
-            for (int i = 0; i < geom.GetGeometryCount(); i++) {
-                igeom = geom.GetGeometryRef(i);
-
-                ighr = this.handleSingleGeom(igeom);
-                if (ighr.ways.size() == 0) {
-                    return new GeomHandlerResult();
-                }
-                ighr.ways.get(0).setRole((i == 0 ? "outer" : "inner"));
-
-                ghr.nodes.addAll(ighr.nodes);
-                ghr.ways.addAll(ighr.ways);
-
-                RelationMember rm = new RelationMember();
-
-                rm.setId(ighr.ways.get(0).getId());
-                rm.setType();
-                rm.setRole((i == 0 ? "outer" : "inner"));
-                r.members.add(rm);
-            }
-
-            ghr.relations.add(r);
-            return ghr;
-
-        }
-
-        private long calcHash(long a, long b) {
-            if (a >= b) {
-                return a * a + a + b;
-            } else {
-                return a + b * b;
-            }
-
-        }
-
-        private long hashCoords(double x, double y) {
-
-            return calcHash((long) ((int) (x - COORD_DELTA_X) * COORD_ACC), (long) ((int) (y - COORD_DELTA_Y) * COORD_ACC));
-
-        }
-
 
 
         private void writeOSMXMLTags(StringTable stringtable, OutputStream fos, Short2ShortRBTreeMap nodeTags) throws IOException {
@@ -662,12 +483,4 @@ class MTKToGarminConverter {
 //        System.out.println("max_nodes " + max_nodes + ", max_ways " + max_ways + ", max_relations " + max_relations);
 //
 //    }
-
-    private class GeomHandlerResult {
-        final ArrayList<Node> nodes = new ArrayList<>();
-        final ArrayList<Way> ways = new ArrayList<>();
-        final ArrayList<Relation> relations = new ArrayList<>();
-    }
-
-
 }

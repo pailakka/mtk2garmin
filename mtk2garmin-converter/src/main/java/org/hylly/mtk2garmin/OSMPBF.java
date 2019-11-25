@@ -10,6 +10,8 @@ import org.openstreetmap.osmosis.osmbinary.Osmformat;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.zip.Deflater;
 
 @SuppressWarnings("FieldCanBeLocal")
@@ -193,7 +195,7 @@ class OSMPBF {
 
             long lref = 0;
             for (int i = 0; i < w.refs.size(); i++) {
-                long r = w.refs.getLong(i);
+                long r = w.refs.get(i);
 
                 wb.addRefs(r - lref);
                 lref = r;

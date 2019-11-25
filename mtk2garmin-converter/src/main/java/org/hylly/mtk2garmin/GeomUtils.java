@@ -1,9 +1,13 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.longs.Long2ObjectAVLTreeMap;
-import it.unimi.dsi.fastutil.longs.Long2ObjectMaps;
 import org.gdal.ogr.DataSource;
 import org.gdal.ogr.Layer;
+import org.gdal.osr.CoordinateTransformation;
+import org.gdal.osr.SpatialReference;
+import org.gdal.osr.osr;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class GeomUtils {
     private double llx;
@@ -14,6 +18,19 @@ public class GeomUtils {
 
     private final double COORD_DELTA_X = 62000.0 - 6e3;
     private final double COORD_DELTA_Y = 6594000.0;
+    private final double COORD_ACC = 2;
+
+    private final SpatialReference wgs84ref = new SpatialReference();
+
+    private Map<String, CoordinateTransformation> coordinateTransformationCache = new HashMap<String, CoordinateTransformation>();
+
+    GeomUtils() {
+        this.wgs84ref.SetWellKnownGeogCS("WGS84");
+    }
+
+    SpatialReference getWGS84Ref() {
+        return this.wgs84ref;
+    }
 
     int calculateDatasourceCell(DataSource ds) {
         Layer lyr;
@@ -58,7 +75,7 @@ public class GeomUtils {
     }
 
 
-    private int xy2grid(double x, double y) {
+    int xy2grid(double x, double y) {
         int gx = (int) Math.floor((x - COORD_DELTA_X) / 12e3);
         int gy = (int) Math.floor((y - COORD_DELTA_Y) / 12e3);
 
@@ -72,4 +89,34 @@ public class GeomUtils {
                 Math.min(ext1[0], ext2[0]), Math.max(ext1[1], ext2[1]),
                 Math.min(ext1[2], ext2[2]), Math.max(ext1[3], ext2[3])};
     }
+
+    CoordinateTransformation getTransformationToWGS84(String proj4str) {
+        if (coordinateTransformationCache.containsKey(proj4str)) {
+            return coordinateTransformationCache.get(proj4str);
+        }
+
+        SpatialReference from = new SpatialReference();
+        from.ImportFromProj4(proj4str);
+
+        CoordinateTransformation transform = osr.CreateCoordinateTransformation(from, wgs84ref);
+
+        coordinateTransformationCache.put(proj4str, transform);
+        return transform;
+    }
+
+    long hashCoords(double x, double y) {
+        return calcHash((long) ((int) (x - COORD_DELTA_X) * COORD_ACC), (long) ((int) (y - COORD_DELTA_Y) * COORD_ACC));
+
+    }
+
+    private long calcHash(long a, long b) {
+        if (a >= b) {
+            return a * a + a + b;
+        } else {
+            return a + b * b;
+        }
+
+    }
+
+
 }

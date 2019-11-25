@@ -3,11 +3,13 @@ package org.hylly.mtk2garmin;
 import it.unimi.dsi.fastutil.longs.LongArrayList;
 import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 
+import java.util.ArrayList;
+
 class Way {
     final Short2ShortRBTreeMap tags = new Short2ShortRBTreeMap();
     long id;
     String role = "all";
-    LongArrayList refs = new LongArrayList();
+    ArrayList<Long> refs = new ArrayList<>();
 
     Way() {
 
