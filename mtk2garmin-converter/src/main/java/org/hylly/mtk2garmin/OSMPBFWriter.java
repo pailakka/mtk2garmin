@@ -19,10 +19,10 @@ public class OSMPBFWriter {
         op.writePBFHeaders();
     }
 
-    void writeOSMPBFElements(StringTable stringtable, Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways, Long2ObjectOpenHashMap<Relation> relations, long minNodeId, long maxNodeId) throws IOException {
-        op.writePBFElements(stringtable, nodes, null, null, minNodeId, maxNodeId);
-        op.writePBFElements(stringtable, null, ways, null,0,0);
-        op.writePBFElements(stringtable, null, null, relations,0,0);
+    void writeOSMPBFElements(StringTable stringtable, Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways, Long2ObjectOpenHashMap<Relation> relations) throws IOException {
+        op.writePBFElements(stringtable, nodes, null, null);
+        op.writePBFElements(stringtable, null, ways, null);
+        op.writePBFElements(stringtable, null, null, relations);
 
         // this.initElements();
     }

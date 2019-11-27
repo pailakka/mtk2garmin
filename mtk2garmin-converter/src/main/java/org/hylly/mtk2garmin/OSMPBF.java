@@ -10,6 +10,7 @@ import org.openstreetmap.osmosis.osmbinary.Osmformat;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.zip.Deflater;
 
@@ -78,7 +79,7 @@ class OSMPBF {
     private Osmformat.PrimitiveBlock createOSMDataBlock(
             StringTable stringtable,
             Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-            Long2ObjectOpenHashMap<Relation> relations, long minNodeId, long maxNodeId) {
+            Long2ObjectOpenHashMap<Relation> relations) {
         Osmformat.PrimitiveBlock.Builder pbbuilder = Osmformat.PrimitiveBlock
                 .newBuilder();
         pbbuilder.setGranularity(this.granularity);
@@ -87,7 +88,7 @@ class OSMPBF {
         pbbuilder.setDateGranularity(this.date_granularity);
 
         Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable, nodes, ways,
-                relations, minNodeId, maxNodeId);
+                relations);
         pbbuilder.addPrimitivegroup(pg);
 
         pbbuilder.setStringtable(this.buildStringTable(stringtable));
@@ -98,7 +99,7 @@ class OSMPBF {
     private Osmformat.PrimitiveGroup createOSMPrimitiveGroup(
             StringTable stringtable,
             Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-            Long2ObjectOpenHashMap<Relation> relations, long minNodeId, long maxNodeId) {
+            Long2ObjectOpenHashMap<Relation> relations) {
         Osmformat.PrimitiveGroup.Builder pgbuilder = Osmformat.PrimitiveGroup
                 .newBuilder();
         if (ways != null)
@@ -106,14 +107,14 @@ class OSMPBF {
         if (relations != null)
             pgbuilder.addAllRelations(this.buildOSMRelations(stringtable, relations));
         if (nodes != null)
-            pgbuilder.setDense(this.buildOSMDenseNodes(stringtable, nodes, minNodeId, maxNodeId));
+            pgbuilder.setDense(this.buildOSMDenseNodes(stringtable, nodes));
 
         return pgbuilder.build();
     }
 
     private Osmformat.DenseNodes buildOSMDenseNodes(
             StringTable stringtable,
-            final Long2ObjectOpenHashMap<Node> nodes, long minNodeId, long maxNodeId) {
+            final Long2ObjectOpenHashMap<Node> nodes) {
 
         Osmformat.DenseNodes.Builder dsb = Osmformat.DenseNodes.newBuilder();
         Osmformat.DenseInfo.Builder dib = Osmformat.DenseInfo.newBuilder();
@@ -122,10 +123,10 @@ class OSMPBF {
 
         long pbflat, pbflon;
         //Long[] node_keys_sorted = ArrayUtils.toObject(nodes.keySet().toLongArray());
+
         Node[] nodes_sorted = new Node[nodes.size()];
         nodes.values().toArray(nodes_sorted);
-        bucketSort(nodes_sorted, minNodeId, maxNodeId);
-
+        Arrays.sort(nodes_sorted, (n1,n2) -> (int) (n1.getId()-n2.getId()));
 
         for (Node n : nodes_sorted) {
             long id = n.getId();
@@ -169,36 +170,6 @@ class OSMPBF {
 
         return dsb.build();
 
-    }
-
-    private static void bucketSort(Node[] ar, final long minVal, final long maxVal) {
-
-        if (ar == null || ar.length == 0 || minVal == maxVal) return;
-
-        // N is number elements and M is the range of values
-        final long N = ar.length, M = maxVal - minVal, NUM_BUCKETS = M / N + 1;
-        List<List<Node>> buckets = new ArrayList<>((int) (NUM_BUCKETS));
-
-        for (int i = 0; i < NUM_BUCKETS; i++) buckets.add(new ArrayList<>());
-
-        // Place each element in a bucket
-        for (Node value : ar) {
-            long bi = (value.getId() - minVal) / M;
-            List<Node> bucket = buckets.get((int) bi);
-            bucket.add(value);
-        }
-
-        // Sort buckets and stitch together answer
-        for (int bi = 0, j = 0; bi < NUM_BUCKETS; bi++) {
-            List<Node> bucket = buckets.get(bi);
-            if (bucket != null) {
-//                Arrays.sort(bucket, (o1, o2) -> (int) (o1.id - o2.id));
-                bucket.sort((o1, o2) -> (int) (o1.getId() - o2.getId()));
-                for (Node node : bucket) {
-                    ar[j++] = node;
-                }
-            }
-        }
     }
 
     private ArrayList<Osmformat.Way> buildOSMWays(Long2ObjectOpenHashMap<Way> ways) {
@@ -283,9 +254,9 @@ class OSMPBF {
 
     void writePBFElements(StringTable stringtable,
                           Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-                          Long2ObjectOpenHashMap<Relation> relations, long minNodeId, long maxNodeId) throws IOException {
+                          Long2ObjectOpenHashMap<Relation> relations) throws IOException {
         Osmformat.PrimitiveBlock pb = this
-                .createOSMDataBlock(stringtable, nodes, ways, relations, minNodeId, maxNodeId);
+                .createOSMDataBlock(stringtable, nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());
         int header_sersize = data.header.getSerializedSize();
         od.writeInt(header_sersize);

@@ -20,8 +20,8 @@ class GeomUtils {
     }
 
     int xy2grid(double x, double y) {
-        int gx = (int) Math.floor((x - COORD_DELTA_X) / 48e3);
-        int gy = (int) Math.floor((y - COORD_DELTA_Y) / 24e3);
+        int gx = (int) ((x - COORD_DELTA_X) / 48e3);
+        int gy = (int) ((y - COORD_DELTA_Y) / 24e3);
 
         return gx << 16 | gy;
 

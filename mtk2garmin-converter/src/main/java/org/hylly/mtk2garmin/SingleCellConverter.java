@@ -56,14 +56,6 @@ public class SingleCellConverter {
     private final Long2ObjectOpenHashMap<Relation> relations = new Long2ObjectOpenHashMap<>(500);
     private CoordinateTransformation srctowgs;
 
-    private double minx;
-    private double miny;
-    private double maxx;
-    private double maxy;
-
-    private long minNodeId = 0;
-    private long maxNodeId = 0;
-
     SingleCellConverter(
             File cellFile,
             Path outdir,
@@ -139,7 +131,7 @@ public class SingleCellConverter {
                     printCounts();
                 });
 
-        osmpbWriter.writeOSMPBFElements(stringtable, nodes, ways, relations, minNodeId, maxNodeId);
+        osmpbWriter.writeOSMPBFElements(stringtable, nodes, ways, relations);
         osmpbWriter.closeOSMPBFFile();
     }
 
@@ -353,7 +345,6 @@ public class SingleCellConverter {
             int pcell = geomUtils.xy2grid(srcpoints[i][0], srcpoints[i][1]);
 
             if (!nodes.containsKey(phash)) {
-                updateCoordinateMinMax(wgspoints[i]);
                 nodeCache.ensureGrid(pcell);
 
                 Optional<Long> cachedNodeId = nodeCache.getNodeId(pcell,phash);
@@ -366,14 +357,6 @@ public class SingleCellConverter {
                     if (this.nodeNearCellBorder(srcpoints[i])) {
                         nodeCache.addNodeId(pcell, phash, nodeid);
                     }
-                }
-
-                if (minNodeId == 0 || nodeid < minNodeId) {
-                    minNodeId = nodeid;
-                }
-
-                if (maxNodeId == 0 ||nodeid > maxNodeId) {
-                    maxNodeId = nodeid;
                 }
 
                 Node n = new Node(nodeid, phash, pcell, wgspoints[i][0], wgspoints[i][1], !ispoint);
@@ -409,22 +392,6 @@ public class SingleCellConverter {
     private double calculateMinNodeCellBorderDistance(double x, double y) {
         return Math.min(Math.abs(this.bbox[0] - x),
                 Math.min(Math.abs(this.bbox[2] - y), Math.min(Math.abs(this.bbox[1] - x), Math.abs(this.bbox[3] - y))));
-    }
-
-    private void updateCoordinateMinMax(double[] wgspoint) {
-        if (wgspoint[0] < this.minx) {
-            this.minx = wgspoint[0];
-        }
-        if (wgspoint[1] < this.miny) {
-            this.miny = wgspoint[1];
-        }
-
-        if (wgspoint[0] > this.maxx) {
-            this.maxx = wgspoint[0];
-        }
-        if (wgspoint[1] > this.maxy) {
-            this.maxy = wgspoint[1];
-        }
     }
 
     private GeomHandlerResult handleMultiGeom(short type, short multipolygon, Geometry geom) {
