@@ -6,14 +6,12 @@ import java.util.logging.Logger;
 public class MTK2Garmin {
     static Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
 
-    private static MTKToGarminConverter converter;
-
     public static void main(String[] args) {
         File configFile = getConfigFile(args);
         if (configFile == null) {
             return;
         }
-        converter = new MTKToGarminConverter(configFile);
+        MTKToGarminConverter converter = new MTKToGarminConverter(configFile);
 
         converter.doConvert();
     }

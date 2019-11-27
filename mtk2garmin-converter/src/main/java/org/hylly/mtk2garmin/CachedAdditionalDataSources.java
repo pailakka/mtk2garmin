@@ -6,12 +6,9 @@ import com.typesafe.config.Config;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-public class CachedAdditionalDataSources {
+class CachedAdditionalDataSources {
+    private Logger logger = Logger.getLogger(CachedAdditionalDataSources.class.getName());
     private final Driver memoryd;
-    private final GeomUtils geomUtils;
-    private final Driver spatialited;
-
-    Logger logger = Logger.getLogger(CachedAdditionalDataSources.class.getName());
 
     private final DataSource syvyyskayrat;
     private final DataSource syvyyspisteet;
@@ -20,10 +17,8 @@ public class CachedAdditionalDataSources {
     private final DataSource luontopolut;
     private final DataSource metsapoints;
 
-    CachedAdditionalDataSources(Config conf, GeomUtils geomUtils) {
+    CachedAdditionalDataSources(Config conf) {
         this.memoryd = ogr.GetDriverByName("memory");
-        this.spatialited = ogr.GetDriverByName("sqlite");
-        this.geomUtils = geomUtils;
 
         syvyyskayrat = createMemoryCacheFromOGRFile(conf.getString("syvyyskayrat"));
         syvyyspisteet = createMemoryCacheFromOGRFile(conf.getString("syvyyspisteet"));
@@ -51,12 +46,7 @@ public class CachedAdditionalDataSources {
         return mds;
     }
 
-    DataSource getNewDatasource(String ds) {
-        DataSource nds = ogr.Open(ds); //memoryd.CopyDataSource(ds, "mem_" + ds.GetLayer(0).GetName() +  UUID.randomUUID().toString());
-        return nds;
-    }
-
-    public Stream<DataSource> getDatasources() {
+    Stream<DataSource> getDatasources() {
         return Stream.of(
                 syvyyskayrat,
                 syvyyspisteet,

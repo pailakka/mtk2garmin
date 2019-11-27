@@ -2,9 +2,10 @@ package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.objects.Object2ObjectRBTreeMap;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import org.gdal.ogr.DataSource;
+import org.gdal.ogr.*;
+import org.gdal.osr.CoordinateTransformation;
+import org.gdal.osr.SpatialReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,14 +17,11 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
 
-import org.gdal.ogr.*;
-import org.gdal.osr.CoordinateTransformation;
-import org.gdal.osr.SpatialReference;
-
 public class SingleCellConverter {
+    private Logger logger = Logger.getLogger(CachedAdditionalDataSources.class.getName());
+
     private final File cellFile;
     private final Path outdir;
-    private final Object2ObjectRBTreeMap<String, double[]> gridExtents;
     private final ShapeFeaturePreprocess shapePreprocessor;
     private final MMLFeaturePreprocess featurePreprocessMML;
     private final GeomUtils geomUtils;
@@ -31,7 +29,14 @@ public class SingleCellConverter {
     private final CachedAdditionalDataSources cachedDatasources;
     private final Config conf;
     private final Driver memoryd = ogr.GetDriverByName("memory");
-    Logger logger = Logger.getLogger(CachedAdditionalDataSources.class.getName());
+    private final NodeCache nodeCache;
+
+    private final String cell;
+    private final String cellWithoutLetter;
+    private final String cellLetter;
+
+    private final double[] bbox;
+
 
     private final short tyyppi_string_id;
 
@@ -56,52 +61,53 @@ public class SingleCellConverter {
     private double maxx;
     private double maxy;
 
+    private long minNodeId = 0;
+    private long maxNodeId = 0;
+
     SingleCellConverter(
             File cellFile,
             Path outdir,
-            Config conf, Object2ObjectRBTreeMap<String, double[]> gridExtents,
+            Config conf, HashMap<String, double[]> gridExtents,
             MMLFeaturePreprocess featurePreprocessMML,
             ShapeFeaturePreprocess shapePreprocessor,
             GeomUtils geomUtils,
-            FeatureIDProvider featureIDProvider, CachedAdditionalDataSources cachedDatasources) {
+            FeatureIDProvider featureIDProvider, CachedAdditionalDataSources cachedDatasources, NodeCache nodeCache) {
 
         this.cellFile = cellFile;
         this.outdir = outdir;
         this.conf = conf;
-        this.gridExtents = gridExtents;
         this.featurePreprocessMML = featurePreprocessMML;
         this.shapePreprocessor = shapePreprocessor;
         this.geomUtils = geomUtils;
         this.featureIDProvider = featureIDProvider;
         this.cachedDatasources = cachedDatasources;
+        this.nodeCache = nodeCache;
+
 
         this.stringtable = new StringTable();
         this.tyyppi_string_id = stringtable.getStringId("tyyppi");
         this.tagHandlerMML = new MMLTagHandler(stringtable);
         this.retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
         this.syvyysTagHandler = new ShapeSyvyysTagHandler(stringtable);
+
+        String cellFileName = cellFile.getName();
+        cell = cellFileName.substring(cellFileName.lastIndexOf(File.separator) + 1, cellFileName.lastIndexOf(File.separator) + 7);
+        cellWithoutLetter = cell.substring(0, cell.length() - 1);
+        cellLetter = cell.substring(cell.length() - 1);
+
+        bbox = gridExtents.get(cell);
+        logger.info(cellFileName + " (" + cell + " / " + cellWithoutLetter + " / " + cellLetter + "), extent: " + Arrays.toString(bbox));
+
     }
 
 
     void doConvert() throws IOException {
-        String cellFileName = cellFile.getName();
-        String cell = cellFileName.substring(cellFileName.lastIndexOf(File.separator) + 1, cellFileName.lastIndexOf(File.separator) + 7);
-        String cellWithoutLetter = cell.substring(0, cell.length() - 1);
-        String cellLetter = cell.substring(cell.length() - 1);
-
         OSMPBFWriter osmpbWriter = new OSMPBFWriter(outdir.resolve(String.format("%s.osm.pbf", cell)).toFile());
-
-
         osmpbWriter.startWritingOSMPBF();
-
-        logger.info(cellFileName + " (" + cell + " / " + cellWithoutLetter + " / " + cellLetter + ")");
-
-        double[] mml_extent = gridExtents.get(cell);
 
         DataSource mtkds = readOGRsource(stringtable, startReadingOGRFile("/vsizip/" + cellFile.toString()), featurePreprocessMML, tagHandlerMML, null);
         mtkds.delete();
         printCounts();
-        System.out.println(Arrays.toString(mml_extent));
 
         File cellKrkPath = new File(Paths.get(conf.getString("kiinteistorajat"), cell.substring(0, 3)).toString());
         File[] krkFiles = cellKrkPath.listFiles();
@@ -117,31 +123,23 @@ public class SingleCellConverter {
                 if ("R".equals(cellLetter) && !rightLetters.contains(krkCellLetter)) continue;
 
 
-                System.out.println(krkCell + " / " + krkCellLetter);
-                System.out.println(krkf.getAbsolutePath());
-                DataSource krkds = readOGRsource(stringtable, startReadingOGRFile("/vsizip/" + krkf.getAbsolutePath() + "/" + krkCell + "_kiinteistoraja.shp"), shapePreprocessor, tagHandlerMML, mml_extent);
+                logger.info("Adding KRK for cell " + cell + " from " + krkCell + " / " + krkCellLetter + "(" + krkf.getAbsolutePath() + ")");
+                DataSource krkds = readOGRsource(stringtable, startReadingOGRFile("/vsizip/" + krkf.getAbsolutePath() + "/" + krkCell + "_kiinteistoraja.shp"), shapePreprocessor, tagHandlerMML, bbox);
                 krkds.delete();
             }
             printCounts();
-            System.out.println(Arrays.toString(mml_extent));
         } else {
-            System.out.println("No krk exists for " + cell);
+            logger.warning("No krk exists for " + cell);
         }
-
-        nodes.clear();
-        ways.clear();
-        relations.clear();
-
 
         cachedDatasources.getDatasources()
                 .forEach(cachedDatasource -> {
-                    DataSource extds = readOGRsource(stringtable, cachedDatasource, shapePreprocessor, getTagHandlerForDatasource(cachedDatasource), mml_extent);
+                    DataSource extds = readOGRsource(stringtable, cachedDatasource, shapePreprocessor, getTagHandlerForDatasource(cachedDatasource), bbox);
                     extds.delete();
                     printCounts();
-//                    cachedDatasource.delete();
                 });
 
-        osmpbWriter.writeOSMPBFElements(stringtable, nodes, ways, relations);
+        osmpbWriter.writeOSMPBFElements(stringtable, nodes, ways, relations, minNodeId, maxNodeId);
         osmpbWriter.closeOSMPBFFile();
     }
 
@@ -193,12 +191,10 @@ public class SingleCellConverter {
             Vector<String> ignoredFields = new Vector<>();
 
             if (filterExtent != null) {
-                logger.info("Filter rect: " + Arrays.toString(filterExtent));
                 lyr.SetSpatialFilterRect(filterExtent[0], filterExtent[2], filterExtent[1], filterExtent[3]);
             }
 
             if (attributefilter != null) {
-                logger.info("Attribute filter: " + attributefilter);
                 lyr.SetAttributeFilter(attributefilter);
             }
 
@@ -227,7 +223,6 @@ public class SingleCellConverter {
             AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
             Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
 
-//            logger.info("Reading " + lyr.GetFeatureCount() + "  from " + lyr.GetName() + " on " + ds.getName());
             Stream.generate(layerFeatureStream)
                     .takeWhile(feat -> feat != null && !breakLayerLoop.get())
                     .forEach(feat -> {
@@ -240,14 +235,11 @@ public class SingleCellConverter {
                             breakLayerLoop.set(true);
                         }
                     });
-
-//            logger.info(lyr.GetFeatureCount() + " features read from " + lyr.GetName() + " on " + ds.getName());
             if (breakLayerLoop.get()) {
                 break;
             }
         }
         System.out.println("Ignored fields: " + Arrays.toString(ignored_fields.toArray()));
-        // return is.extent;
 
         return ds;
 
@@ -362,26 +354,29 @@ public class SingleCellConverter {
 
             if (!nodes.containsKey(phash)) {
                 updateCoordinateMinMax(wgspoints[i]);
+                nodeCache.ensureGrid(pcell);
 
-//                if (!nodepos.containsKey(pcell)) {
-//                    System.out.println("Adding nodepos hashmap: " + pcell);
-//                    nodepos.put(pcell, new Long2ObjectAVLTreeMap<>());
-//                }
-//
-//                if (nodepos.get(pcell).containsKey(phash)) {
-//                    n = nodepos.get(pcell).get(phash);
-//                    n.clearTags();
-//                } else {
-//                    nid = nodeidcounter;
-//                    nodeidcounter++;
-//                    n = new Node(nid, phash, pcell, wgspoints[i][0], wgspoints[i][1], !ispoint);
-//
-//                    if (this.nodeNearCellBorder(srcpoints[i])) {
-//                        nodepos.get(pcell).put(phash, n);
-//                    }
-//                }
+                Optional<Long> cachedNodeId = nodeCache.getNodeId(pcell,phash);
 
-                Node n = new Node(featureIDProvider.getNodeID(), phash, pcell, wgspoints[i][0], wgspoints[i][1], !ispoint);
+                long nodeid;
+                if (cachedNodeId.isPresent()) {
+                    nodeid = cachedNodeId.get();
+                } else {
+                    nodeid = featureIDProvider.getNodeID();
+                    if (this.nodeNearCellBorder(srcpoints[i])) {
+                        nodeCache.addNodeId(pcell, phash, nodeid);
+                    }
+                }
+
+                if (minNodeId == 0 || nodeid < minNodeId) {
+                    minNodeId = nodeid;
+                }
+
+                if (maxNodeId == 0 ||nodeid > maxNodeId) {
+                    maxNodeId = nodeid;
+                }
+
+                Node n = new Node(nodeid, phash, pcell, wgspoints[i][0], wgspoints[i][1], !ispoint);
                 nodes.put(phash, n);
                 ghr.nodes.add(n);
                 if (!ispoint) {
@@ -403,6 +398,17 @@ public class SingleCellConverter {
 
         return ghr;
 
+    }
+
+
+    private boolean nodeNearCellBorder(double[] srcpoints) {
+        double dist = this.calculateMinNodeCellBorderDistance(srcpoints[0], srcpoints[1]);
+        return Math.abs(dist) < 2;
+    }
+
+    private double calculateMinNodeCellBorderDistance(double x, double y) {
+        return Math.min(Math.abs(this.bbox[0] - x),
+                Math.min(Math.abs(this.bbox[2] - y), Math.min(Math.abs(this.bbox[1] - x), Math.abs(this.bbox[3] - y))));
     }
 
     private void updateCoordinateMinMax(double[] wgspoint) {
