@@ -15,12 +15,12 @@ services:
       - /opt/mtkdata/:/mtkdata
       - /opt/krkdata/:/krkdata
       - additional-data:/additional-data:ro
-      - converted:/convertedpbf
+      - /opt/convertedpbf:/convertedpbf
   merger:
     build: ./merge
     image: localhost:32000/mtk2garmin-merger
     volumes:
-      - converted:/convertedpbf
+      - /opt/convertedpbf:/convertedpbf
       - additional-data:/additional-data:ro
   osxconverter:
     build: ../garminOSXConverter
@@ -32,6 +32,10 @@ services:
   mkgmap:
     image: teemupel/mkgmap
     build: ../mkgmap-converter
+    volumes:
+      - /opt/convertedpbf:/convertedpbf
+      - /opt/splitted:/splitted
+      - /opt/output:/output
 
 volumes:
   additional-data:

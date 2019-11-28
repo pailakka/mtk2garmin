@@ -6,12 +6,12 @@ description=MTK Suomi - Koko maa
 check-styles
 country-name=Finland
 country-abbr=FI
-max-jobs=6
+max-jobs=12
 keep-going
 drive-on=right
 show-profiles=1
 draw-priority=25
-output-dir=mtkgarmin
+output-dir=/output/mtkgarmin
 family-id=801
 family-name=MTK Suomi
 series-name=MTK Suomi
