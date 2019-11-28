@@ -1,8 +1,4 @@
 import os
-import pprint
-import sys
-import subprocess
-import json
 
 basepath = '/convertedpbf'
 infiles = [fn for fn in os.listdir(basepath) if len(
@@ -26,12 +22,12 @@ def createCommandList(filelist, k):
     cmd = []
     for i, fn in enumerate(filelist):
         if i == 0:
-            ocmd = './osmconvert %s' % os.path.join(basepath,fn)
+            ocmd = './osmconvert %s' % os.path.join(basepath, fn)
         else:
-            ocmd = './osmconvert - %s' % os.path.join(basepath,fn)
+            ocmd = './osmconvert - %s' % os.path.join(basepath, fn)
 
         if i == len(filelist) - 1:
-            ocmd += ' -o=%s' % os.path.join(basepath,'%s.osm.pbf' % k)
+            ocmd += ' -o=%s' % os.path.join(basepath, '%s.osm.pbf' % k)
         else:
             ocmd += ' --out-o5m'
 
@@ -50,7 +46,7 @@ open('merge_all2.sh', 'w+').close()
 open('merge_all3.sh', 'w+').close()
 open('merge_all4.sh', 'w+').close()
 for k3 in g3:
-    #f = open('suomi/merge_%s.bat' % k3[:1],'a+')
+    # f = open('suomi/merge_%s.bat' % k3[:1],'a+')
 
     print('###')
     for k2 in (k for k in g2 if k.startswith(k3)):
