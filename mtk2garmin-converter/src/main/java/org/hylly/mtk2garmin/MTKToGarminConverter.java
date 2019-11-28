@@ -83,11 +83,13 @@ class MTKToGarminConverter {
 
         initializeCachedDatasources();
 
+        String areaFilter = conf.hasPath("areaFilter") ? conf.getString("areaFilter") : null;
+
         areas
                 .entrySet()
                 .stream()
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .filter(e -> e.getKey().startsWith("L4"))
+                .filter(e -> areaFilter == null ||e.getKey().startsWith(areaFilter))
                 .forEach(areaEntry -> {
                     String areaKey = areaEntry.getKey();
                     List<File> areaCells = areaEntry.getValue();
