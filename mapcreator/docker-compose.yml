@@ -9,7 +9,7 @@ services:
   mapsforge:
     image: teemupel/mapsforge
   mtk2garmin-converter:
-    image: teemupel/mtk2garmin-converter
+    image: teemupel/mtk2garmin-converter:dockerize_converter
     volumes:
       - ./mtk2garmin.conf:/opt/mtk2garmin/mtk2garmin.conf
       - /opt/mtkdata/:/mtkdata

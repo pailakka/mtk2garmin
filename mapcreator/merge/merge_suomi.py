@@ -31,7 +31,7 @@ def createCommandList(filelist, k):
             ocmd = './osmconvert - %s' % os.path.join(basepath,fn)
 
         if i == len(filelist) - 1:
-            ocmd += ' -o=%s' %  % os.path.join(basepath,'%s.osm.pbf' % k)
+            ocmd += ' -o=%s' % os.path.join(basepath,'%s.osm.pbf' % k)
         else:
             ocmd += ' --out-o5m'
 
@@ -60,24 +60,24 @@ for k3 in g3:
             print('1', cmd1)
             f = open('merge_all1.sh', 'a+')
             f.write('|'.join(cmd1))
-            f.write('; ')
-            f.write('rm -f %s' % ' '.join((os.path.join(basepath,f) for f in g1[k1])))
+            # f.write('; ')
+            # f.write('rm -f %s' % ' '.join((os.path.join(basepath,f) for f in g1[k1])))
             f.write('\n')
             f.close()
         cmd2 = createCommandList(['%s.osm.pbf' % fn for fn in g2[k2]], k2)
         print('2', cmd2)
         f = open('merge_all2.sh', 'a+')
         f.write('|'.join(cmd2))
-        f.write('; ')
-        f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g2[k2])))
+        # f.write('; ')
+        # f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g2[k2])))
         f.write('\n')
         f.close()
     cmd3 = createCommandList(['%s.osm.pbf' % fn for fn in g3[k3]], k3)
     print('3', cmd3)
     f = open('merge_all3.sh', 'a+')
     f.write('|'.join(cmd3))
-    f.write('; ')
-    f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g3[k3])))
+    # f.write('; ')
+    # f.write('rm -f %s' % ' '.join((os.path.join(basepath,'%s.osm.pbf' % f) for f in g3[k3])))
     f.write('\n')
 
     f.close()
