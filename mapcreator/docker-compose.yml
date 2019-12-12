@@ -8,6 +8,12 @@ services:
       - /opt/krkdata/:/krkdata
   mapsforge:
     image: teemupel/mapsforge
+    volumes:
+      - /opt/convertedpbf:/convertedpbf
+      - mapstyle:/mapstyles
+      - /opt/output:/output
+    environment:
+      - JAVACMD_OPTIONS=-Xmx50G
   mtk2garmin-converter:
     image: teemupel/mtk2garmin-converter:dockerize_converter
     volumes:
@@ -25,6 +31,8 @@ services:
   osxconverter:
     build: ../garminOSXConverter
     image: localhost:32000/osxconverter
+    volumes:
+      - /opt/output:/output
   additional-data:
     image: localhost:32000/mtk2garmin-additional-data:latest
     volumes:
@@ -36,7 +44,30 @@ services:
       - /opt/convertedpbf:/convertedpbf
       - /opt/splitted:/splitted
       - /opt/output:/output
-
+      - mapstyle:/mapstyles
+  mapstyles:
+    image: teemupel/mtk2garmin-mapstyles
+    build: ../mapstyles
+    volumes:
+      - mapstyle:/mapstyles
+  nsis:
+    image: wheatstalk/makensis
+    volumes:
+      - /opt/output:/output
+  site:
+    build: ../site
+    image: localhost:32000/mtk2garmin-site
+    volumes:
+      - site:/site
+  publish:
+    build: ./publish
+    image: localhost:32000/mtk2garmin-publish
+    volumes:
+      - site:/site
+      - /opt/output:/output
+      - mapstyle:/mapstyles
 volumes:
   additional-data:
+  mapstyle:
   converted:
+  site:

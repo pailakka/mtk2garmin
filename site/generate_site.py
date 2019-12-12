@@ -1,13 +1,11 @@
-import sys
-import boto3
-import os
-from collections import OrderedDict
-import hashlib
-import time
-import humanfriendly
 import datetime
+import hashlib
+import os
+import sys
+import time
+from collections import OrderedDict
 
-from pushover import Client
+import humanfriendly
 
 path = sys.argv[1]
 date = os.path.basename(path)
@@ -96,6 +94,7 @@ release_files = OrderedDict((
 
     })
 ))
+
 
 # ('peruskartta_v3.zip', {
 #     'type': 'mapsforge_style',
@@ -218,13 +217,6 @@ with open(os.path.join(path, 'site.html'), 'w+') as f:
                             <td><code>%(hash)s</code></td>
                         </tr>''' % rf)
     f.write(footer % {'changes': changes, 'date': date})
-
-    Client(config_path="/opt/.pushoverrc").send_message(
-        ("http://jekku.hylly.org/kartat/%s/site.html\nhttp://kartat.hylly.org\n" % (date)) + (
-                    "mtk_garmin.img: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.img']))
-        + ("mtk_garmin.map: %(updated)s / %(size_text)s\n" % (release_files['mtk_suomi.map'])),
-        title="mtk2garmin published")
-
     print("site.html written")
 
 print("Publish done!")

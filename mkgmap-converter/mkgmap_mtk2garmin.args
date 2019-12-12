@@ -1,7 +1,7 @@
 verbose
 latin1
 remove-short-arcs
-style-file=mtk2garmin_style
+style-file=/mapstyles/mtk2garmin_style
 description=MTK Suomi - Koko maa
 check-styles
 country-name=Finland
