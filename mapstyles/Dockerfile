@@ -10,4 +10,5 @@ RUN find /mapstyles
 
 FROM alpine:latest as container
 WORKDIR /mapstyles
-COPY --from=builder /mapstyles .
+COPY --from=builder /mapstyles /mapstyles
+RUN find /mapstyles

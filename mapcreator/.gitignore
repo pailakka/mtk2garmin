@@ -1,1 +1,2 @@
-mmlclient.toml
+*.env
+.env

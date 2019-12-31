@@ -9,6 +9,12 @@ cp Tiekartta.xml /mapstyles/mapsforge_peruskartta
 cp mml_tag-mapping_tidy.xml /mapstyles/mapsforge_peruskartta
 cp -r mml /mapstyles/mapsforge_peruskartta
 
+7za a peruskartta.zip Peruskartta.xml mml
+7za a tiekartta.zip Tiekartta.xml mml
+
+cp peruskartta.zip /mapstyles/peruskartta.zip
+cp tiekartta.zip /mapstyles/tiekartta.zip
+
 cd ..
 
 cp -r mtk2garmin_style /mapstyles

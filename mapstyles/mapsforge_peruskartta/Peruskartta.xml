@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rendertheme xmlns="http://mapsforge.org/renderTheme"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://mapsforge.org/renderTheme https://raw.githubusercontent.com/mapsforge/mapsforge/master/resources/renderTheme.xsd"
+             version="5" map-background="#FFFFFF">
+    <stylemenu id="r4menu" defaultvalue="parcelsno" defaultlang="fi">
+
+        <layer id="parcelsyes" visible="true">
+            <name lang="en" value="Parcels"/>
+            <name lang="fi" value="Kiinteistorajat"/>
+            <cat id="parcels"/>
+        </layer>
+
+        <layer id="parcelsno" visible="true">
+            <name lang="en" value="No parcels"/>
+            <name lang="fi" value="Ei kiinteistorajoja"/>
+        </layer>
+    </stylemenu>
+
+
+    <rule e="way" k="tyyppi" v="tieviiva">
+        <pathText k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4"
+                  display="always" priority="2" repeat-gap="500"/>
+        <pathText k="ref" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4"
+                  repeat-gap="1000" display="always" priority="1" repeat-start="50"/>
+    </rule>
+
+    <rule e="any" k="kohdeluokka" v="32101" zoom-min="14"> <!--Maa-aineksenottoalueen nimi -->
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="32201" zoom-min="14"> <!-- Hautausmaan nimi -->
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="32301" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="32401" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="32501" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="32901" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="33001" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="33101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="34601" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="34901" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35010" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35020" zoom-min="12">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35030" zoom-min="12">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35040" zoom-min="12">
+        <caption priority="50" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2" display="always"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35050" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35060" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35070" zoom-min="12">
+        <caption priority="10" k="name" font-style="bold" font-size="14" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35080" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35090" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="35101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36201" zoom-min="12"> <!-- Vakaveden nimi -->
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36301" zoom-min="12"> <!-- Virtaveden nimi -->
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36410" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36420" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="36490" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="38201" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="38501" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="38901" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="44901" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="48111">
+        <caption display="always" priority="500" k="name" font-style="bold" font-size="17" fill="#000000"
+                 stroke="#FFFFFF" stroke-width="10"/>
+    </rule>
+
+    <rule e="any" k="kohdeluokka" v="48112">
+        <caption display="always" priority="400" k="name" font-size="17" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="5"/>
+    </rule>
+
+    <rule e="any" k="kohdeluokka" v="48120" zoom-min="10">
+        <caption priority="100" k="name" font-style="bold" font-size="13" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="5"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="48130" zoom-min="11">
+        <caption priority="50" k="name" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="48190" zoom-min="12">
+        <caption priority="40" k="name" font-size="12" fill="#000000" stroke="#FFFFFF" stroke-width="4"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="72303" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="72403" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="jarvi|meri|virtavesialue">
+        <area fill="#80ffff" stroke="#80ffff" stroke-width="0.0"/>
+    </rule>
+
+    <!--  39110 Avoin metsamaa -->
+    <rule e="any" k="kohdeluokka" v="39110" zoom-min="14">
+        <area src="file:/mml/avometsa2.svg" fill="#ff0000" symbol-width="5" symbol-height="5"/>
+    </rule>
+
+    <!--  39120 Varvikko -->
+    <rule e="any" k="kohdeluokka" v="39120" zoom-min="12">
+        <area src="file:/mml/varvikko.png" symbol-width="5" symbol-height="5"/>
+    </rule>
+
+
+    <!--  34700 Kivikko ja 38600 vesikivikko -->
+    <rule e="any" k="tyyppi" v="kivikko|vesikivikko" zoom-min="14">
+        <area src="file:/mml/Pkivikko_0_0_0_100.svg" symbol-width="200" symbol-height="200"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="hautausmaa" zoom-min="12">
+        <area fill="#80ff80" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="puisto" zoom-min="13">
+        <area fill="#b3ff66" stroke="#b3ff66" stroke-width="0.1"/>
+    </rule>
+
+
+    <rule e="way" k="kohdeluokka" v="32611" zoom-min="12">
+        <area fill="#ffd980" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="32612" zoom-min="13">
+        <area fill="#ffd980" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="urheilujavirkistysalue" zoom-min="12">
+        <area fill="#e6ff80" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="kallioalue" zoom-min="14">
+        <area fill="#D1C7D1" stroke="#D1C7D1" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="node" k="kohdeluokka" v="34100" zoom-min="14">
+        <circle radius="2" scale-radius="true" fill="#D1C7D1"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="niitty" zoom-min="12">
+        <area fill="#fff266" stroke="#fff266" stroke-width="0.2"/>
+    </rule>
+
+
+    <rule e="way" k="kohdeluokka" v="32111" zoom-min="12">
+        <area fill="#ffffd9" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="32112" zoom-min="12">
+        <area fill="#e6cc80" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="32113" zoom-min="12">
+        <area fill="#cfb873" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="kaatopaikka" zoom-min="12">
+        <area fill="#ffffd9" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="louhos" zoom-min="12">
+        <area src="file:/mml/Pkivikko_0_0_0_60.svg" fill="#ffffd9" stroke="#000000" stroke-width="0.2"
+              symbol-width="150" symbol-height="150"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="hietikko" zoom-min="12">
+        <area fill="#ffff66" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="varastoalue" zoom-min="12">
+        <area fill="#f3f3e6" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="soistuma" zoom-min="12">
+        <area fill="#e6f5f5" stroke="#e6f5f5" stroke-width="0.5"/>
+    </rule>
+
+    <!--  35411 suo helppokulkuinen puuton eli avoin -->
+    <rule e="way" k="kohdeluokka" v="35411" zoom-min="12">
+        <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.5"/>
+    </rule>
+
+
+    <!-- 35412 suo helppokulkuinen metsaa kasvaa -->
+    <rule e="way" k="kohdeluokka" v="35412" zoom-min="12">
+        <area fill="#c7ebeb" stroke="#c7ebeb" stroke-width="0.5"/>
+    </rule>
+
+    <!--  35421 suo vaikeakulkuinen, puuton eli avoin -->
+    <rule e="way" k="kohdeluokka" v="35421" zoom-min="12">
+        <area fill="#d1cc40" stroke="#d1cc40" stroke-width="0.5"/>
+        <area src="file:/mml/suo_vaikea.svg" symbol-width="20" symbol-height="6"/>
+    </rule>
+
+
+    <!-- 35422 suo vaikeakulkuinen metsaa kasvaa -->
+    <rule e="way" k="kohdeluokka" v="35422" zoom-min="12">
+        <area fill="#C7EBEB" stroke="#C7EBEB" stroke-width="0.5"/>
+        <area src="file:/mml/suo_vaikea.svg" symbol-width="20" symbol-height="6"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="allas" zoom-min="12">
+        <area fill="#80ffff" stroke="#80ffff" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 39130 Avoin vesijatto -->
+    <rule e="way" k="kohdeluokka" v="39130" zoom-min="12">
+        <area fill="#ffff40" stroke="#ffff40" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 38400 Tulva-alue -->
+    <rule e="way" k="kohdeluokka" v="38400" zoom-min="12">
+        <area src="file:/mml/Phko_100_50_0_0.svg" symbol-width="400" symbol-height="400"/>
+    </rule>
+
+    <!-- 38300 Maatuva vesialue -->
+    <rule e="way" k="kohdeluokka" v="38300" zoom-min="12">
+        <area fill="#b3ffff" stroke="#b3ffff" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 32421 Autoliikennealue -->
+    <rule e="way" k="tyyppi" v="autoliikennealue" zoom-min="12">
+        <area fill="#ffb280" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32411 lentokentan kiitotie paallystetty -->
+    <rule e="way" k="kohdeluokka" v="32411">
+        <area fill="#f26161" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32412 lentokentan kiitotie paallystamaton -->
+    <rule e="way" k="kohdeluokka" v="32412">
+        <area fill="#ff7f66" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32413 muu lentokenttaalue (nurmikot ym. alueet) -->
+    <rule e="way" k="kohdeluokka" v="32413">
+        <area fill="#ffff8c" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32415 muu lentokenttaalue paallystetty -->
+    <rule e="way" k="kohdeluokka" v="32415">
+        <area fill="#ffff8c" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32416 muu lentokenttaalue paallystamaton -->
+    <rule e="way" k="kohdeluokka" v="32416">
+        <area fill="#ffff8c" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32414 muu lentoliikennealue -->
+    <rule e="way" k="kohdeluokka" v="32414">
+        <area fill="#ffe680" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32417 muu lentoliikennealue paallystetty -->
+    <rule e="way" k="kohdeluokka" v="32417">
+        <area fill="#ffe680" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!-- 32418 muu lentoliikennealue paallystamaton -->
+    <rule e="way" k="kohdeluokka" v="32418">
+        <area fill="#ffe680" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="14">
+        <line stroke="#ab5700" stroke-width="0.2" stroke-linecap="square"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="syvyyskayra|syvyyskayra_v" zoom-min="14">
+        <line stroke="#0080ff" stroke-width="0.2" stroke-linecap="square"/>
+    </rule>
+
+    <rule e="any" k="tyyppi" v="syvyyspiste|syvyyspiste_p" zoom-min="14">
+        <caption priority="10" k="ele" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF"
+                 stroke-width="1"/>
+        <caption priority="10" k="name" font-style="bold" font-size="11" fill="#0080ff" stroke="#FFFFFF"
+                 stroke-width="1"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="taytemaa" zoom-min="12">
+        <line stroke="#ffffd9" stroke-width="0.2" stroke-linecap="square"/>
+    </rule>
+
+
+    <!-- polku -->
+    <rule e="way" k="highway" v="path|footway|trail" zoom-min="13">
+        <line stroke="#0000ff" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="kohdeluokka" v="12313" zoom-min="13">
+        <line stroke="#000000" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="luontopolut" zoom-min="13">
+        <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="ulkoilureititline" zoom-min="13">
+        <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="kesaretkeilyreititline" zoom-min="13">
+        <line stroke="#ff0000" stroke-width="0.4" stroke-dasharray="4,2" stroke-linecap="butt"/>
+    </rule>
+
+
+    <rule e="way" k="kohdeluokka" v="12314" zoom-min="13">
+        <line stroke="#000000" stroke-width="0.4" stroke-dasharray="24,4" stroke-linecap="butt"/>
+    </rule>
+
+    <!-- ajopolku -->
+    <rule e="way" k="highway" v="track" zoom-min="12">
+        <line stroke="#0000ff" stroke-width="0.6" stroke-dasharray="14,5" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="kohdeluokka" v="12316" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.6" stroke-dasharray="14,5" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="tunnel" v="~">
+        <rule e="way" k="bridge" v="~">
+            <rule e="way" k="kohdeluokka" v="12111">
+                <line stroke="#000000" stroke-width="3" stroke-linecap="butt"/>
+                <line stroke="#40C000" stroke-width="2.5" stroke-linecap="butt"/>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="20,20"/>
+                </rule>
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="12112">
+                <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+                <line stroke="#FFCC00" stroke-width="2" stroke-linecap="butt"/>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="butt" stroke-dasharray="20,20"/>
+                </rule>
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="12121">
+                <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+                <rule e="way" k="paallyste" v="~">
+                    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="paallyste" v="0|1">
+                    <line stroke="#BF9D00" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="15,20"/>
+                </rule>
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="12122">
+                <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+                <rule e="way" k="paallyste" v="~">
+                    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="paallyste" v="0|1">
+                    <line stroke="#BF9D00" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
+                </rule>
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
+                <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
+                <rule e="way" k="paallyste" v="~">
+                    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="paallyste" v="0|1">
+                    <line stroke="#BF9D00" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20"/>
+                </rule>
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="12132" zoom-min="12">
+                <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
+                <rule e="way" k="paallyste" v="~">
+                    <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="paallyste" v="0|1">
+                    <line stroke="#BF9D00" stroke-width="1.25" stroke-linecap="butt"/>
+                </rule>
+                <rule e="way" k="valmiusaste" v="1|2|3">
+                    <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="butt" stroke-dasharray="20,20"/>
+                </rule>
+            </rule>
+        </rule>
+        <rule e="way" k="tyyppi" v="rautatie">
+            <line stroke="#000000" stroke-width="1" stroke-linecap="butt"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="14111">
+            <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="14112|14131|14121">
+            <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt"/>
+        </rule>
+
+    </rule>
+    <rule e="way" k="tunnel" v="yes">
+
+        <rule e="way" k="kohdeluokka" v="12111">
+            <line stroke="#6c6c6c" stroke-width="3" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12112">
+            <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12121">
+            <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12122">
+            <line stroke="#6c6c6c" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12131">
+            <line stroke="#6c6c6c" stroke-width="1.75" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12132">
+            <line stroke="#6c6c6c" stroke-width="1.75" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+
+        <rule e="way" k="tyyppi" v="rautatie">
+            <line stroke="#6c6c6c" stroke-width="1" stroke-linecap="butt" stroke-dasharray="15,15"/>
+        </rule>
+        <!--
+            <rule e="way" k="kohdeluokka" v="14111">
+                <line stroke="#99ffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+            </rule>
+
+            <rule e="way" k="kohdeluokka" v="14112|14131|14121">
+                <line stroke="#ffffff" stroke-width="0.5" stroke-dasharray="15,15" stroke-linecap="butt" />
+            </rule>
+        -->
+    </rule>
+
+
+    <rule e="way" k="bridge" v="yes">
+        <rule e="way" k="kohdeluokka" v="12111">
+            <line stroke="#000000" stroke-width="3" stroke-linecap="butt"/>
+            <line stroke="#2D8700" stroke-width="2.5" stroke-linecap="butt"/>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="butt" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12112">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+            <line stroke="#C9A100" stroke-width="2" stroke-linecap="butt"/>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12121">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt"/>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12122">
+            <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
+            <line stroke="#8C0000" stroke-width="2" stroke-linecap="butt"/>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
+            <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+
+        <rule e="way" k="kohdeluokka" v="12132" zoom-min="12">
+            <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
+            <rule e="way" k="paallyste" v="~">
+                <line stroke="#8C0000" stroke-width="1.25" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="paallyste" v="0|1">
+                <line stroke="#7B6500" stroke-width="1.25" stroke-linecap="butt"/>
+            </rule>
+            <rule e="way" k="valmiusaste" v="1|2|3">
+                <line stroke="#FFFFFF" stroke-width="1.25" stroke-linecap="square" stroke-dasharray="20,20"/>
+            </rule>
+        </rule>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12141" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.6" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="kohdeluokka" v="12200" zoom-min="12">
+        <line stroke="#ab5700" stroke-width="0.5" stroke-linecap="butt"/>
+    </rule>
+    <rule e="way" k="kohdeluokka" v="12312" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.5" stroke-dasharray="16,4" stroke-linecap="butt"/>
+    </rule>
+
+
+    <rule e="way" k="kohdeluokka" v="12151" zoom-min="12">
+        <line stroke="#cc4d00" stroke-width="0.5" stroke-dasharray="35,30" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="12152" zoom-min="12">
+        <line stroke="#cc4d00" stroke-width="0.5" stroke-dasharray="35,30" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="16511">
+        <line stroke="#1b3560" stroke-width="0.4"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="16512">
+        <line stroke="#1b3560" stroke-width="0.4" stroke-dasharray="5,10" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="16521">
+        <line stroke="#1b3560" stroke-width="0.4" stroke-dasharray="5,10" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="16522">
+        <line stroke="#1b3560" stroke-width="0.2" stroke-dasharray="4,30" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="45111">
+        <line stroke="#000000" stroke-width="0.5" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="45112">
+        <line stroke="#000000" stroke-width="0.8" stroke-linecap="butt"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="36311" zoom-min="15">
+        <line stroke="#118AED" stroke-width="0.3" stroke-linecap="square"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka"
+          v="84112|84113|84114|84115"> <!-- Kuntaraja ja kaymaton ja Maakuntaraja ja laaniraja-->
+        <line stroke="#4d00ff" stroke-width="1" stroke-dasharray="20,8,3,8" stroke-linecap="round"/>
+    </rule>
+
+    <rule e="way" k="kohdeluokka" v="82300|84111|82100"> <!-- 82100 Aluemeren ulkoraja -->
+        <line stroke="#4d00ff" stroke-width="1" stroke-dasharray="40,15" stroke-linecap="round"/>
+    </rule>
+
+    <rule e="way" k="tyyppi" v="rajavyohykkeentakaraja"> <!-- rajavyohykkeentakaraja -->
+        <line stroke="#4d00ff" stroke-width="1.5" stroke-dasharray="2,5" stroke-linecap="butt"/>
+    </rule>
+
+    <rule cat="parcels" e="way" k="tyyppi" v="kiinteistoraja"> <!-- kiinteistoraja -->
+        <line stroke="#ff0000" stroke-width="0.3" stroke-linecap="butt"/>
+    </rule>
+
+
+    <rule e="way" k="kohdeluokka" v="36312" zoom-min="14">
+        <line stroke="#118AED" stroke-width="0.4" stroke-linecap="butt"/>
+    </rule>
+
+    <!--  42210 42211 42212 asuinrakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42210|42211|42212" zoom-min="14">
+        <area fill="#333333" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <!--  42220 42221 42222 liike tai julkinen rakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42220|42221|42222" zoom-min="13">
+        <area fill="#ff33ff" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 42230 42231 42232 lomarakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42230|42231|42232" zoom-min="14">
+        <area fill="#00ff80" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 422340 42241 42242 teollinen rakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42240|42241|42242" zoom-min="13">
+        <area fill="#997399" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+    <!-- 42270 42250 42251 42252 kirkollinen rakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42270|42250|42251|42252" zoom-min="13">
+        <area fill="#997399" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+    <!-- 42260 42261 42262 muu rakennus alue -->
+    <rule e="way" k="kohdeluokka" v="42260|42261|42262" zoom-min="14">
+        <area fill="#cccccc" stroke="#000000" stroke-width="0.2"/>
+    </rule>
+
+
+    <!--  38200 Koski -->
+    <rule e="way" k="tyyppi" v="koski" zoom-min="15">
+        <line stroke="#f2ffff" stroke-width="2" stroke-dasharray="1,20" stroke-linecap="round"/>
+    </rule>
+
+
+    <!--  22311 sahkolinja, suurjannite  -->
+    <rule e="way" k="kohdeluokka" v="22311">
+        <line stroke="#000000" stroke-width="0.7" stroke-linecap="round"/>
+    </rule>
+
+    <!-- 22392 Suurjännitelinjan pylväs -->
+    <rule e="any" k="kohdeluokka" v="22392" zoom-min="14">
+        <circle radius="3" scale-radius="false" fill="#000000"/>
+    </rule>
+
+
+    <!-- 22392 Ilmaradan pylväs -->
+    <rule e="any" k="kohdeluokka" v="44591" zoom-min="15">
+        <circle radius="2" scale-radius="false" fill="#000000"/>
+    </rule>
+
+
+    <!--  26111 kasujohto, pinnan alla -->
+    <rule e="way" k="kohdeluokka" v="26111|26112|26113|26114|26115|26116|26117">
+        <line stroke="#000000" stroke-width="0.5" stroke-dasharray="50,25" stroke-linecap="round"/>
+    </rule>
+
+
+    <!-- 44800 masto -->
+    <rule e="any" k="kohdeluokka" v="44800" zoom-min="11">
+        <symbol src="file:/mml/Smasto.svg" symbol-width="10" symbol-height="17"/>
+    </rule>
+
+
+    <!-- 45200 Portti -->
+    <rule e="any" k="kohdeluokka" v="45200" zoom-min="14">
+        <symbol src="file:/mml/Sportti.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+    <!-- 45710 Tulentekopaikka -->
+
+    <rule e="any" k="kohdeluokka" v="45710" zoom-min="14">
+        <symbol src="file:/mml/Stuli.svg" symbol-width="20" symbol-height="20"/>
+    </rule>
+
+    <!-- 12200 Esterakennelma -->
+    <rule e="any" k="kohdeluokka" v="12200" zoom-min="12">
+        <symbol src="file:/mml/Sesterak.svg" symbol-width="15" symbol-height="8"/>
+    </rule>
+
+
+    <!--  22100 Muuntaja -->
+    <rule e="any" k="kohdeluokka" v="22100" zoom-min="12">
+        <circle radius="1" stroke="#000000" stroke-width="0.5" fill="#FFFFFF" scale-radius="true"/>
+    </rule>
+
+    <!--  34200 Harva louhikko -->
+    <rule e="any" k="kohdeluokka" v="34200" zoom-min="14">
+        <symbol src="file:/mml/Slo_Slo.svg" symbol-width="4" symbol-height="4"/>
+    </rule>
+
+
+    <!--  45300 Savupiippu -->
+    <rule e="any" k="kohdeluokka" v="45300" zoom-min="12">
+        <circle radius="1" stroke="#000000" stroke-width="0.3" scale-radius="true" fill="#FFFFFF"/>
+        <!--<symbol src="file:/mml/Ssp.svg" symbol-width="8" symbol-height="8"/>-->
+    </rule>
+
+    <!--  45500 Tuulivoimala -->
+    <rule e="any" k="kohdeluokka" v="45500" zoom-min="12">
+        <symbol src="file:/mml/Stvoimala.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+    <!--  44700 lahestymisvalo -->
+    <rule e="any" k="kohdeluokka" v="44700" zoom-min="12">
+        <symbol src="file:/mml/Seste.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+    <!--  34600 Kivi -->
+    <rule e="any" k="kohdeluokka" v="34600" zoom-min="14">
+        <symbol src="file:/mml/Skivi.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+    <!--  32710 Havumets -->
+    <rule e="any" k="kohdeluokka" v="32710" zoom-min="15">
+        <symbol src="file:/mml/Shm.svg" symbol-width="5" symbol-height="11"/>
+    </rule>
+
+    <!--  32713 lehtimetsa -->
+    <rule e="any" k="kohdeluokka" v="32713" zoom-min="15">
+        <symbol src="file:/mml/Slm.svg" symbol-width="5" symbol-height="5"/>
+    </rule>
+
+    <!--  32714 sekametsa -->
+    <rule e="any" k="kohdeluokka" v="32714" zoom-min="15">
+        <symbol src="file:/mml/Ssm.svg" symbol-width="5" symbol-height="12"/>
+    </rule>
+
+
+    <!-- 38100 Kaislikko -->
+    <rule e="any" k="kohdeluokka" v="38100" zoom-min="14">
+        <symbol src="file:/mml/Sksko.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 82500 Valtakunnan rajapyykki -->
+    <rule e="any" k="kohdeluokka" v="82500" zoom-min="12">
+        <symbol src="file:/mml/Svkrajapyykki.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 95300 Vesiasteikko -->
+    <rule e="any" k="kohdeluokka" v="95300" zoom-min="15">
+        <symbol src="file:/mml/Svesiasteikko.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 26191 kaasujohdon symboli -->
+    <rule e="any" k="kohdeluokka" v="26191" zoom-min="15">
+        <symbol src="file:/mml/SK.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16800 Tunnelin aukko -->
+    <rule e="any" k="kohdeluokka" v="16800" zoom-min="14">
+        <symbol src="file:/mml/STs.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 44600 Kellotapuli -->
+    <rule e="any" k="kohdeluokka" v="44600" zoom-min="14">
+        <symbol src="file:/mml/Sktli.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 44900 Muistomerkki -->
+    <rule e="any" k="kohdeluokka" v="44900" zoom-min="14">
+        <symbol src="file:/mml/SRmm.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 45000 Näkötorni -->
+    <rule e="any" k="kohdeluokka" v="45000" zoom-min="14">
+        <symbol src="file:/mml/Snt.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 45400 Tervahauta -->
+    <rule e="any" k="kohdeluokka" v="45400" zoom-min="14">
+        <symbol src="file:/mml/Stervahauta.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 45800 Vesitorni -->
+    <rule e="any" k="kohdeluokka" v="45800" zoom-min="14">
+        <symbol src="file:/mml/Svesitorni.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 32191 Eloperäinen ainessymboli -->
+    <rule e="any" k="kohdeluokka" v="32191" zoom-min="14">
+        <symbol src="file:/mml/Selop.svg" symbol-width="15" symbol-height="5"/>
+    </rule>
+
+
+    <!-- 32192 Hieno kivennäisainessymboli  -->
+    <rule e="any" k="kohdeluokka" v="32192" zoom-min="15">
+        <symbol src="file:/mml/Shkiv.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 32291 Hautausmaan symboli -->
+    <rule e="any" k="kohdeluokka" v="32291" zoom-min="15">
+        <symbol src="file:/mml/Shmr.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 32891 Niitty -->
+    <rule e="any" k="kohdeluokka" v="32891" zoom-min="15">
+        <symbol src="file:/mml/Sni.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 38991 Varastoalue -->
+    <rule e="any" k="kohdeluokka" v="38991" zoom-min="15">
+        <symbol src="file:/mml/Svar.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 72310 Rauhoitettu kivi -->
+    <rule e="any" k="kohdeluokka" v="72310" zoom-min="14">
+        <symbol src="file:/mml/Skivi.svg" symbol-width="13" symbol-height="13"/>
+    </rule>
+
+
+    <!-- 72320 Rauhoitettu puu -->
+    <rule e="any" k="kohdeluokka" v="72320" zoom-min="14">
+        <symbol src="file:/mml/Spuu.svg" symbol-width="13" symbol-height="13"/>
+    </rule>
+
+
+    <!-- 72330 Muinaisjäännös -->
+    <rule e="any" k="kohdeluokka" v="72330" zoom-min="14">
+        <symbol src="file:/mml/SMjs.svg" symbol-width="10" symbol-height="14"/>
+    </rule>
+
+
+    <!-- 72340 Muu rauhoitettu kohde -->
+    <rule e="any" k="kohdeluokka" v="72340" zoom-min="14">
+        <symbol src="file:/mml/SRmuu.svg" symbol-width="13" symbol-height="13"/>
+    </rule>
+
+
+    <!-- 34900 Merkittävä luontokohde -->
+    <rule e="any" k="kohdeluokka" v="34900" zoom-min="14">
+        <symbol src="file:/mml/Smluontokohde.svg" symbol-width="13" symbol-height="13"/>
+    </rule>
+
+
+    <!-- 35100 Puu -->
+    <rule e="any" k="kohdeluokka" v="35100" zoom-min="14">
+        <symbol src="file:/mml/Spuu.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 36100 Lähde -->
+    <rule e="any" k="kohdeluokka" v="36100" zoom-min="14">
+        <symbol src="file:/mml/Slahde.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+    <rule e="any" k="cat_id" v="2413" zoom-min="14">
+        <symbol src="file:/mml/Slahde.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+    <!-- 36400 Vesikuoppa -->
+    <rule e="any" k="kohdeluokka" v="36400" zoom-min="14">
+        <symbol src="file:/mml/Svesikuoppa.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 26200 Vedenottamo mustavalkoinen -->
+    <rule e="any" k="kohdeluokka" v="26200" zoom-min="14">
+        <symbol src="file:/mml/Svo.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 32715 Varvikko -->
+    <rule e="any" k="kohdeluokka" v="32715" zoom-min="14">
+        <symbol src="file:/mml/Svarvikko.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 32719 Pensaikko -->
+    <rule e="any" k="kohdeluokka" v="32719" zoom-min="15">
+        <symbol src="file:/mml/Spensaikko.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 38511 Vesikivi vedenalainen -->
+    <rule e="any" k="kohdeluokka" v="38511" zoom-min="14">
+        <symbol src="file:/mml/Skiva.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 38512 Vesikivi, keskiveden pinnassa -->
+    <rule e="any" k="kohdeluokka" v="38512" zoom-min="14">
+        <symbol src="file:/mml/Skivt.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 38513 Vesikivi, vedenpäällinen -->
+    <rule e="any" k="kohdeluokka" v="38513" zoom-min="14">
+        <symbol src="file:/mml/Skivi.svg" symbol-width="8" symbol-height="8"/>
+    </rule>
+
+
+    <!-- 38800 Uittolaite -->
+    <rule e="any" k="kohdeluokka" v="38800" zoom-min="15">
+        <symbol src="file:/mml/Suitto.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+    <!-- 16600 Ankkuripaikka -->
+    <rule e="any" k="kohdeluokka" v="16600" zoom-min="15">
+        <symbol src="file:/mml/Sankkuri.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16712 Hylky pinnalla -->
+    <rule e="any" k="kohdeluokka" v="16712" zoom-min="15">
+        <symbol src="file:/mml/Shylky.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16721 Hylky, syvyys tuntematon -->
+    <rule e="any" k="kohdeluokka" v="16721" zoom-min="15">
+        <symbol src="file:/mml/Shylkytuntemat.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16722 Hylky, syvyys tunnettu -->
+    <rule e="any" k="kohdeluokka" v="16722" zoom-min="15">
+        <symbol src="file:/mml/Shylkytunnettu.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16121 Kummeli -->
+    <rule e="any" k="kohdeluokka" v="16121" zoom-min="15">
+        <symbol src="file:/mml/SKum.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16122 Tunnusmajakka -->
+    <rule e="any" k="kohdeluokka" v="16122" zoom-min="15">
+        <symbol src="file:/mml/STmaja.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16126 Merimajakka -->
+    <rule e="any" k="kohdeluokka" v="16126" zoom-min="15">
+        <symbol src="file:/mml/SMaja.svg" symbol-width="10" symbol-height="10"/>
+    </rule>
+
+
+    <!-- 16120 Linjamerkki -->
+    <rule e="any" k="kohdeluokka" v="16120" zoom-min="15">
+        <symbol src="file:/mml/SLm_SLm.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16124 Loisto -->
+    <rule e="any" k="kohdeluokka" v="16124" zoom-min="15">
+        <symbol src="file:/mml/SLo.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16125 Linjaloisto -->
+    <rule e="any" k="kohdeluokka" v="16125" zoom-min="15">
+        <symbol src="file:/mml/SLl.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16127 Tutkamerkki -->
+    <rule e="any" k="kohdeluokka" v="16127" zoom-min="15">
+        <symbol src="file:/mml/Stutkamerkki.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16128 Valaistu tutkamerkki -->
+    <rule e="any" k="kohdeluokka" v="16128" zoom-min="15">
+        <symbol src="file:/mml/Svaltutkamerkki.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16141 Merimerkki, vasen -->
+    <rule e="any" k="kohdeluokka" v="16141" zoom-min="15">
+        <symbol src="file:/mml/SVvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16142 Merimerkki, oikea -->
+    <rule e="any" k="kohdeluokka" v="16142" zoom-min="15">
+        <symbol src="file:/mml/SVoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16143 Merimerkki, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16143" zoom-min="15">
+        <symbol src="file:/mml/SVpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16144 Merimerkki, etelä -->
+    <rule e="any" k="kohdeluokka" v="16144" zoom-min="15">
+        <symbol src="file:/mml/SVete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16145 Merimerkki, itä -->
+    <rule e="any" k="kohdeluokka" v="16145" zoom-min="15">
+        <symbol src="file:/mml/SVita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16146 Merimerkki, länsi -->
+    <rule e="any" k="kohdeluokka" v="16146" zoom-min="15">
+        <symbol src="file:/mml/SVlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16147 Merimerkki, kari -->
+    <rule e="any" k="kohdeluokka" v="16147" zoom-min="15">
+        <symbol src="file:/mml/SVkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16148 Merimerkki, turva -->
+    <rule e="any" k="kohdeluokka" v="16148" zoom-min="15">
+        <symbol src="file:/mml/SVturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16149 Merimerkki, erikois -->
+    <rule e="any" k="kohdeluokka" v="16149" zoom-min="15">
+        <symbol src="file:/mml/SVerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16151 Viittapoiju, vasen -->
+    <rule e="any" k="kohdeluokka" v="16151" zoom-min="15">
+        <symbol src="file:/mml/SVPvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16152 Viittapoiju, oikea -->
+    <rule e="any" k="kohdeluokka" v="16152" zoom-min="15">
+        <symbol src="file:/mml/SVPoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16153 Viittapoiju, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16153" zoom-min="15">
+        <symbol src="file:/mml/SVPpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16154 Viittapoiju, etelä -->
+    <rule e="any" k="kohdeluokka" v="16154" zoom-min="15">
+        <symbol src="file:/mml/SVPete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16155 Viittapoiju, itä -->
+    <rule e="any" k="kohdeluokka" v="16155" zoom-min="15">
+        <symbol src="file:/mml/SVPita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16156 Viittapoiju, länsi -->
+    <rule e="any" k="kohdeluokka" v="16156" zoom-min="15">
+        <symbol src="file:/mml/SVPlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16157 Viittapoiju, kari -->
+    <rule e="any" k="kohdeluokka" v="16157" zoom-min="15">
+        <symbol src="file:/mml/SVPkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16158 Viittapoiju, turva -->
+    <rule e="any" k="kohdeluokka" v="16158" zoom-min="15">
+        <symbol src="file:/mml/SVPturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16159 Viittapoiju, erikois -->
+    <rule e="any" k="kohdeluokka" v="16159" zoom-min="15">
+        <symbol src="file:/mml/SVPerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16161 Poiju, vasen -->
+    <rule e="any" k="kohdeluokka" v="16161" zoom-min="15">
+        <symbol src="file:/mml/SPvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16162 Poiju, oikea -->
+    <rule e="any" k="kohdeluokka" v="16162" zoom-min="15">
+        <symbol src="file:/mml/SPoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16163 Poiju, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16163" zoom-min="15">
+        <symbol src="file:/mml/SPpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16164 Poiju, etelä -->
+    <rule e="any" k="kohdeluokka" v="16164" zoom-min="15">
+        <symbol src="file:/mml/SPete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16165 Poiju, itä -->
+    <rule e="any" k="kohdeluokka" v="16165" zoom-min="15">
+        <symbol src="file:/mml/SPita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16166 Poiju, länsi -->
+    <rule e="any" k="kohdeluokka" v="16166" zoom-min="15">
+        <symbol src="file:/mml/SPlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16167 Poiju, kari -->
+    <rule e="any" k="kohdeluokka" v="16167" zoom-min="15">
+        <symbol src="file:/mml/SPkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16168 Poiju, turva -->
+    <rule e="any" k="kohdeluokka" v="16168" zoom-min="15">
+        <symbol src="file:/mml/SPturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16169 Poiju, erikois -->
+    <rule e="any" k="kohdeluokka" v="16169" zoom-min="15">
+        <symbol src="file:/mml/SPerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16171 Valopoiju, vasen -->
+    <rule e="any" k="kohdeluokka" v="16171" zoom-min="15">
+        <symbol src="file:/mml/SVaPvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16172 Valopoiju, oikea -->
+    <rule e="any" k="kohdeluokka" v="16172" zoom-min="15">
+        <symbol src="file:/mml/SVaPoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16173 Valopoiju, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16173" zoom-min="15">
+        <symbol src="file:/mml/SVaPpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16174 Valopoiju, etelä -->
+    <rule e="any" k="kohdeluokka" v="16174" zoom-min="15">
+        <symbol src="file:/mml/SVaPete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16175 Valopoiju, itä -->
+    <rule e="any" k="kohdeluokka" v="16175" zoom-min="15">
+        <symbol src="file:/mml/SVaPita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16176 Valopoiju, länsi -->
+    <rule e="any" k="kohdeluokka" v="16176" zoom-min="15">
+        <symbol src="file:/mml/SVaPlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16177 Valopoiju, kari -->
+    <rule e="any" k="kohdeluokka" v="16177" zoom-min="15">
+        <symbol src="file:/mml/SVaPkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16178 Valopoiju, turva -->
+    <rule e="any" k="kohdeluokka" v="16178" zoom-min="15">
+        <symbol src="file:/mml/SVaPturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16179 Valopoiju, erikois -->
+    <rule e="any" k="kohdeluokka" v="16179" zoom-min="15">
+        <symbol src="file:/mml/SVaPerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16181 Jääpoiju, vasen -->
+    <rule e="any" k="kohdeluokka" v="16181" zoom-min="15">
+        <symbol src="file:/mml/SJPvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16182 Jääpoiju, oikea -->
+    <rule e="any" k="kohdeluokka" v="16182" zoom-min="15">
+        <symbol src="file:/mml/SJPoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16183 Jääpoiju, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16183" zoom-min="15">
+        <symbol src="file:/mml/SJPpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16184 Jääpoiju, etelä -->
+    <rule e="any" k="kohdeluokka" v="16184" zoom-min="15">
+        <symbol src="file:/mml/SJPete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16185 Jääpoiju, itä -->
+    <rule e="any" k="kohdeluokka" v="16185" zoom-min="15">
+        <symbol src="file:/mml/SJPita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16186 Jääpoiju, länsi -->
+    <rule e="any" k="kohdeluokka" v="16186" zoom-min="15">
+        <symbol src="file:/mml/SJPlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16187 Jääpoiju, kari -->
+    <rule e="any" k="kohdeluokka" v="16187" zoom-min="15">
+        <symbol src="file:/mml/SJPkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16188 Jääpoiju, turva -->
+    <rule e="any" k="kohdeluokka" v="16188" zoom-min="15">
+        <symbol src="file:/mml/SJPturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16189 Jääpoiju, erikois -->
+    <rule e="any" k="kohdeluokka" v="16189" zoom-min="15">
+        <symbol src="file:/mml/SJPerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16191 Valojääpoiju, vasen -->
+    <rule e="any" k="kohdeluokka" v="16191" zoom-min="15">
+        <symbol src="file:/mml/SVJPvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16192 Valojääpoiju, oikea -->
+    <rule e="any" k="kohdeluokka" v="16192" zoom-min="15">
+        <symbol src="file:/mml/SVJPoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16193 Valojääpoiju, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16193" zoom-min="15">
+        <symbol src="file:/mml/SVJPpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16194 Valojääpoiju, etelä -->
+    <rule e="any" k="kohdeluokka" v="16194" zoom-min="15">
+        <symbol src="file:/mml/SVJPete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16195 Valojääpoiju, itä -->
+    <rule e="any" k="kohdeluokka" v="16195" zoom-min="15">
+        <symbol src="file:/mml/SVJPita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16196 Valojääpoiju, länsi -->
+    <rule e="any" k="kohdeluokka" v="16196" zoom-min="15">
+        <symbol src="file:/mml/SVJPlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16197 Valojääpoiju, kari -->
+    <rule e="any" k="kohdeluokka" v="16197" zoom-min="15">
+        <symbol src="file:/mml/SVJPkari.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16198 Valojääpoiju, turva -->
+    <rule e="any" k="kohdeluokka" v="16198" zoom-min="15">
+        <symbol src="file:/mml/SVJPturva.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16199 Valojääpoiju, erikois -->
+    <rule e="any" k="kohdeluokka" v="16199" zoom-min="15">
+        <symbol src="file:/mml/SVJPerik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16201 Reunamerkki, vasen -->
+    <rule e="any" k="kohdeluokka" v="16201" zoom-min="15">
+        <symbol src="file:/mml/SRMvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16202 Reunamerkki, oikea -->
+    <rule e="any" k="kohdeluokka" v="16202" zoom-min="15">
+        <symbol src="file:/mml/SRMoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16203 Reunamerkki, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16203" zoom-min="15">
+        <symbol src="file:/mml/SRMpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16204 Reunamerkki, etelä -->
+    <rule e="any" k="kohdeluokka" v="16204" zoom-min="15">
+        <symbol src="file:/mml/SRMete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16205 Reunamerkki, itä -->
+    <rule e="any" k="kohdeluokka" v="16205" zoom-min="15">
+        <symbol src="file:/mml/SRMita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16206 Reunamerkki, länsi -->
+    <rule e="any" k="kohdeluokka" v="16206" zoom-min="15">
+        <symbol src="file:/mml/SRMlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16211 Valaistu reunamerkki, vasen -->
+    <rule e="any" k="kohdeluokka" v="16211" zoom-min="15">
+        <symbol src="file:/mml/SVRMvas.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16212 Valaistu reunamerkki, oikea -->
+    <rule e="any" k="kohdeluokka" v="16212" zoom-min="15">
+        <symbol src="file:/mml/SVRMoik.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16213 Valaistu reunamerkki, pohjois -->
+    <rule e="any" k="kohdeluokka" v="16213" zoom-min="15">
+        <symbol src="file:/mml/SVRMpoh.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16214 Valaistu reunamerkki, etelä -->
+    <rule e="any" k="kohdeluokka" v="16214" zoom-min="15">
+        <symbol src="file:/mml/SVRMete.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 16215 Valaistu reunamerkki, itä -->
+    <rule e="any" k="kohdeluokka" v="16215" zoom-min="15">
+        <symbol src="file:/mml/SVRMita.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <!-- 116216 Valaistu reunamerkki, länsi -->
+    <rule e="any" k="kohdeluokka" v="16216" zoom-min="15">
+        <symbol src="file:/mml/SVRMlan.svg" symbol-width="10" symbol-height="15"/>
+    </rule>
+
+
+    <rule e="any" k="amenity" v="shelter" zoom-min="12">
+        <symbol src="file:/mml/shelter.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <rule e="any" k="tourism" v="lean_to|wilderness" zoom-min="12">
+        <symbol src="file:/mml/shelter.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+
+    <rule e="any" k="cat_id" v="2212|1212|1213|1214|1217|1311|2210|2211" zoom-min="12">
+        <symbol src="file:/mml/shelter.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <rule e="any" k="amenity" v="toilets" zoom-min="12">
+        <symbol src="file:/mml/toilets.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+
+    <rule e="any" k="cat_id" v="2217|2221|2223|2224" zoom-min="12">
+        <symbol src="file:/mml/toilets.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <rule e="any" k="tourism" v="fireplace" zoom-min="12">
+        <symbol src="file:/mml/campfire-99058.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <rule e="any" k="cat_id" v="2225|2214|2244" zoom-min="12">
+        <symbol src="file:/mml/campfire-99058.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+
+    <rule e="any" k="man_made" v="tower" zoom-min="12">
+        <symbol src="file:/mml/tower_lookout.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+    <rule e="any" k="cat_id" v="2226|1614|2229" zoom-min="12">
+        <symbol src="file:/mml/tower_lookout.svg" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <rule e="any" k="cat_id" v="2238" zoom-min="12">
+        <symbol src="file:/mml/parking.png" symbol-width="15" symbol-height="15"/>
+    </rule>
+
+    <!-- suojelualueet (luonnonsuojelualue, kansallispuisto, luonnonpuisto) -->
+    <rule e="any" k="kohdeluokka" v="72200|72201|72202|72500" zoom-min="12">
+        <area stroke="#00b300" stroke-width="0.7" fill="#0d00b300"/>
+    </rule>
+
+
+    <!-- retkeilyalue -->
+    <rule e="any" k="kohdeluokka" v="72800" zoom-min="12">
+        <area stroke="#00b300" stroke-width="0.7" fill="#0d00b300"/>
+    </rule>
+    <!-- eramaa-alue raja -->
+    <rule e="any" k="kohdeluokka" v="72700" zoom-min="12">
+        <area stroke="#00b300" stroke-width="0.7" fill="#0d00b300"/>
+    </rule>
+
+
+    <!--  34800 Luiska -->
+    <rule e="any" k="kohdeluokka" v="34800" zoom-min="14">
+        <line stroke="#660C00" stroke-width="0.4" stroke-linecap="round"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="34800" zoom-min="16">
+        <lineSymbol src="file:/mml/luiska_hapsu_apusymboli.svg" repeat="true" display="always" repeat-gap="10"
+                    repeat-start="0" symbol-width="2" symbol-height="10" align-center="true"/>
+    </rule>
+
+
+    <!--  34400 Jyrkanne -->
+    <rule e="any" k="kohdeluokka" v="34400" zoom-min="14">
+        <line stroke="#000000" stroke-width="0.4" stroke-linecap="round"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="34400" zoom-min="16">
+        <lineSymbol src="file:/mml/jyrkanne_hapsu_apusymboli.svg" repeat="true" display="always" repeat-gap="10"
+                    repeat-start="0" symbol-width="2" symbol-height="10" align-center="true"/>
+    </rule>
+
+
+    <!--  30300 Pato -->
+    <rule e="any" k="kohdeluokka" v="30300">
+        <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
+    </rule>
+
+    <!--  30400 Sulkuportti -->
+    <rule e="any" k="kohdeluokka" v="30400">
+        <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
+    </rule>
+
+    <!--  34500 Kalliohalkeama -->
+    <rule e="any" k="kohdeluokka" v="34500">
+        <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
+    </rule>
+
+    <!--  44500 Ilmarata -->
+    <rule e="any" k="kohdeluokka" v="44500" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
+    </rule>
+
+    <!--  45700 Rakennelma -->
+    <rule e="any" k="kohdeluokka" v="45700">
+        <line stroke="#000000" stroke-width="0.5" stroke-linecap="round"/>
+    </rule>
+
+
+    <rule e="any" k="kohdeluokka" v="74330|72440|72420|72410">
+        <line stroke="#00b300" stroke-width="0.2" stroke-linecap="round"/>
+    </rule>
+
+
+    <rule e="way" k="tyyppi" v="aita" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.4" stroke-linecap="round"/>
+        <line stroke="#000000" stroke-width="1.0" stroke-dasharray="1,17" stroke-linecap="round"/>
+    </rule>
+
+
+    <!--  22311 sahkolinja, jakelujannita  -->
+    <rule e="way" k="kohdeluokka" v="22312" zoom-min="12">
+        <line stroke="#000000" stroke-width="0.3" stroke-linecap="round"/>
+    </rule>
+
+
+    <!--  62100 ampuma-alue  -->
+    <rule e="way" k="kohdeluokka" v="62100" zoom-min="10">
+        <line stroke="#c100ab" stroke-width="2" stroke-linecap="round"/>
+    </rule>
+
+</rendertheme>
