@@ -1,0 +1,70 @@
+version: '3'
+services:
+  mml-client:
+    image: teemupel/mml-muutostietopalvelu-client
+    volumes:
+      - ./mmlclient.toml:/go/src/app/mmlclient.toml
+      - /opt/mtkdata/:/mtkdata
+      - /opt/krkdata/:/krkdata
+  mapsforge:
+    image: teemupel/mapsforge
+    volumes:
+      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - mapstyle:/mapstyles
+      - /opt/mtk2garmin-build/output:/output
+    environment:
+      - JAVACMD_OPTIONS=-Xmx50G
+  mtk2garmin-converter:
+    image: teemupel/mtk2garmin-converter:dockerize_converter
+    volumes:
+      - ./mtk2garmin.conf:/opt/mtk2garmin/mtk2garmin.conf
+      - /opt/mtkdata/:/mtkdata
+      - /opt/krkdata/:/krkdata
+      - additional-data:/additional-data:ro
+      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+  merger:
+    build: ./merge
+    image: localhost:5000/mtk2garmin-merger
+    volumes:
+      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - additional-data:/additional-data:ro
+  osxconverter:
+    build: ../garminOSXConverter
+    image: localhost:5000/osxconverter
+    volumes:
+      - /opt/mtk2garmin-build/output:/output
+  additional-data:
+    image: localhost:5000/mtk2garmin-additional-data:latest
+    volumes:
+      - additional-data:/additional-data
+  mkgmap:
+    image: teemupel/mkgmap
+    build: ../mkgmap-converter
+    volumes:
+      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - /opt/mtk2garmin-build/splitted:/splitted
+      - /opt/mtk2garmin-build/output:/output
+      - mapstyle:/mapstyles
+  mapstyles:
+    image: teemupel/mtk2garmin-mapstyles
+    build: ../mapstyles
+    volumes:
+      - mapstyle:/mapstyles
+  nsis:
+    image: wheatstalk/makensis
+    volumes:
+      - /opt/mtk2garmin-build/output:/output
+  site:
+    build: ../site
+    image: localhost:5000/mtk2garmin-site
+    env_file:
+      - aws-access.env
+    volumes:
+      - /opt/mtk2garmin-build/output:/output
+      - /opt/mtk2garmin-publish:/publish
+      - mapstyle:/mapstyles
+volumes:
+  additional-data:
+  mapstyle:
+  converted:
+  site:

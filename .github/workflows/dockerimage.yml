@@ -1,20 +1,21 @@
-name: Docker Image CI
+name: mtk2garmin-converter docker image
 
-on: [push]
+on:
+  push:
+    paths: 
+      - 'mtk2garmin-converter/**'
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v1
-    - name: Build the Docker image
-      run: docker build ./mtk2garmin-converter --file ./mtk2garmin-converter/Dockerfile --tag teemupel/mtk2garmin-converter:$(date +%s)
-    - name: Publish to Registry
+    - name: Build and publish mtk2garmin-converter to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
         name: teemupel/mtk2garmin-converter
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+        snapshot: true
+        dockerfile: Dockerfile
+        workdir: mtk2garmin-converter

@@ -1,0 +1,27 @@
+verbose
+latin1
+remove-short-arcs
+style-file=/mapstyles/mtk2garmin_style_noparcel
+description=MTK Suomi - Koko maa - eikr
+check-styles
+country-name=Finland
+country-abbr=FI
+max-jobs=12
+keep-going
+drive-on=right
+show-profiles=1
+draw-priority=25
+output-dir=/output/mtkgarmin_noparcel
+family-id=801
+family-name=MTK Suomi
+series-name=MTK Suomi
+copyright-message=NLS 2017, Finnish Transport Agency 2017, OpenStreetMap Contributors, Metsahallitus
+merge-lines
+remove-ovm-work-files=true
+polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0
+levels=0:24, 1:22, 2:21, 3:19, 4:17
+overview-levels=4:17,5:16,6:15,7:14,8:12
+remove-ovm-work-files
+tdbfile
+nsis
+gmapsupp
