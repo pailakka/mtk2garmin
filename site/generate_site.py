@@ -63,7 +63,7 @@ release_files = OrderedDict((
     ('mtk_suomi.map', {
         'type': 'mapsforge_map',
         'name': 'mtk_suomi.map',
-        'default_style': 'peruskartta.zip',
+        'default_style': 'peruskartta/peruskartta.zip',
         'description': u'''Mapsforge / Android-yhteensopiva versio<br/>
                             <a href="orux-map://jekku.hylly.org/kartat/%(date)s/%(name)s">Asenna kartta Oruxmapsiin</a><br/>
                             <a href="locus-actions://http/jekku.hylly.org/kartat/%(date)s/%(locus_file)s">Asenna kartta Locukseen</a>''',
