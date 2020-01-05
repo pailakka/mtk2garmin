@@ -166,7 +166,7 @@
                     </tr>
                     {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".img")%}
                     <tr>
-                        <td><a class="dl" href="http://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
+                        <td><a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
                         </td>
                         <td>{{rf.size_text}}</td>
                         <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
@@ -180,7 +180,7 @@
                     </tr>
                     {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".exe")%}
                     <tr>
-                        <td><a class="dl" href="http://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
+                        <td><a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
                         </td>
                         <td>{{rf.size_text}}</td>
                         <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
@@ -194,7 +194,7 @@
                     </tr>
                     {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".zip")%}
                     <tr>
-                        <td><a class="dl" href="http://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
+                        <td><a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
                         </td>
                         <td>{{rf.size_text}}</td>
                         <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
@@ -233,7 +233,7 @@
                     </tr>
                     {%for k, rf in release_files.items() if rf.type == "mapsforge_map" and rf.name.endswith(".map")%}
                     <tr>
-                        <td><a class="dl" href="http://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
+                        <td><a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
                         </td>
                         <td>{{rf.size_text}}</td>
                         <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
@@ -246,7 +246,7 @@
                             <a class="dl" href="orux-map://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Asenna
                                 kartta Oruxmapsiin</a><br/>
                             <a class="dl"
-                               href="locus-actions://http/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
+                               href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
                                 kartta
                                 Locukseen</a>
                         </td>
@@ -260,10 +260,10 @@
                         <a class="dl" href="orux-mf-theme://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Asenna
                             kuvaustekniikka
                             Oruxmapsiin</a><br/>
-                        <a class="dl" href="locus-actions://http/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
+                        <a class="dl" href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
                             kuvaustekniikka
                             Locukseen</a><br/>
-                        <a class="dl" href="http://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Lataa
+                        <a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Lataa
                             {{rf.name}}</a>
                     </p>
                     {%endfor%}

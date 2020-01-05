@@ -119,12 +119,12 @@ def generate_map_locus(fn):
         f.write('''<?xml version='1.0' encoding='UTF-8'?>
 <locusActions>
   <download>
-    <source><![CDATA[http://jekku.hylly.org/kartat/%(date)s/%(fn)s]]></source>
+    <source><![CDATA[https://kartat-dl.hylly.org/%(date)s/%(fn)s]]></source>
     <dest><![CDATA[/mapsVector/%(fn)s]]></dest>
     <after>refreshMap</after>
   </download>
   <download>
-    <source><![CDATA[http://jekku.hylly.org/kartat/%(date)s/%(default_style)s]]></source>
+    <source><![CDATA[https://kartat-dl.hylly.org/%(date)s/%(default_style)s]]></source>
     <dest><![CDATA[/mapsVector/_themes/%(default_style)s]]></dest>
     <after>extract|deleteSource</after>
   </download>
@@ -140,7 +140,7 @@ def generate_style_locus(fn):
         f.write('''<?xml version="1.0" encoding="UTF-8"?>
 <locusActions>
   <download>
-    <source><![CDATA[http://jekku.hylly.org/kartat/%(date)s/%(fn)s]]></source>
+    <source><![CDATA[https://kartat-dl.hylly.org/%(date)s/%(fn)s]]></source>
     <dest><![CDATA[/mapsVector/_themes/peruskartta/%(fn)s]]></dest>
     <after>extract|deleteSource</after>
   </download>
@@ -216,29 +216,5 @@ template = env.get_template('index.html')
 
 with open(os.path.join(path, 'site.html'), 'w+') as f:
     f.write(template.render(release_files=release_files, changes=changes, publishdate=publishdate))
-
-sys.exit(0)
-with open(os.path.join(path, 'site.html'), 'w+') as f:
-    with open('site/header.html') as hf:
-        header = hf.read()
-    with open('site/footer.html') as ff:
-        footer = ff.read()
-
-    f.write(header)
-    for rf in release_files.values():
-        rf['size_text'] = humanfriendly.format_size(rf['size'])
-        rf['date'] = date
-        rf['description'] = rf['description'] % rf
-        f.write('''<tr>
-                            <td>
-                                <a class="dl" href="http://jekku.hylly.org/kartat/%(date)s/%(name)s">%(name)s</a>
-                            </td>
-                            <td>%(description)s</td>
-                            <td>%(updated)s</td>
-                            <td>%(size_text)s</td>
-                            <td><code>%(hash)s</code></td>
-                        </tr>''' % rf)
-    f.write(footer % {'changes': changes, 'date': date})
-    print("site.html written")
 
 print("Publish done!")
