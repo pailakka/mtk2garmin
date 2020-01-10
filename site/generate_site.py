@@ -63,7 +63,7 @@ release_files = OrderedDict((
     ('mtk_suomi.map', {
         'type': 'mapsforge_map',
         'name': 'mtk_suomi.map',
-        'default_style': 'peruskartta/peruskartta.zip',
+        'default_style': 'peruskartta.zip',
         'description': u'''Mapsforge / Android-yhteensopiva versio<br/>
                             <a href="orux-map://jekku.hylly.org/kartat/%(date)s/%(name)s">Asenna kartta Oruxmapsiin</a><br/>
                             <a href="locus-actions://http/jekku.hylly.org/kartat/%(date)s/%(locus_file)s">Asenna kartta Locukseen</a>''',
@@ -125,7 +125,7 @@ def generate_map_locus(fn):
   </download>
   <download>
     <source><![CDATA[https://kartat-dl.hylly.org/%(date)s/%(default_style)s]]></source>
-    <dest><![CDATA[/mapsVector/_themes/%(default_style)s]]></dest>
+    <dest><![CDATA[/mapsVector/_themes/peruskartta/%(default_style)s]]></dest>
     <after>extract|deleteSource</after>
   </download>
 </locusActions>''' % {'date': publishdate, 'fn': fn, 'default_style': release_files[fn]['default_style']})
