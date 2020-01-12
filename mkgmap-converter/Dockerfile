@@ -14,4 +14,4 @@ RUN curl --fail --verbose --retry 5 --retry-delay 30 -o mkgmap-latest.tar.gz -L 
     tar --extract --verbose --gzip --strip-components=1 --file=mkgmap-latest.tar.gz && \
     curl --fail --verbose --retry 5 --retry-delay 30 -o splitter-latest.tar.gz -L http://www.mkgmap.org.uk/download/splitter-latest.tar.gz && \
     tar --extract --verbose --gzip --strip-components=1 --file=splitter-latest.tar.gz && \
-    java -cp "mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
+    java -cp "mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt perus.typ

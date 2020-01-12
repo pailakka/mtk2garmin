@@ -76,14 +76,14 @@ echo "Splitting done"
 (cat mkgmap_mtk2garmin.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin.args
 (cat mkgmap_mtk2garmin_noparcel.args;echo;cat splitted/template.args) > splitted/mkgmap_mtk2garmin_noparcel.args
 echo "Compiling typ"
-java -cp "mkgmap/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt peruskartta.typ
+java -cp "mkgmap/mkgmap.jar:lib/*jar" uk.me.parabola.mkgmap.main.TypCompiler peruskartta_garmin.txt perus.typ
 echo "Compiling typ done"
 
 echo "Compiling garmin img parcels"
-java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args peruskartta.typ
+java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin.args perus.typ
 
 echo "Compiling garmin img noparcels"
-java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin_noparcel.args peruskartta.typ
+java -jar -Xmx15G mkgmap/mkgmap.jar -c splitted/mkgmap_mtk2garmin_noparcel.args perus.typ
 
 mv mtkgarmin/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.img"
 mv mtkgarmin_noparcel/gmapsupp.img "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr.img"
@@ -95,7 +95,7 @@ echo "Copying Mapsforge files"
 mv all.map "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.map"
 
 echo "Creating windows installer parcel"
-cp peruskartta.typ mtkgarmin/peruskartta.typ
+cp perus.typ mtkgarmin/perus.typ
 cd mtkgarmin
 makensis osmmap.nsi
 echo "copying installer files"
@@ -103,7 +103,7 @@ mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
 cd ..
 
 echo "Creating windows installer noparcel"
-cp peruskartta.typ mtkgarmin_noparcel/peruskartta.typ
+cp perus.typ mtkgarmin_noparcel/perus.typ
 cd mtkgarmin_noparcel
 makensis osmmap.nsi
 echo "copying installer files"
