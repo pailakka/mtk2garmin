@@ -43,9 +43,8 @@ time docker-compose run mapsforge /app/bin/osmosis \
 
 time docker-compose run osxconverter
 
-time docker-compose run nsis /output/mtkgarmin/osmmap.nsi &
-time docker-compose run nsis /output/mtkgarmin_noparcel/osmmap.nsi &
-wait
+time docker-compose run nsis /output/mtkgarmin/osmmap.nsi
+time docker-compose run nsis /output/mtkgarmin_noparcel/osmmap.nsi
 
 time docker-compose run site
 docker-compose down -v
