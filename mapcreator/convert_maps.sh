@@ -99,7 +99,7 @@ cp perus.typ mtkgarmin/perus.typ
 cd mtkgarmin
 makensis osmmap.nsi
 echo "copying installer files"
-mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
+mv "MTKSuomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi.exe"
 cd ..
 
 echo "Creating windows installer noparcel"
@@ -107,7 +107,7 @@ cp perus.typ mtkgarmin_noparcel/perus.typ
 cd mtkgarmin_noparcel
 makensis osmmap.nsi
 echo "copying installer files"
-mv "MTK Suomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr.exe"
+mv "MTKSuomi.exe" "/opt/mtk2garmin_build/output/${time_stamp}/mtk_suomi_eikr.exe"
 cd ..
 
 
