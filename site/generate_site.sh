@@ -10,8 +10,8 @@ time_stamp=$(date +%Y-%m-%d)
 cp /output/mtkgarmin/gmapsupp.img /output/dist/mtk_suomi.img
 cp /output/mtkgarmin_noparcel/gmapsupp.img /output/dist/mtk_suomi_noparcel.img
 
-cp /output/mtkgarmin/MTK\ Suomi.exe /output/dist/mtk_suomi.exe
-cp /output/mtkgarmin_noparcel/MTK\ Suomi.exe /output/dist/mtk_suomi_noparcel.exe
+cp /output/mtkgarmin/MTKSuomi.exe /output/dist/mtk_suomi.exe
+cp /output/mtkgarmin_noparcel/MTKSuomi.exe /output/dist/mtk_suomi_noparcel.exe
 
 cp /output/mtk_suomi_noparcel_osx.zip /output/dist/mtk_suomi_noparcel_osx.zip
 cp /output/mtk_suomi_osx.zip /output/dist/mtk_suomi_osx.zip
