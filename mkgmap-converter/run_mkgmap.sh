@@ -10,5 +10,5 @@ time java -jar -Xmx30G splitter.jar --output-dir=/splitted --max-areas=4096 --ma
 time java -jar -Xmx30G mkgmap.jar -c /splitted/mkgmap_mtk2garmin.args perus.typ
 time java -jar -Xmx30G mkgmap.jar -c /splitted/mkgmap_mtk2garmin_noparcel.args perus.typ
 
-cp perus.typ /output/mtkgarmin/
-cp perus.typ /output/mtkgarmin_noparcel/
+cp perus.typ /output/mtkgarmin/xperus.typ
+cp perus.typ /output/mtkgarmin_noparcel/xperus.typ
