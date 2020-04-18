@@ -55,7 +55,7 @@ release_files = OrderedDict((
     }),
     ('mtk_suomi_noparcel_osx.zip', {
         'type': 'garmin_map',
-        'name': 'mtk_suomi_eikr_osx.zip',
+        'name': 'mtk_suomi_noparcel_osx.zip',
         'description': u'''Versio ilman kiintestörajoja. macOS BaseCamp yhteensopiva versio Garmin kartasta.''',
         'size': None,
         'hash': None
