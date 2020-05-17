@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fi">
 <head>
     <meta charset="utf-8">
-    <title>Ilmainen Maanmittauslaitoksen maastokartta Garminille ja Androidille (Oruxmaps, Locus ja c:geo)</title>
+    <title>Ilmainen maastokartta Androidille ja Garminille</title>
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
         w[l] = w[l] || [];
@@ -11,7 +11,7 @@
                 new Date().getTime(), event: 'gtm.js'
         });
         var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+            j = d.createElement(s), dl = l !== 'dataLayer' ? '&l=' + l : '';
         j.async = true;
         j.src =
             'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
@@ -27,21 +27,24 @@
         }
     </style>
     <meta charset="utf-8"/>
-    <meta property="og:image" content="https://kartat.hylly.org/img/tscr1.png"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="description" content="Ilmaiset maastokartat Garmin laitteisiin ja Android Locus & Oruxmaps"/>
+    <link rel="canonical" href="https://kartat.hylly.org">
+    <meta property="og:title" content="Ilmainen maastokartta Androidille ja Garminille" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://kartat.hylly.org" />
+    <meta property="og:image" content="https://kartat.hylly.org/img/scr1.png"/>
+    <meta name="description" content="Ilmaiset offline maastokartta Androidille ja Garminin laitteisiin. Perustuu Maanmittauslaitoksen peruskarttoihin, joita paranneltu muilla aineistoilla"/>
     <meta name="author" content="HyllyCorp 2019"/>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org/",
             "@type": "Product",
-            "name": "Ilmainen maastokartta Garminille ja Androidille",
+            "name": "Ilmainen offline maastokartta Androidille ja Garminille",
             "image": [
                 "https://kartat.hylly.org/img/scr1.png",
                 "https://kartat.hylly.org/img/scr2.png",
                 "https://kartat.hylly.org/img/scr3.png"
             ],
-            "description": "Maanmittauslaitoksen peruskartan tasoiset ja näköiset ilmaiset maastokartat, yhteensopiva Garmin-maastonavigaattoreiden ja Android-laitteiden kanssa (Oruxmaps, Locus maps, c:geo)",
+            "description": "Ilmaiset offline maastokartat Androidille ja Garminin laitteisiin. Perustuu Maanmittauslaitoksen peruskarttoihin, joita paranneltu muilla aineistoilla",
             "brand": {
                 "@type": "Thing",
                 "name": "HyllyCorp"
@@ -71,7 +74,7 @@
 <div class="container-xl">
     <div class="row text-center bg-light p-5 my-1">
         <div class="col-sm">
-            <h1 class="display-5 font-weight-normal">Ilmainen maastokartta laitteisiin</h1>
+            <h1 class="display-5 font-weight-normal">Ilmainen offline maastokartta mukaasi</h1>
             <p class="lead font-weight-normal">Maanmittauslaitoksen peruskartan tasoiset ja näköiset ilmaiset
                 maastokartat, yhteensopiva Garmin-maastonavigaattoreiden ja Android-laitteiden kanssa
                 (Oruxmaps, Locus maps, c:geo).</p>
@@ -279,7 +282,7 @@
             <p>Kartta sisältää Maanmittauslaitoksen Maastotietokannan aineistoa. (<a
                     href="http://www.maanmittauslaitos.fi/avoimen-tietoaineiston-cc-40-lisenssi">Lisenssi</a>)<br/>
                 Kartta sisältää Liikenneviraston merikarttatietokannan aineistoa. <a
-                        href="http://portal.liikennevirasto.fi/sivu/www/f/aineistopalvelut/avoin_data/Merikartoitus_lisenssi">Liikenneviraston
+                        href="https://www.traficom.fi/fi/tilastot-ja-julkaisut/paikkatietoaineistot/aineistojen-kaytto-ja-lisenssit">Traficomin
                     merikartoitusaineiston lisenssi</a><br/>
                 Kartta sisältää Metsähallituksen aineistoa.<br/>
                 Karttaan <a href="http://www.openstreetmap.org">OpenStreetMap</a>:sta tuotujen aineistojen &copy;
@@ -289,7 +292,7 @@
     </div>
     <div class="row">
         <div class="col-sm bg-secondary text-white my-1 p-1">
-            <h1>Usein Kysyttyjä Kysymyksiä</h1>
+            <h2>Usein Kysyttyjä Kysymyksiä</h2>
             <h3>Miksi kartalla ei näy merenkulun turvalaitteet?</h3>
             <p>Tulossa.</p><br/>
             <h3>Voisiko kartalla näkyä valtion metsästysalueet?</h3>
