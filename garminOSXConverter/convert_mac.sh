@@ -1,7 +1,22 @@
 #!/bin/bash
 set -e
 
-curl --fail -O 'http://www.javawa.nl/downloads/divers/jmc_cli_linux.tar.gz' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' -H 'Origin: http://www.javawa.nl' -H 'Upgrade-Insecure-Requests: 1' -H 'Content-Type: application/x-www-form-urlencoded' -H 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: http://www.javawa.nl/downloads/divers/jmc_cli_linux.tar.gz' -H 'Accept-Encoding: gzip, deflate' -H 'Accept-Language: en-GB,en;q=0.9,en-US;q=0.8,fi;q=0.7' --data 'download=Downloaden' --compressed
+curl 'https://www.javawa.nl/index.php?download=divers/jmc_cli_linux.tar.gz'  --output jmc_cli_linux.tar.gz \
+  -H 'authority: www.javawa.nl' \
+  -H 'cache-control: max-age=0' \
+  -H 'upgrade-insecure-requests: 1' \
+  -H 'origin: https://www.javawa.nl' \
+  -H 'content-type: application/x-www-form-urlencoded' \
+  -H 'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.89 Safari/537.36' \
+  -H 'accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9' \
+  -H 'sec-fetch-site: same-origin' \
+  -H 'sec-fetch-mode: navigate' \
+  -H 'sec-fetch-user: ?1' \
+  -H 'sec-fetch-dest: document' \
+  -H 'referer: https://www.javawa.nl/index.php?download=divers/jmc_cli_linux.tar.gz' \
+  -H 'accept-language: en-GB,en;q=0.9,en-US;q=0.8,fi;q=0.7' \
+  --data-raw 'download=' \
+  --compressed
 tar -xvzf jmc_cli_linux.tar.gz
 
 rm -rf /output/mtkgarmin_osx
