@@ -25,5 +25,5 @@ python3 generate_site.py "${time_stamp}"
 mkdir -p "/publish/${time_stamp}"
 
 rsync -avP "/output/dist/" "/publish/${time_stamp}/"
-aws2 s3 sync "/publish/${time_stamp}" "s3://kartat-build/new-${time_stamp}"
-aws2 s3 cp "/publish/${time_stamp}/site.html" "s3://kartat.hylly.org/index.html"
+aws s3 sync "/publish/${time_stamp}" "s3://kartat-build/new-${time_stamp}"
+aws s3 cp "/publish/${time_stamp}/site.html" "s3://kartat.hylly.org/index.html"
