@@ -12,21 +12,12 @@ class CachedAdditionalDataSources {
 
     private final DataSource syvyyskayrat;
     private final DataSource syvyyspisteet;
-    private final DataSource kesaretkeily;
-    private final DataSource ulkoilureitit;
-    private final DataSource luontopolut;
-    private final DataSource metsapoints;
 
     CachedAdditionalDataSources(Config conf) {
         this.memoryd = ogr.GetDriverByName("memory");
 
         syvyyskayrat = createMemoryCacheFromOGRFile(conf.getString("syvyyskayrat"));
         syvyyspisteet = createMemoryCacheFromOGRFile(conf.getString("syvyyspisteet"));
-
-        kesaretkeily = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/kesaretkeilyreitit.gml");
-        ulkoilureitit = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/ulkoilureitit.gml");
-        luontopolut = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/luontopolut.gml");
-        metsapoints = createMemoryCacheFromOGRFile(conf.getString("retkikartta") + "/point_dump.gml");
     }
 
 
@@ -49,11 +40,7 @@ class CachedAdditionalDataSources {
     Stream<DataSource> getDatasources() {
         return Stream.of(
                 syvyyskayrat,
-                syvyyspisteet,
-                kesaretkeily,
-                ulkoilureitit,
-                luontopolut,
-                metsapoints
+                syvyyspisteet
         );
     }
 }
