@@ -42,7 +42,7 @@ class GeomUtils {
         SpatialReference from = new SpatialReference();
         from.ImportFromProj4(proj4str);
 
-        CoordinateTransformation transform = osr.CreateCoordinateTransformation(from, wgs84ref);
+        CoordinateTransformation transform = new CoordinateTransformation(from, wgs84ref);
 
         coordinateTransformationCache.put(proj4str, transform);
         return transform;
