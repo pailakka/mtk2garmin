@@ -13,7 +13,7 @@ ogr2ogr --config OGR_WFS_PAGE_SIZE 2000 --debug on -nln syvyyspiste_p -f "ESRI s
 
 ogrinfo -so /additional-data/syvyyspiste_p.shp syvyyspiste_p
 ogrinfo -so /additional-data/syvyyskayra_v.shp syvyyskayra_v
-ogrinfo -so /additional-data/kesaretkeilyreitit.gml kesaretkeilyreitit
-ogrinfo -so /additional-data/ulkoilureitit.gml ulkoilureitit
-ogrinfo -so /additional-data/luontopolut.gml luontopolut
-ogrinfo -so /additional-data/point_dump.gml point_dump
+#ogrinfo -so /additional-data/kesaretkeilyreitit.gml kesaretkeilyreitit
+#ogrinfo -so /additional-data/ulkoilureitit.gml ulkoilureitit
+#ogrinfo -so /additional-data/luontopolut.gml luontopolut
+#ogrinfo -so /additional-data/point_dump.gml point_dump
