@@ -5,7 +5,7 @@ printf -v date '%(%Y%m%d)T' -1
 
 docker-compose down -v
 
-docker pull ubuntu:bionic
+docker pull osgeo/gdal:ubuntu-full-3.1.3
 docker build --tag teemupel/mtk2garmin-ubuntugis-base -f ./ubuntugis-base/Dockerfile ./ubuntugis-base
 docker push teemupel/mtk2garmin-ubuntugis-base
 
