@@ -15,7 +15,7 @@ services:
     environment:
       - JAVACMD_OPTIONS=-Xmx50G
   mtk2garmin-converter:
-    image: teemupel/mtk2garmin-converter:dockerize_converter
+    image: teemupel/mtk2garmin-converter
     volumes:
       - ./mtk2garmin.conf:/opt/mtk2garmin/mtk2garmin.conf
       - /opt/mtkdata/:/mtkdata
