@@ -1,10 +1,9 @@
-FROM ubuntu:bionic
+FROM osgeo/gdal:ubuntu-full-3.1.3
 
-RUN apt update && apt install -y software-properties-common curl
+RUN apt update && apt install -y curl
 
-RUN add-apt-repository ppa:ubuntugis/ubuntugis-unstable && \
-    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
     apt update && \
     apt upgrade -y && \
-    apt install -y gdal-bin libgdal-java curl git p7zip-full nodejs default-jdk maven&& \
+    apt install -y libgdal-java git p7zip-full nodejs default-jdk maven&& \
     npm install -g svgo
