@@ -7,6 +7,8 @@ import org.gdal.osr.osr;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.gdal.osr.osrConstants.OAMS_TRADITIONAL_GIS_ORDER;
+
 class GeomUtils {
     private final double COORD_DELTA_X = 62000.0 - 6e3;
     private final double COORD_DELTA_Y = 6594000.0;
@@ -17,6 +19,8 @@ class GeomUtils {
 
     GeomUtils() {
         this.wgs84ref.SetWellKnownGeogCS("WGS84");
+        this.wgs84ref.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
+
     }
 
     int xy2grid(double x, double y) {
@@ -41,6 +45,7 @@ class GeomUtils {
 
         SpatialReference from = new SpatialReference();
         from.ImportFromProj4(proj4str);
+        from.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
 
         CoordinateTransformation transform = new CoordinateTransformation(from, wgs84ref);
 
