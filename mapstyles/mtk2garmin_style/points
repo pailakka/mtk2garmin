@@ -73,6 +73,7 @@ kohdeluokka=72410 [0x6618 level 1]  #Rauhoitettu kivi
 kohdeluokka=72420 [0x6618 level 1]  #Rauhoitettu puu
 kohdeluokka=72440 [0x6618 level 1]  #Muu rauhoitettu kohde
 
+kohdeluokka=45500 [0x11500 level 1]  #Tuulivoimala
 
 tyyppi=syvyyspiste_p {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]
 tyyppi=syvyyspiste {add name='${ele|height:"m=>ft"}';addlabel '${ele}'} [0x10301]  #Syvyyspiste

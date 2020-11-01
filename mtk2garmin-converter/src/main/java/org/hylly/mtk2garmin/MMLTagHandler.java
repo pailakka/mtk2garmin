@@ -13,7 +13,7 @@ import static java.util.Arrays.asList;
 class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
 
-    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli;
+    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
     private final short tienro;
     private final short tasosij;
     private final short bridge;
@@ -28,6 +28,7 @@ class MMLTagHandler implements TagHandlerI {
     MMLTagHandler(StringTable stringtable) {
         wantedFields = new ObjectOpenHashSet<>(asList("nimi_ruotsi", "nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti", "teksti_kieli"));
 
+        kohdeluokka = stringtable.getStringId("kohdeluokka");
         korarvo = stringtable.getStringId("korkeusarvo");
         syvarvo = stringtable.getStringId("syvyysarvo");
         nimisuomi = stringtable.getStringId("nimi_suomi");
@@ -104,6 +105,10 @@ class MMLTagHandler implements TagHandlerI {
             }
 
             tags.put(kk, this.stringtable.getStringId(val));
+        }
+
+        if (tyyppi.equals("selite") && "Tuulivoimala".equals(fields.get(teksti))) {
+            tags.put(kohdeluokka, this.stringtable.getStringId("45500"));
         }
 
         if (tyyppi.equals("sahkolinja")) {

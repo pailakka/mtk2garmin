@@ -1,6 +1,7 @@
 v3.5 (1.11.2020)
 ==========================
 - Lisätty pitkospuut
+- Parannettu tuulivoimaloita
 - Korjattu ongelma, joka aiheutti virheellisen karttatyylin ladatessa kartat laitteeseen Basecamp/MapInstall käyttäen
 
 v3.4 (30.6.2018)
