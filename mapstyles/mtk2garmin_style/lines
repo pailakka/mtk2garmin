@@ -23,7 +23,8 @@ kohdeluokka=12132 & paallyste<2 [0x08 road_class 0 road_speed 1 level 3] #Autoti
 
 kohdeluokka=12141 [0x07 road_class 0 road_speed 1 level 2]  #Ajotie
 
-kohdeluokka=12313 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x16 road_class 0 road_speed 0 level 1] #Polku
+kohdeluokka=12313 & paallyste!=2 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x16 road_class 0 road_speed 0 level 1] #Polku
+kohdeluokka=12313 & paallyste=2 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x10e00 road_class 0 road_speed 0 level 1] #Pitkospuut
 kohdeluokka=12314 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x0e road_class 0 road_speed 0 level 1]  #Kavely- ja pyoratie
 kohdeluokka=12316 {add mkgmap:foot=yes;add mkgmap:bicycle=yes} [0x0a road_class 0 road_speed 0 level 1]  #Ajopolku
 

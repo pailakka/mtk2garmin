@@ -109,6 +109,30 @@
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
                  stroke-width="2"/>
     </rule>
+    <rule e="any" k="kohdeluokka" v="12101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="12301" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="14201" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="16101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="42101" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
+    <rule e="any" k="kohdeluokka" v="42201" zoom-min="14">
+        <caption priority="10" k="name" font-style="bold" font-size="12" fill="#000000" stroke="#FFFFFF"
+                 stroke-width="2"/>
+    </rule>
     <rule e="any" k="kohdeluokka" v="36201" zoom-min="12"> <!-- Vakaveden nimi -->
         <caption priority="10" k="name" font-style="bold" font-size="12" fill="#0A73C9" stroke="#FFFFFF"
                  stroke-width="2"/>
@@ -388,10 +412,13 @@
 
     <!-- polku -->
     <rule e="way" k="highway" v="path|footway|trail" zoom-min="13">
-        <line stroke="#0000ff" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt"/>
+        <line stroke="#0000ff" stroke-width="0.5" stroke-dasharray="6,2" stroke-linecap="butt"/>
     </rule>
     <rule e="way" k="kohdeluokka" v="12313" zoom-min="13">
-        <line stroke="#000000" stroke-width="0.5" stroke-dasharray="4,2" stroke-linecap="butt"/>
+        <line stroke="#000000" stroke-width="0.5" stroke-dasharray="6,2" stroke-linecap="butt"/>
+        <rule e="way" k="paallyste" v="2">
+            <line stroke="#000000" stroke-width="2.5" stroke-dasharray="2,20" stroke-linecap="butt"/>
+        </rule>
     </rule>
 
 
@@ -440,7 +467,7 @@
 
             <rule e="way" k="kohdeluokka" v="12121">
                 <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
-                <rule e="way" k="paallyste" v="~">
+                <rule e="way" k="paallyste" v="2">
                     <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
                 </rule>
                 <rule e="way" k="paallyste" v="0|1">
@@ -453,7 +480,7 @@
 
             <rule e="way" k="kohdeluokka" v="12122">
                 <line stroke="#000000" stroke-width="2.5" stroke-linecap="butt"/>
-                <rule e="way" k="paallyste" v="~">
+                <rule e="way" k="paallyste" v="2">
                     <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
                 </rule>
                 <rule e="way" k="paallyste" v="0|1">
@@ -466,7 +493,7 @@
 
             <rule e="way" k="kohdeluokka" v="12131" zoom-min="12">
                 <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
-                <rule e="way" k="paallyste" v="~">
+                <rule e="way" k="paallyste" v="2">
                     <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
                 </rule>
                 <rule e="way" k="paallyste" v="0|1">
@@ -479,7 +506,7 @@
 
             <rule e="way" k="kohdeluokka" v="12132" zoom-min="12">
                 <line stroke="#000000" stroke-width="1.75" stroke-linecap="butt"/>
-                <rule e="way" k="paallyste" v="~">
+                <rule e="way" k="paallyste" v="2">
                     <line stroke="#C00000" stroke-width="1.25" stroke-linecap="butt"/>
                 </rule>
                 <rule e="way" k="paallyste" v="0|1">

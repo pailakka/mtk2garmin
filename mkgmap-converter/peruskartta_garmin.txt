@@ -1216,6 +1216,25 @@ String1=0x00,Polku
 ExtendedLabels=N
 [end]
 
+[_line]
+Type=0x10e00
+;GRMN_TYPE: Customizable Line Types/CUSTOMIZABLE_LINE_1/Non-routable customizable line/Non NT, NT
+UseOrientation=Y
+Xpm="32 7 2  1"
+"! c #404040"
+"  c none"
+"  !       !       !       !     "
+"  !       !       !       !     "
+"  !       !       !       !     "
+"!!!!!   !!!!!   !!!!!   !!!!!   "
+"  !       !       !       !     "
+"  !       !       !       !     "
+"  !       !       !       !     "
+;12345678901234567890123456789012
+String1=0x00,Pitkospuut
+ExtendedLabels=N
+[end]
+
 
 [_line]
 Type=0x18
