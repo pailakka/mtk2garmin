@@ -35,7 +35,6 @@
             <artifactId>config</artifactId>
             <version>1.4.1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.gdal/gdal -->
         <dependency>
             <groupId>org.gdal</groupId>
             <artifactId>gdal</artifactId>
