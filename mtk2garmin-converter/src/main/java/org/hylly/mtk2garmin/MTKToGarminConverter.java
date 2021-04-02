@@ -89,12 +89,12 @@ class MTKToGarminConverter {
                 .entrySet()
                 .stream()
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .filter(e -> areaFilter == null ||e.getKey().startsWith(areaFilter))
+                .filter(e -> areaFilter == null || e.getKey().startsWith(areaFilter))
                 .forEach(areaEntry -> {
                     String areaKey = areaEntry.getKey();
                     List<File> areaCells = areaEntry.getValue();
                     double[] areaBBox = grid2448.get(areaKey);
-                    int areaGrid = geomUtils.xy2grid(areaBBox[0],areaBBox[1]);
+                    int areaGrid = geomUtils.xy2grid(areaBBox[0], areaBBox[1]);
                     nodeCache.ensureGrid(areaGrid);
 
                     areaCells.parallelStream().forEach(cellFile -> {
@@ -136,14 +136,10 @@ class MTKToGarminConverter {
                             return areas
                                     .keySet()
                                     .parallelStream()
+                                    .filter(grid2448::containsKey)
                                     .filter(searchArea -> {
-                                        if (grid2448.containsKey(searchArea)) {
-                                            double[] searchBBox = grid2448.get(searchArea);
-                                            return geomUtils.pointInside(searchBBox, search);
-                                        } else {
-                                            logger.severe("Area " + searchArea + " not found from grid!");
-                                            return false;
-                                        }
+                                        double[] searchBBox = grid2448.get(searchArea);
+                                        return geomUtils.pointInside(searchBBox, search);
                                     }).findFirst();
                         }));
     }
