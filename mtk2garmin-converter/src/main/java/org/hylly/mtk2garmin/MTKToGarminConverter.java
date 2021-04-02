@@ -121,6 +121,7 @@ class MTKToGarminConverter {
         return areas
                 .keySet()
                 .parallelStream()
+                .filter(grid2448::containsKey)
                 .collect(Collectors.toMap(
                         area -> area,
                         area -> {
