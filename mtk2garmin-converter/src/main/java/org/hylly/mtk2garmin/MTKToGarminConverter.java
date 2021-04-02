@@ -136,8 +136,13 @@ class MTKToGarminConverter {
                                     .keySet()
                                     .parallelStream()
                                     .filter(searchArea -> {
-                                        double[] searchBBox = grid2448.get(searchArea);
-                                        return geomUtils.pointInside(searchBBox, search);
+                                        if (grid2448.containsKey(searchArea)) {
+                                            double[] searchBBox = grid2448.get(searchArea);
+                                            return geomUtils.pointInside(searchBBox, search);
+                                        } else {
+                                            logger.severe("Area " + searchArea + " not found from grid!");
+                                            return false;
+                                        }
                                     }).findFirst();
                         }));
     }
