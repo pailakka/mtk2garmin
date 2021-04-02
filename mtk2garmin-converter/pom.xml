@@ -17,6 +17,17 @@
 
     <repositories>
         <repository>
+            <id>1_maven.apache.org</id>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <url>https://repo.maven.apache.org/maven2</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>oskari_org</id>
             <name>Oskari.org release repository</name>
             <url>http://oskari.org/nexus/content/repositories/releases/</url>
@@ -28,7 +39,7 @@
         <dependency>
             <groupId>com.typesafe</groupId>
             <artifactId>config</artifactId>
-            <version>1.4.0</version>
+            <version>1.4.1</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.gdal/gdal -->
         <dependency>
@@ -40,13 +51,13 @@
         <dependency>
             <groupId>com.google.protobuf</groupId>
             <artifactId>protobuf-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.15.6</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/it.unimi.dsi/fastutil -->
         <dependency>
             <groupId>it.unimi.dsi</groupId>
             <artifactId>fastutil</artifactId>
-            <version>8.4.1</version>
+            <version>8.5.4</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
