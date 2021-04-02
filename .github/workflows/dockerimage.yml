@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build and publish mtk2garmin-converter to Registry
-      uses: docker/build-push-action@v1
+      uses: docker/build-push-action@v2
       with:
         repository: teemupel/mtk2garmin-converter
         username: ${{ secrets.DOCKER_USERNAME }}
