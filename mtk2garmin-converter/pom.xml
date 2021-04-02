@@ -5,7 +5,6 @@
     <groupId>org.hylly</groupId>
     <artifactId>mtk2garmin</artifactId>
     <version>0.0.2</version>
-
     <name>mtk2garmin</name>
     <url>http://maven.apache.org</url>
 
