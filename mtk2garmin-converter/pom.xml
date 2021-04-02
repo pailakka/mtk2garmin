@@ -29,7 +29,6 @@
             <url>http://oskari.org/nexus/content/repositories/releases/</url>
         </repository>
     </repositories>
-
     <dependencies>
         <!-- https://mvnrepository.com/artifact/com.typesafe/config -->
         <dependency>
