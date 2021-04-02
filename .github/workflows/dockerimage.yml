@@ -11,11 +11,10 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build and publish mtk2garmin-converter to Registry
-      uses: elgohr/Publish-Docker-Github-Action@master
+      uses: docker/build-push-action@v1
       with:
-        name: teemupel/mtk2garmin-converter
+        repository: teemupel/mtk2garmin-converter
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-        snapshot: true
-        dockerfile: Dockerfile
-        workdir: mtk2garmin-converter
+        file: Dockerfile
+        context: mtk2garmin-converter
