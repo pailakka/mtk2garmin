@@ -80,6 +80,7 @@ class MTKToGarminConverter {
                 ));
 
         Map<String, Optional<String>> areaRelations = getRelatedAreas(grid2448, areas);
+        logger.info("Area relations resolved");
 
         initializeCachedDatasources();
 
