@@ -103,7 +103,9 @@ class MTKToGarminConverter {
                         logger.info("Processing file: " + cellFile.toString() + " in thread [" + Thread.currentThread().getId() + "]");
                         try {
                             SingleCellConverter cellConverter = new SingleCellConverter(cellFile, outdir, conf, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, featureIDProvider, cachedDatasources, nodeCache);
-                            cellConverter.doConvert();
+                            if (cellConverter.isValidCell()) {
+                                cellConverter.doConvert();
+                            }
                         } catch (IOException e) {
                             logger.severe("Converting file " + cellFile + " failed. Exception: " + e.toString());
                             e.printStackTrace();

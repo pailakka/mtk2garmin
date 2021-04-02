@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import java.util.stream.Stream;
 
 public class SingleCellConverter {
+    private final boolean isValidCell;
     private Logger logger = Logger.getLogger(CachedAdditionalDataSources.class.getName());
 
     private final File cellFile;
@@ -88,10 +89,10 @@ public class SingleCellConverter {
         cellLetter = cell.substring(cell.length() - 1);
 
         bbox = gridExtents.get(cell);
+        this.isValidCell = bbox != null;
         logger.info(cellFileName + " (" + cell + " / " + cellWithoutLetter + " / " + cellLetter + "), extent: " + Arrays.toString(bbox));
 
     }
-
 
     void doConvert() throws IOException {
         OSMPBFWriter osmpbWriter = new OSMPBFWriter(outdir.resolve(String.format("%s.osm.pbf", cell)).toFile());
@@ -440,4 +441,7 @@ public class SingleCellConverter {
 
     }
 
+    public boolean isValidCell() {
+        return isValidCell;
+    }
 }
