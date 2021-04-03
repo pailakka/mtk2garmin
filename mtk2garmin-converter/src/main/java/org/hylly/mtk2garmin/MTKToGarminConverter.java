@@ -92,6 +92,7 @@ class MTKToGarminConverter {
                 .sorted(Comparator.comparing(Map.Entry::getKey))
                 .filter(e -> grid2448.containsKey(e.getKey()))
                 .filter(e -> areaFilter == null || e.getKey().startsWith(areaFilter))
+                .filter(e -> !e.getKey().startsWith("J"))
                 .forEach(areaEntry -> {
                     String areaKey = areaEntry.getKey();
                     List<File> areaCells = areaEntry.getValue();
