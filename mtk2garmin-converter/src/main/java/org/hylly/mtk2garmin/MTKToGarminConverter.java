@@ -80,6 +80,7 @@ class MTKToGarminConverter {
                 ));
 
         Map<String, Optional<String>> areaRelations = getRelatedAreas(grid2448, areas);
+        logger.info("Area relations resolved");
 
         initializeCachedDatasources();
 
@@ -89,19 +90,23 @@ class MTKToGarminConverter {
                 .entrySet()
                 .stream()
                 .sorted(Comparator.comparing(Map.Entry::getKey))
-                .filter(e -> areaFilter == null ||e.getKey().startsWith(areaFilter))
+                .filter(e -> grid2448.containsKey(e.getKey()))
+                .filter(e -> areaFilter == null || e.getKey().startsWith(areaFilter))
+                .filter(e -> !e.getKey().startsWith("J"))
                 .forEach(areaEntry -> {
                     String areaKey = areaEntry.getKey();
                     List<File> areaCells = areaEntry.getValue();
                     double[] areaBBox = grid2448.get(areaKey);
-                    int areaGrid = geomUtils.xy2grid(areaBBox[0],areaBBox[1]);
+                    int areaGrid = geomUtils.xy2grid(areaBBox[0], areaBBox[1]);
                     nodeCache.ensureGrid(areaGrid);
 
                     areaCells.parallelStream().forEach(cellFile -> {
                         logger.info("Processing file: " + cellFile.toString() + " in thread [" + Thread.currentThread().getId() + "]");
                         try {
                             SingleCellConverter cellConverter = new SingleCellConverter(cellFile, outdir, conf, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, featureIDProvider, cachedDatasources, nodeCache);
-                            cellConverter.doConvert();
+                            if (cellConverter.isValidCell()) {
+                                cellConverter.doConvert();
+                            }
                         } catch (IOException e) {
                             logger.severe("Converting file " + cellFile + " failed. Exception: " + e.toString());
                             e.printStackTrace();
@@ -121,6 +126,7 @@ class MTKToGarminConverter {
         return areas
                 .keySet()
                 .parallelStream()
+                .filter(grid2448::containsKey)
                 .collect(Collectors.toMap(
                         area -> area,
                         area -> {
@@ -135,6 +141,7 @@ class MTKToGarminConverter {
                             return areas
                                     .keySet()
                                     .parallelStream()
+                                    .filter(grid2448::containsKey)
                                     .filter(searchArea -> {
                                         double[] searchBBox = grid2448.get(searchArea);
                                         return geomUtils.pointInside(searchBBox, search);
