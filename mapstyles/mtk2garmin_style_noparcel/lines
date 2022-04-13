@@ -12,7 +12,7 @@ yksisuuntaisuus=2 {add oneway=-1}
 yksisuuntaisuus=1 {add oneway=yes}
 
 kohdeluokka>=12111 & kohdeluokka<=12141 {name '${name} (${ref})'|'${name}'|'${ref}'}
-kohdeluokka=12111  {add mkgmap:bicycle=no; add mkgmap:foot=no} [0x01 road_class 4 road_speed 6 level 3] #Autotie Ia
+kohdeluokka=12111  {add mkgmap:bicycle=no; add mkgmap:foot=no} [0x01 road_class 4 road_speed 6 level 4] #Autotie Ia
 kohdeluokka=12112 [0x02 road_class 3 road_speed 5 level 4]  #Autotie Ib
 kohdeluokka=12121 [0x03 road_class 2 road_speed 4 level 4]  #Autotie IIa
 kohdeluokka=12122 [0x05 road_class 2 road_speed 3 level 4]  #Autotie IIb
