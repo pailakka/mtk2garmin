@@ -1,18 +1,10 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
-
+import java.util.Map;
 import java.util.Objects;
 
-import static java.util.Arrays.asList;
 
-
-class MMLTagHandler implements TagHandlerI {
-    private final ObjectOpenHashSet<String> wantedFields;
-
+class MTKTagHandler implements TagHandler {
     private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
     private final short tienro;
     private final short tasosij;
@@ -25,9 +17,7 @@ class MMLTagHandler implements TagHandlerI {
     private final StringTable stringtable;
 
 
-    MMLTagHandler(StringTable stringtable) {
-        wantedFields = new ObjectOpenHashSet<>(asList("nimi_ruotsi", "nimi_suomi", "kohdeluokka", "yksisuuntaisuus", "tienumero", "korkeusarvo", "tasosijainti", "syvyysarvo", "valmiusaste", "paallyste", "teksti", "teksti_kieli"));
-
+    MTKTagHandler(StringTable stringtable) {
         kohdeluokka = stringtable.getStringId("kohdeluokka");
         korarvo = stringtable.getStringId("korkeusarvo");
         syvarvo = stringtable.getStringId("syvyysarvo");
@@ -51,19 +41,13 @@ class MMLTagHandler implements TagHandlerI {
     }
 
     @Override
-    public ObjectOpenHashSet<String> getWantedFields() {
-        return this.wantedFields;
-    }
-
-    @Override
-    public void addElementTags(Short2ShortRBTreeMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea) {
-        if (tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
+    public void addElementTags(Map<Short, Short> tags, Map<Short, String> fields, String tyyppi, double geomarea) {
+        if (tags.containsKey(teksti_kieli) && tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
         }
 
-        for (Entry<String> k : fields.short2ObjectEntrySet()) {
-
-            short kk = k.getShortKey();
+        for (Map.Entry<Short, String> k : fields.entrySet()) {
+            short kk = k.getKey();
             String val = k.getValue();
 
             if (val.length() == 0) {

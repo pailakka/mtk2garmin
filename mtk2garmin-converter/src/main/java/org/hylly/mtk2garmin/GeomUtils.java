@@ -15,7 +15,7 @@ class GeomUtils {
 
     private final SpatialReference wgs84ref = new SpatialReference();
 
-    private Map<String, CoordinateTransformation> coordinateTransformationCache = new HashMap<>();
+    private final Map<String, CoordinateTransformation> coordinateTransformationCache = new HashMap<>();
 
     GeomUtils() {
         this.wgs84ref.SetWellKnownGeogCS("WGS84");
