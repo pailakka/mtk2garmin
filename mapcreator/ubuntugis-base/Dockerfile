@@ -1,4 +1,4 @@
-FROM osgeo/gdal:ubuntu-small-3.4.2
+FROM osgeo/gdal:ubuntu-full-3.4.2
 
 RUN apt update && apt install -y curl
 

@@ -10,7 +10,6 @@ fi
 
 docker-compose down -v
 
-docker pull quay.io/azavea/openjdk-gdal:3.1-jdk11-slim
 docker build --tag teemupel/mtk2garmin-ubuntugis-base -f ./ubuntugis-base/Dockerfile ./ubuntugis-base
 docker push teemupel/mtk2garmin-ubuntugis-base
 
