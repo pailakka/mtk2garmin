@@ -24,8 +24,21 @@ fi
 
 docker-compose pull
 
-time curl -o /opt/mtkdata/mtkmaasto.zip "https://tiedostopalvelu.maanmittauslaitos.fi/tp/tilauslataus/tuotteet/maastotietokanta/geopackage_maasto/mtkmaasto.zip?api_key=$MTK_API_KEY"
-time curl -o /opt/mtkdata/mtkkorkeus.zip "https://tiedostopalvelu.maanmittauslaitos.fi/tp/tilauslataus/tuotteet/maastotietokanta/geopackage_korkeus/mtkkorkeus.zip?api_key=$MTK_API_KEY"
+zmaasto=""
+zkorkeus=""
+
+if test -f "/opt/mtkdata/mtkmaasto.zip"; then
+  zmaasto="-z /opt/mtkdata/mtkmaasto.zip"
+fi
+
+if test -f "/opt/mtkdata/mtkkorkeus.zip"; then
+  zkorkeus="-z /opt/mtkdata/mtkkorkeus.zip"
+fi
+
+time curl "$zmaasto" -o /opt/mtkdata/mtkmaasto.zip "https://tiedostopalvelu.maanmittauslaitos.fi/tp/tilauslataus/tuotteet/maastotietokanta/geopackage_maasto/mtkmaasto.zip?api_key=$MTK_API_KEY"
+time curl "$zkorkeus" -o /opt/mtkdata/mtkkorkeus.zip "https://tiedostopalvelu.maanmittauslaitos.fi/tp/tilauslataus/tuotteet/maastotietokanta/geopackage_korkeus/mtkkorkeus.zip?api_key=$MTK_API_KEY"
+time 7z e /opt/mtkdata/mtkmaasto.zip -o/opt/mtkdata/
+time 7z e /opt/mtkdata/mtkkorkeus.zip -o/opt/mtkdata/
 time docker-compose run mml-client /go/src/app/mml-muutostietopalvelu-client load -p kiinteistorekisterikartta -t karttalehdittain -f application/x-shapefile -d /krkdata
 
 docker-compose up --no-start additional-data
