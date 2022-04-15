@@ -2,7 +2,9 @@ package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
 import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.commons.lang3.tuple.Triple;
+import org.gdal.gdal.gdal;
 import org.gdal.ogr.DataSource;
 import org.gdal.ogr.Feature;
 import org.gdal.ogr.FeatureDefn;
@@ -131,7 +133,7 @@ public class OGRSourceConverter {
 
     private DataSource startReadingOGRFile(String fn) {
         logger.info("Initializing file " + fn);
-
+        gdal.SetConfigOption("OGR_SQLITE_CACHE", "1024MB");
         DataSource ds = ogr.Open(fn, false);
         if (ds == null) {
             logger.severe("Reading file " + fn + " failed");
@@ -205,10 +207,27 @@ public class OGRSourceConverter {
 
                     Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
 
-                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = Stream.generate(layerFeatureStream)
+                    Stream<Pair<Geometry, Short2ObjectOpenHashMap<String>>> elementPairStream = Stream.generate(layerFeatureStream)
                             .takeWhile(feat -> feat != null && !breakLayerLoop.get())
+                            .filter(feat -> feat.GetGeometryRef() != null)
                             .map(feat -> {
-                                Optional<Triple<List<Node>, List<Way>, List<Relation>>> handlerResult = this.handleFeature(lyr.GetName(), fieldMapping, feat);
+                                Geometry geom = feat.GetGeometryRef().Clone();
+                                Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
+                                for (Field f : fieldMapping) {
+                                    short fid = this.stringTable.getStringId(f.getFieldName());
+                                    String fname = feat.GetFieldAsString(f.getFieldIndex()).intern();
+                                    fields.put(fid, fname);
+                                }
+
+                                Pair<Geometry, Short2ObjectOpenHashMap<String>> ret = Pair.of(geom, fields);
+                                feat.delete();
+                                return ret;
+                            });
+
+                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = BatchSpliterator.batch(elementPairStream, 10000)
+                            .parallel()
+                            .flatMap(batchElementPairs -> batchElementPairs.parallelStream().map(elementPair -> {
+                                Optional<Triple<List<Node>, List<Way>, List<Relation>>> handlerResult = this.handleFeature(lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
                                 if (handlerResult.isEmpty()) {
                                     logger.severe("BREAK");
                                     breakLayerLoop.set(true);
@@ -226,10 +245,11 @@ public class OGRSourceConverter {
                                 }
 
                                 return handlerResult;
-                            })
+                            }))
                             .filter(Optional::isPresent)
                             .map(Optional::get)
                             .filter(elems -> !elems.getLeft().isEmpty() || !elems.getMiddle().isEmpty() || !elems.getRight().isEmpty());
+
 
                     BatchSpliterator.batch(elementStream, 100000)
                             .forEach(batchElems -> {
@@ -255,26 +275,10 @@ public class OGRSourceConverter {
                 });
     }
 
-    private Optional<Triple<List<Node>, List<Way>, List<Relation>>> handleFeature(String lyrname, ArrayList<Field> fieldMapping, Feature feat) {
-        Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
-        Geometry geom;
-        for (Field f : fieldMapping) {
-            short fid = this.stringTable.getStringId(f.getFieldName());
-            String fname = feat.GetFieldAsString(f.getFieldIndex()).intern();
-            fields.put(fid, fname);
-        }
-
+    private Optional<Triple<List<Node>, List<Way>, List<Relation>>> handleFeature(String lyrname, Geometry geom, Short2ObjectOpenHashMap<String> fields) {
         List<Node> nodes = new ArrayList<>();
         List<Way> ways = new ArrayList<>();
         List<Relation> relations = new ArrayList<>();
-
-        geom = feat.GetGeometryRef();
-
-        if (geom == null) {
-            System.out.println("empty geom 1");
-            return Optional.of(Triple.of(nodes, ways, relations));
-        }
-
 
         geom = geom.SimplifyPreserveTopology(0.5);
 
@@ -301,7 +305,7 @@ public class OGRSourceConverter {
         double geomarea = geom.Area();
 
         geom.delete();
-        feat.delete();
+
         String tyyppi = lyrname.toLowerCase();
         if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
 
