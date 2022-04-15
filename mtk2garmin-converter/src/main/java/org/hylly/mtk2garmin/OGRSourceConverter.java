@@ -224,7 +224,7 @@ public class OGRSourceConverter {
                                 return ret;
                             });
 
-                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = BatchSpliterator.batch(elementPairStream, 10000)
+                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = BatchSpliterator.batch(elementPairStream, 100)
                             .parallel()
                             .flatMap(batchElementPairs -> batchElementPairs.parallelStream().map(elementPair -> {
                                 Optional<Triple<List<Node>, List<Way>, List<Relation>>> handlerResult = this.handleFeature(lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
@@ -233,9 +233,10 @@ public class OGRSourceConverter {
                                     breakLayerLoop.set(true);
                                 }
 
-                                long n = numFeatures.incrementAndGet();
+
                                 handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.getLeft().size()));
 
+                                long n = numFeatures.incrementAndGet();
                                 if (n % 10000 == 0) {
                                     long msFromSttart = System.currentTimeMillis() - st;
                                     long msFromPrev = System.currentTimeMillis() - stt.get();
@@ -243,7 +244,6 @@ public class OGRSourceConverter {
                                     stt.set(System.currentTimeMillis());
                                     nodeIDs.expireEvict();
                                 }
-
                                 return handlerResult;
                             }))
                             .filter(Optional::isPresent)
