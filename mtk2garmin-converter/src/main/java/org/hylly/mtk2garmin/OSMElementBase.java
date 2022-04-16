@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class OSMElementBase {
-    final Map<Short, Short> tags = new HashMap<>();
+    final Map<Integer, Integer> tags = new HashMap<>();
     long id;
 
     long getId() {
@@ -15,7 +15,7 @@ public class OSMElementBase {
         this.id = id;
     }
 
-    public Map<Short, Short> getTags() {
+    public Map<Integer, Integer> getTags() {
         return tags;
     }
 }

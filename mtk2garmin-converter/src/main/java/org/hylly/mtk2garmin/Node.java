@@ -8,7 +8,7 @@ public class Node {
     final double lon;
     final double lat;
     final long hash;
-    Map<Short, Short> nodeTags;
+    Map<Integer, Integer> nodeTags;
     boolean waypart;
 
     Node(long hash, double lon, double lat, boolean waypart) {
@@ -27,7 +27,7 @@ public class Node {
         this.waypart = waypart;
     }
 
-    public Node(long id, long hash, double lon, double lat, boolean waypart, Map<Short, Short> tags) {
+    public Node(long id, long hash, double lon, double lat, boolean waypart, Map<Integer, Integer> tags) {
         this.id = id;
         this.hash = hash;
         this.lon = lon;
@@ -42,7 +42,7 @@ public class Node {
         }
     }
 
-    void addTag(short key, short value) {
+    void addTag(int key, int value) {
         if (nodeTags == null) {
             nodeTags = new HashMap<>();
         }
@@ -70,7 +70,7 @@ public class Node {
         return hash;
     }
 
-    Map<Short, Short> getTags() {
+    Map<Integer, Integer> getTags() {
         return nodeTags;
     }
 

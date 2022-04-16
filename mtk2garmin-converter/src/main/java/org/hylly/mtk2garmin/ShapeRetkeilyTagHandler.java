@@ -1,5 +1,6 @@
 package org.hylly.mtk2garmin;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
 
 import java.util.Arrays;
@@ -11,7 +12,7 @@ class ShapeRetkeilyTagHandler implements TagHandler {
     private final ObjectOpenHashSet<String> wantedFields;
     private final StringTable stringtable;
 
-    private final short namefi, name;
+    private final int namefi, name;
 
     ShapeRetkeilyTagHandler(StringTable stringtable) {
         this.stringtable = stringtable;
@@ -24,9 +25,9 @@ class ShapeRetkeilyTagHandler implements TagHandler {
     }
 
     @Override
-    public void addElementTags(Map<Short, Short> tags, Map<Short, String> fields, String tyyppi, double geomarea) {
-        for (Map.Entry<Short, String> k : fields.entrySet()) {
-            short kk = k.getKey();
+    public void addElementTags(Map<Integer, Integer> tags, Int2ObjectArrayMap<String> fields, String tyyppi, double geomarea) {
+        for (Map.Entry<Integer, String> k : fields.entrySet()) {
+            int  kk = k.getKey();
             String val = k.getValue();
 
             if (kk == namefi) {

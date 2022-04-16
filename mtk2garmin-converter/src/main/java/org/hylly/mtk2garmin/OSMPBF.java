@@ -153,10 +153,10 @@ class OSMPBF {
                     llat.set(pbflat);
                     llon.set(pbflon);
 
-                    Map<Short, Short> ntags = n.getTags();
+                    Map<Integer, Integer> ntags = n.getTags();
                     if (ntags != null) {
-                        for (Map.Entry<Short, Short> t : ntags.entrySet()) {
-                            short k = t.getKey();
+                        for (Map.Entry<Integer, Integer> t : ntags.entrySet()) {
+                            int k = t.getKey();
                             if (k > stringtable.getStringtableSize() || t.getValue() > stringtable.getStringtableSize()) {
                                 System.out.println("Node key error! " + k + " or " + t.getValue() + " too large");
                             }
@@ -188,8 +188,8 @@ class OSMPBF {
 
                     wb.setId(w.getId());
                     wb.setInfo(wib);
-                    Map<Short, Short> wtags = w.getTags();
-                    for (Map.Entry<Short, Short> t : wtags.entrySet()) {
+                    Map<Integer, Integer> wtags = w.getTags();
+                    for (Map.Entry<Integer, Integer> t : wtags.entrySet()) {
                         wb.addKeys(t.getKey());
                         wb.addVals(t.getValue());
                     }
@@ -222,8 +222,8 @@ class OSMPBF {
                     rb.setId(r.getId());
                     rb.setInfo(rib);
 
-                    Map<Short, Short> rtags = r.getTags();
-                    for (Map.Entry<Short, Short> t : rtags.entrySet()) {
+                    Map<Integer, Integer> rtags = r.getTags();
+                    for (Map.Entry<Integer, Integer> t : rtags.entrySet()) {
                         rb.addKeys(t.getKey());
                         rb.addVals(t.getValue());
                     }

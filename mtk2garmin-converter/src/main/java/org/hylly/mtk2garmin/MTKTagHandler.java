@@ -1,18 +1,20 @@
 package org.hylly.mtk2garmin;
 
+import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+
 import java.util.Map;
 import java.util.Objects;
 
 
 class MTKTagHandler implements TagHandler {
-    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
-    private final short tienro;
-    private final short tasosij;
-    private final short bridge;
-    private final short tunnel;
-    private final short yes;
+    private final int korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
+    private final int tienro;
+    private final int tasosij;
+    private final int bridge;
+    private final int tunnel;
+    private final int yes;
 
-    private final short ele, name, ref, fin;
+    private final int ele, name, ref, fin;
 
     private final StringTable stringtable;
 
@@ -41,17 +43,15 @@ class MTKTagHandler implements TagHandler {
     }
 
     @Override
-    public void addElementTags(Map<Short, Short> tags, Map<Short, String> fields, String tyyppi, double geomarea) {
+    public void addElementTags(Map<Integer, Integer> tags, Int2ObjectArrayMap<String> fields, String tyyppi, double geomarea) {
         if (tags.containsKey(teksti_kieli) && tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
         }
 
-        for (Map.Entry<Short, String> k : fields.entrySet()) {
-            short kk = k.getKey();
-            String val = k.getValue();
+        fields.forEach((Integer kk, String val) -> {
 
             if (val.length() == 0) {
-                continue;
+                return;
             }
             if (kk == korarvo || kk == syvarvo) {
                 Double korarvo = Integer.parseInt(val) / 1000.0;
@@ -67,14 +67,14 @@ class MTKTagHandler implements TagHandler {
                 if (!tags.containsKey(name)) {
                     kk = name;
                 } else {
-                    continue;
+                    return;
                 }
             }
 
             if (kk == tienro) {
                 int tienroVal = Integer.parseInt(val);
                 if (tienroVal > 9999) {
-                    continue;
+                    return;
                 }
                 kk = ref;
             }
@@ -89,7 +89,7 @@ class MTKTagHandler implements TagHandler {
             }
 
             tags.put(kk, this.stringtable.getStringId(val));
-        }
+        });
 
         if (tyyppi.equals("selite") && "Tuulivoimala".equals(fields.get(teksti))) {
             tags.put(kohdeluokka, this.stringtable.getStringId("45500"));
