@@ -254,7 +254,7 @@ public class OGRSourceConverter {
                             .filter(elems -> !elems.getLeft().isEmpty() || !elems.getMiddle().isEmpty() || !elems.getRight().isEmpty());
 
 
-                    BatchSpliterator.batch(elementStream, 50000)
+                    BatchSpliterator.batch(elementStream, 5000)
                             .forEach(batchElems -> {
                                 List<Node> nodes = new ArrayList<>();
                                 List<Way> ways = new ArrayList<>();
