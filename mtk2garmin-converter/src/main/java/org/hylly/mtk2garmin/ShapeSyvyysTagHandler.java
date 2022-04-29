@@ -1,30 +1,26 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.Map;
 
 class ShapeSyvyysTagHandler implements TagHandler {
-    private final StringTable stringtable;
+    private final String depthContour, depthSounding, ele;
 
-    private final int depthContour, depthSounding, ele;
-
-    ShapeSyvyysTagHandler(StringTable stringtable) {
-        this.stringtable = stringtable;
-
-        depthContour = stringtable.getStringId("VALDCO");
-        depthSounding = stringtable.getStringId("DEPTH");
-        ele = stringtable.getStringId("ele");
+    ShapeSyvyysTagHandler() {
+        depthContour = "VALDCO";
+        depthSounding = "DEPTH";
+        ele = "ele";
     }
 
     @Override
-    public void addElementTags(Map<Integer, Integer> tags, Int2ObjectArrayMap<String> fields, String tyyppi, double geomarea) {
-        fields.forEach((Integer kk, String val) -> {
-            if (kk == depthContour || kk == depthSounding) {
+    public void addElementTags(Map<String, String> tags, Object2ObjectOpenHashMap<String, String> fields, String tyyppi, double geomarea) {
+        fields.forEach((String kk, String val) -> {
+            if (kk.equals(depthContour) || kk.equals(depthSounding)) {
                 kk = ele;
                 val = String.format("%.1f", Float.parseFloat(val));
             }
-            tags.put(kk, this.stringtable.getStringId(val));
+            tags.put(kk, val);
         });
     }
 

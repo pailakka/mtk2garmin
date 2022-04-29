@@ -111,7 +111,7 @@ class OSMPBF {
         Osmformat.PrimitiveGroup.Builder pgbuilder = Osmformat.PrimitiveGroup
                 .newBuilder();
         if (ways != null)
-            pgbuilder.addAllWays(this.buildOSMWays(ways));
+            pgbuilder.addAllWays(this.buildOSMWays(stringtable, ways));
         if (relations != null)
             pgbuilder.addAllRelations(this.buildOSMRelations(stringtable, relations));
         if (nodes != null)
@@ -153,15 +153,16 @@ class OSMPBF {
                     llat.set(pbflat);
                     llon.set(pbflon);
 
-                    Map<Integer, Integer> ntags = n.getTags();
+                    Map<String, String> ntags = n.getTags();
                     if (ntags != null) {
-                        for (Map.Entry<Integer, Integer> t : ntags.entrySet()) {
-                            int k = t.getKey();
-                            if (k > stringtable.getStringtableSize() || t.getValue() > stringtable.getStringtableSize()) {
+                        for (Map.Entry<String, String> t : ntags.entrySet()) {
+                            int k = stringtable.getStringId(t.getKey());
+                            int tv = stringtable.getStringId(t.getValue());
+                            if (k > stringtable.getStringtableSize() || tv > stringtable.getStringtableSize()) {
                                 System.out.println("Node key error! " + k + " or " + t.getValue() + " too large");
                             }
                             dsb.addKeysVals(k);
-                            dsb.addKeysVals(t.getValue());
+                            dsb.addKeysVals(tv);
                         }
                     }
 
@@ -175,7 +176,7 @@ class OSMPBF {
 
     }
 
-    private ArrayList<Osmformat.Way> buildOSMWays(Stream<Way> ways) {
+    private ArrayList<Osmformat.Way> buildOSMWays(StringTable stringtable, Stream<Way> ways) {
         ArrayList<Osmformat.Way> pbfways = new ArrayList<>();
         Osmformat.Info.Builder wib = Osmformat.Info.newBuilder();
         wib.setVersion(1);
@@ -188,10 +189,10 @@ class OSMPBF {
 
                     wb.setId(w.getId());
                     wb.setInfo(wib);
-                    Map<Integer, Integer> wtags = w.getTags();
-                    for (Map.Entry<Integer, Integer> t : wtags.entrySet()) {
-                        wb.addKeys(t.getKey());
-                        wb.addVals(t.getValue());
+                    Map<String, String> wtags = w.getTags();
+                    for (Map.Entry<String, String> t : wtags.entrySet()) {
+                        wb.addKeys(stringtable.getStringId(t.getKey()));
+                        wb.addVals(stringtable.getStringId(t.getValue()));
                     }
 
                     long lref = 0;
@@ -222,10 +223,10 @@ class OSMPBF {
                     rb.setId(r.getId());
                     rb.setInfo(rib);
 
-                    Map<Integer, Integer> rtags = r.getTags();
-                    for (Map.Entry<Integer, Integer> t : rtags.entrySet()) {
-                        rb.addKeys(t.getKey());
-                        rb.addVals(t.getValue());
+                    Map<String, String> rtags = r.getTags();
+                    for (Map.Entry<String, String> t : rtags.entrySet()) {
+                        rb.addKeys(stringtable.getStringId(t.getKey()));
+                        rb.addVals(stringtable.getStringId(t.getValue()));
                     }
 
                     long lmid = 0;
@@ -252,9 +253,9 @@ class OSMPBF {
         return pbfrels;
     }
 
-    void writePBFElements(StringTable stringtable,
-                          Stream<Node> nodes, Stream<Way> ways,
+    void writePBFElements(Stream<Node> nodes, Stream<Way> ways,
                           Stream<Relation> relations) throws IOException {
+        StringTable stringtable = new StringTable();
         Osmformat.PrimitiveBlock pb = this
                 .createOSMDataBlock(stringtable, nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());

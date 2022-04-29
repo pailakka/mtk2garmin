@@ -1,20 +1,19 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
 import java.util.Map;
 
 public class GenericTagHandler implements TagHandler {
-    private final StringTable stringtable;
 
-    public GenericTagHandler(StringTable stringTable) {
-        this.stringtable = stringTable;
+    public GenericTagHandler() {
+
     }
 
     @Override
-    public void addElementTags(Map<Integer, Integer> tags, Int2ObjectArrayMap<String> fields, String tyyppi, double geomarea) {
-        fields.forEach((Integer kk, String val) -> {
-            tags.put(kk, this.stringtable.getStringId(val));
+    public void addElementTags(Map<String, String> tags, Object2ObjectOpenHashMap<String, String> fields, String tyyppi, double geomarea) {
+        fields.forEach((String kk, String val) -> {
+            tags.put(kk, val);
         });
 
     }

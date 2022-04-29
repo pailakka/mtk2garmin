@@ -30,16 +30,16 @@ public class MultiOSMPBFWriter {
         this.relationOutput = new OSMPBF(this.relationFile);
     }
 
-    void writeNodes(StringTable stringtable, Stream<Node> nodes) throws IOException {
-        this.nodeOutput.writePBFElements(stringtable, nodes, null, null);
+    void writeNodes(Stream<Node> nodes) throws IOException {
+        this.nodeOutput.writePBFElements(nodes, null, null);
     }
 
-    void writeWays(StringTable stringtable, Stream<Way> ways) throws IOException {
-        this.wayOutput.writePBFElements(stringtable, null, ways, null);
+    void writeWays(Stream<Way> ways) throws IOException {
+        this.wayOutput.writePBFElements(null, ways, null);
     }
 
-    void writeRelations(StringTable stringtable, Stream<Relation> relations) throws IOException {
-        this.relationOutput.writePBFElements(stringtable, null, null, relations);
+    void writeRelations(Stream<Relation> relations) throws IOException {
+        this.relationOutput.writePBFElements(null, null, relations);
     }
 
     void closeMultiWriter() throws IOException {

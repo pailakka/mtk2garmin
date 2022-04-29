@@ -1,10 +1,8 @@
 package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
-import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.commons.lang3.tuple.Triple;
 import org.gdal.gdal.gdal;
 import org.gdal.ogr.DataSource;
 import org.gdal.ogr.Feature;
@@ -29,6 +27,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Vector;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
@@ -41,10 +40,6 @@ public class OGRSourceConverter {
     private final Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
     private final String inputKey;
     private final String inputPath;
-    private final StringTable stringTable;
-    private final int TYYPPI_STRING_ID;
-    private final TagHandler tagHandler;
-    private final Path outFile;
     private final List<Double> bboxFilter;
     private final List<String> inputLayers;
     private final String attributeFilter;
@@ -57,13 +52,13 @@ public class OGRSourceConverter {
     private final NodeIDMapBuilder nodeIDMapBuilder;
     private final boolean recursivePath;
     private final String layerMatch;
+    private final Path outDir;
     private CoordinateTransformation srctowgs;
-    private final MultiOSMPBFWriter multiOSMPBFWriter;
 
     public OGRSourceConverter(HTreeMap<Long, Long> nodeIDs, Path outDir, List<Double> bboxFilter, String inputKey, Config inputConfig) {
         logger.info("Starting converter for " + inputKey);
         this.inputKey = inputKey;
-        this.outFile = outDir.resolve(String.format("%s.osm.pbf", inputKey));
+        this.outDir = outDir;
         this.inputPath = inputConfig.getString("path");
         this.inputLayers = inputConfig.getStringList("layers");
         this.layerMatch = inputConfig.hasPath("layerMatch") ? inputConfig.getString("layerMatch") : null;
@@ -72,36 +67,23 @@ public class OGRSourceConverter {
         this.recursivePath = inputConfig.hasPath("recursivePath") && inputConfig.getBoolean("recursivePath");
         this.bboxFilter = bboxFilter;
 
-        this.stringTable = new StringTable();
-        this.TYYPPI_STRING_ID = this.stringTable.getStringId("tyyppi");
-
-        this.tagHandler = resolveTagHandler(this.inputKey);
-
         this.geomUtils = new GeomUtils();
         this.featureIDProvider = new FeatureIDProvider();
-
-        this.multiOSMPBFWriter = new MultiOSMPBFWriter(outDir, inputKey);
 
         this.nodeIDMapBuilder = new NodeIDMapBuilder();
         this.nodeIDs = Objects.requireNonNullElseGet(nodeIDs, () -> this.nodeIDMapBuilder.getNodeIDMap(inputKey));
     }
 
     private TagHandler resolveTagHandler(String inputKey) {
-        switch (inputKey) {
-            case "syvyyskayrat":
-            case "syvyyspisteet":
-                return new ShapeSyvyysTagHandler(this.stringTable);
-            case "mtkkorkeus":
-            case "mtkmaasto":
-            case "krk":
-                return new MTKTagHandler(this.stringTable);
-            default:
-                return new GenericTagHandler(this.stringTable);
-        }
+        return switch (inputKey) {
+            case "syvyyskayrat", "syvyyspisteet" -> new ShapeSyvyysTagHandler();
+            case "mtkkorkeus", "mtkmaasto", "krk" -> new MTKTagHandler();
+            default -> new GenericTagHandler();
+        };
     }
 
     public void convert() {
-        logger.info("Starting conversion for \"" + this.inputKey + "\" from " + this.inputPath + " to " + this.outFile + " (resursive: " + this.recursivePath + ")");
+        logger.info("Starting conversion for \"" + this.inputKey + "\" from " + this.inputPath + " to " + this.outDir.toAbsolutePath() + " (resursive: " + this.recursivePath + ")");
         if (this.recursivePath) {
             try {
                 Files.walk(Paths.get(this.inputPath))
@@ -121,15 +103,6 @@ public class OGRSourceConverter {
             DataSource ds = startReadingOGRFile(this.inputPath);
             convertOGResource(ds);
             ds.delete();
-        }
-
-        try {
-            multiOSMPBFWriter.closeMultiWriter();
-            multiOSMPBFWriter.writeMergedFile();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-            logger.severe("Failed writing merged OSMPBF!");
         }
         this.nodeIDMapBuilder.closeNodeIDMap();
     }
@@ -155,6 +128,7 @@ public class OGRSourceConverter {
         AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
 
         AtomicLong numFeatures = new AtomicLong(0);
+        AtomicInteger outFileCounter = new AtomicInteger(0);
         long st = System.currentTimeMillis();
         AtomicLong stt = new AtomicLong(st);
         AtomicLong numNodes = new AtomicLong(0);
@@ -227,17 +201,17 @@ public class OGRSourceConverter {
                                 return ret;
                             });
 
-                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = BatchSpliterator.batch(elementPairStream, 100)
+                    Stream<HandlerResult> elementStream = BatchSpliterator.batch(elementPairStream, 100)
                             .parallel()
                             .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
-                                Optional<Triple<List<Node>, List<Way>, List<Relation>>> handlerResult = this.handleFeature(lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
+                                TagHandler tagHandler = resolveTagHandler(inputKey);
+                                Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
                                 if (handlerResult.isEmpty()) {
                                     logger.severe("BREAK");
                                     breakLayerLoop.set(true);
                                 }
 
-
-                                handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.getLeft().size()));
+                                handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
 
                                 long n = numFeatures.incrementAndGet();
                                 if (n % 10000 == 0) {
@@ -251,24 +225,24 @@ public class OGRSourceConverter {
                             }))
                             .filter(Optional::isPresent)
                             .map(Optional::get)
-                            .filter(elems -> !elems.getLeft().isEmpty() || !elems.getMiddle().isEmpty() || !elems.getRight().isEmpty());
+                            .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
 
-
-                    BatchSpliterator.batch(elementStream, 5000)
+                    BatchSpliterator.batch(elementStream, 100000)
                             .forEach(batchElems -> {
+                                Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
+                                OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
                                 List<Node> nodes = new ArrayList<>();
                                 List<Way> ways = new ArrayList<>();
                                 List<Relation> relations = new ArrayList<>();
                                 batchElems.forEach(elems -> {
-                                    nodes.addAll(elems.getLeft());
-                                    ways.addAll(elems.getMiddle());
-                                    relations.addAll(elems.getRight());
+                                    nodes.addAll(elems.nodes());
+                                    ways.addAll(elems.ways());
+                                    relations.addAll(elems.relations());
                                 });
                                 logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
                                 try {
-                                    multiOSMPBFWriter.writeNodes(this.stringTable, nodes.stream());
-                                    multiOSMPBFWriter.writeWays(this.stringTable, ways.stream());
-                                    multiOSMPBFWriter.writeRelations(this.stringTable, relations.stream());
+                                    batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+                                    batchPBFWriter.closeOSMPBFFile();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                     logger.severe("Failed writing OSMPBF for elements!");
@@ -278,15 +252,14 @@ public class OGRSourceConverter {
                 });
     }
 
-    private Optional<Triple<List<Node>, List<Way>, List<Relation>>> handleFeature(String lyrname, Geometry geom, Map<String, String> rawFields) {
+    private Optional<HandlerResult> handleFeature(TagHandler tagHandler, String lyrname, Geometry geom, Map<String, String> rawFields) {
         List<Node> nodes = new ArrayList<>();
         List<Way> ways = new ArrayList<>();
         List<Relation> relations = new ArrayList<>();
 
-        Int2ObjectArrayMap<String> fields = new Int2ObjectArrayMap<>();
+        Object2ObjectOpenHashMap<String, String> fields = new Object2ObjectOpenHashMap<>();
         for (Map.Entry<String, String> fe : rawFields.entrySet()) {
-            int fid = this.stringTable.getStringId(fe.getKey());
-            fields.put(fid, fe.getValue());
+            fields.put(fe.getKey().intern(), fe.getValue().intern());
         }
 
         geom = geom.SimplifyPreserveTopology(0.5);
@@ -300,7 +273,7 @@ public class OGRSourceConverter {
 
         if (geom == null) {
             System.out.println("empty geom 2");
-            return Optional.of(Triple.of(nodes, ways, relations));
+            return Optional.of(new HandlerResult(nodes, ways, relations));
         }
 
         if (geom.GetGeometryCount() < 2) {
@@ -309,7 +282,7 @@ public class OGRSourceConverter {
             }
             ghr = this.handleSingleGeom(geom);
         } else {
-            ghr = this.handleMultiGeom(this.stringTable.getStringId("type"), this.stringTable.getStringId("multipolygon"), geom);
+            ghr = this.handleMultiGeom(geom);
         }
         double geomarea = geom.Area();
 
@@ -318,11 +291,9 @@ public class OGRSourceConverter {
         String tyyppi = lyrname.toLowerCase();
         if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
 
-        int tyyppi_value_id = this.stringTable.getStringId(tyyppi);
-
         for (Node n : ghr.nodes) {
             if (!n.isWaypart()) {
-                n.addTag(this.TYYPPI_STRING_ID, tyyppi_value_id);
+                n.addTag("tyyppi", tyyppi);
                 tagHandler.addElementTags(n.nodeTags, fields, tyyppi, geomarea);
             }
             nodes.add(n);
@@ -330,7 +301,7 @@ public class OGRSourceConverter {
 
         for (Way w : ghr.ways) {
             if (!w.getRole().equals("inner")) {
-                w.tags.put(this.TYYPPI_STRING_ID, tyyppi_value_id);
+                w.tags.put("tyyppi", tyyppi);
                 tagHandler.addElementTags(w.tags, fields, tyyppi, geomarea);
             }
             ways.add(w);
@@ -338,12 +309,12 @@ public class OGRSourceConverter {
 
         for (Relation r : ghr.relations) {
 
-            r.tags.put(this.TYYPPI_STRING_ID, tyyppi_value_id);
+            r.tags.put("tyyppi", tyyppi);
             tagHandler.addElementTags(r.tags, fields, tyyppi, geomarea);
             relations.add(r);
         }
 
-        return Optional.of(Triple.of(nodes, ways, relations));
+        return Optional.of(new HandlerResult(nodes, ways, relations));
 
     }
 
@@ -396,7 +367,7 @@ public class OGRSourceConverter {
 
     }
 
-    private GeomHandlerResult handleMultiGeom(int type, int multipolygon, Geometry geom) {
+    private GeomHandlerResult handleMultiGeom(Geometry geom) {
 
         GeomHandlerResult ighr;
         Geometry igeom;
@@ -415,7 +386,7 @@ public class OGRSourceConverter {
         long rid = featureIDProvider.getRelationID();
         Relation r = new Relation();
         r.setId(rid);
-        r.tags.put(type, multipolygon);
+        r.tags.put("type", "multipolygon");
 
         for (int i = 0; i < geom.GetGeometryCount(); i++) {
             igeom = geom.GetGeometryRef(i);
@@ -440,5 +411,8 @@ public class OGRSourceConverter {
         ghr.relations.add(r);
         return ghr;
 
+    }
+
+    private record HandlerResult(List<Node> nodes, List<Way> ways, List<Relation> relations) {
     }
 }
