@@ -75,11 +75,17 @@ public class OGRSourceConverter {
     }
 
     private TagHandler resolveTagHandler(String inputKey) {
-        return switch (inputKey) {
-            case "syvyyskayrat", "syvyyspisteet" -> new ShapeSyvyysTagHandler();
-            case "mtkkorkeus", "mtkmaasto", "krk" -> new MTKTagHandler();
-            default -> new GenericTagHandler();
-        };
+        switch (inputKey) {
+            case "syvyyskayrat":
+            case "syvyyspisteet":
+                return new ShapeSyvyysTagHandler();
+            case "mtkkorkeus":
+            case "mtkmaasto":
+            case "krk":
+                return new MTKTagHandler();
+            default:
+                return new GenericTagHandler();
+        }
     }
 
     public void convert() {
@@ -206,7 +212,7 @@ public class OGRSourceConverter {
                             .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
                                 TagHandler tagHandler = resolveTagHandler(inputKey);
                                 Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
-                                if (handlerResult.isEmpty()) {
+                                if (!handlerResult.isPresent()) {
                                     logger.severe("BREAK");
                                     breakLayerLoop.set(true);
                                 }
@@ -413,6 +419,27 @@ public class OGRSourceConverter {
 
     }
 
-    private record HandlerResult(List<Node> nodes, List<Way> ways, List<Relation> relations) {
+    public static class HandlerResult {
+        private List<Node> nodes;
+        private List<Way> ways;
+        private List<Relation> relations;
+
+        public HandlerResult(List<Node> nodes, List<Way> ways, List<Relation> relations) {
+            this.nodes = nodes;
+            this.ways = ways;
+            this.relations = relations;
+        }
+
+        public List<Node> nodes() {
+            return nodes;
+        }
+
+        public List<Way> ways() {
+            return ways;
+        }
+
+        public List<Relation> relations() {
+            return relations;
+        }
     }
 }
