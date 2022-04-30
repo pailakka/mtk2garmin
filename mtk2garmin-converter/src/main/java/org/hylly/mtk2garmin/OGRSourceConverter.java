@@ -92,22 +92,20 @@ public class OGRSourceConverter {
         logger.info("Starting conversion for \"" + this.inputKey + "\" from " + this.inputPath + " to " + this.outDir.toAbsolutePath() + " (resursive: " + this.recursivePath + ")");
         if (this.recursivePath) {
             try {
-                Files.walk(Paths.get(this.inputPath))
+                convertOGRDatasources(Files.walk(Paths.get(this.inputPath))
                         .filter(Files::isRegularFile)
-                        .parallel()
-                        .forEach(fn -> {
+                        .map(fn -> {
                             String inp = fn.getFileName().toString().toLowerCase().endsWith(".zip") ? "/vsizip/" + fn : fn.toString();
                             DataSource ds = startReadingOGRFile(inp);
-                            convertOGResource(ds);
-                            ds.delete();
-                        });
+                            return ds;
+                        }));
             } catch (IOException e) {
                 e.printStackTrace();
                 logger.severe("Failed to traverse recursive path");
             }
         } else {
             DataSource ds = startReadingOGRFile(this.inputPath);
-            convertOGResource(ds);
+            convertOGRDatasources(Stream.of(ds));
             ds.delete();
         }
         this.nodeIDMapBuilder.closeNodeIDMap();
@@ -125,137 +123,143 @@ public class OGRSourceConverter {
         return ds;
     }
 
-    private void convertOGResource(DataSource ds) {
-        logger.info("Start converting " + ds.GetName());
-        logger.info("Attribute filter: " + this.attributeFilter);
-        logger.info("BBOX filter: " + this.bboxFilter);
-
-        String attrFilter = this.attributeFilter;
-        AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
-
-        AtomicLong numFeatures = new AtomicLong(0);
+    private void convertOGRDatasources(Stream<DataSource> dataSourceStream) {
         AtomicInteger outFileCounter = new AtomicInteger(0);
-        long st = System.currentTimeMillis();
-        AtomicLong stt = new AtomicLong(st);
-        AtomicLong numNodes = new AtomicLong(0);
 
-        List<String> wantedLayers = this.inputLayers;
-        String finalLayerMatch = layerMatch;
-        if (this.inputLayers.isEmpty() && this.layerMatch != null) {
-            wantedLayers = IntStream.range(0, ds.GetLayerCount())
-                    .mapToObj(ds::GetLayerByIndex)
-                    .map(Layer::GetName)
-                    .filter(n -> n.contains(finalLayerMatch))
-                    .collect(Collectors.toList());
-        }
-        logger.info("wanted layers: " + wantedLayers);
-        wantedLayers.stream()
-                .takeWhile($ -> !breakLayerLoop.get())
-                .forEach(layerName -> {
-                    Layer lyr = ds.GetLayer(layerName);
+        Stream<HandlerResult> elementStream = dataSourceStream
+                .parallel()
+                .flatMap(ds -> {
+                    logger.info("Start converting " + ds.GetName());
+                    logger.info("Attribute filter: " + this.attributeFilter);
+                    logger.info("BBOX filter: " + this.bboxFilter);
 
-                    Vector<String> ignoredFields = new Vector<>();
+                    String attrFilter = this.attributeFilter;
+                    AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
 
-                    if (this.bboxFilter.size() == 4) {
-                        lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
+                    AtomicLong numFeatures = new AtomicLong(0);
+
+                    long st = System.currentTimeMillis();
+                    AtomicLong stt = new AtomicLong(st);
+                    AtomicLong numNodes = new AtomicLong(0);
+
+                    List<String> wantedLayers = this.inputLayers;
+                    String finalLayerMatch = layerMatch;
+                    if (this.inputLayers.isEmpty() && this.layerMatch != null) {
+                        wantedLayers = IntStream.range(0, ds.GetLayerCount())
+                                .mapToObj(ds::GetLayerByIndex)
+                                .map(Layer::GetName)
+                                .filter(n -> n.contains(finalLayerMatch))
+                                .collect(Collectors.toList());
                     }
+                    logger.info("wanted layers: " + wantedLayers);
+                    return wantedLayers.stream()
+                            .takeWhile($ -> !breakLayerLoop.get())
+                            .flatMap(layerName -> {
+                                Layer lyr = ds.GetLayer(layerName);
 
-                    if (attrFilter != null) {
-                        lyr.SetAttributeFilter(attrFilter);
-                    }
+                                Vector<String> ignoredFields = new Vector<>();
 
-                    logger.info("Converting layer " + layerName);
-
-                    FeatureDefn lyrdefn = lyr.GetLayerDefn();
-                    ArrayList<Field> fieldMapping = new ArrayList<>();
-                    for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
-                        FieldDefn fdefn = lyrdefn.GetFieldDefn(i1);
-                        String fname = fdefn.GetName();
-
-                        if (this.wantedFields.isPresent()) {
-                            if (!this.wantedFields.get().contains(fname)) {
-                                ignoredFields.add(fname);
-                                continue;
-                            }
-                        }
-                        fieldMapping.add(new Field(fname, fdefn.GetFieldType(), i1));
-                    }
-
-                    if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
-                        lyr.SetIgnoredFields(ignoredFields);
-                    }
-
-                    lyr.ResetReading();
-
-
-                    Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
-
-                    Stream<Pair<Geometry, Map<String, String>>> elementPairStream = Stream.generate(layerFeatureStream)
-                            .takeWhile(feat -> feat != null && !breakLayerLoop.get())
-                            .filter(feat -> feat.GetGeometryRef() != null)
-                            .map(feat -> {
-                                Geometry geom = feat.GetGeometryRef().Clone();
-                                HashMap<String, String> fields = new HashMap<>();
-                                for (Field f : fieldMapping) {
-                                    String fname = f.getFieldName().intern();
-                                    String fvalue = feat.GetFieldAsString(f.getFieldIndex()).intern();
-                                    fields.put(fname, fvalue);
+                                if (this.bboxFilter.size() == 4) {
+                                    lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
                                 }
 
-                                Pair<Geometry, Map<String, String>> ret = Pair.of(geom, fields);
-                                feat.delete();
-                                return ret;
-                            });
-
-                    Stream<HandlerResult> elementStream = BatchSpliterator.batch(elementPairStream, 100)
-                            .parallel()
-                            .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
-                                TagHandler tagHandler = resolveTagHandler(inputKey);
-                                Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
-                                if (!handlerResult.isPresent()) {
-                                    logger.severe("BREAK");
-                                    breakLayerLoop.set(true);
+                                if (attrFilter != null) {
+                                    lyr.SetAttributeFilter(attrFilter);
                                 }
 
-                                handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
+                                logger.info("Converting layer " + layerName);
 
-                                long n = numFeatures.incrementAndGet();
-                                if (n % 10000 == 0) {
-                                    long msFromSttart = System.currentTimeMillis() - st;
-                                    long msFromPrev = System.currentTimeMillis() - stt.get();
-                                    logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromSttart + "ms and " + msFromPrev + "ms/10000");
-                                    stt.set(System.currentTimeMillis());
-                                    nodeIDs.expireEvict();
-                                }
-                                return handlerResult;
-                            }))
-                            .filter(Optional::isPresent)
-                            .map(Optional::get)
-                            .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
+                                FeatureDefn lyrdefn = lyr.GetLayerDefn();
+                                ArrayList<Field> fieldMapping = new ArrayList<>();
+                                for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
+                                    FieldDefn fdefn = lyrdefn.GetFieldDefn(i1);
+                                    String fname = fdefn.GetName();
 
-                    BatchSpliterator.batch(elementStream, 100000)
-                            .forEach(batchElems -> {
-                                Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
-                                OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
-                                List<Node> nodes = new ArrayList<>();
-                                List<Way> ways = new ArrayList<>();
-                                List<Relation> relations = new ArrayList<>();
-                                batchElems.forEach(elems -> {
-                                    nodes.addAll(elems.nodes());
-                                    ways.addAll(elems.ways());
-                                    relations.addAll(elems.relations());
-                                });
-                                logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
-                                try {
-                                    batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
-                                    batchPBFWriter.closeOSMPBFFile();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    logger.severe("Failed writing OSMPBF for elements!");
-                                    breakLayerLoop.set(true);
+                                    if (this.wantedFields.isPresent()) {
+                                        if (!this.wantedFields.get().contains(fname)) {
+                                            ignoredFields.add(fname);
+                                            continue;
+                                        }
+                                    }
+                                    fieldMapping.add(new Field(fname, fdefn.GetFieldType(), i1));
                                 }
+
+                                if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
+                                    lyr.SetIgnoredFields(ignoredFields);
+                                }
+
+                                lyr.ResetReading();
+
+                                Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
+
+                                Stream<Pair<Geometry, Map<String, String>>> elementPairStream = Stream.generate(layerFeatureStream)
+                                        .takeWhile(feat -> feat != null && !breakLayerLoop.get())
+                                        .filter(feat -> feat.GetGeometryRef() != null)
+                                        .map(feat -> {
+                                            Geometry geom = feat.GetGeometryRef().Clone();
+                                            HashMap<String, String> fields = new HashMap<>();
+                                            for (Field f : fieldMapping) {
+                                                String fname = f.getFieldName().intern();
+                                                String fvalue = feat.GetFieldAsString(f.getFieldIndex()).intern();
+                                                fields.put(fname, fvalue);
+                                            }
+
+                                            Pair<Geometry, Map<String, String>> ret = Pair.of(geom, fields);
+                                            feat.delete();
+                                            return ret;
+                                        });
+
+                                return BatchSpliterator.batch(elementPairStream, 200)
+                                        .parallel()
+                                        .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
+                                            TagHandler tagHandler = resolveTagHandler(inputKey);
+                                            Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
+                                            if (!handlerResult.isPresent()) {
+                                                logger.severe("BREAK");
+                                                breakLayerLoop.set(true);
+                                            }
+
+                                            handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
+
+                                            long n = numFeatures.incrementAndGet();
+                                            if (n % 10000 == 0) {
+                                                long msFromSttart = System.currentTimeMillis() - st;
+                                                long msFromPrev = System.currentTimeMillis() - stt.get();
+                                                logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromSttart + "ms and " + msFromPrev + "ms/10000");
+                                                stt.set(System.currentTimeMillis());
+                                                nodeIDs.expireEvict();
+                                            }
+                                            return handlerResult;
+                                        }))
+                                        .filter(Optional::isPresent)
+                                        .map(Optional::get)
+                                        .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
                             });
                 });
+        BatchSpliterator.batch(elementStream, 1000000)
+                .parallel()
+                .forEach(batchElems -> {
+                    Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
+                    OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
+                    List<Node> nodes = new ArrayList<>();
+                    List<Way> ways = new ArrayList<>();
+                    List<Relation> relations = new ArrayList<>();
+                    batchElems.forEach(elems -> {
+                        nodes.addAll(elems.nodes());
+                        ways.addAll(elems.ways());
+                        relations.addAll(elems.relations());
+                    });
+                    logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
+                    try {
+                        batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+                        batchPBFWriter.closeOSMPBFFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.severe("Failed writing OSMPBF for elements!");
+                        System.exit(2);
+                    }
+                });
+
     }
 
     private Optional<HandlerResult> handleFeature(TagHandler tagHandler, String lyrname, Geometry geom, Map<String, String> rawFields) {
