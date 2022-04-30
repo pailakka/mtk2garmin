@@ -126,7 +126,7 @@ public class OGRSourceConverter {
     private void convertOGRDatasources(Stream<DataSource> dataSourceStream) {
         AtomicInteger outFileCounter = new AtomicInteger(0);
 
-        Stream<HandlerResult> elementStream = dataSourceStream
+        Stream<List<HandlerResult>> elementBatchStream = dataSourceStream
                 .parallel()
                 .flatMap(ds -> {
                     logger.info("Start converting " + ds.GetName());
@@ -209,7 +209,8 @@ public class OGRSourceConverter {
                                             return ret;
                                         });
 
-                                return BatchSpliterator.batch(elementPairStream, 200)
+                                Stream<HandlerResult> elementStream;
+                                elementStream = BatchSpliterator.batch(elementPairStream, 200)
                                         .parallel()
                                         .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
                                             TagHandler tagHandler = resolveTagHandler(inputKey);
@@ -234,9 +235,12 @@ public class OGRSourceConverter {
                                         .filter(Optional::isPresent)
                                         .map(Optional::get)
                                         .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
+                                return BatchSpliterator.batch(elementStream, 1000000);
                             });
                 });
-        BatchSpliterator.batch(elementStream, 1000000)
+
+
+        elementBatchStream
                 .parallel()
                 .forEach(batchElems -> {
                     Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
@@ -259,6 +263,7 @@ public class OGRSourceConverter {
                         System.exit(2);
                     }
                 });
+
 
     }
 
