@@ -235,7 +235,7 @@ public class OGRSourceConverter {
                                         .filter(Optional::isPresent)
                                         .map(Optional::get)
                                         .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
-                                return BatchSpliterator.batch(elementStream, 1000000);
+                                return BatchSpliterator.batch(elementStream, 250000);
                             });
                 });
 
