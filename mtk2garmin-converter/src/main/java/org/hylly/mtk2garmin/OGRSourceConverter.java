@@ -210,9 +210,7 @@ public class OGRSourceConverter {
                                         });
 
                                 Stream<HandlerResult> elementStream;
-                                elementStream = BatchSpliterator.batch(elementPairStream, 200)
-                                        .parallel()
-                                        .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
+                                elementStream = elementPairStream.map(elementPair -> {
                                             TagHandler tagHandler = resolveTagHandler(inputKey);
                                             Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
                                             if (!handlerResult.isPresent()) {
@@ -231,7 +229,7 @@ public class OGRSourceConverter {
                                                 nodeIDs.expireEvict();
                                             }
                                             return handlerResult;
-                                        }))
+                                        })
                                         .filter(Optional::isPresent)
                                         .map(Optional::get)
                                         .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
