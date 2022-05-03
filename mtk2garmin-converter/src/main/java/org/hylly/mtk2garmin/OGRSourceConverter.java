@@ -126,7 +126,7 @@ public class OGRSourceConverter {
     private void convertOGRDatasources(Stream<DataSource> dataSourceStream) {
         AtomicInteger outFileCounter = new AtomicInteger(0);
 
-        Stream<HandlerResult> elementStream = dataSourceStream
+        Stream<List<HandlerResult>> elementBatchStream = dataSourceStream
                 .parallel()
                 .flatMap(ds -> {
                     logger.info("Start converting " + ds.GetName());
@@ -209,7 +209,8 @@ public class OGRSourceConverter {
                                             return ret;
                                         });
 
-                                return BatchSpliterator.batch(elementPairStream, 200)
+                                Stream<HandlerResult> elementStream;
+                                elementStream = BatchSpliterator.batch(elementPairStream, 200)
                                         .parallel()
                                         .flatMap(batchElementPairs -> batchElementPairs.stream().map(elementPair -> {
                                             TagHandler tagHandler = resolveTagHandler(inputKey);
@@ -234,29 +235,34 @@ public class OGRSourceConverter {
                                         .filter(Optional::isPresent)
                                         .map(Optional::get)
                                         .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty());
+                                return BatchSpliterator.batch(elementStream, 250000);
                             });
                 });
-        ParallelStreamBatchProcessing.processInBatch(elementStream, 250000, (batchElems) -> {
-            Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
-            OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
-            List<Node> nodes = new ArrayList<>();
-            List<Way> ways = new ArrayList<>();
-            List<Relation> relations = new ArrayList<>();
-            batchElems.forEach(elems -> {
-                nodes.addAll(elems.nodes());
-                ways.addAll(elems.ways());
-                relations.addAll(elems.relations());
-            });
-            logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
-            try {
-                batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
-                batchPBFWriter.closeOSMPBFFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                logger.severe("Failed writing OSMPBF for elements!");
-                System.exit(2);
-            }
-        });
+
+
+        elementBatchStream
+                .parallel()
+                .forEach(batchElems -> {
+                    Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
+                    OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
+                    List<Node> nodes = new ArrayList<>();
+                    List<Way> ways = new ArrayList<>();
+                    List<Relation> relations = new ArrayList<>();
+                    batchElems.forEach(elems -> {
+                        nodes.addAll(elems.nodes());
+                        ways.addAll(elems.ways());
+                        relations.addAll(elems.relations());
+                    });
+                    logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
+                    try {
+                        batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+                        batchPBFWriter.closeOSMPBFFile();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        logger.severe("Failed writing OSMPBF for elements!");
+                        System.exit(2);
+                    }
+                });
 
 
     }
