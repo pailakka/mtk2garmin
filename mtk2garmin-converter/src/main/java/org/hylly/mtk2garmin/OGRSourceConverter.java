@@ -21,6 +21,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -135,68 +136,64 @@ public class OGRSourceConverter {
 
         ExecutorService elementPairExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         long st = System.currentTimeMillis();
-        Stream<Triple<String, Geometry, Map<String, String>>> pairStream = dataSourceStream
-                .parallel()
-                .flatMap(ds -> {
-                    logger.info("Start converting " + ds.GetName());
-                    logger.info("Attribute filter: " + this.attributeFilter);
-                    logger.info("BBOX filter: " + this.bboxFilter);
+        Stream<Triple<String, Geometry, Map<String, String>>> pairStream = dataSourceStream.flatMap(ds -> {
+            logger.info("Start converting " + ds.GetName());
+            logger.info("Attribute filter: " + this.attributeFilter);
+            logger.info("BBOX filter: " + this.bboxFilter);
 
-                    String attrFilter = this.attributeFilter;
-                    AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
+            String attrFilter = this.attributeFilter;
+            AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
 
-                    List<String> wantedLayers = resolveWantedLayers(ds);
-                    logger.info("wanted layers: " + wantedLayers);
-                    return wantedLayers.stream()
-                            .takeWhile($ -> !breakLayerLoop.get())
-                            .flatMap(layerName -> {
-                                Layer lyr = ds.GetLayer(layerName);
+            List<String> wantedLayers = resolveWantedLayers(ds);
+            logger.info("wanted layers: " + wantedLayers);
+            return wantedLayers.stream().takeWhile($ -> !breakLayerLoop.get()).flatMap(layerName -> {
+                Layer lyr = ds.GetLayer(layerName);
 
-                                if (this.bboxFilter.size() == 4) {
-                                    lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
-                                }
+                if (this.bboxFilter.size() == 4) {
+                    lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
+                }
 
-                                if (attrFilter != null) {
-                                    lyr.SetAttributeFilter(attrFilter);
-                                }
+                if (attrFilter != null) {
+                    lyr.SetAttributeFilter(attrFilter);
+                }
 
-                                logger.info("Converting layer " + layerName);
+                logger.info("Converting layer " + layerName);
 
-                                ArrayList<Field> fieldMapping = getFieldMappingFromLayer(lyr);
+                ArrayList<Field> fieldMapping = getFieldMappingFromLayer(lyr);
 
-                                Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
+                Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
 
-                                return Stream.generate(layerFeatureStream)
-                                        .takeWhile(feat -> feat != null && !breakLayerLoop.get())
-                                        .filter(feat -> feat.GetGeometryRef() != null)
-                                        .map(feat -> getElementTripleFromFeature(lyr.GetName(), fieldMapping, feat));
-                            });
-                });
+                return Stream.generate(layerFeatureStream)
+                        .takeWhile(feat -> feat != null && !breakLayerLoop.get())
+                        .filter(feat -> feat.GetGeometryRef() != null)
+                        .map(feat -> getElementTripleFromFeature(lyr.GetName(), fieldMapping, feat));
+            });
+        });
 
-        List<Triple<String, Geometry, Map<String, String>>> handlerBatch = new ArrayList<>();
+        List<Triple<String, Geometry, Map<String, String>>> handlerBatch = Collections.synchronizedList(new ArrayList<>());
 
         BlockingQueue<Future<List<Optional<HandlerResult>>>> resultQueue = new ArrayBlockingQueue<>(500);
 
         ExecutorService pbfWriterExecutor = Executors.newSingleThreadExecutor();
 
-        List<HandlerResult> writeBatch = new ArrayList<>();
+        List<HandlerResult> writeBatch = Collections.synchronizedList(new ArrayList<>());
 
         Thread resultConsumerThread = new Thread(() -> {
             while (true) {
                 try {
                     Future<List<Optional<HandlerResult>>> resf = resultQueue.take();
 
-                    resf.get()
-                            .stream()
+                    resf.get().stream()
                             .filter(Optional::isPresent)
                             .map(Optional::get)
-                            .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty())
-                            .forEach(handlerResult -> {
+                            .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty()).forEach(handlerResult -> {
                                 writeBatch.add(handlerResult);
+
                                 if (writeBatch.size() > 250000) {
                                     List<HandlerResult> resultsToWrite = new ArrayList<>(writeBatch);
                                     writeBatch.clear();
                                     pbfWriterExecutor.execute(() -> writeBatchToFile(outFileCounter, resultsToWrite));
+                                    writeBatch.clear();
                                 }
                             });
 
@@ -218,34 +215,41 @@ public class OGRSourceConverter {
         AtomicLong stt = new AtomicLong(st2);
         AtomicLong numNodes = new AtomicLong(0);
         pairStream.forEach(elementTriple -> {
+            if (Objects.isNull(elementTriple)) {
+                System.out.println("wtf???");
+                System.exit(0);
+            }
             handlerBatch.add(elementTriple);
+
             if (handlerBatch.size() > 1000) {
-                List<Triple<String, Geometry, Map<String, String>>> batchPairs = new ArrayList<>(handlerBatch);
+                synchronized (this) {
+                    List<Triple<String, Geometry, Map<String, String>>> batchPairs = new ArrayList<>(handlerBatch);
 
-                Future<List<Optional<HandlerResult>>> futures = elementPairExecutorService.submit(() -> batchPairs.stream().map(et -> {
-                    TagHandler tagHandler = resolveTagHandler(inputKey);
-                    Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, et.getLeft(), et.getMiddle(), et.getRight());
+                    Future<List<Optional<HandlerResult>>> futures = elementPairExecutorService.submit(() -> batchPairs.stream().map(et -> {
+                        TagHandler tagHandler = resolveTagHandler(inputKey);
+                        Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, et.getLeft(), et.getMiddle(), et.getRight());
 
-                    handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
+                        handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
 
-                    long n = numFeatures.incrementAndGet();
-                    if (n % 10000 == 0) {
-                        long msFromStart = System.currentTimeMillis() - st;
-                        long msFromPrev = System.currentTimeMillis() - stt.get();
-                        logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromStart + "ms and " + msFromPrev + "ms/10000");
-                        stt.set(System.currentTimeMillis());
-                        nodeIDs.expireEvict();
+                        long n = numFeatures.incrementAndGet();
+                        if (n % 10000 == 0) {
+                            long msFromStart = System.currentTimeMillis() - st;
+                            long msFromPrev = System.currentTimeMillis() - stt.get();
+                            logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromStart + "ms and " + msFromPrev + "ms/10000");
+                            stt.set(System.currentTimeMillis());
+                            nodeIDs.expireEvict();
+                        }
+                        return handlerResult;
+                    }).collect(Collectors.toList()));
+
+                    try {
+                        resultQueue.put(futures);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
-                    return handlerResult;
-                }).collect(Collectors.toList()));
 
-                try {
-                    resultQueue.put(futures);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+                    handlerBatch.clear();
                 }
-
-                handlerBatch.clear();
             }
         });
 
@@ -297,11 +301,7 @@ public class OGRSourceConverter {
         List<String> wantedLayers = this.inputLayers;
         String finalLayerMatch = layerMatch;
         if (this.inputLayers.isEmpty() && this.layerMatch != null) {
-            wantedLayers = IntStream.range(0, ds.GetLayerCount())
-                    .mapToObj(ds::GetLayerByIndex)
-                    .map(Layer::GetName)
-                    .filter(n -> n.contains(finalLayerMatch))
-                    .collect(Collectors.toList());
+            wantedLayers = IntStream.range(0, ds.GetLayerCount()).mapToObj(ds::GetLayerByIndex).map(Layer::GetName).filter(n -> n.contains(finalLayerMatch)).collect(Collectors.toList());
         }
         return wantedLayers;
     }
