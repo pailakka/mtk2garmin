@@ -2,6 +2,7 @@ package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.gdal.gdal.gdal;
 import org.gdal.ogr.DataSource;
@@ -189,7 +190,7 @@ public class OGRSourceConverter {
                             .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty()).forEach(handlerResult -> {
                                 writeBatch.add(handlerResult);
 
-                                if (writeBatch.size() > 250000) {
+                                if (writeBatch.size() > 500000) {
                                     List<HandlerResult> resultsToWrite = new ArrayList<>(writeBatch);
                                     writeBatch.clear();
                                     pbfWriterExecutor.execute(() -> writeBatchToFile(outFileCounter, resultsToWrite));
@@ -278,17 +279,32 @@ public class OGRSourceConverter {
     private void writeBatchToFile(AtomicInteger outFileCounter, List<HandlerResult> writeBatch) {
         Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
         OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
-        List<Node> nodes = new ArrayList<>();
-        List<Way> ways = new ArrayList<>();
-        List<Relation> relations = new ArrayList<>();
-        writeBatch.forEach(elems -> {
-            nodes.addAll(elems.nodes());
-            ways.addAll(elems.ways());
-            relations.addAll(elems.relations());
-        });
-        logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
+        AtomicLong nnodes = new AtomicLong(0L);
+        AtomicLong nways =  new AtomicLong(0L);
+        AtomicLong nrelations =  new AtomicLong(0L);
+
         try {
-            batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+            ListUtils.partition(writeBatch, 10000).forEach(batch -> {
+                List<Node> nodes = new ArrayList<>();
+                List<Way> ways = new ArrayList<>();
+                List<Relation> relations = new ArrayList<>();
+                batch.forEach(elems -> {
+                    nodes.addAll(elems.nodes());
+                    ways.addAll(elems.ways());
+                    relations.addAll(elems.relations());
+                });
+                nnodes.addAndGet(nodes.size());
+                nways.addAndGet(ways.size());
+                nrelations.addAndGet(relations.size());
+
+                try {
+                    batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
+            logger.info("Elements written: " + nnodes + " n, " + nways + " w, " + nrelations + " r");
             batchPBFWriter.closeOSMPBFFile();
         } catch (IOException e) {
             e.printStackTrace();
