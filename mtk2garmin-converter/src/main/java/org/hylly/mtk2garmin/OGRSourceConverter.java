@@ -284,7 +284,7 @@ public class OGRSourceConverter {
         AtomicLong nrelations =  new AtomicLong(0L);
 
         try {
-            ListUtils.partition(writeBatch, 10000).forEach(batch -> {
+            ListUtils.partition(writeBatch, 1000).forEach(batch -> {
                 List<Node> nodes = new ArrayList<>();
                 List<Way> ways = new ArrayList<>();
                 List<Relation> relations = new ArrayList<>();
