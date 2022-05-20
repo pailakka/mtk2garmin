@@ -1,5 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-time ./osmconvert syvyyspisteet.osm.pbf --out-o5m | ./osmconvert - syvyyskayrat.osm.pbf --out-o5m | ./osmconvert - krk.osm.pbf --out-o5m | ./osmconvert - mtkmaasto.osm.pbf --out-o5m | osmconvert - mtkkorkeus.osm.pbff -o=all.pbf
+python3 merge_suomi.py
+chmod +x merge_all.sh
+time ./merge_all.sh || true
 time ./process_osm.sh
