@@ -1,40 +1,37 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Node {
     final long id;
     final double lon;
     final double lat;
-    final int cell;
     final long hash;
-    Short2ShortRBTreeMap nodeTags;
+    Map<String, String> nodeTags;
     boolean waypart;
 
-    Node(long hash, int cell, double lon, double lat, boolean waypart) {
+    Node(long hash, double lon, double lat, boolean waypart) {
         this.id = -1;
         this.hash = hash;
         this.lon = lon;
         this.lat = lat;
-        this.cell = cell;
         this.waypart = waypart;
     }
 
-    Node(long id, long hash, int cell, double lon, double lat, boolean waypart) {
+    Node(long id, long hash, double lon, double lat, boolean waypart) {
         this.id = id;
         this.hash = hash;
         this.lon = lon;
         this.lat = lat;
-        this.cell = cell;
         this.waypart = waypart;
     }
 
-    public Node(long id, long hash, int cell, double lon, double lat, boolean waypart, Short2ShortRBTreeMap tags) {
+    public Node(long id, long hash, double lon, double lat, boolean waypart, Map<String, String> tags) {
         this.id = id;
         this.hash = hash;
         this.lon = lon;
         this.lat = lat;
-        this.cell = cell;
         this.waypart = waypart;
         this.nodeTags = tags;
     }
@@ -45,9 +42,9 @@ public class Node {
         }
     }
 
-    void addTag(short key, short value) {
+    void addTag(String key, String value) {
         if (nodeTags == null) {
-            nodeTags = new Short2ShortRBTreeMap();
+            nodeTags = new HashMap<>();
         }
 
         nodeTags.put(key, value);
@@ -73,7 +70,7 @@ public class Node {
         return hash;
     }
 
-    Short2ShortRBTreeMap getTags() {
+    Map<String, String> getTags() {
         return nodeTags;
     }
 

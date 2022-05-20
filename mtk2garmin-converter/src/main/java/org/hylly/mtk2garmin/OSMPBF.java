@@ -1,33 +1,44 @@
 package org.hylly.mtk2garmin;
 
 import com.google.protobuf.ByteString;
-import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.shorts.Short2ShortMap.Entry;
-import it.unimi.dsi.fastutil.shorts.Short2ShortRBTreeMap;
 import org.openstreetmap.osmosis.osmbinary.Fileformat;
 import org.openstreetmap.osmosis.osmbinary.Osmformat;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.Comparator;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Stream;
 import java.util.zip.Deflater;
 
 @SuppressWarnings("FieldCanBeLocal")
 class OSMPBF {
-    private static final Double nano = .000000001;
-    private final String writingprogram = "mtk2garmin";
-    private final Integer granularity = 100;
-    private final Long lat_offset = 0L;
-    private final Long lon_offset = 0L;
-    private final Integer date_granularity = 1000;
+    private static final Double NANO = .000000001;
+    private static final String WRITING_PROGRAM = "mtk2garmin";
+    private static final Integer GRANULARITY = 100;
+    private static final Long LAT_OFFSET = 0L;
+    private static final Long LON_OFFSET = 0L;
+    private static final Integer DATE_GRANULARITY = 1000;
     private final File outFile;
     private BufferedOutputStream of;
-    private DataOutputStream od;
+    private final DataOutputStream od;
 
     OSMPBF(File outFile) {
         this.outFile = outFile;
+        try {
+            this.of = new BufferedOutputStream(new FileOutputStream(this.outFile));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        this.od = new DataOutputStream(this.of);
     }
 
     private PBFBlob createBlob(String blobtype, byte[] data) {
@@ -39,17 +50,17 @@ class OSMPBF {
         Osmformat.HeaderBlock.Builder hbbuilder = Osmformat.HeaderBlock
                 .newBuilder();
 
-        hbbuilder.setWritingprogram(this.writingprogram);
+        hbbuilder.setWritingprogram(WRITING_PROGRAM);
         hbbuilder.addRequiredFeatures("OsmSchema-V0.6");
         hbbuilder.addRequiredFeatures("DenseNodes");
 
         Osmformat.HeaderBBox.Builder bboxbuilder = Osmformat.HeaderBBox
                 .newBuilder();
 
-        bboxbuilder.setLeft((long) (d / nano));
-        bboxbuilder.setRight((long) (f / nano));
-        bboxbuilder.setTop((long) (g / nano));
-        bboxbuilder.setBottom((long) (e / nano));
+        bboxbuilder.setLeft((long) (d / NANO));
+        bboxbuilder.setRight((long) (f / NANO));
+        bboxbuilder.setTop((long) (g / NANO));
+        bboxbuilder.setBottom((long) (e / NANO));
 
         hbbuilder.setBbox(bboxbuilder);
 
@@ -57,12 +68,12 @@ class OSMPBF {
     }
 
     private int topbfcoord(double coord) {
-        return (int) ((coord / this.granularity.doubleValue()) / nano);
+        return (int) ((coord / GRANULARITY.doubleValue()) / NANO);
     }
 
     @SuppressWarnings("unused")
     private double frompbfcoord(int coord) {
-        return nano * (this.granularity.doubleValue() * (double) coord);
+        return NANO * (GRANULARITY.doubleValue() * (double) coord);
     }
 
     private Osmformat.StringTable buildStringTable(StringTable stringtable) {
@@ -70,22 +81,19 @@ class OSMPBF {
         stringtable.getStringTable()
                 .forEach(string -> stbuilder.addS(ByteString.copyFromUtf8(string)));
 
-        System.out.println(stbuilder.getSCount() + " strings in OSMPBF stringtable from MTK2Garmin stringtable " + stringtable.getStringtableSize());
-        //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTable.toArray()));
-        //System.out.println(Arrays.deepToString(MTKToGarminConverter.stringTableTranslate.entrySet().toArray()));
         return stbuilder.build();
     }
 
     private Osmformat.PrimitiveBlock createOSMDataBlock(
             StringTable stringtable,
-            Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-            Long2ObjectOpenHashMap<Relation> relations) {
+            Stream<Node> nodes, Stream<Way> ways,
+            Stream<Relation> relations) {
         Osmformat.PrimitiveBlock.Builder pbbuilder = Osmformat.PrimitiveBlock
                 .newBuilder();
-        pbbuilder.setGranularity(this.granularity);
-        pbbuilder.setLatOffset(this.lat_offset);
-        pbbuilder.setLonOffset(this.lon_offset);
-        pbbuilder.setDateGranularity(this.date_granularity);
+        pbbuilder.setGranularity(GRANULARITY);
+        pbbuilder.setLatOffset(LAT_OFFSET);
+        pbbuilder.setLonOffset(LON_OFFSET);
+        pbbuilder.setDateGranularity(DATE_GRANULARITY);
 
         Osmformat.PrimitiveGroup pg = this.createOSMPrimitiveGroup(stringtable, nodes, ways,
                 relations);
@@ -98,12 +106,12 @@ class OSMPBF {
 
     private Osmformat.PrimitiveGroup createOSMPrimitiveGroup(
             StringTable stringtable,
-            Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-            Long2ObjectOpenHashMap<Relation> relations) {
+            Stream<Node> nodes, Stream<Way> ways,
+            Stream<Relation> relations) {
         Osmformat.PrimitiveGroup.Builder pgbuilder = Osmformat.PrimitiveGroup
                 .newBuilder();
         if (ways != null)
-            pgbuilder.addAllWays(this.buildOSMWays(ways));
+            pgbuilder.addAllWays(this.buildOSMWays(stringtable, ways));
         if (relations != null)
             pgbuilder.addAllRelations(this.buildOSMRelations(stringtable, relations));
         if (nodes != null)
@@ -114,147 +122,140 @@ class OSMPBF {
 
     private Osmformat.DenseNodes buildOSMDenseNodes(
             StringTable stringtable,
-            final Long2ObjectOpenHashMap<Node> nodes) {
+            final Stream<Node> nodes) {
 
         Osmformat.DenseNodes.Builder dsb = Osmformat.DenseNodes.newBuilder();
         Osmformat.DenseInfo.Builder dib = Osmformat.DenseInfo.newBuilder();
 
-        long lid = 0, llat = 0, llon = 0;
+        AtomicLong lid = new AtomicLong();
+        AtomicLong llat = new AtomicLong();
+        AtomicLong llon = new AtomicLong();
 
-        long pbflat, pbflon;
-        //Long[] node_keys_sorted = ArrayUtils.toObject(nodes.keySet().toLongArray());
+        nodes
+                .sorted(Comparator.comparingLong(Node::getId))
+                .forEach(n -> {
+                    long id = n.getId();
+                    dsb.addId(id - lid.get());
 
-        Node[] nodes_sorted = new Node[nodes.size()];
-        nodes.values().toArray(nodes_sorted);
-        Arrays.sort(nodes_sorted, (n1,n2) -> (int) (n1.getId()-n2.getId()));
+                    dib.addVersion(1);
+                    dib.addUid(0);
+                    dib.addUserSid(0);
+                    dib.addTimestamp(0);
+                    dib.addChangeset(0);
 
-        for (Node n : nodes_sorted) {
-            long id = n.getId();
-            dsb.addId(id - lid);
+                    lid.set(id);
+                    long pbflat = this.topbfcoord(n.getLat());
+                    long pbflon = this.topbfcoord(n.getLon());
 
-            dib.addVersion(1);
-            dib.addUid(0);
-            dib.addUserSid(0);
-            dib.addTimestamp(0);
-            dib.addChangeset(0);
+                    dsb.addLat(pbflat - llat.get());
+                    dsb.addLon(pbflon - llon.get());
 
-            lid = id;
+                    llat.set(pbflat);
+                    llon.set(pbflon);
 
-            pbflat = this.topbfcoord(n.getLat());
-            pbflon = this.topbfcoord(n.getLon());
-
-            dsb.addLat(pbflat - llat);
-            dsb.addLon(pbflon - llon);
-
-            llat = pbflat;
-            llon = pbflon;
-
-            Short2ShortRBTreeMap ntags = n.getTags();
-            if (ntags != null) {
-                for (Entry t : ntags.short2ShortEntrySet()) {
-                    if (t.getShortKey() > stringtable.getStringtableSize() || t.getShortValue() > stringtable.getStringtableSize()) {
-
-                        System.out.println("Node key error! " + t.getShortKey() + " or " + t.getShortValue() + " too large");
+                    Map<String, String> ntags = n.getTags();
+                    if (ntags != null) {
+                        for (Map.Entry<String, String> t : ntags.entrySet()) {
+                            int k = stringtable.getStringId(t.getKey());
+                            int tv = stringtable.getStringId(t.getValue());
+                            if (k > stringtable.getStringtableSize() || tv > stringtable.getStringtableSize()) {
+                                System.out.println("Node key error! " + k + " or " + t.getValue() + " too large");
+                            }
+                            dsb.addKeysVals(k);
+                            dsb.addKeysVals(tv);
+                        }
                     }
-                    dsb.addKeysVals(t.getShortKey());
-                    dsb.addKeysVals(t.getShortValue());
-                }
-            }
 
-            dsb.addKeysVals(0);
+                    dsb.addKeysVals(0);
 
-        }
+                });
 
-        //System.out.println("Node ids: " + Arrays.toString(dsb.getKeysValsList().toArray()));
         dsb.setDenseinfo(dib);
 
         return dsb.build();
 
     }
 
-    private ArrayList<Osmformat.Way> buildOSMWays(Long2ObjectOpenHashMap<Way> ways) {
+    private ArrayList<Osmformat.Way> buildOSMWays(StringTable stringtable, Stream<Way> ways) {
         ArrayList<Osmformat.Way> pbfways = new ArrayList<>();
         Osmformat.Info.Builder wib = Osmformat.Info.newBuilder();
         wib.setVersion(1);
-        long[] waykeys = ways.keySet().toLongArray();
-        Arrays.sort(waykeys);
 
-        for (long wk : waykeys) {
-            Way w = ways.get(wk);
-            Osmformat.Way.Builder wb = Osmformat.Way.newBuilder();
+        ways
+                .sorted(Comparator.comparingLong(Way::getId))
+                .forEach(w -> {
+//            Way w = ways.get(wk);
+                    Osmformat.Way.Builder wb = Osmformat.Way.newBuilder();
 
-            wb.setId(w.getId());
-            wb.setInfo(wib);
+                    wb.setId(w.getId());
+                    wb.setInfo(wib);
+                    Map<String, String> wtags = w.getTags();
+                    for (Map.Entry<String, String> t : wtags.entrySet()) {
+                        wb.addKeys(stringtable.getStringId(t.getKey()));
+                        wb.addVals(stringtable.getStringId(t.getValue()));
+                    }
 
-            Short2ShortRBTreeMap wtags = w.getTags();
-            for (Entry t : wtags.short2ShortEntrySet()) {
-                wb.addKeys(t.getShortKey());
-                wb.addVals(t.getShortValue());
-            }
+                    long lref = 0;
+                    for (int i = 0; i < w.refs.size(); i++) {
+                        long r = w.refs.get(i);
+                        wb.addRefs(r - lref);
+                        lref = r;
+                    }
 
-            long lref = 0;
-            for (int i = 0; i < w.refs.size(); i++) {
-                long r = w.refs.get(i);
-
-                wb.addRefs(r - lref);
-                lref = r;
-            }
-
-            pbfways.add(wb.build());
-        }
+                    pbfways.add(wb.build());
+                });
 
         return pbfways;
     }
 
     private ArrayList<Osmformat.Relation> buildOSMRelations(
             StringTable stringtable,
-            Long2ObjectOpenHashMap<Relation> relations) {
+            Stream<Relation> relations) {
         ArrayList<Osmformat.Relation> pbfrels = new ArrayList<>();
 
         Osmformat.Info.Builder rib = Osmformat.Info.newBuilder();
         rib.setVersion(1);
 
-        long[] relkeys = relations.keySet().toLongArray();
-        Arrays.sort(relkeys);
-        for (long rk : relkeys) {
-            Relation r = relations.get(rk);
-            Osmformat.Relation.Builder rb = Osmformat.Relation.newBuilder();
-            rb.setId(r.getId());
-            rb.setInfo(rib);
+        relations
+                .sorted(Comparator.comparingLong(Relation::getId))
+                .forEach(r -> {
+                    Osmformat.Relation.Builder rb = Osmformat.Relation.newBuilder();
+                    rb.setId(r.getId());
+                    rb.setInfo(rib);
 
-            Short2ShortRBTreeMap rtags = r.getTags();
-            for (Entry t : rtags.short2ShortEntrySet()) {
-                rb.addKeys(t.getShortKey());
-                rb.addVals(t.getShortValue());
-            }
+                    Map<String, String> rtags = r.getTags();
+                    for (Map.Entry<String, String> t : rtags.entrySet()) {
+                        rb.addKeys(stringtable.getStringId(t.getKey()));
+                        rb.addVals(stringtable.getStringId(t.getValue()));
+                    }
 
-            long lmid = 0;
-            for (RelationMember m : r.getMembers()) {
-                rb.addRolesSid(stringtable.getStringId(m.getRole()));
-                rb.addMemids(m.getId() - lmid);
-                lmid = m.getId();
-                switch (m.getType()) {
-                    case "node":
-                        rb.addTypes(Osmformat.Relation.MemberType.NODE);
-                        break;
-                    case "way":
-                        rb.addTypes(Osmformat.Relation.MemberType.WAY);
-                        break;
-                    case "relation":
-                        rb.addTypes(Osmformat.Relation.MemberType.RELATION);
-                        break;
-                }
-            }
+                    long lmid = 0;
+                    for (RelationMember m : r.getMembers()) {
+                        rb.addRolesSid(stringtable.getStringId(m.getRole()));
+                        rb.addMemids(m.getId() - lmid);
+                        lmid = m.getId();
+                        switch (m.getType()) {
+                            case "node":
+                                rb.addTypes(Osmformat.Relation.MemberType.NODE);
+                                break;
+                            case "way":
+                                rb.addTypes(Osmformat.Relation.MemberType.WAY);
+                                break;
+                            case "relation":
+                                rb.addTypes(Osmformat.Relation.MemberType.RELATION);
+                                break;
+                        }
+                    }
 
-            pbfrels.add(rb.build());
-        }
+                    pbfrels.add(rb.build());
+                });
 
         return pbfrels;
     }
 
-    void writePBFElements(StringTable stringtable,
-                          Long2ObjectOpenHashMap<Node> nodes, Long2ObjectOpenHashMap<Way> ways,
-                          Long2ObjectOpenHashMap<Relation> relations) throws IOException {
+    void writePBFElements(Stream<Node> nodes, Stream<Way> ways,
+                          Stream<Relation> relations) throws IOException {
+        StringTable stringtable = new StringTable();
         Osmformat.PrimitiveBlock pb = this
                 .createOSMDataBlock(stringtable, nodes, ways, relations);
         PBFBlob data = this.createBlob("OSMData", pb.toByteArray());
@@ -273,9 +274,6 @@ class OSMPBF {
 
     private void writePBFHeaders(double minx, double miny,
                                  double maxx, double maxy) throws IOException {
-        this.of = new BufferedOutputStream(new FileOutputStream(this.outFile));
-        this.od = new DataOutputStream(this.of);
-
         Osmformat.HeaderBlock hb = this.createOSMHeaderBlock(minx, miny, maxx,
                 maxy);
 
@@ -292,8 +290,8 @@ class OSMPBF {
     }
 
     private static class PBFBlob {
-        private Fileformat.BlobHeader header;
-        private Fileformat.Blob body;
+        private final Fileformat.BlobHeader header;
+        private final Fileformat.Blob body;
 
         PBFBlob(String blobtype, byte[] payload) {
             int size = payload.length;
