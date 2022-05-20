@@ -1,6 +1,7 @@
 name: mtk2garmin-converter docker image
 
 on:
+  workflow_dispatch
   push:
     paths: 
       - 'mtk2garmin-converter/**'
