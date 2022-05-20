@@ -1,39 +1,29 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Objects;
 
 //Deprecated until outdoors data available
 @Deprecated
 class ShapeRetkeilyTagHandler implements TagHandler {
-    private final ObjectOpenHashSet<String> wantedFields;
-    private final StringTable stringtable;
 
-    private final short namefi, name;
-
-    ShapeRetkeilyTagHandler(StringTable stringtable) {
-        this.stringtable = stringtable;
-
-        namefi = this.stringtable.getStringId("name_fi");
-        name = this.stringtable.getStringId("name");
-
-        wantedFields = new ObjectOpenHashSet<>(
-                Arrays.asList("name_fi", "category_i", "cat_id"));
+    ShapeRetkeilyTagHandler() {
     }
 
     @Override
-    public void addElementTags(Map<Short, Short> tags, Map<Short, String> fields, String tyyppi, double geomarea) {
-        for (Map.Entry<Short, String> k : fields.entrySet()) {
-            short kk = k.getKey();
+    public void addElementTags(Map<String, String> tags, Object2ObjectOpenHashMap<String, String> fields, String tyyppi, double geomarea) {
+        for (Map.Entry<String, String> k : fields.entrySet()) {
+            String kk = k.getKey();
             String val = k.getValue();
 
-            if (kk == namefi) {
-                kk = name;
+            String namefi = "name_fi";
+            if (Objects.equals(kk, namefi)) {
+                kk = "name";
             }
 
-            tags.put(kk, this.stringtable.getStringId(val));
+            tags.put(kk, val);
         }
 
     }

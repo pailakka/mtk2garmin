@@ -1,85 +1,72 @@
 package org.hylly.mtk2garmin;
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+
 import java.util.Map;
 import java.util.Objects;
 
 
 class MTKTagHandler implements TagHandler {
-    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
-    private final short tienro;
-    private final short tasosij;
-    private final short bridge;
-    private final short tunnel;
-    private final short yes;
+    private final String kohdeluokka = "kohdeluokka";
+    private final String korarvo = "korkeusarvo";
+    private final String syvarvo = "syvyysarvo";
+    private final String nimisuomi = "nimi_suomi";
+    private final String nimiruotsi = "nimi_ruotsi";
+    private final String teksti = "teksti";
+    private final String teksti_kieli = "teksti_kieli";
+    private final String tienro = "tienumero";
+    private final String tasosij = "tasosijainti";
+    private final String bridge = "bridge";
+    private final String tunnel = "tunnel";
+    private final String yes = "yes";
 
-    private final short ele, name, ref, fin;
+    private final String ele = "ele";
+    private final String name = "name";
+    private final String ref = "ref";
+    private final String fin = "fin";
 
-    private final StringTable stringtable;
 
-
-    MTKTagHandler(StringTable stringtable) {
-        kohdeluokka = stringtable.getStringId("kohdeluokka");
-        korarvo = stringtable.getStringId("korkeusarvo");
-        syvarvo = stringtable.getStringId("syvyysarvo");
-        nimisuomi = stringtable.getStringId("nimi_suomi");
-        nimiruotsi = stringtable.getStringId("nimi_ruotsi");
-        teksti = stringtable.getStringId("teksti");
-        teksti_kieli = stringtable.getStringId("teksti_kieli");
-        tienro = stringtable.getStringId("tienumero");
-        tasosij = stringtable.getStringId("tasosijainti");
-        bridge = stringtable.getStringId("bridge");
-        tunnel = stringtable.getStringId("tunnel");
-        yes = stringtable.getStringId("yes");
-
-        ele = stringtable.getStringId("ele");
-        name = stringtable.getStringId("name");
-        ref = stringtable.getStringId("ref");
-        fin = stringtable.getStringId("fin");
-
-        this.stringtable = stringtable;
-
+    MTKTagHandler() {
     }
 
     @Override
-    public void addElementTags(Map<Short, Short> tags, Map<Short, String> fields, String tyyppi, double geomarea) {
+    public void addElementTags(Map<String, String> tags, Object2ObjectOpenHashMap<String, String> fields, String tyyppi, double geomarea) {
         if (tags.containsKey(teksti_kieli) && tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
         }
 
-        for (Map.Entry<Short, String> k : fields.entrySet()) {
-            short kk = k.getKey();
-            String val = k.getValue();
+        fields.forEach((String kk, String val) -> {
 
             if (val.length() == 0) {
-                continue;
+                return;
             }
-            if (kk == korarvo || kk == syvarvo) {
+            if (Objects.equals(kk, korarvo) || Objects.equals(kk, syvarvo)) {
                 Double korarvo = Integer.parseInt(val) / 1000.0;
                 kk = ele;
                 val = String.format("%.1f", korarvo);
             }
 
-            if (kk == nimisuomi || kk == teksti) {
+            if (Objects.equals(kk, nimisuomi) || Objects.equals(kk, teksti)) {
                 kk = name;
             }
 
-            if (kk == nimiruotsi) {
+            if (Objects.equals(kk, nimiruotsi)) {
                 if (!tags.containsKey(name)) {
                     kk = name;
                 } else {
-                    continue;
+                    return;
                 }
             }
 
-            if (kk == tienro) {
+            if (Objects.equals(kk, tienro)) {
                 int tienroVal = Integer.parseInt(val);
                 if (tienroVal > 9999) {
-                    continue;
+                    return;
                 }
                 kk = ref;
             }
 
-            if (kk == tasosij) {
+            if (Objects.equals(kk, tasosij)) {
                 int sijval = Integer.parseInt(val);
                 if (sijval > 0) {
                     tags.put(bridge, yes);
@@ -88,11 +75,11 @@ class MTKTagHandler implements TagHandler {
                 }
             }
 
-            tags.put(kk, this.stringtable.getStringId(val));
-        }
+            tags.put(kk, val);
+        });
 
         if (tyyppi.equals("selite") && "Tuulivoimala".equals(fields.get(teksti))) {
-            tags.put(kohdeluokka, this.stringtable.getStringId("45500"));
+            tags.put(kohdeluokka, "45500");
         }
 
         if (tyyppi.equals("sahkolinja")) {

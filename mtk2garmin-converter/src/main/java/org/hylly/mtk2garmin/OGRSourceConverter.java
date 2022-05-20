@@ -1,8 +1,8 @@
 package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import org.apache.commons.lang3.tuple.Pair;
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.tuple.Triple;
 import org.gdal.gdal.gdal;
 import org.gdal.ogr.DataSource;
@@ -14,6 +14,7 @@ import org.gdal.ogr.Layer;
 import org.gdal.ogr.ogr;
 import org.gdal.osr.CoordinateTransformation;
 import org.gdal.osr.SpatialReference;
+import org.jetbrains.annotations.NotNull;
 import org.mapdb.HTreeMap;
 
 import java.io.IOException;
@@ -21,11 +22,22 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Vector;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Supplier;
@@ -38,10 +50,6 @@ public class OGRSourceConverter {
     private final Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
     private final String inputKey;
     private final String inputPath;
-    private final StringTable stringTable;
-    private final short TYYPPI_STRING_ID;
-    private final TagHandler tagHandler;
-    private final Path outFile;
     private final List<Double> bboxFilter;
     private final List<String> inputLayers;
     private final String attributeFilter;
@@ -54,13 +62,13 @@ public class OGRSourceConverter {
     private final NodeIDMapBuilder nodeIDMapBuilder;
     private final boolean recursivePath;
     private final String layerMatch;
+    private final Path outDir;
     private CoordinateTransformation srctowgs;
-    private final MultiOSMPBFWriter multiOSMPBFWriter;
 
     public OGRSourceConverter(HTreeMap<Long, Long> nodeIDs, Path outDir, List<Double> bboxFilter, String inputKey, Config inputConfig) {
         logger.info("Starting converter for " + inputKey);
         this.inputKey = inputKey;
-        this.outFile = outDir.resolve(String.format("%s.osm.pbf", inputKey));
+        this.outDir = outDir;
         this.inputPath = inputConfig.getString("path");
         this.inputLayers = inputConfig.getStringList("layers");
         this.layerMatch = inputConfig.hasPath("layerMatch") ? inputConfig.getString("layerMatch") : null;
@@ -69,15 +77,8 @@ public class OGRSourceConverter {
         this.recursivePath = inputConfig.hasPath("recursivePath") && inputConfig.getBoolean("recursivePath");
         this.bboxFilter = bboxFilter;
 
-        this.stringTable = new StringTable();
-        this.TYYPPI_STRING_ID = this.stringTable.getStringId("tyyppi");
-
-        this.tagHandler = resolveTagHandler(this.inputKey);
-
         this.geomUtils = new GeomUtils();
         this.featureIDProvider = new FeatureIDProvider();
-
-        this.multiOSMPBFWriter = new MultiOSMPBFWriter(outDir, inputKey);
 
         this.nodeIDMapBuilder = new NodeIDMapBuilder();
         this.nodeIDs = Objects.requireNonNullElseGet(nodeIDs, () -> this.nodeIDMapBuilder.getNodeIDMap(inputKey));
@@ -87,46 +88,34 @@ public class OGRSourceConverter {
         switch (inputKey) {
             case "syvyyskayrat":
             case "syvyyspisteet":
-                return new ShapeSyvyysTagHandler(this.stringTable);
+                return new ShapeSyvyysTagHandler();
             case "mtkkorkeus":
             case "mtkmaasto":
             case "krk":
-                return new MTKTagHandler(this.stringTable);
+                return new MTKTagHandler();
             default:
-                return new GenericTagHandler(this.stringTable);
+                return new GenericTagHandler();
         }
     }
 
     public void convert() {
-        logger.info("Starting conversion for \"" + this.inputKey + "\" from " + this.inputPath + " to " + this.outFile + " (resursive: " + this.recursivePath + ")");
+        logger.info("Starting conversion for \"" + this.inputKey + "\" from " + this.inputPath + " to " + this.outDir.toAbsolutePath() + " (resursive: " + this.recursivePath + ")");
         if (this.recursivePath) {
             try {
-                Files.walk(Paths.get(this.inputPath))
+                convertOGRDatasources(Files.walk(Paths.get(this.inputPath))
                         .filter(Files::isRegularFile)
-                        .parallel()
-                        .forEach(fn -> {
+                        .map(fn -> {
                             String inp = fn.getFileName().toString().toLowerCase().endsWith(".zip") ? "/vsizip/" + fn : fn.toString();
-                            DataSource ds = startReadingOGRFile(inp);
-                            convertOGResource(ds);
-                            ds.delete();
-                        });
+                            return startReadingOGRFile(inp);
+                        }));
             } catch (IOException e) {
                 e.printStackTrace();
                 logger.severe("Failed to traverse recursive path");
             }
         } else {
             DataSource ds = startReadingOGRFile(this.inputPath);
-            convertOGResource(ds);
+            convertOGRDatasources(Stream.of(ds));
             ds.delete();
-        }
-
-        try {
-            multiOSMPBFWriter.closeMultiWriter();
-            multiOSMPBFWriter.writeMergedFile();
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-            logger.severe("Failed writing merged OSMPBF!");
         }
         this.nodeIDMapBuilder.closeNodeIDMap();
     }
@@ -143,142 +132,246 @@ public class OGRSourceConverter {
         return ds;
     }
 
-    private void convertOGResource(DataSource ds) {
-        logger.info("Start converting " + ds.GetName());
-        logger.info("Attribute filter: " + this.attributeFilter);
-        logger.info("BBOX filter: " + this.bboxFilter);
+    private void convertOGRDatasources(Stream<DataSource> dataSourceStream) {
+        AtomicInteger outFileCounter = new AtomicInteger(0);
 
-        String attrFilter = this.attributeFilter;
-        AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
-
-        AtomicLong numFeatures = new AtomicLong(0);
+        ExecutorService elementPairExecutorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
         long st = System.currentTimeMillis();
-        AtomicLong stt = new AtomicLong(st);
-        AtomicLong numNodes = new AtomicLong(0);
+        Stream<Triple<String, Geometry, Map<String, String>>> pairStream = dataSourceStream.flatMap(ds -> {
+            logger.info("Start converting " + ds.GetName());
+            logger.info("Attribute filter: " + this.attributeFilter);
+            logger.info("BBOX filter: " + this.bboxFilter);
 
+            String attrFilter = this.attributeFilter;
+            AtomicReference<Boolean> breakLayerLoop = new AtomicReference<>(false);
+
+            List<String> wantedLayers = resolveWantedLayers(ds);
+            logger.info("wanted layers: " + wantedLayers);
+            return wantedLayers.stream().takeWhile($ -> !breakLayerLoop.get()).flatMap(layerName -> {
+                Layer lyr = ds.GetLayer(layerName);
+
+                if (this.bboxFilter.size() == 4) {
+                    lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
+                }
+
+                if (attrFilter != null) {
+                    lyr.SetAttributeFilter(attrFilter);
+                }
+
+                logger.info("Converting layer " + layerName);
+
+                ArrayList<Field> fieldMapping = getFieldMappingFromLayer(lyr);
+
+                Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
+
+                return Stream.generate(layerFeatureStream)
+                        .takeWhile(feat -> feat != null && !breakLayerLoop.get())
+                        .filter(feat -> feat.GetGeometryRef() != null)
+                        .map(feat -> getElementTripleFromFeature(lyr.GetName(), fieldMapping, feat));
+            });
+        });
+
+        List<Triple<String, Geometry, Map<String, String>>> handlerBatch = Collections.synchronizedList(new ArrayList<>());
+
+        BlockingQueue<Future<List<Optional<HandlerResult>>>> resultQueue = new ArrayBlockingQueue<>(500);
+
+        ExecutorService pbfWriterExecutor = Executors.newSingleThreadExecutor();
+
+        List<HandlerResult> writeBatch = Collections.synchronizedList(new ArrayList<>());
+
+        Thread resultConsumerThread = new Thread(() -> {
+            while (true) {
+                try {
+                    Future<List<Optional<HandlerResult>>> resf = resultQueue.take();
+
+                    resf.get().stream()
+                            .filter(Optional::isPresent)
+                            .map(Optional::get)
+                            .filter(elems -> !elems.nodes().isEmpty() || !elems.ways().isEmpty() || !elems.relations().isEmpty()).forEach(handlerResult -> {
+                                writeBatch.add(handlerResult);
+
+                                if (writeBatch.size() > 500000) {
+                                    List<HandlerResult> resultsToWrite = new ArrayList<>(writeBatch);
+                                    writeBatch.clear();
+                                    pbfWriterExecutor.execute(() -> writeBatchToFile(outFileCounter, resultsToWrite));
+                                    writeBatch.clear();
+                                }
+                            });
+
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                } catch (ExecutionException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+
+        resultConsumerThread.setDaemon(true);
+
+        resultConsumerThread.start();
+
+
+        long st2 = System.currentTimeMillis();
+        AtomicLong numFeatures = new AtomicLong(0);
+        AtomicLong stt = new AtomicLong(st2);
+        AtomicLong numNodes = new AtomicLong(0);
+        pairStream.forEach(elementTriple -> {
+            if (Objects.isNull(elementTriple)) {
+                System.out.println("wtf???");
+                System.exit(0);
+            }
+            handlerBatch.add(elementTriple);
+
+            if (handlerBatch.size() > 1000) {
+                synchronized (this) {
+                    List<Triple<String, Geometry, Map<String, String>>> batchPairs = new ArrayList<>(handlerBatch);
+
+                    Future<List<Optional<HandlerResult>>> futures = elementPairExecutorService.submit(() -> batchPairs.stream().map(et -> {
+                        TagHandler tagHandler = resolveTagHandler(inputKey);
+                        Optional<HandlerResult> handlerResult = this.handleFeature(tagHandler, et.getLeft(), et.getMiddle(), et.getRight());
+
+                        handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.nodes().size()));
+
+                        long n = numFeatures.incrementAndGet();
+                        if (n % 10000 == 0) {
+                            long msFromStart = System.currentTimeMillis() - st;
+                            long msFromPrev = System.currentTimeMillis() - stt.get();
+                            logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromStart + "ms and " + msFromPrev + "ms/10000");
+                            stt.set(System.currentTimeMillis());
+                            nodeIDs.expireEvict();
+                        }
+                        return handlerResult;
+                    }).collect(Collectors.toList()));
+
+                    try {
+                        resultQueue.put(futures);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    handlerBatch.clear();
+                }
+            }
+        });
+
+        try {
+            elementPairExecutorService.shutdown();
+            while (!elementPairExecutorService.awaitTermination(5, TimeUnit.SECONDS)) {
+                System.out.println("Waiting element pair executors to finish");
+            }
+
+            while (!resultQueue.isEmpty()) {
+                System.out.println("Waiting result queue to empty (" + resultQueue.size() + " left)");
+                Thread.sleep(5000);
+            }
+
+            pbfWriterExecutor.execute(() -> writeBatchToFile(outFileCounter, writeBatch));
+
+            pbfWriterExecutor.shutdown();
+            while (!pbfWriterExecutor.awaitTermination(5, TimeUnit.SECONDS)) {
+                System.out.println("Waiting pbf writer executors to finish");
+            }
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void writeBatchToFile(AtomicInteger outFileCounter, List<HandlerResult> writeBatch) {
+        Path batchOutFile = this.outDir.resolve(String.format("%s_%d.osm.pbf", inputKey, outFileCounter.getAndIncrement()));
+        OSMPBFWriter batchPBFWriter = new OSMPBFWriter(batchOutFile.toFile());
+        AtomicLong nnodes = new AtomicLong(0L);
+        AtomicLong nways =  new AtomicLong(0L);
+        AtomicLong nrelations =  new AtomicLong(0L);
+
+        try {
+            ListUtils.partition(writeBatch, 1000).forEach(batch -> {
+                List<Node> nodes = new ArrayList<>();
+                List<Way> ways = new ArrayList<>();
+                List<Relation> relations = new ArrayList<>();
+                batch.forEach(elems -> {
+                    nodes.addAll(elems.nodes());
+                    ways.addAll(elems.ways());
+                    relations.addAll(elems.relations());
+                });
+                nnodes.addAndGet(nodes.size());
+                nways.addAndGet(ways.size());
+                nrelations.addAndGet(relations.size());
+
+                try {
+                    batchPBFWriter.writeOSMPBFElements(nodes.stream(), ways.stream(), relations.stream());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
+            });
+            logger.info("Elements written: " + nnodes + " n, " + nways + " w, " + nrelations + " r");
+            batchPBFWriter.closeOSMPBFFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+            logger.severe("Failed writing OSMPBF for elements!");
+            System.exit(2);
+        }
+    }
+
+    private List<String> resolveWantedLayers(DataSource ds) {
         List<String> wantedLayers = this.inputLayers;
         String finalLayerMatch = layerMatch;
         if (this.inputLayers.isEmpty() && this.layerMatch != null) {
-            wantedLayers = IntStream.range(0, ds.GetLayerCount())
-                    .mapToObj(ds::GetLayerByIndex)
-                    .map(Layer::GetName)
-                    .filter(n -> n.contains(finalLayerMatch))
-                    .collect(Collectors.toList());
+            wantedLayers = IntStream.range(0, ds.GetLayerCount()).mapToObj(ds::GetLayerByIndex).map(Layer::GetName).filter(n -> n.contains(finalLayerMatch)).collect(Collectors.toList());
         }
-        logger.info("wanted layers: " + wantedLayers);
-        wantedLayers.stream()
-                .takeWhile($ -> !breakLayerLoop.get())
-                .forEach(layerName -> {
-                    Layer lyr = ds.GetLayer(layerName);
-
-                    Vector<String> ignoredFields = new Vector<>();
-
-                    if (this.bboxFilter.size() == 4) {
-                        lyr.SetSpatialFilterRect(this.bboxFilter.get(0), this.bboxFilter.get(1), this.bboxFilter.get(2), this.bboxFilter.get(3));
-                    }
-
-                    if (attrFilter != null) {
-                        lyr.SetAttributeFilter(attrFilter);
-                    }
-
-                    logger.info("Converting layer " + layerName);
-
-                    FeatureDefn lyrdefn = lyr.GetLayerDefn();
-                    ArrayList<Field> fieldMapping = new ArrayList<>();
-                    for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
-                        FieldDefn fdefn = lyrdefn.GetFieldDefn(i1);
-                        String fname = fdefn.GetName();
-
-                        if (this.wantedFields.isPresent()) {
-                            if (!this.wantedFields.get().contains(fname)) {
-                                ignoredFields.add(fname);
-                                continue;
-                            }
-                        }
-                        fieldMapping.add(new Field(fname, fdefn.GetFieldType(), i1));
-                    }
-
-                    if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
-                        lyr.SetIgnoredFields(ignoredFields);
-                    }
-
-                    lyr.ResetReading();
-
-
-                    Supplier<Feature> layerFeatureStream = lyr::GetNextFeature;
-
-                    Stream<Pair<Geometry, Short2ObjectOpenHashMap<String>>> elementPairStream = Stream.generate(layerFeatureStream)
-                            .takeWhile(feat -> feat != null && !breakLayerLoop.get())
-                            .filter(feat -> feat.GetGeometryRef() != null)
-                            .map(feat -> {
-                                Geometry geom = feat.GetGeometryRef().Clone();
-                                Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
-                                for (Field f : fieldMapping) {
-                                    short fid = this.stringTable.getStringId(f.getFieldName());
-                                    String fname = feat.GetFieldAsString(f.getFieldIndex()).intern();
-                                    fields.put(fid, fname);
-                                }
-
-                                Pair<Geometry, Short2ObjectOpenHashMap<String>> ret = Pair.of(geom, fields);
-                                feat.delete();
-                                return ret;
-                            });
-
-                    Stream<Triple<List<Node>, List<Way>, List<Relation>>> elementStream = BatchSpliterator.batch(elementPairStream, 100)
-                            .parallel()
-                            .flatMap(batchElementPairs -> batchElementPairs.parallelStream().map(elementPair -> {
-                                Optional<Triple<List<Node>, List<Way>, List<Relation>>> handlerResult = this.handleFeature(lyr.GetName(), elementPair.getLeft(), elementPair.getRight());
-                                if (handlerResult.isEmpty()) {
-                                    logger.severe("BREAK");
-                                    breakLayerLoop.set(true);
-                                }
-
-
-                                handlerResult.ifPresent(elems -> numNodes.addAndGet(elems.getLeft().size()));
-
-                                long n = numFeatures.incrementAndGet();
-                                if (n % 10000 == 0) {
-                                    long msFromSttart = System.currentTimeMillis() - st;
-                                    long msFromPrev = System.currentTimeMillis() - stt.get();
-                                    logger.info(numNodes.get() + " nodes and " + n + " features processed in " + msFromSttart + "ms and " + msFromPrev + "ms/10000");
-                                    stt.set(System.currentTimeMillis());
-                                    nodeIDs.expireEvict();
-                                }
-                                return handlerResult;
-                            }))
-                            .filter(Optional::isPresent)
-                            .map(Optional::get)
-                            .filter(elems -> !elems.getLeft().isEmpty() || !elems.getMiddle().isEmpty() || !elems.getRight().isEmpty());
-
-
-                    BatchSpliterator.batch(elementStream, 100000)
-                            .forEach(batchElems -> {
-                                List<Node> nodes = new ArrayList<>();
-                                List<Way> ways = new ArrayList<>();
-                                List<Relation> relations = new ArrayList<>();
-                                batchElems.forEach(elems -> {
-                                    nodes.addAll(elems.getLeft());
-                                    ways.addAll(elems.getMiddle());
-                                    relations.addAll(elems.getRight());
-                                });
-                                logger.info("Elements to write: " + nodes.size() + " n, " + ways.size() + " w, " + relations.size() + " r");
-                                try {
-                                    multiOSMPBFWriter.writeNodes(this.stringTable, nodes.stream());
-                                    multiOSMPBFWriter.writeWays(this.stringTable, ways.stream());
-                                    multiOSMPBFWriter.writeRelations(this.stringTable, relations.stream());
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                    logger.severe("Failed writing OSMPBF for elements!");
-                                    breakLayerLoop.set(true);
-                                }
-                            });
-                });
+        return wantedLayers;
     }
 
-    private Optional<Triple<List<Node>, List<Way>, List<Relation>>> handleFeature(String lyrname, Geometry geom, Short2ObjectOpenHashMap<String> fields) {
+    @NotNull
+    private ArrayList<Field> getFieldMappingFromLayer(Layer lyr) {
+        Vector<String> ignoredFields = new Vector<>();
+        FeatureDefn lyrdefn = lyr.GetLayerDefn();
+        ArrayList<Field> fieldMapping = new ArrayList<>();
+        for (int i1 = 0; i1 < lyrdefn.GetFieldCount(); i1++) {
+            FieldDefn fdefn = lyrdefn.GetFieldDefn(i1);
+            String fname = fdefn.GetName();
+
+            if (this.wantedFields.isPresent()) {
+                if (!this.wantedFields.get().contains(fname)) {
+                    ignoredFields.add(fname);
+                    continue;
+                }
+            }
+            fieldMapping.add(new Field(fname, fdefn.GetFieldType(), i1));
+        }
+
+        if (lyr.TestCapability(ogr.OLCIgnoreFields) && ignoredFields.size() > 0) {
+            lyr.SetIgnoredFields(ignoredFields);
+        }
+
+        lyr.ResetReading();
+        return fieldMapping;
+    }
+
+    @NotNull
+    private Triple<String, Geometry, Map<String, String>> getElementTripleFromFeature(String layerName, ArrayList<Field> fieldMapping, Feature feat) {
+        Geometry geom = feat.GetGeometryRef().Clone();
+        HashMap<String, String> fields = new HashMap<>();
+        for (Field f : fieldMapping) {
+            String fname = f.getFieldName().intern();
+            String fvalue = feat.GetFieldAsString(f.getFieldIndex()).intern();
+            fields.put(fname, fvalue);
+        }
+
+        Triple<String, Geometry, Map<String, String>> ret = Triple.of(layerName, geom, fields);
+        feat.delete();
+        return ret;
+    }
+
+    private Optional<HandlerResult> handleFeature(TagHandler tagHandler, String lyrname, Geometry geom, Map<String, String> rawFields) {
         List<Node> nodes = new ArrayList<>();
         List<Way> ways = new ArrayList<>();
         List<Relation> relations = new ArrayList<>();
+
+        Object2ObjectOpenHashMap<String, String> fields = new Object2ObjectOpenHashMap<>();
+        for (Map.Entry<String, String> fe : rawFields.entrySet()) {
+            fields.put(fe.getKey().intern(), fe.getValue().intern());
+        }
 
         geom = geom.SimplifyPreserveTopology(0.5);
 
@@ -291,7 +384,7 @@ public class OGRSourceConverter {
 
         if (geom == null) {
             System.out.println("empty geom 2");
-            return Optional.of(Triple.of(nodes, ways, relations));
+            return Optional.of(new HandlerResult(nodes, ways, relations));
         }
 
         if (geom.GetGeometryCount() < 2) {
@@ -300,7 +393,7 @@ public class OGRSourceConverter {
             }
             ghr = this.handleSingleGeom(geom);
         } else {
-            ghr = this.handleMultiGeom(this.stringTable.getStringId("type"), this.stringTable.getStringId("multipolygon"), geom);
+            ghr = this.handleMultiGeom(geom);
         }
         double geomarea = geom.Area();
 
@@ -309,11 +402,9 @@ public class OGRSourceConverter {
         String tyyppi = lyrname.toLowerCase();
         if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
 
-        short tyyppi_value_id = this.stringTable.getStringId(tyyppi);
-
         for (Node n : ghr.nodes) {
             if (!n.isWaypart()) {
-                n.addTag(this.TYYPPI_STRING_ID, tyyppi_value_id);
+                n.addTag("tyyppi", tyyppi);
                 tagHandler.addElementTags(n.nodeTags, fields, tyyppi, geomarea);
             }
             nodes.add(n);
@@ -321,7 +412,7 @@ public class OGRSourceConverter {
 
         for (Way w : ghr.ways) {
             if (!w.getRole().equals("inner")) {
-                w.tags.put(this.TYYPPI_STRING_ID, tyyppi_value_id);
+                w.tags.put("tyyppi", tyyppi);
                 tagHandler.addElementTags(w.tags, fields, tyyppi, geomarea);
             }
             ways.add(w);
@@ -329,12 +420,12 @@ public class OGRSourceConverter {
 
         for (Relation r : ghr.relations) {
 
-            r.tags.put(this.TYYPPI_STRING_ID, tyyppi_value_id);
+            r.tags.put("tyyppi", tyyppi);
             tagHandler.addElementTags(r.tags, fields, tyyppi, geomarea);
             relations.add(r);
         }
 
-        return Optional.of(Triple.of(nodes, ways, relations));
+        return Optional.of(new HandlerResult(nodes, ways, relations));
 
     }
 
@@ -387,7 +478,7 @@ public class OGRSourceConverter {
 
     }
 
-    private GeomHandlerResult handleMultiGeom(short type, short multipolygon, Geometry geom) {
+    private GeomHandlerResult handleMultiGeom(Geometry geom) {
 
         GeomHandlerResult ighr;
         Geometry igeom;
@@ -406,7 +497,7 @@ public class OGRSourceConverter {
         long rid = featureIDProvider.getRelationID();
         Relation r = new Relation();
         r.setId(rid);
-        r.tags.put(type, multipolygon);
+        r.tags.put("type", "multipolygon");
 
         for (int i = 0; i < geom.GetGeometryCount(); i++) {
             igeom = geom.GetGeometryRef(i);
@@ -431,5 +522,29 @@ public class OGRSourceConverter {
         ghr.relations.add(r);
         return ghr;
 
+    }
+
+    public static class HandlerResult {
+        private List<Node> nodes;
+        private List<Way> ways;
+        private List<Relation> relations;
+
+        public HandlerResult(List<Node> nodes, List<Way> ways, List<Relation> relations) {
+            this.nodes = nodes;
+            this.ways = ways;
+            this.relations = relations;
+        }
+
+        public List<Node> nodes() {
+            return nodes;
+        }
+
+        public List<Way> ways() {
+            return ways;
+        }
+
+        public List<Relation> relations() {
+            return relations;
+        }
     }
 }
