@@ -22,6 +22,7 @@ cp /mapstyles/tiekartta.zip /output/dist/tiekartta.zip
 
 python3 generate_site.py "${time_stamp}"
 
+7z a -tzip /output/dist/mtk_suomi.cpkg /output/dist/mtk_suomi.map /output/dist/peruskartta.zip /output/dist/mapdetails.json
 mkdir -p "/publish/${time_stamp}"
 
 rsync -avP "/output/dist/" "/publish/${time_stamp}/"
