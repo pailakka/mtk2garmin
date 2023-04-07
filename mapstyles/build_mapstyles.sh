@@ -9,8 +9,6 @@ cp Tiekartta.xml /mapstyles/mapsforge_peruskartta
 cp mml_tag-mapping_tidy.xml /mapstyles/mapsforge_peruskartta
 cp -r mml /mapstyles/mapsforge_peruskartta
 
-svgo -f /mapstyles/mapsforge_peruskartta/mml
-
 7za a peruskartta.zip Peruskartta.xml mml
 7za a tiekartta.zip Tiekartta.xml mml
 
