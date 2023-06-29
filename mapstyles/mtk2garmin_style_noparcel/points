@@ -14,6 +14,7 @@ kohdeluokka=32901 [0x6612 level 1]  #Puiston nimi
 kohdeluokka=33001 [0x6612 level 1]  #Taytemaan nimi
 kohdeluokka=33101 [0x6612 level 1]  #Urheilu- ja virkistysalueen nimi
 kohdeluokka=34200 [0x6615]  #Harva louhikko
+kohdeluokka=34100 [0x6614]  #Kalliosymboli
 kohdeluokka=34600 [0x6613]  #Kivi
 kohdeluokka=34601 [0x6613 level 1]  #Kiven nimi
 kohdeluokka=34900 [0x6618 level 1]  #Merkittava luontokohde
