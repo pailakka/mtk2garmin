@@ -3,7 +3,7 @@ set -euxo pipefail
 
 printf -v date '%(%Y%m%d)T' -1
 
-docker compose down -v
+docker compose down -v --remove-orphans
 
 docker pull ghcr.io/osgeo/gdal:ubuntu-full-3.6.3
 docker build --tag teemupel/mtk2garmin-ubuntugis-base -f ./ubuntugis-base/Dockerfile ./ubuntugis-base
