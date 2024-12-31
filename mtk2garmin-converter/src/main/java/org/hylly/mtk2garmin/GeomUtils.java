@@ -1,11 +1,8 @@
 package org.hylly.mtk2garmin;
 
+import org.gdal.ogr.GeomTransformer;
 import org.gdal.osr.CoordinateTransformation;
 import org.gdal.osr.SpatialReference;
-import org.gdal.osr.osr;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.gdal.osr.osrConstants.OAMS_TRADITIONAL_GIS_ORDER;
 
@@ -13,13 +10,18 @@ class GeomUtils {
     private final double COORD_DELTA_X = 62000.0 - 6e3;
     private final double COORD_DELTA_Y = 6594000.0;
 
-    private final SpatialReference wgs84ref = new SpatialReference();
-
-    private Map<String, CoordinateTransformation> coordinateTransformationCache = new HashMap<>();
+    private final SpatialReference sphericmercref = new SpatialReference();
+    public final GeomTransformer spherictowgs;
 
     GeomUtils() {
-        this.wgs84ref.SetWellKnownGeogCS("WGS84");
-        this.wgs84ref.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
+        SpatialReference wgs84ref = new SpatialReference();
+        wgs84ref.SetWellKnownGeogCS("WGS84");
+        wgs84ref.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
+
+        this.sphericmercref.ImportFromProj4("+proj=merc +a=6378137 +b=6378137 +lat_ts=0 +lon_0=0 +x_0=0 +y_0=0 +k=1 +units=m +nadgrids=@null +wktext +no_defs +type=crs");
+        this.sphericmercref.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
+
+        this.spherictowgs = new GeomTransformer(new CoordinateTransformation(sphericmercref, wgs84ref));
 
     }
 
@@ -36,21 +38,6 @@ class GeomUtils {
         return new double[]{
                 Math.min(ext1[0], ext2[0]), Math.max(ext1[1], ext2[1]),
                 Math.min(ext1[2], ext2[2]), Math.max(ext1[3], ext2[3])};
-    }
-
-    CoordinateTransformation getTransformationToWGS84(String proj4str) {
-        if (coordinateTransformationCache.containsKey(proj4str)) {
-            return coordinateTransformationCache.get(proj4str);
-        }
-
-        SpatialReference from = new SpatialReference();
-        from.ImportFromProj4(proj4str);
-        from.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
-
-        CoordinateTransformation transform = new CoordinateTransformation(from, wgs84ref);
-
-        coordinateTransformationCache.put(proj4str, transform);
-        return transform;
     }
 
     long hashCoords(double x, double y) {
@@ -71,5 +58,15 @@ class GeomUtils {
     boolean pointInside(double[] searchBBox, double[] search) {
         return search[0] >= searchBBox[0] && search[0] <= searchBBox[1] &&
                 search[1] >= searchBBox[2] && search[1] <= searchBBox[3];
+    }
+
+    public GeomTransformer getTransformationToSphereMercator(String proj4str) {
+        SpatialReference from = new SpatialReference();
+        from.ImportFromProj4(proj4str);
+        from.SetAxisMappingStrategy(OAMS_TRADITIONAL_GIS_ORDER);
+
+        CoordinateTransformation transform = new CoordinateTransformation(from, sphericmercref);
+
+        return new GeomTransformer(transform);
     }
 }
