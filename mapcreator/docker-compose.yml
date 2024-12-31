@@ -1,4 +1,3 @@
-version: '3'
 services:
   mml-client:
     image: teemupel/mml-muutostietopalvelu-client
