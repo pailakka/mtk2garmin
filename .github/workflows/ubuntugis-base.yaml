@@ -1,11 +1,11 @@
-name: mtk2garmin-converter docker image
+name: ubuntugis-base docker image
 
 on:
   workflow_dispatch:
   push:
     paths: 
-      - 'mtk2garmin-converter/**'
-      - '.github/workflows/dockerimage.yml'
+      - 'mapcreator/ubuntugis-base/**'
+      - '.github/workflows/ubuntugis-base.yaml'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -27,5 +27,5 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          context: "{{defaultContext}}:mtk2garmin-converter"
-          tags: teemupel/mtk2garmin-converter:latest
+          context: "{{defaultContext}}:mapcreator/ubuntugis-base"
+          tags: teemupel/mtk2garmin-ubuntugis-base:latest
