@@ -5,7 +5,7 @@ on:
   push:
     paths: 
       - 'mtk2garmin-converter/**'
-
+      - '.github/workflows/dockerimage.yml'
 jobs:
   build:
     runs-on: ubuntu-latest
