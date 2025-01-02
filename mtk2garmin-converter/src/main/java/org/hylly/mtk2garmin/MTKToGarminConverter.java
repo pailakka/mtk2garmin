@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 
 
 class MTKToGarminConverter {
-    private Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
+    private final Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
 
     private final HashMap<String, double[]> gridExtents = new HashMap<>();
     private final NodeCache nodeCache;
@@ -34,7 +34,7 @@ class MTKToGarminConverter {
     private CachedAdditionalDataSources cachedDatasources;
 
 
-    void doConvert() {
+    void doConvert() throws IOException {
         File mtkDirectory = new File(conf.getString("maastotietokanta"));
         if (!mtkDirectory.exists()) {
             throw new IllegalArgumentException("Maastotietokanta directory does not exists");
@@ -86,6 +86,10 @@ class MTKToGarminConverter {
 
         String areaFilter = conf.hasPath("areaFilter") ? conf.getString("areaFilter") : null;
 
+        OSMPBFWriter osmpbWriter = new OSMPBFWriter(outdir.resolve("all_direct.osm.pbf").toFile());
+        osmpbWriter.startWritingOSMPBF();
+        StringTable stringTable = new StringTable();
+
         areas
                 .entrySet()
                 .stream()
@@ -100,10 +104,10 @@ class MTKToGarminConverter {
                     int areaGrid = geomUtils.xy2grid(areaBBox[0], areaBBox[1]);
                     nodeCache.ensureGrid(areaGrid);
 
-                    areaCells.parallelStream().forEach(cellFile -> {
+                    areaCells.forEach(cellFile -> {
                         logger.info("Processing file: " + cellFile.toString() + " in thread [" + Thread.currentThread().getId() + "]");
                         try {
-                            SingleCellConverter cellConverter = new SingleCellConverter(cellFile, outdir, conf, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, featureIDProvider, cachedDatasources, nodeCache);
+                            SingleCellConverter cellConverter = new SingleCellConverter(cellFile, osmpbWriter, stringTable, conf, gridExtents, featurePreprocessMML, shapePreprocessor, geomUtils, featureIDProvider, cachedDatasources, nodeCache);
                             if (cellConverter.isValidCell()) {
                                 cellConverter.doConvert();
                             }
@@ -113,6 +117,13 @@ class MTKToGarminConverter {
                         }
                     });
 
+                    try {
+                        osmpbWriter.flush();
+                        stringTable.clear();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
                     Optional<String> relatedArea = areaRelations.get(areaKey);
                     if (relatedArea != null && relatedArea.isPresent()) {
                         double[] relatedBBox = grid2448.get(relatedArea.get());
@@ -120,6 +131,8 @@ class MTKToGarminConverter {
                         nodeCache.removeGrid(relatedGrid);
                     }
                 });
+
+        osmpbWriter.closeOSMPBFFile();
     }
 
     private Map<String, Optional<String>> getRelatedAreas(Map<String, double[]> grid2448, Map<String, List<File>> areas) {

@@ -1,9 +1,9 @@
 package org.hylly.mtk2garmin;
 
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectMap.Entry;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.shorts.Short2ShortMap;
 
 import java.util.Objects;
 
@@ -13,14 +13,20 @@ import static java.util.Arrays.asList;
 class MMLTagHandler implements TagHandlerI {
     private final ObjectOpenHashSet<String> wantedFields;
 
-    private final short korarvo, syvarvo, nimisuomi, nimiruotsi, teksti, teksti_kieli, kohdeluokka;
-    private final short tienro;
-    private final short tasosij;
-    private final short bridge;
-    private final short tunnel;
-    private final short yes;
+    private final int korarvo;
+    private final int syvarvo;
+    private final int nimisuomi;
+    private final int nimiruotsi;
+    private final int teksti;
+    private final int teksti_kieli;
+    private final int kohdeluokka;
+    private final int tienro;
+    private final int tasosij;
+    private final int bridge;
+    private final int tunnel;
+    private final int yes;
 
-    private final short ele, name, ref, fin;
+    private final int ele, name, ref, fin;
 
     private final StringTable stringtable;
 
@@ -56,14 +62,14 @@ class MMLTagHandler implements TagHandlerI {
     }
 
     @Override
-    public void addElementTags(Short2ShortMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea) {
+    public void addElementTags(Int2IntMap tags, Int2ObjectMap<String> fields, String tyyppi, double geomarea) {
         if (tags.get(teksti_kieli) == fin && !Objects.equals(fields.get(teksti_kieli), "fin")) {
             return;
         }
 
-        for (Entry<String> k : fields.short2ObjectEntrySet()) {
+        for (Entry<String> k : fields.int2ObjectEntrySet()) {
 
-            short kk = k.getShortKey();
+            int kk = k.getIntKey();
             String val = k.getValue();
 
             if (val.isEmpty()) {

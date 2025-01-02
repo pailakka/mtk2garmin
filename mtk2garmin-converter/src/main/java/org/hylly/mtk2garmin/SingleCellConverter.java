@@ -1,14 +1,13 @@
 package org.hylly.mtk2garmin;
 
 import com.typesafe.config.Config;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
 import org.gdal.ogr.*;
 import org.gdal.osr.SpatialReference;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -21,7 +20,6 @@ public class SingleCellConverter {
     private final Logger logger = Logger.getLogger(SingleCellConverter.class.getName());
 
     private final File cellFile;
-    private final Path outdir;
     private final ShapeFeaturePreprocess shapePreprocessor;
     private final MMLFeaturePreprocess featurePreprocessMML;
     private final GeomUtils geomUtils;
@@ -38,7 +36,7 @@ public class SingleCellConverter {
     private final double[] bbox;
 
 
-    private final short tyyppi_string_id;
+    private final int tyyppi_string_id;
 
     private final ShapeRetkeilyTagHandler retkeilyTagHandler;
     private final ShapeSyvyysTagHandler syvyysTagHandler;
@@ -54,12 +52,14 @@ public class SingleCellConverter {
     private final Long2ObjectOpenHashMap<LightNode> nodes = new Long2ObjectOpenHashMap<>(50000);
     private final Long2ObjectOpenHashMap<LightWay> ways = new Long2ObjectOpenHashMap<>(5000);
     private final Long2ObjectOpenHashMap<LightRelation> relations = new Long2ObjectOpenHashMap<>(500);
+    private final OSMPBFWriter osmpbfWriter;
     private GeomTransformer sphericToWGS;
     private GeomTransformer srcToSphericMerc;
 
     SingleCellConverter(
             File cellFile,
-            Path outdir,
+            OSMPBFWriter osmpbfWriter,
+            StringTable stringtable,
             Config conf, HashMap<String, double[]> gridExtents,
             MMLFeaturePreprocess featurePreprocessMML,
             ShapeFeaturePreprocess shapePreprocessor,
@@ -67,7 +67,7 @@ public class SingleCellConverter {
             FeatureIDProvider featureIDProvider, CachedAdditionalDataSources cachedDatasources, NodeCache nodeCache) {
 
         this.cellFile = cellFile;
-        this.outdir = outdir;
+        this.osmpbfWriter = osmpbfWriter;
         this.conf = conf;
         this.featurePreprocessMML = featurePreprocessMML;
         this.shapePreprocessor = shapePreprocessor;
@@ -77,7 +77,7 @@ public class SingleCellConverter {
         this.nodeCache = nodeCache;
 
 
-        this.stringtable = new StringTable();
+        this.stringtable = stringtable;
         this.tyyppi_string_id = stringtable.getStringId("tyyppi");
         this.tagHandlerMML = new MMLTagHandler(stringtable);
         this.retkeilyTagHandler = new ShapeRetkeilyTagHandler(stringtable);
@@ -95,9 +95,6 @@ public class SingleCellConverter {
     }
 
     void doConvert() throws IOException {
-        OSMPBFWriter osmpbWriter = new OSMPBFWriter(outdir.resolve(String.format("%s.osm.pbf", cell)).toFile());
-        osmpbWriter.startWritingOSMPBF();
-
         DataSource mtkds = readOGRsource(stringtable, startReadingOGRFile("/vsizip/" + cellFile.toString()), featurePreprocessMML, tagHandlerMML, null);
         mtkds.delete();
         printCounts();
@@ -132,8 +129,7 @@ public class SingleCellConverter {
                     printCounts();
                 });
 
-        osmpbWriter.writeOSMPBFElements(stringtable, nodes, ways, relations);
-        osmpbWriter.closeOSMPBFFile();
+        osmpbfWriter.writeOSMPBFElements(stringtable, nodes, ways, relations);
     }
 
     private TagHandlerI getTagHandlerForDatasource(DataSource ds) {
@@ -239,10 +235,10 @@ public class SingleCellConverter {
 
     private boolean handleFeature(StringTable stringtable, String lyrname, ArrayList<Field> fieldMapping, Feature feat,
                                   TagHandlerI tagHandler) {
-        Short2ObjectOpenHashMap<String> fields = new Short2ObjectOpenHashMap<>();
+        Int2ObjectOpenHashMap<String> fields = new Int2ObjectOpenHashMap<>();
         Geometry geom;
         for (Field f : fieldMapping) {
-            short fid = stringtable.getStringId(f.getFieldName());
+            int fid = stringtable.getStringId(f.getFieldName());
             String fname = feat.GetFieldAsString(f.getFieldIndex()).intern();
             fields.put(fid, fname);
         }
@@ -279,7 +275,7 @@ public class SingleCellConverter {
         String tyyppi = lyrname.toLowerCase();
         if (tyyppi.endsWith("kiinteistoraja")) tyyppi = "kiinteistoraja";
 
-        short tyyppi_value_id = stringtable.getStringId(tyyppi);
+        int tyyppi_value_id = stringtable.getStringId(tyyppi);
 
         for (LightNode n : ghr.lightNodes) {
 
@@ -385,7 +381,7 @@ public class SingleCellConverter {
                 Math.min(Math.abs(this.bbox[2] - y), Math.min(Math.abs(this.bbox[1] - x), Math.abs(this.bbox[3] - y))));
     }
 
-    private GeomHandlerResult handleMultiGeom(short type, short multipolygon, Geometry geom) {
+    private GeomHandlerResult handleMultiGeom(int type, int multipolygon, Geometry geom) {
 
         GeomHandlerResult ighr;
         Geometry igeom;

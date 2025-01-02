@@ -16,7 +16,7 @@ output-dir=/output/mtkgarmin_noparcel
 family-id=2501
 family-name=MTKSuomi
 series-name=MTKSuomi
-copyright-message=NLS 2017, Finnish Transport Agency 2017, OpenStreetMap Contributors, Metsahallitus
+copyright-message=NLS 2025, Finnish Transport Agency 2017, OpenStreetMap Contributors, Metsahallitus
 merge-lines
 remove-ovm-work-files=true
 polygon-size-limits=24:12, 18:10, 16:8, 14:4, 12:2, 11:0

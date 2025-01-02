@@ -1,29 +1,28 @@
 package org.hylly.mtk2garmin;
 
-import it.unimi.dsi.fastutil.ints.Int2ObjectAVLTreeMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.ints.Int2ObjectMaps;
-import it.unimi.dsi.fastutil.longs.Long2LongAVLTreeMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import it.unimi.dsi.fastutil.longs.Long2LongMap;
 import it.unimi.dsi.fastutil.longs.Long2LongMaps;
+import it.unimi.dsi.fastutil.longs.Long2LongOpenHashMap;
 
-import javax.swing.text.html.Option;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 class NodeCache {
-    private Logger logger = Logger.getLogger(MTKToGarminConverter.class.getName());
+    private final Logger logger = Logger.getLogger(NodeCache.class.getName());
     private final Int2ObjectMap<Long2LongMap> nodeCache;
 
 
     NodeCache() {
-        Int2ObjectMap<Long2LongMap> unsafeNodeCache = new Int2ObjectAVLTreeMap<>();
+        Int2ObjectMap<Long2LongMap> unsafeNodeCache = new Int2ObjectOpenHashMap<>();
         nodeCache = Int2ObjectMaps.synchronize(unsafeNodeCache);
     }
 
     void ensureGrid(int grid) {
         if (!nodeCache.containsKey(grid)) {
-            Long2LongAVLTreeMap unsafeGridMap = new Long2LongAVLTreeMap();
+            Long2LongMap unsafeGridMap = new Long2LongOpenHashMap();
             nodeCache.put(grid, Long2LongMaps.synchronize(unsafeGridMap));
             logger.info(grid + " added to nodecache");
         }

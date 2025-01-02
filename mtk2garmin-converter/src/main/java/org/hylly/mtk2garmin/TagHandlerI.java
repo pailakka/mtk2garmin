@@ -1,12 +1,12 @@
 package org.hylly.mtk2garmin;
 
 
+import it.unimi.dsi.fastutil.ints.Int2IntMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet;
-import it.unimi.dsi.fastutil.shorts.Short2ObjectOpenHashMap;
-import it.unimi.dsi.fastutil.shorts.Short2ShortMap;
 
 interface TagHandlerI {
 
 	ObjectOpenHashSet<String> getWantedFields();
-	void addElementTags(Short2ShortMap tags, Short2ObjectOpenHashMap<String> fields, String tyyppi, double geomarea);
+	void addElementTags(Int2IntMap tags, Int2ObjectMap<String> fields, String tyyppi, double geomarea);
 }

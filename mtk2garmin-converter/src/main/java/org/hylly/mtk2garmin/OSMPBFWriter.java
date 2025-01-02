@@ -47,6 +47,10 @@ public class OSMPBFWriter {
         osmiumRelations.sequential().forEach(this.osmosisSerializer::process);
     }
 
+    void flush() throws IOException {
+        this.osmosisSerializer.flush();
+    }
+
     void closeOSMPBFFile() throws IOException {
         this.osmosisSerializer.complete();
         this.outputStream.close();
