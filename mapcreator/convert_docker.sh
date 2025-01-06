@@ -28,7 +28,7 @@ docker compose up --no-start additional-data
 docker compose up --no-start mapstyles
 
 time docker compose run mtk2garmin-converter java -jar /opt/mtk2garmin/target/mtk2garmin-0.0.2.jar /opt/mtk2garmin/mtk2garmin.conf
-time docker compose run merger ./merge_files.sh
+time docker compose run merger ./process_osm.sh
 
 time docker compose run mkgmap ./run_mkgmap.sh
 
@@ -38,7 +38,7 @@ time docker compose run mapsforge /app/bin/osmosis \
            simplification-max-zoom=12 simplification-factor=16 threads=4 \
            zoom-interval-conf=5,4,7,8,8,11,12,12,13,14,14,21 \
            label-position=true polylabel=true \
-           tag-conf-file=/mapstyles/mapsforge_peruskartta/mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2019"
+           tag-conf-file=/mapstyles/mapsforge_peruskartta/mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2025"
 
 
 time docker compose run osxconverter
