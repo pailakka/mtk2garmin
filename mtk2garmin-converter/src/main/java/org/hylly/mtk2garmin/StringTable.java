@@ -14,7 +14,7 @@ class StringTable {
 
     int getStringId(String stringKey) {
         if (!this.stringTableTranslate.containsKey(stringKey)) {
-            int newIndex = (int) this.stringTable.size();
+            int newIndex = this.stringTable.size();
             this.stringTableTranslate.put(stringKey, newIndex);
             this.stringTable.add(newIndex, stringKey);
             return newIndex;
