@@ -22,7 +22,7 @@ fi
 
 docker compose pull
 
-time docker compose run mml-client /go/src/app/mml-muutostietopalvelu-client load -p maastotietokanta -t kaikki -f application/gml+xml -d /mtkdata
+time docker compose run mml-client /go/src/app/mml-muutostietopalvelu-client load -p maastotietokanta -t avoin -f application/gml+xml -d /mtkdata
 time docker compose run mml-client /go/src/app/mml-muutostietopalvelu-client load -p kiinteistorekisterikartta -t karttalehdittain -f application/x-shapefile -d /krkdata
 
 time docker compose run mml-ogr-client
