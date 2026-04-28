@@ -341,8 +341,16 @@
     </rule>
 
 
-    <rule e="way" k="tyyppi" v="korkeuskayra" zoom-min="14">
-        <line stroke="#ab5700" stroke-width="0.08" stroke-linecap="square" />
+    <rule e="way" k="tyyppi" v="korkeuskayra">
+        <rule e="way" k="kayratyyppi" v="johtokayra" zoom-min="14">
+            <line stroke="#ab5700" stroke-width="0.16" stroke-linecap="square" />
+        </rule>
+        <rule e="way" k="kayratyyppi" v="-|johtokayra|apukayra" zoom-min="15"> <!-- valikayra -->
+            <line stroke="#ab5700" stroke-width="0.08" stroke-linecap="square" />
+        </rule>
+        <rule e="way" k="kayratyyppi" v="apukayra" zoom-min="15">
+            <line stroke="#ab5700" stroke-width="0.08" stroke-linecap="square" stroke-dasharray="4,2"/>
+        </rule>
     </rule>
 
 

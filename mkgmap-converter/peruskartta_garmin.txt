@@ -1362,25 +1362,32 @@ ExtendedLabels=N
 
 [_line]
 Type=0x20
-LineWidth=1
-Xpm="0 0 1 0"
-"a c #C0803F"
+Xpm="32 1 2 1"
+"! c #C0803F"
+"  c none"
+"  !!!!!!  !!!!!!  !!!!!!  !!!!!!"
+;12345678901234567890123456789012
 FontStyle=NoLabel
 [end]
 
 [_line]
 Type=0x21
-LineWidth=1
-Xpm="0 0 1 0"
-"a c #C0803F"
+Xpm="32 1 2 1"
+"! c #C0803F"
+"  c none"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+;12345678901234567890123456789012
 FontStyle=NoLabel
 [end]
 
 [_line]
 Type=0x22
-LineWidth=2
-Xpm="0 0 1 0"
-"a c #C0803F"
+Xpm="32 2 2 1"
+"! c #C0803F"
+"  c none"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+;12345678901234567890123456789012
 FontStyle=NoLabel
 [end]
 
