@@ -27,6 +27,7 @@ class MMLTagHandler implements TagHandlerI {
     private final int yes;
 
     private final int ele, name, ref, fin;
+    private final int kayratyyppi, johtokayra, valikayra, apukayra;
 
     private final StringTable stringtable;
 
@@ -52,6 +53,11 @@ class MMLTagHandler implements TagHandlerI {
         ref = stringtable.getStringId("ref");
         fin = stringtable.getStringId("fin");
 
+        kayratyyppi = stringtable.getStringId("kayratyyppi");
+        johtokayra = stringtable.getStringId("johtokayra");
+        valikayra = stringtable.getStringId("valikayra");
+        apukayra = stringtable.getStringId("apukayra");
+
         this.stringtable = stringtable;
 
     }
@@ -76,7 +82,19 @@ class MMLTagHandler implements TagHandlerI {
                 continue;
             }
             if (kk == korarvo || kk == syvarvo) {
-                Double korarvo = Integer.parseInt(val) / 1000.0;
+                int korint = Integer.parseInt(val);
+
+                if (kk == korarvo) {
+                    if (korint % 20000 == 0) {
+                        tags.put(kayratyyppi, johtokayra);
+                    } else if (korint % 5000 == 0) {
+                        tags.put(kayratyyppi, valikayra);
+                    } else if (korint % 2500 == 0) {
+                        tags.put(kayratyyppi, apukayra);
+                    }
+                }
+
+                Double korarvo =  korint / 1000.0;
                 kk = ele;
                 val = String.format("%.1f", korarvo);
             }
