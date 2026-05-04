@@ -45,6 +45,26 @@ release_files = OrderedDict(
             },
         ),
         (
+            "mtk_suomi_amoled.img",
+            {
+                "type": "garmin_map",
+                "name": "mtk_suomi_amoled.img",
+                "description": """Versio amoled-näyttöisille laitteille""",
+                "size": None,
+                "hash": None,
+            },
+        ),
+        (
+            "mtk_suomi_amoled_noparcel.img",
+            {
+                "type": "garmin_map",
+                "name": "mtk_suomi_amoled_noparcel.img",
+                "description": """Amoled-versio ilman kiintestörajoja""",
+                "size": None,
+                "hash": None,
+            },
+        ),
+        (
             "mtk_suomi.exe",
             {
                 "type": "garmin_map",

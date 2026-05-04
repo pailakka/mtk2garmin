@@ -10,6 +10,9 @@ time_stamp="${TIME_STAMP:-$(date +%Y-%m-%d)}"
 cp /output/mtkgarmin/gmapsupp.img /output/dist/mtk_suomi.img
 cp /output/mtkgarmin_noparcel/gmapsupp.img /output/dist/mtk_suomi_noparcel.img
 
+cp /output/mtkgarmin_amoled/gmapsupp.img /output/dist/mtk_suomi_amoled.img
+cp /output/mtkgarmin_amoled_noparcel/gmapsupp.img /output/dist/mtk_suomi_amoled_noparcel.img
+
 cp /output/mtkgarmin/MTKSuomi.exe /output/dist/mtk_suomi.exe
 cp /output/mtkgarmin_noparcel/MTKSuomi.exe /output/dist/mtk_suomi_noparcel.exe
 
