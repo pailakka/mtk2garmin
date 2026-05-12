@@ -85,6 +85,13 @@
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans antialiased">
+{% if site_variant == "v2" %}
+<div class="bg-amber-100 border-b border-amber-300 text-amber-950 text-sm">
+    <div class="max-w-7xl mx-auto px-4 py-2">
+        rs-ogr2osm v2 / GeoPackage build. This page is published separately from the current production Java/GML build.
+    </div>
+</div>
+{% endif %}
 <!-- Navigation -->
 <nav class="bg-white shadow-sm sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

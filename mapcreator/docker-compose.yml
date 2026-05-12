@@ -7,15 +7,17 @@ services:
       - /opt/krkdata/:/krkdata
   mml-ogr-client:
     build: ../mml-ogc-processes
+    env_file:
+      - ../mml-ogc-processes/.env
     volumes:
       - /opt/mtkdata/:/mtkdata
       - /opt/krkdata/:/krkdata
   mapsforge:
     image: teemupel/mapsforge
     volumes:
-      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/convertedpbf:/convertedpbf
       - mapstyle:/mapstyles
-      - /opt/mtk2garmin-build/output:/output
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
     environment:
       - JAVACMD_OPTIONS=-Xmx50G
   mtk2garmin-converter:
@@ -25,18 +27,18 @@ services:
       - /opt/mtkdata/:/mtkdata
       - /opt/krkdata/:/krkdata
       - additional-data:/additional-data:ro
-      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/convertedpbf:/convertedpbf
   merger:
     build: ./merge
     image: localhost:5000/mtk2garmin-merger
     volumes:
-      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/convertedpbf:/convertedpbf
       - additional-data:/additional-data:ro
   osxconverter:
     build: ../garminOSXConverter
     image: localhost:5000/osxconverter
     volumes:
-      - /opt/mtk2garmin-build/output:/output
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
   additional-data:
     image: localhost:5000/mtk2garmin-additional-data:latest
     volumes:
@@ -45,9 +47,9 @@ services:
     image: teemupel/mkgmap
     build: ../mkgmap-converter
     volumes:
-      - /opt/mtk2garmin-build/convertedpbf:/convertedpbf
-      - /opt/mtk2garmin-build/splitted:/splitted
-      - /opt/mtk2garmin-build/output:/output
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/convertedpbf:/convertedpbf
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/splitted:/splitted
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
       - mapstyle:/mapstyles
   mapstyles:
     image: teemupel/mtk2garmin-mapstyles
@@ -57,15 +59,15 @@ services:
   nsis:
     image: wheatstalk/makensis
     volumes:
-      - /opt/mtk2garmin-build/output:/output
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
   site:
     build: ../site
     image: localhost:5000/mtk2garmin-site
     env_file:
       - aws-access.env
     volumes:
-      - /opt/mtk2garmin-build/output:/output
-      - /opt/mtk2garmin-publish:/publish
+      - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
+      - ${MTK2GARMIN_PUBLISH_ROOT:-/opt/mtk2garmin-publish}:/publish
       - mapstyle:/mapstyles
 volumes:
   additional-data:

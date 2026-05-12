@@ -6,6 +6,10 @@ rm -rf /output/dist
 mkdir -p /output/dist
 
 time_stamp="${TIME_STAMP:-$(date +%Y-%m-%d)}"
+download_prefix="${DOWNLOAD_PREFIX:-${time_stamp}}"
+publish_prefix="${PUBLISH_PREFIX:-new-${time_stamp}}"
+index_object="${INDEX_OBJECT:-index.html}"
+legacy_index_object="${LEGACY_INDEX_OBJECT:-index_old.html}"
 
 cp /output/mtkgarmin/gmapsupp.img /output/dist/mtk_suomi.img
 cp /output/mtkgarmin_noparcel/gmapsupp.img /output/dist/mtk_suomi_noparcel.img
@@ -26,11 +30,18 @@ cp /mapstyles/tiekartta.zip /output/dist/tiekartta.zip
 python3 generate_site.py "${time_stamp}"
 
 7z a -tzip /output/dist/mtk_suomi.cpkg /output/dist/mtk_suomi.map /output/dist/peruskartta.zip /output/dist/mapdetails.json
-mkdir -p "/publish/${time_stamp}"
+mkdir -p "/publish/${download_prefix}"
 
-rsync -avP "/output/dist/" "/publish/${time_stamp}/"
-aws s3 sync "/publish/${time_stamp}" "s3://kartat-build/new-${time_stamp}"
-aws s3 cp "/publish/${time_stamp}/site.html" "s3://kartat.hylly.org/index_old.html"
-aws s3 cp "/publish/${time_stamp}/site2.html" "s3://kartat.hylly.org/index.html"
+rsync -avP "/output/dist/" "/publish/${download_prefix}/"
+aws s3 sync "/publish/${download_prefix}" "s3://kartat-build/${publish_prefix}"
 
-aws cloudfront create-invalidation --distribution-id "E2F702Y6HFAYV6" --paths "/index.html"
+if [[ -n "${legacy_index_object}" ]]; then
+  aws s3 cp "/publish/${download_prefix}/site.html" "s3://kartat.hylly.org/${legacy_index_object}"
+fi
+aws s3 cp "/publish/${download_prefix}/site2.html" "s3://kartat.hylly.org/${index_object}"
+
+invalidation_paths=("/${index_object}")
+if [[ -n "${legacy_index_object}" ]]; then
+  invalidation_paths+=("/${legacy_index_object}")
+fi
+aws cloudfront create-invalidation --distribution-id "E2F702Y6HFAYV6" --paths "${invalidation_paths[@]}"

@@ -18,9 +18,12 @@ path = "/output/dist"
 files = os.listdir(path)
 publishdate = datetime.datetime.now().strftime("%Y-%m-%d")
 current_year = datetime.datetime.now().year
+download_prefix = os.environ.get("DOWNLOAD_PREFIX", publishdate).strip("/")
+site_variant = os.environ.get("SITE_VARIANT", "")
 
 if len(sys.argv) == 2:
     publishdate = sys.argv[1]
+    download_prefix = os.environ.get("DOWNLOAD_PREFIX", publishdate).strip("/")
 
 release_files = OrderedDict(
     (
@@ -185,7 +188,7 @@ def generate_map_locus(fn):
   </download>
 </locusActions>"""
             % {
-                "date": publishdate,
+                "date": download_prefix,
                 "fn": fn,
                 "default_style": release_files[fn]["default_style"],
             }
@@ -207,7 +210,7 @@ def generate_style_locus(fn):
     <after>extract|deleteSource</after>
   </download>
 </locusActions>"""
-            % {"fn": fn, "date": publishdate}
+            % {"fn": fn, "date": download_prefix}
         )
     return ofn
 
@@ -312,7 +315,7 @@ for fn in files:
     release_files[fn]["size_text"] = humanfriendly.format_size(
         release_files[fn]["size"]
     )
-    release_files[fn]["date"] = publishdate
+    release_files[fn]["date"] = download_prefix
     release_files[fn]["description"] = (
         release_files[fn]["description"] % release_files[fn]
     )
@@ -328,28 +331,33 @@ env = Environment(
     loader=FileSystemLoader("."), autoescape=select_autoescape(["html", "xml"])
 )
 
-template = env.get_template("index.html")
+def rewrite_download_prefix(html):
+    if download_prefix == publishdate:
+        return html
 
-with open(os.path.join(path, "site.html"), "w+") as f:
-    f.write(
-        template.render(
-            release_files=release_files,
-            changes=changes,
-            publishdate=publishdate,
-            current_year=current_year,
-        )
+    replacements = {
+        f"https://kartat-dl.hylly.org/{publishdate}/": f"https://kartat-dl.hylly.org/{download_prefix}/",
+        f"orux-map://kartat-dl.hylly.org/{publishdate}/": f"orux-map://kartat-dl.hylly.org/{download_prefix}/",
+        f"orux-mf-theme://kartat-dl.hylly.org/{publishdate}/": f"orux-mf-theme://kartat-dl.hylly.org/{download_prefix}/",
+        f"locus-actions://https/kartat-dl.hylly.org/{publishdate}/": f"locus-actions://https/kartat-dl.hylly.org/{download_prefix}/",
+        f"cartograph://kartat-dl.hylly.org/{publishdate}/": f"cartograph://kartat-dl.hylly.org/{download_prefix}/",
+    }
+    for source, target in replacements.items():
+        html = html.replace(source, target)
+    return html
+
+
+for template_name, output_name in (("index.html", "site.html"), ("index2.html", "site2.html")):
+    template = env.get_template(template_name)
+    html = template.render(
+        release_files=release_files,
+        changes=changes,
+        publishdate=publishdate,
+        current_year=current_year,
+        download_prefix=download_prefix,
+        site_variant=site_variant,
     )
-
-template = env.get_template("index2.html")
-
-with open(os.path.join(path, "site2.html"), "w+") as f:
-    f.write(
-        template.render(
-            release_files=release_files,
-            changes=changes,
-            publishdate=publishdate,
-            current_year=current_year,
-        )
-    )
+    with open(os.path.join(path, output_name), "w+") as f:
+        f.write(rewrite_download_prefix(html))
 
 print("Publish done!")
