@@ -17,11 +17,11 @@ PROCESS_ID = "kiinteistorekisterikartta_vektori_koko_suomi"
 def parse_args():
     parser = argparse.ArgumentParser(description="MML OGC API Downloader")
     parser.add_argument(
-        "process_id",
+        "process_id", 
         help="PROCESS_ID to be used (default: kiinteistorekisterikartta_vektori_koko_suomi)",
     )
     parser.add_argument(
-        "output_path",
+        "output_path", 
         help="The full local path where the file should be saved (e.g., ./data/result.gpkg)"
     )
     return parser.parse_args()
@@ -30,7 +30,7 @@ def get_auth_headers():
     if not API_KEY or API_KEY == "YOUR_API_KEY_HERE":
         print("Error: Please set MML_API_KEY in the environment.")
         sys.exit(1)
-
+        
     # User ID is API Key, Password is empty
     credentials = f"{API_KEY}:"
     encoded = base64.b64encode(credentials.encode('utf-8')).decode('utf-8')
@@ -42,7 +42,7 @@ def get_auth_headers():
 def main():
     args = parse_args()
     headers = get_auth_headers()
-
+    
     # 1. Check if curl is available
     if not shutil.which("curl"):
         print("Error: 'curl' is not installed or not in your PATH.")
@@ -74,25 +74,25 @@ def main():
 
     # 3. POLL STATUS
     status_url = f"{BASE_URL}/jobs/{job_id}"
-
+    
     while True:
         try:
             r = requests.get(status_url, headers=headers)
             r.raise_for_status()
             status_data = r.json()
             status = status_data.get('status')
-
+            
             if status == 'successful':
                 print("\nJob finished successfully!")
                 break
             elif status in ['failed', 'dismissed']:
                 print(f"\nJob failed: {status_data.get('message')}")
                 sys.exit(1)
-
+            
             # Simple progress indicator
             print(f"Status: {status}...", end='\r')
             time.sleep(5)
-
+            
         except Exception as e:
             print(f"\nPolling error: {e}")
             time.sleep(5)
@@ -112,7 +112,7 @@ def main():
                 break
             elif 'zipPath' in item:
                 download_url = item['zipPath']
-
+    
     if not download_url:
         print("Error: Could not find a valid download URL in results.")
         print(results_data)
@@ -120,22 +120,22 @@ def main():
 
     # 5. DOWNLOAD WITH CURL
     print(f"Downloading {download_url} with curl to: {args.output_path}")
-
+    
     # We must pass the Authorization header to curl as well
     auth_header_val = headers['Authorization']
-
+    
     # Construct curl command safely
     # -L follows redirects
     # -f fails silently on server errors (so subprocess knows)
     # -o specifies output file
     curl_cmd = [
-        "curl",
-        "-L",
+        "curl", 
+        "-L", 
         "-H", f"Authorization: {auth_header_val}",
         "-o", args.output_path,
         download_url
     ]
-
+    
     try:
         subprocess.run(curl_cmd, check=True)
         print(f"\nSuccess! File saved to {args.output_path}")
