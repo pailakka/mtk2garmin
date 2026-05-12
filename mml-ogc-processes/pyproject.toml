@@ -6,5 +6,5 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "owslib>=0.35.0",
-    "requests>=2.32.5",
+    "requests>=2.33.0",
 ]
