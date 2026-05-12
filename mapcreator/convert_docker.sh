@@ -68,6 +68,8 @@ run_downstream_outputs() {
 
   time run_compose "${build_root}" run nsis /output/mtkgarmin/osmmap.nsi
   time run_compose "${build_root}" run nsis /output/mtkgarmin_noparcel/osmmap.nsi
+  time run_compose "${build_root}" run nsis /output/mtkgarmin_amoled/osmmap.nsi
+  time run_compose "${build_root}" run nsis /output/mtkgarmin_amoled_noparcel/osmmap.nsi
 
   if [[ "${run_publish}" == "1" ]]; then
     time run_compose "${build_root}" run \

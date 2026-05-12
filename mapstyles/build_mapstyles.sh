@@ -19,3 +19,5 @@ cd ..
 
 cp -r mtk2garmin_style /mapstyles
 cp -r mtk2garmin_style_noparcel /mapstyles
+cp -r mtk2garmin_style_amoled /mapstyles
+cp -r mtk2garmin_style_amoled_noparcel /mapstyles
