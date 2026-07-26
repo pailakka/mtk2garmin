@@ -9,13 +9,25 @@ time_stamp="${TIME_STAMP:-$(date +%Y-%m-%d)}"
 download_prefix="${DOWNLOAD_PREFIX:-${time_stamp}}"
 publish_prefix="${PUBLISH_PREFIX:-new-${time_stamp}}"
 index_object="${INDEX_OBJECT:-index.html}"
-legacy_index_object="${LEGACY_INDEX_OBJECT:-index_old.html}"
+legacy_index_object="${LEGACY_INDEX_OBJECT-index_old.html}"
 
-cp /output/mtkgarmin/gmapsupp.img /output/dist/mtk_suomi.img
-cp /output/mtkgarmin_noparcel/gmapsupp.img /output/dist/mtk_suomi_noparcel.img
+copy_garmin_img() {
+  local named_source="$1"
+  local legacy_source="$2"
+  local target="$3"
 
-cp /output/mtkgarmin_amoled/gmapsupp.img /output/dist/mtk_suomi_amoled.img
-cp /output/mtkgarmin_amoled_noparcel/gmapsupp.img /output/dist/mtk_suomi_amoled_noparcel.img
+  if [[ -f "${named_source}" ]]; then
+    cp "${named_source}" "${target}"
+  else
+    cp "${legacy_source}" "${target}"
+  fi
+}
+
+copy_garmin_img /output/mtkgarmin/mtk_suomi.img /output/mtkgarmin/gmapsupp.img /output/dist/mtk_suomi.img
+copy_garmin_img /output/mtkgarmin_noparcel/mtk_suomi_noparcel.img /output/mtkgarmin_noparcel/gmapsupp.img /output/dist/mtk_suomi_noparcel.img
+
+copy_garmin_img /output/mtkgarmin_amoled/mtk_suomi_amoled.img /output/mtkgarmin_amoled/gmapsupp.img /output/dist/mtk_suomi_amoled.img
+copy_garmin_img /output/mtkgarmin_amoled_noparcel/mtk_suomi_amoled_noparcel.img /output/mtkgarmin_amoled_noparcel/gmapsupp.img /output/dist/mtk_suomi_amoled_noparcel.img
 
 cp /output/mtkgarmin/MTKSuomi.exe /output/dist/mtk_suomi.exe
 cp /output/mtkgarmin_noparcel/MTKSuomi.exe /output/dist/mtk_suomi_noparcel.exe
@@ -44,4 +56,17 @@ invalidation_paths=("/${index_object}")
 if [[ -n "${legacy_index_object}" ]]; then
   invalidation_paths+=("/${legacy_index_object}")
 fi
+
+publish_optional_live_object() {
+  local filename="$1"
+
+  if aws s3 cp "/publish/${download_prefix}/${filename}" "s3://kartat.hylly.org/${filename}"; then
+    invalidation_paths+=("/${filename}")
+  else
+    echo "Warning: could not publish optional live object ${filename}; continuing map publication." >&2
+  fi
+}
+
+publish_optional_live_object robots.txt
+publish_optional_live_object sitemap.xml
 aws cloudfront create-invalidation --distribution-id "E2F702Y6HFAYV6" --paths "${invalidation_paths[@]}"

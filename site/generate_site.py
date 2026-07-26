@@ -10,6 +10,7 @@ import subprocess
 import sys
 import time
 from collections import OrderedDict
+from xml.sax.saxutils import escape as xml_escape
 import jinja2
 
 import humanfriendly
@@ -20,6 +21,7 @@ publishdate = datetime.datetime.now().strftime("%Y-%m-%d")
 current_year = datetime.datetime.now().year
 download_prefix = os.environ.get("DOWNLOAD_PREFIX", publishdate).strip("/")
 site_variant = os.environ.get("SITE_VARIANT", "")
+site_url = os.environ.get("SITE_URL", "https://kartat.hylly.org").rstrip("/")
 
 if len(sys.argv) == 2:
     publishdate = sys.argv[1]
@@ -359,5 +361,26 @@ for template_name, output_name in (("index.html", "site.html"), ("index2.html", 
     )
     with open(os.path.join(path, output_name), "w+") as f:
         f.write(rewrite_download_prefix(html))
+
+homepage_url = f"{site_url}/"
+with open(os.path.join(path, "sitemap.xml"), "w+") as f:
+    f.write(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        "  <url>\n"
+        f"    <loc>{xml_escape(homepage_url)}</loc>\n"
+        f"    <lastmod>{publishdate}</lastmod>\n"
+        "    <changefreq>weekly</changefreq>\n"
+        "    <priority>1.0</priority>\n"
+        "  </url>\n"
+        "</urlset>\n"
+    )
+
+with open(os.path.join(path, "robots.txt"), "w+") as f:
+    f.write(
+        "User-agent: *\n"
+        "Allow: /\n"
+        f"Sitemap: {homepage_url}sitemap.xml\n"
+    )
 
 print("Publish done!")
