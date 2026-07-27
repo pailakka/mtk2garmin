@@ -33,6 +33,24 @@ test ! -e "${fixture}/output/mapsforge-rs.log"
 test ! -e "${fixture}/output/mtkgarmin"
 test ! -e "${fixture}/output/mtkgarmin_osx"
 
+if [[ -n "${CLEANUP_TEST_IMAGE:-}" ]]; then
+  docker run --rm \
+    --mount "type=bind,src=${fixture},dst=/build" \
+    --entrypoint /bin/bash \
+    "${CLEANUP_TEST_IMAGE}" \
+    -euo pipefail -c '
+      mkdir -p /build/convertedpbf/root-owned /build/output/mtkgarmin
+      printf "root-owned pbf\n" > /build/convertedpbf/root-owned/all.osm.pbf
+      printf "root-owned img\n" > /build/output/mtkgarmin/gmapsupp.img
+    '
+
+  "${script_dir}/cleanup_build_root.sh" "${fixture}" "${CLEANUP_TEST_IMAGE}"
+
+  test -f "${fixture}/output/dist/nested/mtk_suomi.map"
+  test -z "$(find "${fixture}/convertedpbf" -mindepth 1 -print -quit)"
+  test ! -e "${fixture}/output/mtkgarmin"
+fi
+
 if "${script_dir}/cleanup_build_root.sh" / >/dev/null 2>&1; then
   echo "cleanup accepted unsafe root /" >&2
   exit 1

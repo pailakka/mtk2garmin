@@ -2,6 +2,7 @@
 set -euo pipefail
 
 build_root="${1:-}"
+cleanup_image="${2:-}"
 
 if [[ -z "${build_root}" ]]; then
   echo "cleanup: build root is required" >&2
@@ -16,13 +17,36 @@ fi
 
 echo "Cleaning build artifacts under ${build_root}; retaining output/dist" >&2
 
-for working_dir in convertedpbf splitted; do
-  rm -rf -- "${build_root:?}/${working_dir}"
-  mkdir -p -- "${build_root}/${working_dir}"
-done
+cleanup_contents() {
+  local root="$1"
 
-mkdir -p -- "${build_root}/output"
-find "${build_root}/output" \
-  -mindepth 1 -maxdepth 1 \
-  ! -name dist \
-  -exec rm -rf -- {} +
+  rm -rf -- "${root:?}/convertedpbf" "${root}/splitted"
+  mkdir -p -- "${root}/output"
+  find "${root}/output" \
+    -mindepth 1 -maxdepth 1 \
+    ! -name dist \
+    -exec rm -rf -- {} +
+}
+
+if [[ -n "${cleanup_image}" ]]; then
+  command -v docker >/dev/null 2>&1 || {
+    echo "cleanup: docker is required when a cleanup image is supplied" >&2
+    exit 2
+  }
+  docker run --rm \
+    --mount "type=bind,src=${build_root},dst=/build" \
+    --entrypoint /bin/bash \
+    "${cleanup_image}" \
+    -euo pipefail -c '
+      rm -rf -- /build/convertedpbf /build/splitted
+      mkdir -p -- /build/output
+      find /build/output \
+        -mindepth 1 -maxdepth 1 \
+        ! -name dist \
+        -exec rm -rf -- {} +
+    '
+else
+  cleanup_contents "${build_root}"
+fi
+
+mkdir -p -- "${build_root}/convertedpbf" "${build_root}/splitted"

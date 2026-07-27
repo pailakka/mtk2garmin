@@ -294,7 +294,7 @@ run_success_cleanup() {
     return
   fi
 
-  "${script_dir}/cleanup_build_root.sh" "${build_root}"
+  "${script_dir}/cleanup_build_root.sh" "${build_root}" "${OSMIUM_IMAGE}"
   run_compose down -v --remove-orphans
 }
 
