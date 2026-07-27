@@ -202,4 +202,25 @@ env "${common_env[@]}" \
 grep -q 'Synthetic notification test' "${aws_message}"
 grep -q '\[mtk2garmin\] test notification on test-host' "${aws_subject}"
 
+credentials_file="${fixture}/aws-access.env"
+printf '%s\n%s' \
+  'AWS_ACCESS_KEY_ID=fixture-access-key' \
+  'AWS_SECRET_ACCESS_KEY=fixture-secret-key' \
+  > "${credentials_file}"
+reset_fixture
+env -u AWS_ACCESS_KEY_ID -u AWS_SECRET_ACCESS_KEY \
+  MTK2GARMIN_AWS_CLI="${fake_aws}" \
+  MTK2GARMIN_AWS_ENV_FILE="${credentials_file}" \
+  MTK2GARMIN_FAILURE_TOPIC_ARN=arn:aws:sns:eu-west-1:123456789012:test \
+  MTK2GARMIN_LOG_DIR="${logs_dir}" \
+  MTK2GARMIN_LOGGER="${fake_logger}" \
+  MTK2GARMIN_NOTIFY_HOST=test-host \
+  FAKE_AWS_COUNT="${aws_count}" \
+  FAKE_AWS_MESSAGE="${aws_message}" \
+  FAKE_AWS_SUBJECT="${aws_subject}" \
+  FAKE_SYSLOG_CAPTURE="${syslog_capture}" \
+  "${script_dir}/run_scheduled_conversion.sh" --test-notification
+[[ "$(<"${aws_count}")" -eq 1 ]]
+grep -q 'Synthetic notification test' "${aws_message}"
+
 echo "failure notification tests passed"

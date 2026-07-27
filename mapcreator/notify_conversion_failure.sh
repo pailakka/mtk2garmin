@@ -111,7 +111,7 @@ load_aws_credentials() {
     return 1
   fi
 
-  while IFS='=' read -r key value; do
+  while IFS='=' read -r key value || [[ -n "${key:-}${value:-}" ]]; do
     key="${key#"${key%%[![:space:]]*}"}"
     key="${key%"${key##*[![:space:]]}"}"
     value="${value%$'\r'}"
