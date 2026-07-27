@@ -19,6 +19,7 @@ homepage_uploaded=0
 committed=0
 
 required_files=(
+  artifact-manifest.json
   mapdetails.json
   mtk_suomi.cpkg
   mtk_suomi.exe
@@ -69,10 +70,48 @@ copy_garmin_img() {
   local target="$3"
 
   if [[ -s "${named_source}" ]]; then
-    cp "${named_source}" "${target}"
+    link_or_copy "${named_source}" "${target}"
   else
-    cp "${fallback_source}" "${target}"
+    link_or_copy "${fallback_source}" "${target}"
   fi
+}
+
+link_or_copy() {
+  local source="$1"
+  local target="$2"
+
+  if ! ln -- "${source}" "${target}" 2>/dev/null; then
+    cp --reflink=auto "${source}" "${target}"
+  fi
+}
+
+upload_archive() {
+  local path
+  local relative
+  local remote_sha256
+  local sha256
+
+  while IFS= read -r -d '' path; do
+    relative="${path#"${staging_dir}/"}"
+    sha256="$(sha256sum "${path}" | awk '{print $1}')"
+    remote_sha256="$(
+      aws s3api head-object \
+        --bucket "${archive_bucket}" \
+        --key "${time_stamp}/${relative}" \
+        --query 'Metadata.sha256' \
+        --output text \
+        2>/dev/null || true
+    )"
+    if [[ "${remote_sha256}" == "${sha256}" ]]; then
+      echo "Reusing verified archive object: ${relative}"
+      continue
+    fi
+    aws s3 cp \
+      --only-show-errors \
+      --metadata "sha256=${sha256}" \
+      "${path}" \
+      "s3://${archive_bucket}/${time_stamp}/${relative}"
+  done < <(find "${staging_dir}" -type f -print0 | sort -z)
 }
 
 require_release_files() {
@@ -152,13 +191,13 @@ copy_garmin_img \
   /output/mtkgarmin_amoled_noparcel/gmapsupp.img \
   "${dist_dir}/mtk_suomi_amoled_noparcel.img"
 
-cp /output/mtkgarmin/MTKSuomi.exe "${dist_dir}/mtk_suomi.exe"
-cp /output/mtkgarmin_noparcel/MTKSuomi.exe "${dist_dir}/mtk_suomi_noparcel.exe"
-cp /output/mtk_suomi_noparcel_osx.zip "${dist_dir}/mtk_suomi_noparcel_osx.zip"
-cp /output/mtk_suomi_osx.zip "${dist_dir}/mtk_suomi_osx.zip"
-cp /output/mtk_all.map "${dist_dir}/mtk_suomi.map"
-cp /mapstyles/peruskartta.zip "${dist_dir}/peruskartta.zip"
-cp /mapstyles/tiekartta.zip "${dist_dir}/tiekartta.zip"
+link_or_copy /output/mtkgarmin/MTKSuomi.exe "${dist_dir}/mtk_suomi.exe"
+link_or_copy /output/mtkgarmin_noparcel/MTKSuomi.exe "${dist_dir}/mtk_suomi_noparcel.exe"
+link_or_copy /output/mtk_suomi_noparcel_osx.zip "${dist_dir}/mtk_suomi_noparcel_osx.zip"
+link_or_copy /output/mtk_suomi_osx.zip "${dist_dir}/mtk_suomi_osx.zip"
+link_or_copy /output/mtk_all.map "${dist_dir}/mtk_suomi.map"
+link_or_copy /mapstyles/peruskartta.zip "${dist_dir}/peruskartta.zip"
+link_or_copy /mapstyles/tiekartta.zip "${dist_dir}/tiekartta.zip"
 
 python3 generate_site.py "${time_stamp}"
 (
@@ -170,14 +209,18 @@ python3 generate_site.py "${time_stamp}"
     >/dev/null
 )
 
+python3 generate_artifact_manifest.py \
+  --root "${dist_dir}" \
+  --release "${time_stamp}"
 require_release_files "${dist_dir}"
-rsync -a --delete "${dist_dir}/" "${staging_dir}/"
+if ! cp -al "${dist_dir}/." "${staging_dir}/"; then
+  rm -rf -- "${staging_dir}"
+  mkdir -p "${staging_dir}"
+  cp -a --reflink=auto "${dist_dir}/." "${staging_dir}/"
+fi
 require_release_files "${staging_dir}"
 
-aws s3 sync \
-  --delete \
-  "${staging_dir}/" \
-  "s3://${archive_bucket}/${time_stamp}/"
+upload_archive
 
 if [[ -d "${target_dir}" ]]; then
   mv -- "${target_dir}" "${backup_dir}"
@@ -207,17 +250,20 @@ aws cloudfront create-invalidation \
 poll_homepage
 verify_public_downloads
 
-find "${publish_root}" \
+committed=1
+trap - EXIT
+rm -f -- "${previous_index}"
+
+if ! find "${publish_root}" \
   -mindepth 1 \
   -maxdepth 1 \
   -type d \
   -regextype posix-extended \
   -regex '.*/[0-9]{4}-[0-9]{2}-[0-9]{2}' \
   ! -name "${time_stamp}" \
-  -exec rm -rf -- {} +
+  -exec rm -rf -- {} +; then
+  echo "Warning: superseded local release cleanup failed." >&2
+fi
 
 rm -rf -- "${backup_dir}"
-committed=1
-trap - EXIT
-rm -f -- "${previous_index}"
 echo "Published and verified canonical release ${time_stamp}."

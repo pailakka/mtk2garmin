@@ -28,6 +28,7 @@ fi
 
 release_root="${publish_root}/${release_date}"
 required_files=(
+  artifact-manifest.json
   mapdetails.json
   mtk_suomi.cpkg
   mtk_suomi.exe
@@ -53,6 +54,10 @@ for filename in "${required_files[@]}"; do
     exit 1
   fi
 done
+
+python3 "${repo_root}/site/verify_artifact_manifest.py" \
+  "${release_root}" \
+  "${release_root}/artifact-manifest.json"
 
 if grep -Eq '/v2/|index_v2|rs-ogr2osm v2|Java/GML' "${release_root}/site.html"; then
   echo "Release homepage contains a legacy pipeline reference." >&2

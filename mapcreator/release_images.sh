@@ -213,6 +213,10 @@ docker run --rm "${ADDITIONAL_DATA_IMAGE}" --help >/dev/null
 docker run --rm "${MKGMAP_IMAGE}" ./run_mkgmap.sh --preflight >/dev/null
 docker run --rm --entrypoint python3 "${SITE_IMAGE}" \
   -m py_compile /opt/mtkgarmin-site/generate_site.py
+docker run --rm --entrypoint python3 "${SITE_IMAGE}" \
+  -m py_compile \
+    /opt/mtkgarmin-site/generate_artifact_manifest.py \
+    /opt/mtkgarmin-site/verify_artifact_manifest.py
 
 MTK2GARMIN_BUILD_ROOT=/opt/mtk2garmin-build \
 MTK2GARMIN_PUBLISH_ROOT=/opt/mtk2garmin-publish \
