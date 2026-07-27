@@ -8,7 +8,7 @@ mapsforge_rs_log="${MAPSFORGE_RS_LOG:-${build_root}/output/mapsforge-rs.log}"
 input_pbf="${MTK2GARMIN_INPUT_PBF:-/convertedpbf/all_osm.osm.pbf}"
 output_map="${MTK2GARMIN_OUTPUT_MAP:-/output/mtk_all_rs.map}"
 bbox="${BBOX:-${MTK2GARMIN_BBOX:-59.4507573,19.0714057,70.1120744,31.6133108}}"
-zoom_interval_conf="${ZOOM_INTERVAL_CONF:-5,0,7,10,8,11,12,12,13,14,14,21}"
+zoom_interval_conf="${ZOOM_INTERVAL_CONF:-7,0,7,10,8,11,12,12,13,14,14,21}"
 tag_mapping="${MTK2GARMIN_TAG_MAPPING:-/mapstyles/mapsforge_peruskartta/mml_tag-mapping_tidy.xml}"
 writer_type="${TYPE:-hd}"
 tag_values="${TAG_VALUES:-false}"
@@ -49,5 +49,8 @@ if ! { time run_compose run --rm \
            mapsforge-rs; } 2>&1 | tee "${mapsforge_rs_log}"; then
   exit 1
 fi
+
+python3 "$(dirname "${BASH_SOURCE[0]}")/check_mapsforge_blocks.py" \
+  "${build_root}/output/$(basename "${output_map}")"
 
 echo "mapsforge-rs log: ${mapsforge_rs_log}"

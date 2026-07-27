@@ -70,6 +70,9 @@ python3 "${repo_root}/mkgmap-converter/check_img_subfiles.py" \
   "${release_root}/mtk_suomi_amoled.img" \
   "${release_root}/mtk_suomi_amoled_noparcel.img"
 
+python3 "${script_dir}/check_mapsforge_blocks.py" \
+  "${release_root}/mtk_suomi.map"
+
 if command -v 7z >/dev/null 2>&1; then
   for installer in mtk_suomi.exe mtk_suomi_noparcel.exe; do
     if ! 7z l "${release_root}/${installer}" |
