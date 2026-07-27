@@ -72,7 +72,8 @@ python3 "${repo_root}/mkgmap-converter/check_img_subfiles.py" \
 
 if command -v 7z >/dev/null 2>&1; then
   for installer in mtk_suomi.exe mtk_suomi_noparcel.exe; do
-    if ! 7z l "${release_root}/${installer}" | grep -Eiq '(^|[\\/])perus\.typ([[:space:]]|$)'; then
+    if ! 7z l "${release_root}/${installer}" |
+      grep -Ei '(^|[[:space:]\\/])perus\.typ([[:space:]]|$)' >/dev/null; then
       echo "${installer} does not contain perus.typ." >&2
       exit 1
     fi
