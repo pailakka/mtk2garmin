@@ -70,3 +70,20 @@ publish_optional_live_object() {
 publish_optional_live_object robots.txt
 publish_optional_live_object sitemap.xml
 aws cloudfront create-invalidation --distribution-id "E2F702Y6HFAYV6" --paths "${invalidation_paths[@]}"
+
+cleanup_old_publish_dirs() {
+  local publish_root="/publish"
+  local normalized_prefix="${download_prefix%/}"
+  local top_dir="${normalized_prefix%%/*}"
+  local nested_dir="${normalized_prefix#*/}"
+
+  # A publisher may clean only dated directories inside its own nested namespace.
+  # Top-level directories belong to sibling pipelines and may back live download links.
+  if [[ "${normalized_prefix}" != "${top_dir}" && -d "${publish_root}/${top_dir}" ]]; then
+    find "${publish_root}/${top_dir}" -mindepth 1 -maxdepth 1 -type d ! -name "${nested_dir}" -prune -exec rm -rf -- {} +
+  fi
+}
+
+cleanup_old_publish_dirs
+
+echo "Done"
