@@ -6,6 +6,8 @@ snapshot_command="${MTK2GARMIN_SNAPSHOT_COMMAND:-${script_dir}/input_snapshot.sh
 notifier="${MTK2GARMIN_NOTIFIER:-${script_dir}/notify_conversion_failure.sh}"
 log_dir="${MTK2GARMIN_LOG_DIR:-/home/teemu}"
 logger_command="${MTK2GARMIN_LOGGER:-logger}"
+snapshot_runtime_dir=""
+snapshot_runtime_command=""
 
 if [[ $# -gt 0 ]]; then
   if [[ $# -eq 1 && ( "$1" == "--help" || "$1" == "-h" ) ]]; then
@@ -21,6 +23,26 @@ log_syslog_error() {
   if command -v "${logger_command}" >/dev/null 2>&1; then
     "${logger_command}" -p user.err -t mtk2garmin -- "${message}"
   fi
+}
+
+cleanup_snapshot_runtime() {
+  if [[ -n "${snapshot_runtime_dir}" && -d "${snapshot_runtime_dir}" ]]; then
+    rm -rf -- "${snapshot_runtime_dir}"
+  fi
+}
+
+prepare_snapshot_runtime() {
+  local command_name
+  local command_source_dir
+
+  command_source_dir="$(cd "$(dirname "${snapshot_command}")" && pwd)"
+  command_name="$(basename "${snapshot_command}")"
+  snapshot_runtime_dir="$(mktemp -d)"
+  chmod 700 "${snapshot_runtime_dir}"
+  cp -- "${snapshot_command}" "${snapshot_runtime_dir}/${command_name}"
+  chmod 700 "${snapshot_runtime_dir}/${command_name}"
+  snapshot_runtime_command="${snapshot_runtime_dir}/${command_name}"
+  export MTK2GARMIN_SNAPSHOT_SOURCE_DIR="${command_source_dir}"
 }
 
 if ! mkdir -p -- "${log_dir}"; then
@@ -73,6 +95,7 @@ notify_on_exit() {
         "mtk2garmin snapshot failed with exit ${original_status}; notification failed with exit ${notify_status}; log=${log_path}"
     fi
   fi
+  cleanup_snapshot_runtime
   exit "${original_status}"
 }
 
@@ -83,8 +106,13 @@ trap 'exit 143' TERM
 
 printf 'Scheduled input snapshot started: time=%s command=%s\n' \
   "${started_at}" "${snapshot_command}" >> "${log_path}"
+if ! prepare_snapshot_runtime; then
+  printf 'Unable to create stable snapshot runtime copy for %s.\n' \
+    "${snapshot_command}" >> "${log_path}"
+  exit 73
+fi
 snapshot_started=1
-(cd "${script_dir}" && "${snapshot_command}") >> "${log_path}" 2>&1
+(cd "${script_dir}" && "${snapshot_runtime_command}") >> "${log_path}" 2>&1
 snapshot_status=$?
 
 if [[ "${snapshot_status}" -eq 0 ]]; then

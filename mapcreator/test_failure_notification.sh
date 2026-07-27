@@ -24,6 +24,9 @@ printf 'AWS_SECRET_ACCESS_KEY=super-secret-value\n'
 printf 'Authorization: Bearer ultra-secret-value\n'
 printf 'request?X-Amz-Signature=deadbeef&safe=yes\n'
 printf 'TOKEN = fixture-token\n'
+if [[ -n "${FAKE_EXECUTABLE_CAPTURE:-}" ]]; then
+  printf '%s\n' "$0" > "${FAKE_EXECUTABLE_CAPTURE}"
+fi
 printf 'long-line='
 head -c 5000 /dev/zero | tr '\0' x
 printf '\n'
@@ -232,6 +235,19 @@ set -e
 grep -q 'Scheduled input snapshot refresh failed' "${aws_message}"
 grep -q 'Failure type: snapshot' "${aws_message}"
 grep -q 'Scheduled input snapshot failed' "$(latest_snapshot_log)"
+
+reset_fixture
+executable_capture="${fixture}/snapshot-executable"
+env "${common_env[@]}" \
+  MTK2GARMIN_SNAPSHOT_COMMAND="${fake_converter}" \
+  FAKE_CONVERSION_EXIT=0 \
+  FAKE_EXECUTABLE_CAPTURE="${executable_capture}" \
+  "${script_dir}/run_scheduled_snapshot.sh"
+snapshot_executable="$(<"${executable_capture}")"
+[[ "${snapshot_executable}" != "${fake_converter}" ]]
+[[ "${snapshot_executable}" == */tmp.*/* || "${snapshot_executable}" == /tmp/* ]]
+[[ ! -e "${snapshot_executable}" ]]
+grep -q 'Scheduled input snapshot succeeded' "$(latest_snapshot_log)"
 
 credentials_file="${fixture}/aws-access.env"
 printf '%s\n%s' \

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 set -Eeuo pipefail
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+runtime_script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+script_dir="${MTK2GARMIN_SNAPSHOT_SOURCE_DIR:-${runtime_script_dir}}"
+script_dir="$(realpath -e -- "${script_dir}")"
 snapshot_root="${MTK2GARMIN_INPUT_SNAPSHOT_ROOT:-/opt/mtk2garmin-inputs}"
 image_lock="${MTK2GARMIN_IMAGE_LOCK:-${script_dir}/images.lock.env}"
 max_age_hours="${MTK2GARMIN_INPUT_MAX_AGE_HOURS:-6}"
