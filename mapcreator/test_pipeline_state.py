@@ -181,6 +181,8 @@ class PipelineStateTest(unittest.TestCase):
                 "failed",
                 "--housekeeping-exit-code",
                 "13",
+                "--failure-type",
+                "housekeeping",
             )
             release = self.run_script(
                 "status-get",

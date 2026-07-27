@@ -298,6 +298,7 @@ def command_status_write(args: argparse.Namespace) -> int:
         "release": args.release,
         "housekeeping": args.housekeeping,
         "housekeeping_exit_code": args.housekeeping_exit_code,
+        "failure_type": args.failure_type,
     }
     atomic_write_json(Path(args.status_file), status)
     return 0
@@ -410,13 +411,18 @@ def build_parser() -> argparse.ArgumentParser:
         required=True,
     )
     status_write.add_argument("--housekeeping-exit-code", type=int)
+    status_write.add_argument(
+        "--failure-type",
+        choices=("none", "snapshot", "conversion", "publication", "housekeeping"),
+        default="none",
+    )
     status_write.set_defaults(handler=command_status_write)
 
     status_get = commands.add_parser("status-get")
     status_get.add_argument("--status-file", required=True)
     status_get.add_argument(
         "--field",
-        choices=("release", "housekeeping", "housekeeping_exit_code"),
+        choices=("release", "housekeeping", "housekeeping_exit_code", "failure_type"),
         required=True,
     )
     status_get.set_defaults(handler=command_status_get)

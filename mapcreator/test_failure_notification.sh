@@ -29,7 +29,7 @@ head -c 5000 /dev/zero | tr '\0' x
 printf '\n'
 if [[ "${FAKE_HOUSEKEEPING_FAIL:-0}" == "1" ]]; then
   printf '%s\n' \
-    '{"schema":1,"kind":"run-status","release":"verified","housekeeping":"failed","housekeeping_exit_code":13}' \
+    '{"schema":1,"kind":"run-status","release":"verified","housekeeping":"failed","housekeeping_exit_code":13,"failure_type":"housekeeping"}' \
     > "${MTK2GARMIN_RUN_STATUS_FILE}"
 fi
 if [[ -n "${FAKE_CONVERSION_SIGNAL:-}" ]]; then

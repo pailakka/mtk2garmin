@@ -98,6 +98,7 @@ notify_on_exit() {
   local notify_output
   local notify_status
   local failure_type="conversion"
+  local recorded_failure_type
 
   trap - EXIT HUP INT TERM
 
@@ -105,7 +106,10 @@ notify_on_exit() {
     ended_epoch="$(date +%s)"
     ended_at="$(date --iso-8601=seconds)"
     duration_seconds=$((ended_epoch - started_epoch))
-    if [[ "$(read_status_field release || true)" == "failed" ]]; then
+    recorded_failure_type="$(read_status_field failure_type || true)"
+    if [[ "${recorded_failure_type}" =~ ^(snapshot|conversion|publication)$ ]]; then
+      failure_type="${recorded_failure_type}"
+    elif [[ "$(read_status_field release || true)" == "failed" ]]; then
       failure_type="publication"
     fi
 

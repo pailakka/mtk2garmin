@@ -188,11 +188,13 @@ write_run_status() {
   local release_status="$1"
   local housekeeping_status="$2"
   local housekeeping_exit_code="${3:-}"
+  local failure_type="${4:-none}"
   local -a arguments=(
     status-write
     --status-file "${run_status_file}"
     --release "${release_status}"
     --housekeeping "${housekeeping_status}"
+    --failure-type "${failure_type}"
   )
 
   if [[ -n "${housekeeping_exit_code}" ]]; then
@@ -800,12 +802,16 @@ main() {
   prepare_build_root
   write_run_status "${release_status}" "${housekeeping_status}"
   check_free_space
-  update_input_data
-  resolve_input_snapshot
+  if ! update_input_data || ! resolve_input_snapshot; then
+    write_run_status "${release_status}" "${housekeeping_status}" "" snapshot
+    return 1
+  fi
   preflight_images
   prepare_runtime
-  run_conversion_recorded
-  run_parallel_build_branches
+  if ! run_conversion_recorded || ! run_parallel_build_branches; then
+    write_run_status "${release_status}" "${housekeeping_status}" "" conversion
+    return 1
+  fi
 
   if [[ "${run_publish}" == "1" ]]; then
     if run_publish_recorded; then
@@ -813,7 +819,7 @@ main() {
       write_run_status "${release_status}" "${housekeeping_status}"
     else
       release_status="failed"
-      write_run_status "${release_status}" "${housekeeping_status}"
+      write_run_status "${release_status}" "${housekeeping_status}" "" publication
       return 1
     fi
   fi
@@ -824,7 +830,8 @@ main() {
     else
       cleanup_status=$?
       housekeeping_status="failed"
-      write_run_status "${release_status}" "${housekeeping_status}" "${cleanup_status}"
+      write_run_status \
+        "${release_status}" "${housekeeping_status}" "${cleanup_status}" housekeeping
       echo "Release status is ${release_status}; housekeeping failed with exit ${cleanup_status}." >&2
       echo "The verified release will not be rebuilt because of housekeeping failure." >&2
       return 0
