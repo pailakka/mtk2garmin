@@ -1,144 +1,315 @@
-#!/bin/bash
-set -euxo pipefail
+#!/usr/bin/env bash
+set -Eeuo pipefail
 
-printf -v image_date '%(%Y%m%d)T' -1
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "${script_dir}"
 
 time_stamp="${TIME_STAMP:-$(date +%Y-%m-%d)}"
-rs_ogr2osm_root="${RS_OGR2OSM_ROOT:-/home/teemu/rs-ogr2osm}"
-ogr2osm_image="${OGR2OSM_IMAGE:-rs-ogr2osm}"
-v1_build_root="${V1_BUILD_ROOT:-/opt/mtk2garmin-build}"
-v2_build_root="${V2_BUILD_ROOT:-/opt/mtk2garmin-build/v2}"
+build_root="${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}"
 publish_root="${MTK2GARMIN_PUBLISH_ROOT:-/opt/mtk2garmin-publish}"
+rs_ogr2osm_root="${RS_OGR2OSM_ROOT:-/home/teemu/rs-ogr2osm}"
+image_lock="${MTK2GARMIN_IMAGE_LOCK:-${script_dir}/images.lock.env}"
 
-run_image_build="${RUN_IMAGE_BUILD:-1}"
 run_input_update="${RUN_INPUT_UPDATE:-1}"
-run_old="${RUN_OLD:-1}"
-run_v2="${RUN_V2:-1}"
+run_conversion="${RUN_CONVERSION:-1}"
+run_mkgmap="${RUN_MKGMAP:-1}"
+run_mapsforge="${RUN_MAPSFORGE:-1}"
+run_osx="${RUN_OSX:-1}"
+run_nsis="${RUN_NSIS:-1}"
+run_amoled_nsis="${RUN_AMOLED_NSIS:-0}"
 run_publish="${RUN_PUBLISH:-1}"
 run_cleanup="${RUN_CLEANUP:-1}"
-include_rs_additional_data="${RS_INCLUDE_ADDITIONAL_DATA:-1}"
+
+include_additional_data="${RS_INCLUDE_ADDITIONAL_DATA:-1}"
 additional_data_mount="${ADDITIONAL_DATA_MOUNT:-mapcreator_additional-data}"
+splitter_java_heap="${SPLITTER_JAVA_HEAP:-40G}"
+mkgmap_java_heap="${MKGMAP_JAVA_HEAP:-40G}"
+garmin_splitter_max_nodes="${GARMIN_SPLITTER_MAX_NODES:-800000}"
+garmin_max_subfile_mib="${GARMIN_MAX_SUBFILE_MIB:-4}"
+garmin_max_img_mib="${GARMIN_MAX_IMG_MIB:-1900}"
+garmin_max_tiles="${GARMIN_MAX_TILES:-1000}"
+mapsforge_rs_memory_profile="${MAPSFORGE_RS_MEMORY_PROFILE:-production-high-mem}"
+mapsforge_rs_memory_budget_gb="${MAPSFORGE_RS_MEMORY_BUDGET_GB:-64}"
+mapsforge_rs_staged_store="${MAPSFORGE_RS_STAGED_STORE:-global-encoded}"
+mapsforge_rs_tile_payload_threads="${MAPSFORGE_RS_TILE_PAYLOAD_THREADS:-16}"
+mapsforge_rs_tile_payload_batch_size="${MAPSFORGE_RS_TILE_PAYLOAD_BATCH_SIZE:-1024}"
+mapsforge_rs_way_planner_mode="${MAPSFORGE_RS_WAY_PLANNER_MODE:-multi-interval}"
+minimum_free_gb="${MTK2GARMIN_MIN_FREE_GB:-80}"
+
+load_image_lock() {
+  if [[ ! -r "${image_lock}" ]]; then
+    echo "Image lock is not readable: ${image_lock}" >&2
+    echo "Release and lock runtime images with ./release_images.sh." >&2
+    return 1
+  fi
+
+  set -a
+  # shellcheck disable=SC1090
+  source "${image_lock}"
+  set +a
+
+  local variable
+  for variable in \
+    MML_OGR_IMAGE MAPSFORGE_RS_IMAGE OGR2OSM_IMAGE OSMIUM_IMAGE \
+    OSXCONVERTER_IMAGE ADDITIONAL_DATA_IMAGE MKGMAP_IMAGE MAPSTYLES_IMAGE \
+    NSIS_IMAGE SITE_IMAGE; do
+    if [[ -z "${!variable:-}" || "${!variable}" != *@sha256:* ]]; then
+      echo "Image lock variable ${variable} must contain a full digest reference." >&2
+      return 1
+    fi
+  done
+}
 
 run_compose() {
-  local build_root="$1"
-  shift
   MTK2GARMIN_BUILD_ROOT="${build_root}" \
   MTK2GARMIN_PUBLISH_ROOT="${publish_root}" \
-    docker compose "$@"
+    docker compose --env-file "${image_lock}" "$@"
+}
+
+skip_message() {
+  local step="$1"
+  local flag="$2"
+  echo "Skipping ${step}; set ${flag}=1 to enable it." >&2
 }
 
 prepare_build_root() {
-  local build_root="$1"
   mkdir -p \
     "${build_root}/convertedpbf" \
     "${build_root}/splitted" \
-    "${build_root}/output"
+    "${build_root}/output" \
+    "${publish_root}"
 }
 
-prepare_shared_volumes() {
-  local build_root="$1"
-  run_compose "${build_root}" up --no-start additional-data
-  run_compose "${build_root}" up --no-start mapstyles
+check_free_space() {
+  if [[ "${run_conversion}" != "1" && "${run_mkgmap}" != "1" && "${run_mapsforge}" != "1" ]]; then
+    return
+  fi
+  if [[ ! "${minimum_free_gb}" =~ ^[0-9]+$ ]]; then
+    echo "MTK2GARMIN_MIN_FREE_GB must be a non-negative integer." >&2
+    return 2
+  fi
+
+  local available_kb
+  local required_kb=$((minimum_free_gb * 1024 * 1024))
+  available_kb="$(df -Pk "${build_root}" | awk 'NR == 2 {print $4}')"
+  if [[ ! "${available_kb}" =~ ^[0-9]+$ || "${available_kb}" -lt "${required_kb}" ]]; then
+    echo "Insufficient free space under ${build_root}: require ${minimum_free_gb} GiB." >&2
+    return 1
+  fi
 }
 
-run_downstream_outputs() {
-  local build_root="$1"
-  local download_prefix="$2"
-  local publish_prefix="$3"
-  local index_object="$4"
-  local legacy_index_object="$5"
-  local site_variant="$6"
+pull_service() {
+  local service="$1"
+  if ! run_compose pull "${service}"; then
+    echo "Locked image for Compose service '${service}' is unavailable." >&2
+    echo "Run ./release_images.sh for the affected service." >&2
+    return 1
+  fi
+}
 
-  prepare_build_root "${build_root}"
-  prepare_shared_volumes "${build_root}"
+preflight_images() {
+  local -a services=(mapstyles)
 
-  time run_compose "${build_root}" run merger ./process_osm.sh
+  [[ "${run_input_update}" == "1" ]] && services+=(mml-ogr-client)
+  if [[ "${include_additional_data}" == "1" &&
+        ( "${run_input_update}" == "1" || "${run_conversion}" == "1" ) ]]; then
+    services+=(additional-data)
+  fi
+  [[ "${run_mkgmap}" == "1" ]] && services+=(mkgmap)
+  [[ "${run_mapsforge}" == "1" ]] && services+=(mapsforge-rs)
+  [[ "${run_osx}" == "1" ]] && services+=(osxconverter)
+  [[ "${run_nsis}" == "1" ]] && services+=(nsis)
+  [[ "${run_publish}" == "1" ]] && services+=(site)
 
-  time run_compose "${build_root}" run mkgmap ./run_mkgmap.sh
+  run_compose config --quiet
+  for service in "${services[@]}"; do
+    pull_service "${service}"
+  done
 
-  time run_compose "${build_root}" run mapsforge /app/bin/osmosis \
-             --rbf file=/convertedpbf/all_osm.osm.pbf workers=4 \
-             --mapfile-writer file=/output/mtk_all.map bbox=59.4507573,19.0714057,70.1120744,31.6133108 \
-             simplification-max-zoom=12 simplification-factor=8 threads=8 \
-             zoom-interval-conf=5,0,7,10,8,11,12,12,13,14,14,21 \
-             label-position=true polylabel=true \
-             tag-conf-file=/mapstyles/mapsforge_peruskartta/mml_tag-mapping_tidy.xml type=hd comment="(c) NLS, Metsahallitus, Liikennevirasto, OpenStreetMap contributors 2026"
+  if [[ "${run_conversion}" == "1" ]]; then
+    docker pull "${OGR2OSM_IMAGE}"
+    docker pull "${OSMIUM_IMAGE}"
+    docker run --rm "${OGR2OSM_IMAGE}" --help >/dev/null
+    docker run --rm --entrypoint osmium "${OSMIUM_IMAGE}" --version >/dev/null
+  fi
 
-  time run_compose "${build_root}" run osxconverter
-
-  time run_compose "${build_root}" run nsis /output/mtkgarmin/osmmap.nsi
-  time run_compose "${build_root}" run nsis /output/mtkgarmin_noparcel/osmmap.nsi
-  time run_compose "${build_root}" run nsis /output/mtkgarmin_amoled/osmmap.nsi
-  time run_compose "${build_root}" run nsis /output/mtkgarmin_amoled_noparcel/osmmap.nsi
+  if [[ "${run_mkgmap}" == "1" ]]; then
+    docker run --rm "${MKGMAP_IMAGE}" ./run_mkgmap.sh --preflight
+  fi
 
   if [[ "${run_publish}" == "1" ]]; then
-    time run_compose "${build_root}" run \
-      -e TIME_STAMP="${time_stamp}" \
-      -e DOWNLOAD_PREFIX="${download_prefix}" \
-      -e PUBLISH_PREFIX="${publish_prefix}" \
-      -e INDEX_OBJECT="${index_object}" \
-      -e LEGACY_INDEX_OBJECT="${legacy_index_object}" \
-      -e SITE_VARIANT="${site_variant}" \
-      site
+    docker run --rm \
+      --env-file "${script_dir}/aws-access.env" \
+      --entrypoint aws \
+      "${SITE_IMAGE}" \
+      sts get-caller-identity \
+      >/dev/null
   fi
 }
 
-docker compose down -v --remove-orphans
-
-if [[ "${run_image_build}" == "1" ]]; then
-  docker pull ghcr.io/osgeo/gdal:ubuntu-full-3.10.0
-  docker build --tag teemupel/mtk2garmin-ubuntugis-base -f ./ubuntugis-base/Dockerfile ./ubuntugis-base
-  docker push teemupel/mtk2garmin-ubuntugis-base
-
-  docker compose build --parallel
-  docker compose push
-  docker build --tag "${ogr2osm_image}" "${rs_ogr2osm_root}"
-
-  if [[ -z "$(docker images -q "localhost:5000/mtk2garmin-additional-data:${image_date}" 2> /dev/null)" ]]; then
-    if docker build --tag "localhost:5000/mtk2garmin-additional-data:${image_date}" -f ../get-additional-data/Dockerfile --no-cache ../get-additional-data; then
-      echo "Succesfully loaded additional data"
-      docker tag "localhost:5000/mtk2garmin-additional-data:${image_date}" localhost:5000/mtk2garmin-additional-data:latest
-      docker push localhost:5000/mtk2garmin-additional-data:latest
-    fi
+prepare_runtime() {
+  if [[ "${run_input_update}" == "1" ]]; then
+    run_compose down -v --remove-orphans
+  else
+    run_compose down --remove-orphans
   fi
-fi
+  run_compose up --no-start mapstyles
+}
 
-docker compose pull
+require_file() {
+  local path="$1"
+  if [[ ! -s "${path}" ]]; then
+    echo "Required file is missing or empty: ${path}" >&2
+    return 1
+  fi
+}
 
-if [[ "${run_input_update}" == "1" ]]; then
-  time run_compose "${v1_build_root}" run mml-client /go/src/app/mml-muutostietopalvelu-client load -p maastotietokanta -t avoin -f application/gml+xml -d /mtkdata
-  time run_compose "${v1_build_root}" run mml-client /go/src/app/mml-muutostietopalvelu-client load -p kiinteistorekisterikartta -t karttalehdittain -f application/x-shapefile -d /krkdata
+validate_input_data() {
+  require_file /opt/mtkdata/mktmaasto.zip
+  require_file /opt/mtkdata/mtkkorkeus.zip
+  require_file /opt/krkdata/kiinteistorekisterikartta.gpkg
 
-  time run_compose "${v1_build_root}" run mml-ogr-client
-fi
+  if [[ "${include_additional_data}" == "1" ]]; then
+    run_compose run --rm additional-data --validate-only
+  fi
+}
 
-prepare_shared_volumes "${v1_build_root}"
+update_input_data() {
+  if [[ "${run_input_update}" != "1" ]]; then
+    skip_message "input refresh" "RUN_INPUT_UPDATE"
+    if [[ "${run_conversion}" == "1" ]]; then
+      validate_input_data
+    fi
+    return
+  fi
 
-if [[ "${run_old}" == "1" ]]; then
-  prepare_build_root "${v1_build_root}"
-  time run_compose "${v1_build_root}" run mtk2garmin-converter java -jar /opt/mtk2garmin/target/mtk2garmin-0.0.2.jar /opt/mtk2garmin/mtk2garmin.conf
-  run_downstream_outputs "${v1_build_root}" "${time_stamp}" "new-${time_stamp}" "index.html" "index_old.html" ""
-fi
+  time run_compose run --rm mml-ogr-client
+  if [[ "${include_additional_data}" == "1" ]]; then
+    time run_compose run --rm additional-data
+  fi
+  validate_input_data
+}
 
-if [[ "${run_v2}" == "1" ]]; then
-  prepare_build_root "${v2_build_root}"
-  prepare_shared_volumes "${v2_build_root}"
+run_conversion_stage() {
+  if [[ "${run_conversion}" != "1" ]]; then
+    skip_message "rs-ogr2osm conversion" "RUN_CONVERSION"
+    return
+  fi
 
   time env \
-    OUTPUT_ROOT="${v2_build_root}/convertedpbf" \
-    OGR2OSM_IMAGE="${ogr2osm_image}" \
+    MTK2GARMIN_BUILD_ROOT="${build_root}" \
+    MTK2GARMIN_PUBLISH_ROOT="${publish_root}" \
+    RS_OGR2OSM_ROOT="${rs_ogr2osm_root}" \
+    OGR2OSM_IMAGE="${OGR2OSM_IMAGE}" \
+    OSMIUM_IMAGE="${OSMIUM_IMAGE}" \
     ADDITIONAL_DATA_MOUNT="${additional_data_mount}" \
-    RS_INCLUDE_ADDITIONAL_DATA="${include_rs_additional_data}" \
-    "${rs_ogr2osm_root}/scripts/mtk/run-rs-full.sh"
+    RS_INCLUDE_ADDITIONAL_DATA="${include_additional_data}" \
+    RS_MERGE=1 \
+    "${script_dir}/run_rs_ogr2osm.sh"
+}
 
-  run_downstream_outputs "${v2_build_root}" "v2/${time_stamp}" "v2/${time_stamp}" "index_v2.html" "" "v2"
+require_merged_pbf() {
+  require_file "${build_root}/convertedpbf/all_osm.osm.pbf"
+  docker run --rm \
+    -v "${build_root}/convertedpbf:/convertedpbf:ro" \
+    --entrypoint osmium \
+    "${OSMIUM_IMAGE}" \
+    check-refs /convertedpbf/all_osm.osm.pbf
+}
 
+run_mkgmap_stage() {
+  if [[ "${run_mkgmap}" != "1" ]]; then
+    skip_message "mkgmap" "RUN_MKGMAP"
+    return
+  fi
+
+  require_merged_pbf
+  time run_compose run --rm \
+    -e SPLITTER_JAVA_HEAP="${splitter_java_heap}" \
+    -e MKGMAP_JAVA_HEAP="${mkgmap_java_heap}" \
+    -e GARMIN_SPLITTER_MAX_NODES="${garmin_splitter_max_nodes}" \
+    -e GARMIN_MAX_SUBFILE_MIB="${garmin_max_subfile_mib}" \
+    -e GARMIN_MAX_IMG_MIB="${garmin_max_img_mib}" \
+    -e GARMIN_MAX_TILES="${garmin_max_tiles}" \
+    mkgmap ./run_mkgmap.sh
+}
+
+run_mapsforge_stage() {
+  if [[ "${run_mapsforge}" != "1" ]]; then
+    skip_message "Mapsforge generation" "RUN_MAPSFORGE"
+    return
+  fi
+
+  require_merged_pbf
   time env \
-    V1_BUILD_ROOT="${v1_build_root}" \
-    V2_BUILD_ROOT="${v2_build_root}" \
-    "${rs_ogr2osm_root}/scripts/mtk/compare-v1-v2.sh"
-fi
+    MTK2GARMIN_BUILD_ROOT="${build_root}" \
+    MTK2GARMIN_PUBLISH_ROOT="${publish_root}" \
+    MAPSFORGE_RS_MEMORY_PROFILE="${mapsforge_rs_memory_profile}" \
+    MAPSFORGE_RS_MEMORY_BUDGET_GB="${mapsforge_rs_memory_budget_gb}" \
+    MAPSFORGE_RS_STAGED_STORE="${mapsforge_rs_staged_store}" \
+    MAPSFORGE_RS_TILE_PAYLOAD_THREADS="${mapsforge_rs_tile_payload_threads}" \
+    MAPSFORGE_RS_TILE_PAYLOAD_BATCH_SIZE="${mapsforge_rs_tile_payload_batch_size}" \
+    MAPSFORGE_RS_WAY_PLANNER_MODE="${mapsforge_rs_way_planner_mode}" \
+    "${script_dir}/run_mapsforge_rs.sh"
+}
 
-if [[ "${run_cleanup}" == "1" ]]; then
-  docker compose down -v
-fi
+run_osx_stage() {
+  if [[ "${run_osx}" != "1" ]]; then
+    skip_message "macOS packages" "RUN_OSX"
+    return
+  fi
+
+  time run_compose run --rm osxconverter
+}
+
+run_nsis_stage() {
+  if [[ "${run_nsis}" != "1" ]]; then
+    skip_message "NSIS installers" "RUN_NSIS"
+    return
+  fi
+
+  time run_compose run --rm nsis /output/mtkgarmin/osmmap.nsi
+  time run_compose run --rm nsis /output/mtkgarmin_noparcel/osmmap.nsi
+  if [[ "${run_amoled_nsis}" == "1" ]]; then
+    time run_compose run --rm nsis /output/mtkgarmin_amoled/osmmap.nsi
+    time run_compose run --rm nsis /output/mtkgarmin_amoled_noparcel/osmmap.nsi
+  else
+    skip_message "AMOLED NSIS installers" "RUN_AMOLED_NSIS"
+  fi
+}
+
+run_publish_stage() {
+  if [[ "${run_publish}" != "1" ]]; then
+    skip_message "publication" "RUN_PUBLISH"
+    return
+  fi
+
+  time run_compose run --rm -e TIME_STAMP="${time_stamp}" site
+  "${script_dir}/verify_release.sh" --live "${time_stamp}"
+}
+
+run_success_cleanup() {
+  if [[ "${run_cleanup}" != "1" ]]; then
+    skip_message "successful-run cleanup" "RUN_CLEANUP"
+    return
+  fi
+
+  "${script_dir}/cleanup_build_root.sh" "${build_root}"
+  run_compose down -v --remove-orphans
+}
+
+echo "Running the mtk2garmin production pipeline for ${time_stamp}." >&2
+load_image_lock
+prepare_build_root
+check_free_space
+preflight_images
+prepare_runtime
+update_input_data
+run_conversion_stage
+run_mkgmap_stage
+run_mapsforge_stage
+run_osx_stage
+run_nsis_stage
+run_publish_stage
+run_success_cleanup
+echo "mtk2garmin production pipeline completed for ${time_stamp}." >&2

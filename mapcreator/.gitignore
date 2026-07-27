@@ -1,5 +1,6 @@
 *.env
 .env
+!images.lock.env
 
 docker-compose.dev.yml
 

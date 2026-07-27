@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html lang="fi">
-
+<html lang="fi" class="scroll-smooth">
 <head>
     <meta charset="utf-8">
-    <title>Ilmainen maastokartta iPhonelle, Androidille ja Garminille</title>
-    <script
-        src="https://stats.hylly.org/api/script.js"
-        data-site-id="d128451e8c6f"
-        defer
-    ></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO & Meta -->
+    <title>Ilmainen Suomen maastokartta Garminiin ja puhelimeen | Kartat.Hylly.org</title>
+    <meta name="description" content="Lataa ilmainen offline-maastokartta Garminiin, Androidiin, iPhoneen ja BaseCampiin. Tue karttojen ylläpitoa ostamalla selkeät asennusohjeet.">
+    <meta name="author" content="Hylly.org / Teemu Peltonen">
+    <link rel="canonical" href="https://kartat.hylly.org/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Ilmainen Suomen maastokartta Garminiin ja puhelimeen">
+    <meta property="og:description" content="MML:n aineistoihin perustuva offline-maastokartta Garminille, Androidille, iPhonelle ja BaseCampiin. Lataa kartta tai tue ylläpitoa ostamalla asennusohjeet.">
+    <meta property="og:image" content="https://kartat.hylly.org/img/tscr1.png">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://kartat.hylly.org/">
+    <meta property="og:locale" content="fi_FI">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Analytics & Tracking (Restored from Original) -->
+    <script src="https://stats.hylly.org/api/script.js" data-site-id="d128451e8c6f" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Track all download link clicks
@@ -16,7 +28,7 @@
                 link.addEventListener('click', function(e) {
                     var fileName = this.getAttribute('href').split('/').pop();
                     var linkText = this.textContent.trim();
-                    
+
                     // Send event to Rybbit
                     if (typeof rybbit !== 'undefined') {
                         rybbit('event', 'download', {
@@ -29,353 +41,563 @@
             });
         });
     </script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Tailwind CSS (Stable CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        forest: { 50: '#f0fdf4', 100: '#dcfce7', 500: '#22c55e', 600: '#16a34a', 700: '#15803d', 800: '#166534', 900: '#14532d' },
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        .dl {
-            font-weight: bold;
+        h1, h2, h3 { text-wrap: balance; }
+        p, li { text-wrap: pretty; }
+        :focus-visible { outline: 3px solid #22c55e; outline-offset: 3px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, ::before, ::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
         }
     </style>
-    <meta charset="utf-8" />
-    <link rel="canonical" href="https://kartat.hylly.org">
-    <meta property="og:title" content="Ilmainen maastokartta Androidille ja Garminille" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://kartat.hylly.org" />
-    <meta property="og:image" content="https://kartat.hylly.org/img/scr1.png" />
-    <meta name="description"
-        content="Ilmaiset offline maastokartta Androidille ja Garminin laitteisiin. Perustuu Maanmittauslaitoksen peruskarttoihin, joita paranneltu muilla aineistoilla" />
-    <meta name="author" content="HyllyCorp 2019" />
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Structured Data -->
     <script type="application/ld+json">
         {
-            "@context": "https://schema.org/",
-            "@type": "Product",
-            "name": "Ilmainen offline maastokartta iPhonelle, Androidille ja Garminille",
-            "image": [
-                "https://kartat.hylly.org/img/scr1.png",
-                "https://kartat.hylly.org/img/scr2.png",
-                "https://kartat.hylly.org/img/scr3.png"
-            ],
-            "description": "Ilmaiset offline maastokartat iPhonelle, Androidille ja Garminin laitteisiin. Perustuu Maanmittauslaitoksen peruskarttoihin, joita paranneltu muilla aineistoilla",
-            "brand": {
-                "@type": "Thing",
-                "name": "HyllyCorp"
-            },
+            "@context": "https://schema.org",
+            "@type": "SoftwareApplication",
+            "name": "Hylly Maastokartat",
+            "operatingSystem": "Android, iOS, Garmin",
+            "applicationCategory": "NavigationApplication",
             "offers": {
                 "@type": "Offer",
-                "url": "https://kartat.hylly.org",
+                "url": "https://kartat.hylly.org/",
                 "priceCurrency": "EUR",
                 "price": "0.0",
-                "priceValidUntil": "2020-12-31",
                 "availability": "https://schema.org/InStock",
                 "seller": {
                     "@type": "Organization",
                     "name": "HyllyCorp"
                 }
+            },
+            "author": {
+                "@type": "Person",
+                "name": "Teemu Peltonen"
             }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Kartat.Hylly.org",
+            "url": "https://kartat.hylly.org/",
+            "inLanguage": "fi-FI",
+            "publisher": {
+                "@type": "Organization",
+                "name": "HyllyCorp",
+                "url": "https://kartat.hylly.org/"
+            }
+        }
+    </script>
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "Onko kartan lataaminen maksullista?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Karttatiedostot voi ladata ilmaiseksi. Maksulliset asennusohjeet ovat vapaaehtoinen tapa tukea karttojen ylläpitoa ja saada selkeä apu oikean tiedoston valintaan."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Miten Garmin-kartta asennetaan vanhempaan laitteeseen?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Kopioi IMG-tiedosto laitteen tai muistikortin Garmin-kansioon. Jos vanha laite ei tunnista muuta nimeä, nimeä tiedosto muotoon GMAPSUPP.IMG."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Toimiiko kartta ilman nettiyhteyttä?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Kyllä. Garmin-, Mapsforge- ja Cartograph-lataukset ovat offline-karttoja, kun ne on asennettu laitteeseen."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Minkä tiedoston tarvitsen Androidille?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Locus Mapsiin, OruxMapsiin ja muihin Mapsforge-yhteensopiviin sovelluksiin tarvitset mtk_suomi.map-karttatiedoston ja halutessasi peruskartta- tai tiekartta-tyylin."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "Mitä jos sovelluksen asennuslinkki ei avaudu?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Jos Locus-, OruxMaps- tai Cartograph-linkki ei avaudu, lataa tiedosto selaimella ja tuo se sovellukseen käsin. Karttatiedosto ja tyylipaketti löytyvät samasta latausosiosta."
+                    }
+                }
+            ]
         }
     </script>
 </head>
 
-<body>
-    <div class="container-xl">
-        <div class="row text-center bg-light p-5 my-1">
-            <div class="col-sm">
-                <h1 class="display-5 font-weight-normal">Ilmainen offline maastokartta mukaasi</h1>
-                <p class="lead font-weight-normal">Maanmittauslaitoksen peruskartan tasoiset ja näköiset ilmaiset
-                    maastokartat, yhteensopiva Garmin-maastonavigaattoreiden, Android-laitteiden
-                    (Oruxmaps, Locus maps, c:geo) sekä iOS kanssa (Cartograph).</p>
-                <a class="btn btn-outline-secondary my-1" href="#garmin">Lataa Garmin versio</a>
-                <a class="btn btn-outline-secondary my-1" href="#android">Lataa Android versio</a>
-                <a class="btn btn-outline-secondary my-1" href="#iphone">Lataa iPhone versio</a>
-                <div class="row">
-                    <div class="col-sm">
-                        <iframe
-                            src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fkartat.hylly.org&width=100&layout=box_count&action=like&size=small&share=true&height=65&appId"
-                            width="100" height="65" style="border:none;overflow:hidden" scrolling="no" frameborder="0"
-                            allowTransparency="true" allow="encrypted-media"></iframe>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <a class="twitter-share-button" href="https://twitter.com/intent/tweet">
-                            Tweet</a>
-                    </div>
-                </div>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+<!-- Navigation -->
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="map" class="text-forest-700 w-6 h-6"></i>
+                <span class="font-bold text-xl text-gray-900">Kartat.Hylly.org</span>
             </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#tuki" class="hover:text-forest-700 font-medium transition">Osta ohjeet</a>
+                <a href="#lataukset" class="hover:text-forest-700 font-medium transition">Lataa ilmaiseksi</a>
+                <a href="#info" class="hover:text-forest-700 font-medium transition">Tietoa</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button type="button" aria-label="Avaa valikko" aria-controls="mobile-menu" aria-expanded="false" onclick="var menu=document.getElementById('mobile-menu'); var expanded=this.getAttribute('aria-expanded')==='true'; menu.classList.toggle('hidden', expanded); this.setAttribute('aria-expanded', String(!expanded));" class="md:hidden p-2 min-h-11 min-w-11">
+                <i data-lucide="menu" class="w-6 h-6" aria-hidden="true"></i>
+            </button>
         </div>
-        <div class="row">
-            <div class="col-sm">
-                <h2>Käytön tuki, asennusohjeet ja kehityksen tukeminen</h2>
-                <p>
-                    Lähtöaineistojen maksuttomuudesta huolimatta karttojen tuottaminen aiheuttaa kustannuksia ja
-                    edellyttää
-                    työtä sekä testilaitteita. Käyttäjätuki muodostaa merkittävän osan työkuormasta, tästä syystä
-                    karttojen
-                    asentamiseksi
-                    on tarjolla maksulliset asennusohjeet. <strong>Asennusohjeet ostamalla tuet samalla myös karttojen
-                        tuottamista ilmaiseksi jatkossakin</strong>
-                </p>
-                <p>Asennusohjeita ja tukea on saatavilla neljässä eri
-                    laatuluokassa:</p>
-                <table class="table table-striped table-bordered table-responsive-lg">
-                    <tr>
-                        <th>IV luokka</th>
-                        <th>III luokka</th>
-                        <th>II luokka</th>
-                        <th>I luokka</th>
-                    </tr>
-                    <tr>
-                        <td>Ilman kuvia</td>
-                        <td>Mustavalkoisilla kuvilla</td>
-                        <td>Värikuvilla</td>
-                        <td>Värikuvilla + sähköpostiosoite tekniselle tuelle</td>
-                    </tr>
-                    <tr>
-                        <td><a href="https://holvi.com/shop/hyllyorg/product/10b9291dfa2bf5f11a9cf7bf3cda5000/">Osta
-                                verkkokaupsta - 6.20
-                                €</a></td>
-                        <td><a href="https://holvi.com/shop/hyllyorg/product/6aaf6c28b51e4df157aeb30749fd0de5/">Osta
-                                verkkokaupasta - 12.40
-                                €</a></td>
-                        <td><a href="https://holvi.com/shop/hyllyorg/product/ae79c26a34be7eefcbd56361918798cc/">Osta
-                                verkkokaupasta - 24.80
-                                €</a></td>
-                        <td><a href="https://holvi.com/shop/hyllyorg/product/a803e3d03b0b3138d3b7a8344e34d05a/">Osta
-                                verkkokaupasta - 62.00
-                                €</a></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" class="small">Hinnat sis. alv 25.5%</td>
-                    </tr>
-                </table>
-                <p class="small">Karttojen tekemiseen käytetyt työkalut ja kuvaustekniikat ovat avointa lähdekoodia.
-                    Kaikki kontribuutiot niiden kehittämiseksi ovat tervetulleita <a
-                        href="https://github.com/pailakka/mtk2garmin">GitHubissa</a></p>
-            </div>
-        </div>
-        <div class="row my-4">
-            <div class="col-sm text-center">
-                <a href="https://kartat.hylly.org/img/scr1.png"><img src="https://kartat.hylly.org/img/tscr1.png"
-                        alt="scr1" class="img-thumbnail" /></a>
-            </div>
-            <div class="col-sm text-center">
-                <a href="https://kartat.hylly.org/img/scr2.png"><img src="https://kartat.hylly.org/img/tscr2.png"
-                        alt="scr2" class="img-thumbnail" /></a>
-            </div>
-            <div class="col-sm text-center">
-                <a href="https://kartat.hylly.org/img/scr3.png"><img src="https://kartat.hylly.org/img/tscr3.png"
-                        alt="scr3" class="img-thumbnail" /></a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="bg-secondary col-sm text-white overflow-hidden m-1 p-3">
-                <div class="my-3 py-3 text-center">
-                    <h2 class="display-5"><a name="garmin">Garmin</a></h2>
-                </div>
-                <div class="bg-light text-dark text-left p-1">
-                    <table class="table table-sm table-bordered table-striped">
-                        <tr>
-                            <th colspan="3">Suoraan laitteeseen ladattavat</th>
-                        </tr>
-                        {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".img")%}
-                        <tr>
-                            <td><a class="dl"
-                                    href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
-                            </td>
-                            <td>{{rf.size_text}}</td>
-                            <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><code>SHA1: {{rf.hash}}</code></td>
-                        </tr>
-                        {%endfor%}
-                        <tr>
-                            <th colspan="3">MapSource, BaseCamp ja MapInstall yhteensopiva</th>
-                        </tr>
-                        {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".exe")%}
-                        <tr>
-                            <td><a class="dl"
-                                    href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
-                            </td>
-                            <td>{{rf.size_text}}</td>
-                            <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><code>SHA1: {{rf.hash}}</code></td>
-                        </tr>
-                        {%endfor%}
-                        <tr>
-                            <th colspan="3">OSX BaseCamp yhteensopiva</th>
-                        </tr>
-                        {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".zip")%}
-                        <tr>
-                            <td><a class="dl"
-                                    href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
-                            </td>
-                            <td>{{rf.size_text}}</td>
-                            <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><code>SHA1: {{rf.hash}}</code></td>
-                        </tr>
-                        {%endfor%}
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h4>Suoraan laitteeseen ladattava tiedosto.</h4>
-                        <p>Sijoitetaan /Garmin/ kansioon.
-                            <br />Uudemmissa malleissa tiedoston nimellä ei ole merkitystä, vanhemmissa
-                            malleissa tiedoston nimeksi täytyy vaihtaa
-                            <strong>GMAPSUPP.IMG</strong>
-                        </p>
-                        <h4>MapSource, BaseCamp ja MapInstall yhteensopiva versio.</h4>
-                        <p>Tämän avulla voit
-                            valita haluamasi alueet (aluejako ETRS-TM35 lehtijako) ja siirtää vain
-                            ne laitteeseen, tarpeellinen esimerkiksi vanhempien laitteiden kanssa. <strong>Aja
-                                mtk_suomi.exe
-                                ja
-                                seuraa asennusohjelman ohjeita.</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="bg-secondary col-sm text-white overflow-hidden m-1 p-3">
-                <div class="my-3 py-3 text-center">
-                    <h2 class="display-5"><a name="android">Android</a></h2>
-                </div>
-                <div class="bg-light text-dark text-left p-1">
-                    <table class="table table-sm table-bordered table-striped">
-                        <tr>
-                            <th colspan="3">Mapsforge / Android-yhteensopiva versio</th>
-                        </tr>
-                        {%for k, rf in release_files.items() if rf.type == "mapsforge_map" and
-                        rf.name.endswith(".map")%}
-                        <tr>
-                            <td><a class="dl"
-                                    href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">{{rf.name}}</a>
-                            </td>
-                            <td>{{rf.size_text}}</td>
-                            <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3"><code>SHA1: {{rf.hash}}</code></td>
-                        </tr>
-                        <tr>
-                            <td colspan="3">
-                                <a class="dl" href="orux-map://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Asenna
-                                    kartta Oruxmapsiin</a><br />
-                                <a class="dl"
-                                    href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
-                                    kartta
-                                    Locukseen</a>
-                            </td>
-                        </tr>
-                        {%endfor%}
-                    </table>
-                    <div class="col-sm">
-                        {%for k, rf in release_files.items() if rf.type == "mapsforge_style" and
-                        rf.name.endswith(".zip")%}
-                        <h4>{{rf.name.replace('.zip','').capitalize()}} kuvaustekniikka</h4>
-                        <p>
-                            <a class="dl" href="orux-mf-theme://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Asenna
-                                kuvaustekniikka
-                                Oruxmapsiin</a><br />
-                            <a class="dl"
-                                href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}">Asenna
-                                kuvaustekniikka
-                                Locukseen</a><br />
-                            <a class="dl" href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}">Lataa
-                                {{rf.name}}</a>
-                        </p>
-                        {%endfor%}
-                    </div>
-                </div>
-            </div>
-            <div class="bg-secondary col-sm text-white overflow-hidden m-1 p-3">
-                <div class="my-3 py-3 text-center">
-                    <h2 class="display-5"><a name="iphone">iPhone</a></h2>
-                </div>
-                <div class="bg-light text-dark text-left p-1">
-                    <table class="table table-sm table-bordered table-striped">
-                        <tr>
-                            <th colspan="3">Cartograph / iPhone-yhteensopiva versio</th>
-                        </tr>
-                        {%for k, rf in release_files.items() if rf.type == "mapsforge_map" and
-                        rf.name.endswith(".map")%}
-                        <tr>
-                            <td><a class="dl"
-                                    href="cartograph://kartat-dl.hylly.org/{{publishdate}}/mtk_suomi.cpkg">mtk_suomi.cpkg</a>
-                            </td>
-                            <td>~{{rf.size_text}}</td>
-                            <td>{{rf.updated.strftime('%Y-%m-%d')}}</td>
-                        </tr>
-                        {%endfor%}
-                    </table>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <h4>Kartat vaativat yhteensopivan sovelluksen</h4>
-                        <p>Toistaiseksi ainut yhteensopiva iOS sovellus on:
-                        <ul>
-                            <li>Cartograph maps 3 (<a
-                                    href="https://apps.apple.com/us/app/cartograph-maps-3/id1588186796">https://apps.apple.com/us/app/cartograph-maps-3/id1588186796</a>)
-                            </li>
-                            <li>Cartograph maps 2 (<a
-                                    href="https://apps.apple.com/us/app/cartograph-2-maps/id1082995961">https://apps.apple.com/us/app/cartograph-2-maps/id1082995961</a>)
-                            </li>
-                        </ul>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm my-1 p-1">
-                <p><strong>HUOM! Aineistoa ei saa käyttää navigointitarkoituksiin!</strong></p>
-                <p>HUOM! Karttojen käyttö kaupallisiin tarkoituksiin edellyttää lupaa. Ota yhteyttä niin saat
-                    luvan.</p>
-                <p>Kartta sisältää Maanmittauslaitoksen Maastotietokannan aineistoa. (<a
-                        href="http://www.maanmittauslaitos.fi/avoimen-tietoaineiston-cc-40-lisenssi">Lisenssi</a>)<br />
-                    Kartta sisältää Liikenneviraston merikarttatietokannan aineistoa. <a
-                        href="https://www.traficom.fi/fi/tilastot-ja-julkaisut/paikkatietoaineistot/aineistojen-kaytto-ja-lisenssit">Traficomin
-                        merikartoitusaineiston lisenssi</a><br />
-                    Karttaan <a href="http://www.openstreetmap.org">OpenStreetMap</a>:sta tuotujen aineistojen
-                    &copy;
-                    OpenStreetMap
-                    contributors. <a href="http://www.openstreetmap.org/copyright">Lisenssi</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm bg-secondary text-white my-1 p-1">
-                <h2>Usein Kysyttyjä Kysymyksiä</h2>
-                <h3>"Miksi , kun yritän avata tiedostoa, niin minulle tulee kuvake, joka sanoo, että levyn
-                    näköistiedosto on vioittunut. En saa avattua karttaa."</h3>
-                <p>Siirrä tiedosto (.img) sellaisenaan Garmin laitteeseen äläkä yritä avata sitä tietokoneella. </p>
-                <br />
-                <h3>Miksi kartalla ei näy merenkulun turvalaitteet?</h3>
-                <p>Tulossa.</p><br />
-                <h3>Voisiko kartalla näkyä valtion metsästysalueet?</h3>
-                <p>Metsähallitus suostu luovuttamaan tietoja.</p><br />
-                <h3>Voisiko kartalla näkyä Metsähallituksen retkeilyreitit ja -palvelut?</h3>
-                <p>Metsähallitus suostu luovuttamaan tietoja.</p><br />
-                <h3>Voisiko kartalla näkyä kiinteistörajat?</h3>
-                <p>Kiinteistörajat on lisätty kartalle.</p><br />
-                <h3>Kartta (.img) on liian iso mahtuakseen GPS-laitteeni muistiin, voisiko karttaa saada pilkottua?
-                </h3>
-                <p>Kartta on pilkottu MapSource, BaseCamp ja MapInstall yhteensopivissa tiedostoissa karttalehtijaon
-                    mukaisiin paloihin, joista voit siirtää vain
-                    haluamasi ja/tai muistiin mahtuvat palat laitteeseen <a
-                        href="http://www8.garmin.com/support/download_details.jsp?id=3291">Garmin
-                        MapInstall</a>-ohjelmalla</p><br />
-            </div>
-        </div>
-        <footer class="container py-5">
-            <div class="row">
-                <small class="d-block mb-3 text-muted">&copy; HyllyCorp {{current_year}}. Ota yhteyttä:
-                    yhteys@hylly.org</small>
-            </div>
-        </footer>
     </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t p-4 space-y-3">
+        <a href="#tuki" class="block font-medium hover:text-forest-700">Osta ohjeet</a>
+        <a href="#lataukset" class="block font-medium hover:text-forest-700">Lataa ilmaiseksi</a>
+        <a href="#info" class="block font-medium hover:text-forest-700">Tietoa</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<header class="bg-forest-900 text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-6">Ilmainen Suomen maastokartta Garminiin ja puhelimeen</h1>
+        <p class="text-lg md:text-xl text-green-100 mb-8 leading-relaxed">
+            Maanmittauslaitoksen aineistoihin perustuva offline-maastokartta
+            <span class="font-semibold text-white">Garmin</span>,
+            <span class="font-semibold text-white">Android</span> ja
+            <span class="font-semibold text-white">iPhone</span> laitteisiin. Karttatiedostot voi ladata ilman ostoa; maksulliset asennusohjeet auttavat käyttöönotossa ja tukevat ylläpitoa.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+            <a href="#tuki" class="bg-white text-forest-900 px-8 py-3 rounded-md font-bold hover:bg-gray-100 transition shadow-md flex items-center justify-center gap-2 min-h-11">
+                <i data-lucide="heart" aria-hidden="true"></i> Osta ohjeet ja tue ylläpitoa
+            </a>
+            <a href="#lataukset" class="border border-white text-white px-8 py-3 rounded-md font-medium hover:bg-forest-800 transition flex items-center justify-center gap-2 min-h-11">
+                <i data-lucide="download" aria-hidden="true"></i> Lataa kartta ilmaiseksi
+            </a>
+        </div>
+    </div>
+</header>
+
+<!-- Monetization: Support/Manuals -->
+<section id="tuki" class="py-16 bg-forest-50 border-y border-forest-100">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">Pidä kartat ilmaisina – Osta asennusohjeet ja tue ylläpitoa</h2>
+        <p class="max-w-3xl mx-auto text-gray-600 mb-8 text-lg">
+            Karttatiedostot voi ladata <strong>ilmaiseksi</strong>. Tukipaketit rahoittavat palvelimet, datan käsittelyn ja karttojen ylläpidon.
+        </p>
+        <div class="max-w-3xl mx-auto bg-white border border-forest-100 rounded-xl p-5 text-left mb-10">
+            <p class="text-gray-700">
+                Tukipaketin ostaminen ei ole pakollista lataamista varten. Se on paras tapa tukea projektia, ja saat samalla ohjeet oikean tiedoston valintaan sekä asennukseen Garminiin, BaseCampiin, Androidiin tai iPhoneen.
+            </p>
+            <p class="text-sm text-gray-600 mt-3">
+                Luokkanumero kertoo ohjeen laajuuden: <strong>IV</strong> on kevyin tukipaketti, <strong>I</strong> on laajin ja sisältää sähköpostituen.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-6 max-w-6xl mx-auto text-left">
+            <!-- Tier 4 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:border-forest-500 transition shadow-sm flex flex-col">
+                <h3 class="font-bold text-gray-900">IV Luokka</h3>
+                <p class="text-sm text-gray-600 mt-1">Kevyt tuki</p>
+                <div class="text-2xl font-bold text-forest-700 my-2">6.20 €</div>
+                <p class="text-sm text-gray-600 mb-4 flex-grow">Tekstiohjeet ilman kuvia. Hyvä, jos asennus on jo melko tuttu.</p>
+                <a href="https://holvi.com/shop/hyllyorg/product/10b9291dfa2bf5f11a9cf7bf3cda5000/" class="block w-full py-2 border border-forest-600 text-forest-700 text-center rounded font-medium hover:bg-forest-50 mt-4 min-h-11">Osta ohjeet ja tue</a>
+            </div>
+            <!-- Tier 3 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:border-forest-500 transition shadow-sm flex flex-col">
+                <h3 class="font-bold text-gray-900">III Luokka</h3>
+                <p class="text-sm text-gray-600 mt-1">Perusohje kuvilla</p>
+                <div class="text-2xl font-bold text-forest-700 my-2">12.40 €</div>
+                <p class="text-sm text-gray-600 mb-4 flex-grow">Mustavalkoiset kuvat auttavat seuraamaan asennuksen vaiheet.</p>
+                <a href="https://holvi.com/shop/hyllyorg/product/6aaf6c28b51e4df157aeb30749fd0de5/" class="block w-full py-2 border border-forest-600 text-forest-700 text-center rounded font-medium hover:bg-forest-50 mt-4 min-h-11">Osta ohjeet ja tue</a>
+            </div>
+            <!-- Tier 2 -->
+            <div class="bg-white border-2 border-forest-500 rounded-xl p-6 shadow-sm relative transform md:-translate-y-2 flex flex-col">
+                <div class="absolute top-0 right-0 bg-forest-500 text-white text-xs px-3 py-1 rounded-bl-lg rounded-tr-lg font-bold">SUOSITUIN</div>
+                <h3 class="font-bold text-gray-900">II Luokka</h3>
+                <p class="text-sm text-gray-600 mt-1">Suositus useimmille</p>
+                <div class="text-2xl font-bold text-forest-700 my-2">24.80 €</div>
+                <p class="text-sm text-gray-600 mb-4 flex-grow">Selkeät värikuvalliset ohjeet oikean latauksen valintaan ja asennukseen.</p>
+                <a href="https://holvi.com/shop/hyllyorg/product/ae79c26a34be7eefcbd56361918798cc/" class="block w-full py-3 bg-forest-600 text-white text-center rounded font-medium hover:bg-forest-700 mt-4 min-h-11">Osta suositut ohjeet</a>
+            </div>
+            <!-- Tier 1 -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 hover:border-forest-500 transition shadow-sm flex flex-col">
+                <h3 class="font-bold text-gray-900">I Luokka</h3>
+                <p class="text-sm text-gray-600 mt-1">Laajin tuki</p>
+                <div class="text-2xl font-bold text-forest-700 my-2">62.00 €</div>
+                <p class="text-sm text-gray-600 mb-4 flex-grow">Värikuvalliset ohjeet ja sähköpostituki, jos haluat henkilökohtaisemman avun.</p>
+                <a href="https://holvi.com/shop/hyllyorg/product/a803e3d03b0b3138d3b7a8344e34d05a/" class="block w-full py-2 border border-forest-600 text-forest-700 text-center rounded font-medium hover:bg-forest-50 mt-4 min-h-11">Osta ohjeet ja tuki</a>
+            </div>
+        </div>
+        <p class="text-sm text-gray-600 mt-4">Hinnat sis. alv 25.5%</p>
+    </div>
+</section>
+
+<!-- Social Proof / Info -->
+<section id="info" class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="prose prose-green">
+                <h2 class="text-2xl font-bold text-gray-900">Mitä ja miksi?</h2>
+                <p class="text-gray-600">
+                    Nämä ovat <strong>Maanmittauslaitoksen Maastotietokannan</strong> aineistosta prosessoituja karttoja.
+                    Tavoitteena on "peruskartan" ulkonäkö ja tarkkuus, mutta täysin offline-tilassa GPS-laitteessa.
+                </p>
+                <p class="text-gray-600">
+                    Kartat sisältävät myös:
+                </p>
+                <ul class="list-disc pl-5 text-gray-600 space-y-1">
+                    <li>Liikenneviraston merikarttatietokannan syvyyskäyrät</li>
+                    <li>OpenStreetMapin polut ja laavut</li>
+                    <li>Kiinteistörajat (valinnaisessa versiossa)</li>
+                </ul>
+            </div>
+            <!-- Images Carousel -->
+            <div class="grid grid-cols-2 gap-2">
+                <a href="https://kartat.hylly.org/img/scr1.png" target="_blank" rel="noopener"><img src="https://kartat.hylly.org/img/tscr1.png" alt="Hylly maastokartta Garmin- ja puhelinkäyttöön" class="rounded shadow-md hover:scale-105 transition w-full"></a>
+                <a href="https://kartat.hylly.org/img/scr2.png" target="_blank" rel="noopener"><img src="https://kartat.hylly.org/img/tscr2.png" alt="Offline-maastokartan reitit, vedet ja maastokohteet" class="rounded shadow-md hover:scale-105 transition w-full"></a>
+                <a href="https://kartat.hylly.org/img/scr3.png" target="_blank" rel="noopener"><img src="https://kartat.hylly.org/img/tscr3.png" alt="Suomen maastokartta puhelimessa ja GPS-laitteessa" class="rounded shadow-md col-span-2 w-1/2 mx-auto hover:scale-105 transition"></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Downloads Container -->
+<main id="lataukset" class="max-w-7xl mx-auto px-4 py-16 space-y-16">
+
+    <section class="bg-forest-900 text-white rounded-xl p-6 md:p-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+                <p class="text-green-100 font-medium">Julkaisu {{publishdate}}</p>
+                <h2 class="text-3xl font-bold mt-1">Lataa karttatiedostot ilman ostoa</h2>
+                <p class="text-green-100 mt-3 max-w-3xl">
+                    Valitse ensin käyttötapa. Jokaisessa latauksessa näytetään tiedoston koko, päiväys ja SHA1-tarkiste, kun tarkiste on saatavilla.
+                </p>
+            </div>
+            <a href="#tuki" class="bg-white text-forest-900 px-5 py-3 rounded-md font-bold hover:bg-gray-100 transition text-center min-h-11">
+                Tarvitsetko ohjeet? Osta tukipaketti
+            </a>
+        </div>
+    </section>
+
+    <section class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+        <h2 class="text-2xl font-bold text-gray-900 mb-2">Valitse laite tai käyttötapa</h2>
+        <p class="text-gray-600 mb-4">Aloita tästä. Jos et ole varma, tukipaketin ohjeet auttavat valitsemaan oikean tiedoston.</p>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 text-sm text-gray-600">
+            <a href="#garmin" class="block rounded-lg border border-gray-100 p-4 hover:border-forest-500 hover:bg-forest-50 transition">
+                <strong class="block text-gray-900">Garmin-laite</strong>
+                Suositus: lataa <code>.img</code>. Vanhoissa malleissa nimeä tiedosto <code>GMAPSUPP.IMG</code>.
+            </a>
+            <a href="#garmin" class="block rounded-lg border border-gray-100 p-4 hover:border-forest-500 hover:bg-forest-50 transition">
+                <strong class="block text-gray-900">BaseCamp / MapSource</strong>
+                Windows käyttää <code>.exe</code>-asenninta. macOS käyttää BaseCamp-yhteensopivaa <code>.zip</code>-pakettia.
+            </a>
+            <a href="#android" class="block rounded-lg border border-gray-100 p-4 hover:border-forest-500 hover:bg-forest-50 transition">
+                <strong class="block text-gray-900">Android</strong>
+                Suositus: lataa Mapsforge-<code>.map</code>-kartta ja yksi tyyli Locus Mapsiin, OruxMapsiin tai c:geoon.
+            </a>
+            <a href="#iphone" class="block rounded-lg border border-gray-100 p-4 hover:border-forest-500 hover:bg-forest-50 transition">
+                <strong class="block text-gray-900">iPhone / iPad</strong>
+                Käytä Cartograph-pakettia Cartograph Maps 2- tai 3-sovelluksessa.
+            </a>
+        </div>
+    </section>
+
+    <!-- Garmin Section -->
+    <div id="garmin" class="scroll-mt-24">
+        <div class="border-b pb-4 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="navigation" class="text-forest-700"></i> Garmin
+            </h2>
+            <p class="text-gray-600 mt-1">Yhteensopiva karttaa tukevien Garmin-maastonavigaattoreiden kanssa.</p>
+        </div>
+
+        <div class="bg-white border border-gray-200 rounded-lg p-5 mb-6">
+            <h3 class="font-bold text-gray-900">Suositeltu Garmin-polku</h3>
+            <ul class="mt-2 text-sm text-gray-700 space-y-1 list-disc pl-5">
+                <li>Lataa <strong>mtk_suomi.img</strong>, jos haluat tavallisen kartan suoraan laitteeseen tai muistikortille.</li>
+                <li>Valitse <strong>AMOLED</strong>, jos käytät tummaa näyttöä suosivaa versiota.</li>
+                <li>Valitse <strong>noparcel</strong>, jos et halua kiinteistörajoja mukaan.</li>
+            </ul>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+            <!-- 1. Direct Download (.img) -->
+            {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".img")%}
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
+                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 break-all">Garmin IMG - {{rf.name}}</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{rf.name}}</p>
+                        {% if rf.description %}
+                        <p class="text-sm text-gray-600 mt-1">{{rf.description}}</p>
+                        {% endif %}
+                        <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-700 font-mono">
+                            <span><i data-lucide="hard-drive" class="inline w-3 h-3"></i> {{rf.size_text}}</span>
+                            <span><i data-lucide="calendar" class="inline w-3 h-3"></i> {{rf.updated.strftime('%Y-%m-%d')}}</span>
+                        </div>
+                    </div>
+                    <a href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl bg-forest-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-forest-700 flex items-center gap-2 min-h-11">
+                        <i data-lucide="download" class="w-4 h-4"></i> Lataa
+                    </a>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100">
+                    <code class="block text-sm text-gray-700 bg-gray-50 border border-gray-100 rounded p-2 break-all">SHA1: {{rf.hash}}</code>
+                    <p class="text-sm text-gray-700 mt-2">Sijoita <code>/Garmin/</code>-kansioon. Vanhemmissa malleissa nimeä tiedosto muotoon <code>GMAPSUPP.IMG</code>.</p>
+                </div>
+            </div>
+            {%endfor%}
+
+            <!-- 2. PC Installer (.exe) -->
+            {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".exe")%}
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
+                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 break-all">Windows BaseCamp / MapSource</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{rf.name}}</p>
+                        <p class="text-sm text-gray-600 mt-1">Valitse tämä, jos haluat asentaa kartan ensin Windowsin BaseCampiin tai MapSourceen.</p>
+                        <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-700 font-mono">
+                            <span><i data-lucide="hard-drive" class="inline w-3 h-3"></i> {{rf.size_text}}</span>
+                            <span><i data-lucide="calendar" class="inline w-3 h-3"></i> {{rf.updated.strftime('%Y-%m-%d')}}</span>
+                        </div>
+                    </div>
+                    <a href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl bg-forest-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-forest-700 flex items-center gap-2 min-h-11">
+                        <i data-lucide="download" class="w-4 h-4"></i> Lataa
+                    </a>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100">
+                    <code class="block text-sm text-gray-700 bg-gray-50 border border-gray-100 rounded p-2 break-all">SHA1: {{rf.hash}}</code>
+                    <p class="text-sm text-gray-700 mt-2">Aja <code>.exe</code> ja seuraa asennusohjelman ohjeita.</p>
+                </div>
+            </div>
+            {%endfor%}
+
+            <!-- 3. Mac (.zip) -->
+            {%for k, rf in release_files.items() if rf.type == "garmin_map" and rf.name.endswith(".zip")%}
+            <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition">
+                <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div>
+                        <h3 class="font-bold text-lg text-gray-900 break-all">macOS BaseCamp</h3>
+                        <p class="text-sm text-gray-500 mt-1">{{rf.name}}</p>
+                        <p class="text-sm text-gray-600 mt-1">Valitse tämä, jos käytät BaseCampia macOS:ssä.</p>
+                        <div class="flex flex-wrap gap-4 mt-3 text-sm text-gray-700 font-mono">
+                            <span><i data-lucide="hard-drive" class="inline w-3 h-3"></i> {{rf.size_text}}</span>
+                            <span><i data-lucide="calendar" class="inline w-3 h-3"></i> {{rf.updated.strftime('%Y-%m-%d')}}</span>
+                        </div>
+                    </div>
+                    <a href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl bg-forest-600 text-white px-4 py-2 rounded text-sm font-medium hover:bg-forest-700 flex items-center gap-2 min-h-11">
+                        <i data-lucide="download" class="w-4 h-4"></i> Lataa
+                    </a>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100">
+                    <code class="block text-sm text-gray-700 bg-gray-50 border border-gray-100 rounded p-2 break-all">SHA1: {{rf.hash}}</code>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+    <!-- Android Section -->
+    <div id="android" class="scroll-mt-24">
+        <div class="border-b pb-4 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="smartphone" class="text-forest-700"></i> Android
+            </h2>
+            <p class="text-gray-600 mt-1">Locus Maps, OruxMaps, c:geo ja muut Mapsforge-yhteensopivat sovellukset.</p>
+        </div>
+
+        <!-- Download Card -->
+        {%for k, rf in release_files.items() if rf.type == "mapsforge_map" and rf.name.endswith(".map")%}
+        <div class="bg-forest-50 border border-forest-100 rounded-lg p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div>
+                    <h3 class="text-xl font-bold text-gray-900">{{rf.name}}</h3>
+                    <p class="text-gray-700 mt-1">Suositeltu Android-lataus: koko Suomen kattava offline-karttatiedosto.</p>
+                    <div class="mt-2 text-sm text-gray-700 font-mono">{{rf.size_text}} | {{rf.updated.strftime('%Y-%m-%d')}}</div>
+                    <code class="block mt-2 text-sm text-gray-700 bg-white/70 border border-forest-100 rounded p-2 break-all">SHA1: {{rf.hash}}</code>
+                </div>
+                <div class="flex flex-col gap-2 w-full md:w-auto">
+                    <a href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl w-full bg-forest-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-forest-700 shadow-md flex items-center justify-center gap-2 min-h-11">
+                        <i data-lucide="download"></i> Lataa tiedosto
+                    </a>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <a href="orux-map://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl flex-1 text-center bg-white border border-forest-600 text-forest-700 px-3 py-2 rounded text-sm font-medium hover:bg-forest-50 min-h-11">
+                            Asenna Oruxmaps
+                        </a>
+                        <a href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}" class="dl flex-1 text-center bg-white border border-forest-600 text-forest-700 px-3 py-2 rounded text-sm font-medium hover:bg-forest-50 min-h-11">
+                            Asenna Locus
+                        </a>
+                    </div>
+                    <p class="text-sm text-gray-700 max-w-sm">Jos sovelluslinkki ei avaudu, lataa tiedosto selaimella ja tuo se sovellukseen käsin.</p>
+                </div>
+            </div>
+        </div>
+        {%endfor%}
+
+        <!-- Themes -->
+        <div class="grid md:grid-cols-2 gap-6">
+            {%for k, rf in release_files.items() if rf.type == "mapsforge_style" and rf.name.endswith(".zip")%}
+            <div class="bg-white p-5 rounded border shadow-sm">
+                <h4 class="font-bold text-lg mb-1">{{rf.name.replace('.zip','').capitalize()}} kuvaustekniikka</h4>
+                <p class="text-sm text-gray-600 mb-4">Säätelee kartan ulkonäköä. Asenna yksi tyyli karttatiedoston lisäksi.</p>
+                <div class="flex flex-col gap-2 text-sm">
+                    <a href="https://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl flex items-center text-forest-700 hover:underline">
+                        <i data-lucide="download" class="w-4 h-4 mr-2"></i> Lataa {{rf.name}}
+                    </a>
+                    <a href="orux-mf-theme://kartat-dl.hylly.org/{{publishdate}}/{{rf.name}}" class="dl flex items-center text-forest-700 hover:underline">
+                        <i data-lucide="smartphone" class="w-4 h-4 mr-2"></i> Asenna Oruxmapsiin
+                    </a>
+                    <a href="locus-actions://https/kartat-dl.hylly.org/{{publishdate}}/{{rf.locus_file}}" class="dl flex items-center text-forest-700 hover:underline">
+                        <i data-lucide="smartphone" class="w-4 h-4 mr-2"></i> Asenna Locukseen
+                    </a>
+                </div>
+            </div>
+            {%endfor%}
+        </div>
+    </div>
+
+    <!-- iPhone Section -->
+    <div id="iphone" class="scroll-mt-24">
+        <div class="border-b pb-4 mb-6">
+            <h2 class="text-3xl font-bold text-gray-900 flex items-center gap-2">
+                <i data-lucide="apple" class="text-forest-700"></i> iPhone / iPad
+            </h2>
+            <p class="text-gray-600 mt-1">Vaatii Cartograph Maps 2- tai 3-sovelluksen.</p>
+        </div>
+        {%for k, rf in release_files.items() if rf.type == "mapsforge_map" and rf.name.endswith(".map")%}
+        <div class="bg-white border rounded-lg p-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <h3 class="font-bold text-lg">mtk_suomi.cpkg</h3>
+                <p class="text-sm text-gray-600">Cartograph-paketti iOS-laitteille. Sisältää kartan ja peruskartta-tyylin.</p>
+                <div class="mt-1 text-sm text-gray-700 font-mono">{{rf.updated.strftime('%Y-%m-%d')}} | noin {{rf.size_text}}</div>
+            </div>
+            <a href="cartograph://kartat-dl.hylly.org/{{publishdate}}/mtk_suomi.cpkg" class="dl bg-forest-600 text-white px-6 py-2 rounded hover:bg-forest-700 transition flex items-center gap-2 min-h-11">
+                <i data-lucide="download" class="w-4 h-4"></i> Avaa Cartographissa
+            </a>
+        </div>
+        {%endfor%}
+        <div class="mt-4 text-sm text-gray-600">
+            <p>Toistaiseksi yhteensopivat iOS-sovellukset:</p>
+            <ul class="list-disc list-inside mt-2">
+                <li><a href="https://apps.apple.com/us/app/cartograph-maps-3/id1588186796" class="text-forest-700 hover:underline">Cartograph Maps 3</a></li>
+                <li><a href="https://apps.apple.com/us/app/cartograph-2-maps/id1082995961" class="text-forest-700 hover:underline">Cartograph Maps 2</a></li>
+            </ul>
+        </div>
+    </div>
+
+</main>
+
+<!-- SEO & Info Section: Detailed Data breakdown -->
+<section class="py-16 bg-white border-t border-gray-100">
+    <div class="max-w-4xl mx-auto px-4 prose prose-green prose-lg">
+        <h2 class="text-3xl font-bold text-gray-900 mb-6">Miksi valita Hylly.org maastokartta?</h2>
+
+        <p>
+            Monet ilmaiset karttasovellukset käyttävät pelkkää OpenStreetMap (OSM) aineistoa. Vaikka OSM on erinomainen kaupungeissa ja poluilla, se on puutteellinen Suomen syrjäseuduilla.
+            <strong>Hylly.org kartat perustuvat suoraan Maanmittauslaitoksen (MML) maastotietokantaan</strong>, mikä takaa saman tarkkuuden kuin painetuissa peruskartoissa.
+        </p>
+
+        <h3>Mitä aineistoja kartta sisältää?</h3>
+        <ul class="space-y-2">
+            <li><strong>Maastotietokanta (MML):</strong> Järvet, joet, suot, tiet, sähkölinjat ja rakennukset tarkasti MML:n datasta. (<a href="http://www.maanmittauslaitos.fi/avoimen-tietoaineiston-cc-40-lisenssi">Lisenssi</a>)</li>
+            <li><strong>Syvyyskäyrät (Traficom):</strong> Liikenneviraston merikarttatietokannan syvyystiedot järvistä ja merialueilta. (<a href="https://www.traficom.fi/fi/tilastot-ja-julkaisut/paikkatietoaineistot/aineistojen-kaytto-ja-lisenssit">Lisenssi</a>)</li>
+            <li><strong>Kiinteistörajat:</strong> Valinnainen versio sisältää kiinteistörajat, mikä on korvaamaton apu metsästyksessä ja metsänhoidossa.</li>
+            <li><strong>Reitistöt (OSM):</strong> OpenStreetMapista on tuotu mukaan merkityt vaellusreitit, laavut, autiotuvat ja muut retkeilypalvelut. &copy; OpenStreetMap contributors. (<a href="http://www.openstreetmap.org/copyright">Lisenssi</a>)</li>
+        </ul>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-12 bg-white border-t border-gray-100">
+    <div class="max-w-3xl mx-auto px-4">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Usein kysytyt kysymykset</h2>
+        <div class="space-y-4">
+            <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-gray-800 list-none flex justify-between items-center">
+                    Onko kartan lataaminen maksullista?
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm">
+                    Karttatiedostot voi ladata ilmaiseksi. Maksulliset asennusohjeet ovat vapaaehtoinen tapa tukea karttojen ylläpitoa ja saada selkeä apu oikean tiedoston valintaan.
+                </p>
+            </details>
+            <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-gray-800 list-none flex justify-between items-center">
+                    Miten Garmin-kartta asennetaan vanhempaan laitteeseen?
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm">
+                    Kopioi IMG-tiedosto laitteen tai muistikortin Garmin-kansioon. Jos vanha laite ei tunnista muuta nimeä, nimeä tiedosto muotoon GMAPSUPP.IMG.
+                </p>
+            </details>
+            <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-gray-800 list-none flex justify-between items-center">
+                    Toimiiko kartta ilman nettiyhteyttä?
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm">
+                    Kyllä. Garmin-, Mapsforge- ja Cartograph-lataukset ovat offline-karttoja, kun ne on asennettu laitteeseen.
+                </p>
+            </details>
+            <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-gray-800 list-none flex justify-between items-center">
+                    Minkä tiedoston tarvitsen Androidille?
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm">
+                    Locus Mapsiin, OruxMapsiin ja muihin Mapsforge-yhteensopiviin sovelluksiin tarvitset mtk_suomi.map-karttatiedoston ja halutessasi peruskartta- tai tiekartta-tyylin.
+                </p>
+            </details>
+            <details class="group bg-gray-50 rounded-lg p-4 cursor-pointer">
+                <summary class="font-bold text-gray-800 list-none flex justify-between items-center">
+                    Mitä jos sovelluksen asennuslinkki ei avaudu?
+                    <i data-lucide="chevron-down" class="w-4 h-4 transition-transform group-open:rotate-180"></i>
+                </summary>
+                <p class="text-gray-600 mt-2 text-sm">
+                    Jos Locus-, OruxMaps- tai Cartograph-linkki ei avaudu, lataa tiedosto selaimella ja tuo se sovellukseen käsin. Karttatiedosto ja tyylipaketti löytyvät samasta latausosiosta.
+                </p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 py-12 text-center text-sm">
+    <p>&copy; HyllyCorp {{current_year}}. Ota yhteyttä: <a href="mailto:yhteys@hylly.org" class="hover:text-white underline">yhteys@hylly.org</a></p>
+</footer>
+
+<!-- Init Icons -->
+<script>
+    lucide.createIcons();
+</script>
 </body>
 </html>

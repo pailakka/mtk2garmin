@@ -5,7 +5,6 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 converter="${MTK2GARMIN_CONVERSION_COMMAND:-${script_dir}/convert_docker.sh}"
 notifier="${MTK2GARMIN_NOTIFIER:-${script_dir}/notify_conversion_failure.sh}"
 log_dir="${MTK2GARMIN_LOG_DIR:-/home/teemu}"
-pipeline="${PIPELINE:-${MTK2GARMIN_PIPELINE:-${VERSION:-v2}}}"
 logger_command="${MTK2GARMIN_LOGGER:-logger}"
 
 usage() {
@@ -37,7 +36,6 @@ send_test_notification() {
     --started-at "${now}" \
     --ended-at "${now}" \
     --duration-seconds 0 \
-    --pipeline "${pipeline}" \
     --test-notification
   status=$?
 
@@ -108,8 +106,7 @@ notify_on_exit() {
       --log "${log_path}" \
       --started-at "${started_at}" \
       --ended-at "${ended_at}" \
-      --duration-seconds "${duration_seconds}" \
-      --pipeline "${pipeline}" 2>&1)"
+      --duration-seconds "${duration_seconds}" 2>&1)"
     notify_status=$?
 
     if [[ -n "${notify_output}" ]]; then
@@ -132,8 +129,8 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 
 {
-  printf 'Scheduled conversion started: time=%s pipeline=%s command=%s\n' \
-    "${started_at}" "${pipeline}" "${converter}"
+  printf 'Scheduled conversion started: time=%s command=%s\n' \
+    "${started_at}" "${converter}"
 } >> "${log_path}"
 
 conversion_started=1

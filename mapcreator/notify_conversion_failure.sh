@@ -16,7 +16,6 @@ log_path=""
 started_at=""
 ended_at=""
 duration_seconds=""
-pipeline=""
 test_notification=0
 
 usage() {
@@ -28,14 +27,13 @@ Usage:
     --started-at TIMESTAMP \
     --ended-at TIMESTAMP \
     --duration-seconds SECONDS \
-    --pipeline NAME \
     [--test-notification]
 EOF
 }
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --exit-code | --log | --started-at | --ended-at | --duration-seconds | --pipeline)
+    --exit-code | --log | --started-at | --ended-at | --duration-seconds)
       if [[ $# -lt 2 ]]; then
         echo "Missing value for $1" >&2
         usage
@@ -57,9 +55,6 @@ while [[ $# -gt 0 ]]; do
           ;;
         --duration-seconds)
           duration_seconds="$2"
-          ;;
-        --pipeline)
-          pipeline="$2"
           ;;
       esac
       shift 2
@@ -90,7 +85,7 @@ if [[ ! "${duration_seconds}" =~ ^[0-9]+$ ]]; then
   exit 2
 fi
 
-if [[ -z "${log_path}" || -z "${started_at}" || -z "${ended_at}" || -z "${pipeline}" ]]; then
+if [[ -z "${log_path}" || -z "${started_at}" || -z "${ended_at}" ]]; then
   echo "Notification metadata is incomplete" >&2
   usage
   exit 2
@@ -180,7 +175,6 @@ subject="${subject:0:100}"
 {
   printf '%s\n\n' "${headline}"
   printf 'Host: %s\n' "${notify_host}"
-  printf 'Pipeline: %s\n' "${pipeline}"
   printf 'Exit status: %s\n' "${exit_code}"
   printf 'Started: %s\n' "${started_at}"
   printf 'Ended: %s\n' "${ended_at}"

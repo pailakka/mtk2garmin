@@ -32,7 +32,13 @@ def img_entries(path):
             yield name, size
 
 
-def check_img(path, max_subfile_bytes, max_img_bytes, max_tiles):
+def dos_name(directory_name):
+    stem = directory_name[:8].rstrip()
+    suffix = directory_name[8:].rstrip()
+    return f"{stem}.{suffix}" if suffix else stem
+
+
+def check_img(path, max_subfile_bytes, max_img_bytes, max_tiles, required_typ_name):
     entries = list(img_entries(path))
     if not entries:
         print(f"{path}: no Garmin IMG directory entries found", file=sys.stderr)
@@ -49,6 +55,25 @@ def check_img(path, max_subfile_bytes, max_img_bytes, max_tiles):
     )
 
     ok = True
+    if required_typ_name:
+        typ_names = {
+            dos_name(name).lower()
+            for name, _ in entries
+            if name.endswith("TYP")
+        }
+        required_typ_name = required_typ_name.lower()
+        accepted_typ_names = {
+            required_typ_name,
+            f"000{required_typ_name}",
+        }
+        if typ_names.isdisjoint(accepted_typ_names):
+            print(
+                f"{path}: required TYP {required_typ_name} not found; "
+                f"found {', '.join(sorted(typ_names)) or 'none'}",
+                file=sys.stderr,
+            )
+            ok = False
+
     if img_size >= max_img_bytes:
         print(f"{path}: IMG file is {img_size / 1048576:.1f}MiB", file=sys.stderr)
         ok = False
@@ -76,6 +101,7 @@ def main():
     parser.add_argument("--max-subfile-mib", type=float, default=4.0)
     parser.add_argument("--max-img-mib", type=float, default=1900.0)
     parser.add_argument("--max-tiles", type=int, default=1000)
+    parser.add_argument("--required-typ-name", default="perus.typ")
     parser.add_argument("img", nargs="+", type=Path)
     args = parser.parse_args()
 
@@ -89,7 +115,13 @@ def main():
             ok = False
             continue
 
-        ok = check_img(path, max_subfile_bytes, max_img_bytes, args.max_tiles) and ok
+        ok = check_img(
+            path,
+            max_subfile_bytes,
+            max_img_bytes,
+            args.max_tiles,
+            args.required_typ_name,
+        ) and ok
 
     if not ok:
         print(

@@ -1,5 +1,10 @@
 # Image build reliability design
 
+> Superseded on 2026-07-27 by
+> `2026-07-27-single-production-pipeline-design.md`. Image construction is now
+> a separate digest-locked release operation and is no longer a conversion
+> stage.
+
 ## Context
 
 The scheduled jobs on 2026-07-11 and 2026-07-14 failed before map processing.
@@ -13,8 +18,11 @@ release work.
 
 ## Approved behavior
 
-- Upgrade the versioned GDAL base used by mtk2garmin and rs-ogr2osm to
-  `ghcr.io/osgeo/gdal:ubuntu-full-3.13.1`.
+- Upgrade the shared mtk2garmin and MML OGC client bases to
+  `ghcr.io/osgeo/gdal:ubuntu-full-3.13.1` and the rs-ogr2osm base to
+  `ghcr.io/osgeo/gdal:ubuntu-full-3.12.4`. The Rust GDAL crate currently
+  supports pre-generated bindings through GDAL 3.12; compiling against 3.13
+  fails on upstream API changes.
 - Do not add an Apache Arrow key workaround. The updated GDAL base no longer
   configures that repository, and its normal Ubuntu APT update succeeds.
 - Keep the image-build function available through `RUN_IMAGE_BUILD=1`.
@@ -26,8 +34,9 @@ release work.
 
 ## Implementation
 
-The shared mtk2garmin Dockerfile and the rs-ogr2osm Dockerfile will use the same
-versioned GDAL release. A floating `latest` tag will not be introduced.
+The shared mtk2garmin, MML OGC client, and rs-ogr2osm Dockerfiles will use
+explicit, compatible GDAL releases. A floating `latest` tag will not be
+introduced.
 Affected APT layers will use noninteractive `apt-get`, avoid recommended packages
 where practical, and remove downloaded package indexes in the same layer.
 
@@ -50,7 +59,7 @@ release schedule, or full pipeline resume mechanism.
 
 1. Build the updated shared mtk2garmin base image.
 2. Confirm GDAL reports version 3.13.1 and APT metadata refresh succeeds.
-3. Build rs-ogr2osm against the same GDAL base and run its help smoke test.
+3. Build rs-ogr2osm against GDAL 3.12.4 and run its help smoke test.
 4. Build the affected Compose images and run lightweight command/version checks.
 5. Exercise the scheduled no-build path only through preflight; do not start the
    multi-hour national map conversion.

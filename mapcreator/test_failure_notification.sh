@@ -131,7 +131,6 @@ set -e
 [[ "$(<"${aws_count}")" -eq 1 ]]
 grep -q 'Scheduled conversion failed' "${aws_message}"
 grep -q 'Host: test-host' "${aws_message}"
-grep -q 'Pipeline: v2' "${aws_message}"
 grep -q 'Exit status: 23' "${aws_message}"
 grep -q 'Log: .*/mtk2garmin_.*-cron.log' "${aws_message}"
 grep -q '\[REDACTED' "${aws_message}"
@@ -180,8 +179,7 @@ env "${common_env[@]}" \
     --log "${fixture}/missing.log" \
     --started-at '2026-07-23T03:00:00+02:00' \
     --ended-at '2026-07-23T03:00:01+02:00' \
-    --duration-seconds 1 \
-    --pipeline v2
+    --duration-seconds 1
 grep -q '\[log unavailable:' "${aws_message}"
 
 reset_fixture
@@ -193,8 +191,7 @@ env "${common_env[@]}" \
     --log "${empty_log}" \
     --started-at '2026-07-23T03:00:00+02:00' \
     --ended-at '2026-07-23T03:00:01+02:00' \
-    --duration-seconds 1 \
-    --pipeline v2
+    --duration-seconds 1
 grep -q "Log: ${empty_log}" "${aws_message}"
 grep -q 'Final 40 log lines' "${aws_message}"
 

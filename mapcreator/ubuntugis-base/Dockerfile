@@ -1,9 +1,16 @@
-FROM ghcr.io/osgeo/gdal:ubuntu-full-3.10.0
+ARG GDAL_BASE_IMAGE=ghcr.io/osgeo/gdal:ubuntu-full-3.13.1
+FROM ${GDAL_BASE_IMAGE}
 
-RUN apt update && apt install -y curl
-
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash && \
-    . /root/.bashrc && nvm install 22 && apt update && apt upgrade -y && \
-    apt install -y git p7zip-full nodejs default-jdk maven osmium-tool&& \
-    npm install -g svgo &&\
-    apt clean
+RUN apt-get update \
+    && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        git \
+        maven \
+        nodejs \
+        npm \
+        openjdk-21-jdk \
+        osmium-tool \
+        p7zip-full \
+    && npm install --global svgo \
+    && rm -rf /var/lib/apt/lists/*
