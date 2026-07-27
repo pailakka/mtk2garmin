@@ -102,6 +102,7 @@ replace_legacy_input() {
   local required_relative="$2"
   local snapshot_path="$3"
   local next_link
+  local retired_path=""
 
   legacy_path="$(
     realpath -m -- "$(dirname -- "${legacy_path}")"
@@ -110,19 +111,33 @@ replace_legacy_input() {
     echo "Refusing unsafe legacy input replacement: ${legacy_path}" >&2
     return 2
   fi
-  if [[ -L "${legacy_path}" ]]; then
-    rm -- "${legacy_path}"
-  elif [[ -e "${legacy_path}" ]]; then
+  if [[ ! -L "${legacy_path}" && -e "${legacy_path}" ]]; then
     if [[ ! -s "${legacy_path}/${required_relative}" ]]; then
       echo "Legacy input root lacks ${required_relative}: ${legacy_path}" >&2
       return 1
     fi
-    rm -rf -- "${legacy_path}"
+    retired_path="${legacy_path}.retired-${snapshot_id}"
+    if [[ -e "${retired_path}" || -L "${retired_path}" ]]; then
+      echo "Legacy input retirement target already exists: ${retired_path}" >&2
+      return 1
+    fi
+    mv -- "${legacy_path}" "${retired_path}"
   fi
 
   next_link="${legacy_path}.next-${snapshot_id}"
   ln -s "${snapshot_path}" "${next_link}"
-  mv -Tf -- "${next_link}" "${legacy_path}"
+  if ! mv -Tf -- "${next_link}" "${legacy_path}"; then
+    rm -f -- "${next_link}"
+    if [[ -n "${retired_path}" && -d "${retired_path}" ]]; then
+      mv -- "${retired_path}" "${legacy_path}"
+    fi
+    return 1
+  fi
+
+  if [[ -n "${retired_path}" && -d "${retired_path}" ]] &&
+     ! rm -rf -- "${retired_path}"; then
+    echo "Warning: retired legacy input cleanup failed: ${retired_path}" >&2
+  fi
 }
 
 if [[ "${mode}" == "check" ]]; then

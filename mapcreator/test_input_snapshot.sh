@@ -85,5 +85,7 @@ test -L "${legacy_mtkdata}"
 test -L "${legacy_krkdata}"
 test "$(realpath "${legacy_mtkdata}")" = \
   "${snapshot_root}/snapshots/replacement/mtkdata"
+test ! -e "${legacy_mtkdata}.retired-replacement"
+test ! -e "${legacy_krkdata}.retired-replacement"
 
 echo "input snapshot tests passed"
