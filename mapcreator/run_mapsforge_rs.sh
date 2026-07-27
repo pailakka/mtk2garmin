@@ -6,7 +6,7 @@ publish_root="${MTK2GARMIN_PUBLISH_ROOT:-/opt/mtk2garmin-publish}"
 mapsforge_rs_log="${MAPSFORGE_RS_LOG:-${build_root}/output/mapsforge-rs.log}"
 
 input_pbf="${MTK2GARMIN_INPUT_PBF:-/convertedpbf/all_osm.osm.pbf}"
-output_map="${MTK2GARMIN_OUTPUT_MAP:-/output/mtk_all_rs.map}"
+output_map="${MTK2GARMIN_OUTPUT_MAP:-/output/mtk_all.map}"
 bbox="${BBOX:-${MTK2GARMIN_BBOX:-59.4507573,19.0714057,70.1120744,31.6133108}}"
 zoom_interval_conf="${ZOOM_INTERVAL_CONF:-7,0,7,10,8,11,12,12,13,14,14,21}"
 tag_mapping="${MTK2GARMIN_TAG_MAPPING:-/mapstyles/mapsforge_peruskartta/mml_tag-mapping_tidy.xml}"
@@ -19,6 +19,8 @@ staged_store="${MAPSFORGE_RS_STAGED_STORE:-global-encoded}"
 tile_payload_threads="${MAPSFORGE_RS_TILE_PAYLOAD_THREADS:-16}"
 tile_payload_batch_size="${MAPSFORGE_RS_TILE_PAYLOAD_BATCH_SIZE:-1024}"
 way_planner_mode="${MAPSFORGE_RS_WAY_PLANNER_MODE:-multi-interval}"
+node_index_type="${MAPSFORGE_RS_NODE_INDEX_TYPE:-disk}"
+node_index_cache_blocks="${MAPSFORGE_RS_NODE_INDEX_CACHE_BLOCKS:-65536}"
 
 run_compose() {
   MTK2GARMIN_BUILD_ROOT="${build_root}" \
@@ -28,8 +30,6 @@ run_compose() {
 
 mkdir -p "${build_root}/output"
 rm -f "${mapsforge_rs_log}"
-
-run_compose up --no-start --remove-orphans mapstyles
 
 if ! { time run_compose run --rm \
            -e MTK2GARMIN_INPUT_PBF="${input_pbf}" \
@@ -46,6 +46,8 @@ if ! { time run_compose run --rm \
            -e MAPSFORGE_RS_TILE_PAYLOAD_THREADS="${tile_payload_threads}" \
            -e MAPSFORGE_RS_TILE_PAYLOAD_BATCH_SIZE="${tile_payload_batch_size}" \
            -e MAPSFORGE_RS_WAY_PLANNER_MODE="${way_planner_mode}" \
+           -e MAPSFORGE_RS_NODE_INDEX_TYPE="${node_index_type}" \
+           -e MAPSFORGE_RS_NODE_INDEX_CACHE_BLOCKS="${node_index_cache_blocks}" \
            mapsforge-rs; } 2>&1 | tee "${mapsforge_rs_log}"; then
   exit 1
 fi

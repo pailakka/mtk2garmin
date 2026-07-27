@@ -5,8 +5,8 @@ services:
     env_file:
       - ../mml-ogc-processes/.env
     volumes:
-      - /opt/mtkdata:/mtkdata
-      - /opt/krkdata:/krkdata
+      - ${MTK2GARMIN_MTKDATA_ROOT:-/opt/mtkdata}:/mtkdata
+      - ${MTK2GARMIN_KRKDATA_ROOT:-/opt/krkdata}:/krkdata
 
   rs-ogr2osm:
     image: ${OGR2OSM_IMAGE}
@@ -25,6 +25,7 @@ services:
       - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/convertedpbf:/convertedpbf
       - mapstyle:/mapstyles
       - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
+    mem_limit: ${MAPSFORGE_RS_CONTAINER_MEMORY_LIMIT:-32g}
 
   osxconverter:
     image: ${OSXCONVERTER_IMAGE}
@@ -36,7 +37,7 @@ services:
     image: ${ADDITIONAL_DATA_IMAGE}
     build: ../get-additional-data
     volumes:
-      - additional-data:/additional-data
+      - ${ADDITIONAL_DATA_MOUNT:-additional-data}:/additional-data
 
   mkgmap:
     image: ${MKGMAP_IMAGE}
@@ -46,6 +47,7 @@ services:
       - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/splitted:/splitted
       - ${MTK2GARMIN_BUILD_ROOT:-/opt/mtk2garmin-build}/output:/output
       - mapstyle:/mapstyles
+    mem_limit: ${MKGMAP_CONTAINER_MEMORY_LIMIT:-48g}
 
   mapstyles:
     image: ${MAPSTYLES_IMAGE}

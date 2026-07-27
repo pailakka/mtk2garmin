@@ -17,6 +17,7 @@ started_at=""
 ended_at=""
 duration_seconds=""
 test_notification=0
+failure_type="conversion"
 
 usage() {
   cat >&2 <<'EOF'
@@ -27,13 +28,14 @@ Usage:
     --started-at TIMESTAMP \
     --ended-at TIMESTAMP \
     --duration-seconds SECONDS \
+    [--failure-type conversion|snapshot|publication|housekeeping] \
     [--test-notification]
 EOF
 }
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
-    --exit-code | --log | --started-at | --ended-at | --duration-seconds)
+    --exit-code | --log | --started-at | --ended-at | --duration-seconds | --failure-type)
       if [[ $# -lt 2 ]]; then
         echo "Missing value for $1" >&2
         usage
@@ -56,6 +58,9 @@ while [[ $# -gt 0 ]]; do
         --duration-seconds)
           duration_seconds="$2"
           ;;
+        --failure-type)
+          failure_type="$2"
+          ;;
       esac
       shift 2
       ;;
@@ -74,6 +79,15 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+case "${failure_type}" in
+  conversion | snapshot | publication | housekeeping)
+    ;;
+  *)
+    echo "Unknown failure type: ${failure_type}" >&2
+    exit 2
+    ;;
+esac
 
 if [[ ! "${exit_code}" =~ ^[0-9]+$ ]]; then
   echo "Notification exit code must be a non-negative integer" >&2
@@ -167,14 +181,28 @@ if [[ "${test_notification}" == "1" ]]; then
   subject="[mtk2garmin] test notification on ${notify_host}"
   headline="Synthetic notification test"
 else
-  subject="[mtk2garmin] conversion failed on ${notify_host} (exit ${exit_code})"
-  headline="Scheduled conversion failed"
+  subject="[mtk2garmin] ${failure_type} failed on ${notify_host} (exit ${exit_code})"
+  case "${failure_type}" in
+    conversion)
+      headline="Scheduled conversion failed"
+      ;;
+    snapshot)
+      headline="Scheduled input snapshot refresh failed"
+      ;;
+    publication)
+      headline="Release publication failed"
+      ;;
+    housekeeping)
+      headline="Release succeeded, but housekeeping failed"
+      ;;
+  esac
 fi
 subject="${subject:0:100}"
 
 {
   printf '%s\n\n' "${headline}"
   printf 'Host: %s\n' "${notify_host}"
+  printf 'Failure type: %s\n' "${failure_type}"
   printf 'Exit status: %s\n' "${exit_code}"
   printf 'Started: %s\n' "${started_at}"
   printf 'Ended: %s\n' "${ended_at}"
@@ -196,8 +224,8 @@ AWS_MAX_ATTEMPTS=3 \
 publish_status=$?
 
 if [[ "${publish_status}" -ne 0 ]]; then
-  echo "Conversion failure notification publish failed with exit ${publish_status}" >&2
+  echo "${failure_type} failure notification publish failed with exit ${publish_status}" >&2
   exit "${publish_status}"
 fi
 
-echo "Conversion failure notification published to ${topic_arn}"
+echo "${failure_type} failure notification published to ${topic_arn}"

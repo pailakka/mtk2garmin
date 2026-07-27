@@ -27,6 +27,11 @@ printf 'TOKEN = fixture-token\n'
 printf 'long-line='
 head -c 5000 /dev/zero | tr '\0' x
 printf '\n'
+if [[ "${FAKE_HOUSEKEEPING_FAIL:-0}" == "1" ]]; then
+  printf '%s\n' \
+    '{"schema":1,"kind":"run-status","release":"verified","housekeeping":"failed","housekeeping_exit_code":13}' \
+    > "${MTK2GARMIN_RUN_STATUS_FILE}"
+fi
 if [[ -n "${FAKE_CONVERSION_SIGNAL:-}" ]]; then
   kill "-${FAKE_CONVERSION_SIGNAL}" "$$"
 fi
@@ -105,6 +110,10 @@ latest_log() {
   find "${logs_dir}" -type f -name 'mtk2garmin_*-cron.log' -print -quit
 }
 
+latest_snapshot_log() {
+  find "${logs_dir}" -type f -name 'mtk2garmin_snapshot_*-cron.log' -print -quit
+}
+
 assert_absent() {
   local pattern="$1"
   local file="$2"
@@ -119,6 +128,14 @@ reset_fixture
 env "${common_env[@]}" FAKE_CONVERSION_EXIT=0 \
   "${script_dir}/run_scheduled_conversion.sh"
 [[ ! -e "${aws_count}" ]]
+grep -q 'Scheduled conversion succeeded' "$(latest_log)"
+
+reset_fixture
+env "${common_env[@]}" FAKE_CONVERSION_EXIT=0 FAKE_HOUSEKEEPING_FAIL=1 \
+  "${script_dir}/run_scheduled_conversion.sh"
+[[ "$(<"${aws_count}")" -eq 1 ]]
+grep -q 'Release succeeded, but housekeeping failed' "${aws_message}"
+grep -q 'Failure type: housekeeping' "${aws_message}"
 grep -q 'Scheduled conversion succeeded' "$(latest_log)"
 
 reset_fixture
@@ -201,6 +218,20 @@ env "${common_env[@]}" \
 [[ "$(<"${aws_count}")" -eq 1 ]]
 grep -q 'Synthetic notification test' "${aws_message}"
 grep -q '\[mtk2garmin\] test notification on test-host' "${aws_subject}"
+
+reset_fixture
+set +e
+env "${common_env[@]}" \
+  MTK2GARMIN_SNAPSHOT_COMMAND="${fake_converter}" \
+  FAKE_CONVERSION_EXIT=19 \
+  "${script_dir}/run_scheduled_snapshot.sh"
+snapshot_status=$?
+set -e
+[[ "${snapshot_status}" -eq 19 ]]
+[[ "$(<"${aws_count}")" -eq 1 ]]
+grep -q 'Scheduled input snapshot refresh failed' "${aws_message}"
+grep -q 'Failure type: snapshot' "${aws_message}"
+grep -q 'Scheduled input snapshot failed' "$(latest_snapshot_log)"
 
 credentials_file="${fixture}/aws-access.env"
 printf '%s\n%s' \

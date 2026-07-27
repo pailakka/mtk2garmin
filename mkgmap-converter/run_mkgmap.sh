@@ -3,10 +3,16 @@ set -euxo pipefail
 
 splitter_java_heap="${SPLITTER_JAVA_HEAP:-40G}"
 mkgmap_java_heap="${MKGMAP_JAVA_HEAP:-40G}"
+mkgmap_max_jobs="${MKGMAP_MAX_JOBS:-8}"
 garmin_splitter_max_nodes="${GARMIN_SPLITTER_MAX_NODES:-800000}"
 garmin_max_subfile_mib="${GARMIN_MAX_SUBFILE_MIB:-4}"
 garmin_max_img_mib="${GARMIN_MAX_IMG_MIB:-1900}"
 garmin_max_tiles="${GARMIN_MAX_TILES:-1000}"
+
+if [[ ! "${mkgmap_max_jobs}" =~ ^[1-9][0-9]*$ ]]; then
+  echo "MKGMAP_MAX_JOBS must be a positive integer." >&2
+  exit 2
+fi
 
 preflight_runtime() {
   local required_file
@@ -88,6 +94,11 @@ time java "-Xmx${splitter_java_heap}" -jar splitter.jar --output-dir=/splitted -
 (cat mkgmap_mtk2garmin_noparcel.args;echo;cat /splitted/template.args) > /splitted/mkgmap_mtk2garmin_noparcel.args
 (cat mkgmap_mtk2garmin_amoled.args;echo;cat /splitted/template.args) > /splitted/mkgmap_mtk2garmin_amoled.args
 (cat mkgmap_mtk2garmin_amoled_noparcel.args;echo;cat /splitted/template.args) > /splitted/mkgmap_mtk2garmin_amoled_noparcel.args
+sed -i "s/^max-jobs=.*/max-jobs=${mkgmap_max_jobs}/" \
+  /splitted/mkgmap_mtk2garmin.args \
+  /splitted/mkgmap_mtk2garmin_noparcel.args \
+  /splitted/mkgmap_mtk2garmin_amoled.args \
+  /splitted/mkgmap_mtk2garmin_amoled_noparcel.args
 time java "-Xmx${mkgmap_java_heap}" -jar mkgmap.jar -c /splitted/mkgmap_mtk2garmin.args perus.typ
 time java "-Xmx${mkgmap_java_heap}" -jar mkgmap.jar -c /splitted/mkgmap_mtk2garmin_noparcel.args perus.typ
 cp perus.typ /output/mtkgarmin/perus.typ
