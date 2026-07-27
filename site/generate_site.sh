@@ -213,7 +213,11 @@ python3 generate_artifact_manifest.py \
   --root "${dist_dir}" \
   --release "${time_stamp}"
 require_release_files "${dist_dir}"
-if ! cp -al "${dist_dir}/." "${staging_dir}/"; then
+link_probe="${staging_dir}/.hardlink-probe"
+if ln "${dist_dir}/artifact-manifest.json" "${link_probe}" 2>/dev/null; then
+  rm -f -- "${link_probe}"
+  cp -al "${dist_dir}/." "${staging_dir}/"
+else
   rm -rf -- "${staging_dir}"
   mkdir -p "${staging_dir}"
   cp -a --reflink=auto "${dist_dir}/." "${staging_dir}/"

@@ -2,6 +2,7 @@
 
 import hashlib
 import json
+import stat
 import subprocess
 import tempfile
 import unittest
@@ -32,6 +33,10 @@ class ArtifactManifestTest(unittest.TestCase):
 
             manifest = json.loads(
                 (root / "artifact-manifest.json").read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                0o644,
+                stat.S_IMODE((root / "artifact-manifest.json").stat().st_mode),
             )
             self.assertEqual("2026-07-27", manifest["release"])
             by_name = {item["name"]: item for item in manifest["artifacts"]}

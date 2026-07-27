@@ -54,6 +54,7 @@ def main() -> int:
     )
     temporary = Path(temporary_name)
     try:
+        os.fchmod(descriptor, 0o644)
         with os.fdopen(descriptor, "w", encoding="utf-8") as target:
             json.dump(manifest, target, ensure_ascii=True, indent=2, sort_keys=True)
             target.write("\n")
