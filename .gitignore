@@ -13,3 +13,7 @@ suomi*
 mtk
 
 venv
+
+# Local design tooling and unexplained host-local artifacts
+/.impeccable/
+/ghostty
